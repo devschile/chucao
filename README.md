@@ -4,6 +4,10 @@ Kit de marca + sistema de diseño web de devsChile, listo para reusar en
 proyectos nuevos. Pensado para que un modelo (o una persona) lo tome y aplique
 sin tener que ir a buscar cada pieza por separado.
 
+🔗 **[devschile.github.io/design-system](https://devschile.github.io/design-system/)**
+— guía gráfica: paleta, tipografía, todas las variantes del mark y el set de
+favicon, renderizados (rama `docs`, publicada con GitHub Pages).
+
 **Empieza por [`DESIGN.md`](DESIGN.md)** — es la referencia completa: identidad
 de marca (el mark, paleta oficial, reglas de uso) y el sistema de diseño web
 (colores, tipografía, componentes CSS de referencia) que se usó construyendo
