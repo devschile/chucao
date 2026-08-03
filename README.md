@@ -1,20 +1,21 @@
 # devsChile — Design System
 
 Kit de marca + sistema de diseño web de devsChile, listo para reusar en
-proyectos nuevos. Pensado para que un modelo (o una persona) lo tome y aplique
-sin tener que ir a buscar cada pieza por separado.
+proyectos nuevos. Pensado para copiarse y usarse directo, sin depender de
+piezas externas.
 
 🔗 **[devschile.github.io/design-system](https://devschile.github.io/design-system/)**
-— guía gráfica: paleta, tipografía, todas las variantes del mark y el set de
-favicon, renderizados (rama `docs`, publicada con GitHub Pages).
+- guía gráfica: paleta, tipografía, todas las variantes del isotipo y el set
+de favicon, renderizados 
+- rama `docs`, publicada con GitHub Pages
 
 **Empieza por [`DESIGN.md`](DESIGN.md)** — es la referencia completa: identidad
-de marca (el mark, paleta oficial, reglas de uso) y el sistema de diseño web
+de marca (isotipo y logotipo, paleta oficial, reglas de uso) y el sistema de diseño web
 (colores, tipografía, componentes CSS de referencia) que se usó construyendo
 [pegas.devschile.cl](https://pegas.devschile.cl) y
 [semanario.devschile.cl](https://semanario.devschile.cl).
 
-Este repo le agrega lo que `DESIGN.md` describe pero no traía consigo: los
+Este proyecto agrega lo que `DESIGN.md` describe pero no traía: los
 archivos de imagen reales.
 
 ## Qué hay en `assets/`
@@ -23,14 +24,14 @@ archivos de imagen reales.
 assets/
 ├── brand/
 │   ├── huemul-icono.png            El huemul solo, full color (600×663)
-│   ├── huemul-icono.svg            Igual, vector real ✓
-│   ├── huemul-icono-contorno.svg   El huemul + contorno blanco, para fondo oscuro — vector real ✓
-│   ├── huemul-icono-trazo.svg      Solo el trazo, sin relleno — vector real ✓ (extra, no es
+│   ├── huemul-icono.svg            Igual, vector real
+│   ├── huemul-icono-contorno.svg   El huemul + contorno blanco, para fondo oscuro, vector real
+│   ├── huemul-icono-trazo.svg      Solo el trazo, sin relleno, vector real (extra, no es
 │   │                                 una de las 3 variantes oficiales de DESIGN.md)
 │   ├── huemul-icono-blanco.png     El huemul solo, monocromo blanco (593×665)
-│   ├── huemul-icono-blanco.svg     Igual ⚠️ todavía placeholder, ver nota
+│   ├── huemul-icono-blanco.svg     Igual, ver nota abajo sobre este archivo
 │   ├── devschile-wordmark.png      "<devschile/>", solo texto (639×153)
-│   └── devschile-wordmark.svg      Igual, vector real ✓
+│   └── devschile-wordmark.svg      Igual, vector real
 │
 └── favicon/
     ├── favicon.ico                 Multi-resolución (16/32/48), navegadores viejos
@@ -48,21 +49,21 @@ assets/
 ```
 
 Los nombres en `assets/brand/` coinciden a propósito con las rutas que ya usa
-la tabla de `DESIGN.md` (`assets/brand/huemul-icono.png`, etc.) — el markdown
-no necesita ningún ajuste, las imágenes simplemente renderizan.
+la tabla de `DESIGN.md` (`assets/brand/huemul-icono.png`, etc.), así que el
+markdown no necesita ningún ajuste.
 
 ### ⚠️ Sobre `huemul-icono-blanco.svg`
 
-Es el único `.svg` que sigue siendo placeholder: el PNG original embebido tal
+Es el único `.svg` que sigue siendo _placeholder_: el PNG original embebido tal
 cual dentro de un contenedor `<svg><image href="data:image/png;base64,...">`.
-Sirve para cualquier lugar que pida la extensión `.svg`, pero no es un path
-editable ni escala con nitidez real — por dentro sigue siendo raster.
+Sirve para cualquier lugar que pida la extensión `.svg`, pero no es un _path_
+editable ni escala con nitidez real ya que sigue siendo un _raster_.
 
 El resto de los `.svg` de `assets/brand/` (`huemul-icono`,
 `huemul-icono-contorno`, `huemul-icono-trazo`, `devschile-wordmark`) **son
-vector real**, con paths editables. Si consigues la variante monocroma blanca
-en vector, reemplaza `huemul-icono-blanco.svg` con eso y esta nota deja de
-aplicar.
+vectorizados reales**, con paths editables.
+Si consigues la variante monocroma blanca en vector, reemplaza
+`huemul-icono-blanco.svg` con eso y esta nota deja de aplicar.
 
 ### Uso rápido del favicon
 
@@ -75,22 +76,21 @@ aplicar.
 
 ## Licencia de los assets de marca
 
-Los archivos de `assets/brand/` reproducen el mismo mark oficial del banco
+Los archivos de `assets/brand/` reproducen el mismo logo oficial de devsChile que está en
 [devschile/media-press](https://github.com/devschile/media-press), bajo
 [CC BY-NC-ND 4.0](http://creativecommons.org/licenses/by-nc-nd/4.0/):
 **atribución, no comercial, sin derivados**. Los PNG son copias directas sin
-modificar. Los `.svg` vectoriales (todos salvo `huemul-icono-blanco.svg`) son
-el mismo diseño exportado con paths reales, no una reinterpretación. El set
-de favicon es un reencuadre mecánico (redimensión) del icono. Nada de esto
-cambia el color, la forma ni el trazo del mark — caen todos bajo la misma
-licencia.
+modificar, los `.svg` vectoriales (todos salvo `huemul-icono-blanco.svg`) son
+el mismo diseño exportado con paths reales, y el set de favicon es una
+redimensión del icono. Nada cambia el color, la forma ni el trazo del
+isotipo, así que todos caen bajo la misma licencia.
 
 Para proyectos de la propia comunidad devsChile esto ya está cubierto (ver
 "Reglas de uso" en `DESIGN.md`). Para cualquier uso comercial, o para
-modificar el mark más allá de lo que hay acá, se necesita permiso explícito de
+modificar el logo más allá de lo que hay acá, se necesita permiso explícito de
 los administradores de devsChile. El imagotipo combinado, la versión
 vectorial (`.ai`) y la documentación oficial (guía de estilo, guía de uso,
-troquel de stickers) no se incluyen acá — están en
+troquel de stickers) no se incluyen acá: están en
 [devschile/media-press](https://github.com/devschile/media-press).
 
 ## Cómo reusar esto en un proyecto nuevo
@@ -100,10 +100,7 @@ troquel de stickers) no se incluyen acá — están en
    "2. Sistema de diseño web".
 2. Copia de `assets/` lo que el proyecto necesite: como mínimo el favicon y el
    `huemul-icono.png` (o `.svg`) para el header.
-3. El acento teal (`#2dd4bf`) es intercambiable por proyecto — no es parte de
-   la identidad oficial, es una decisión de diseño de pegas.devschile.cl que
-   se puede mantener o cambiar según el proyecto. El huemul y el wordmark, en
-   cambio, van tal cual — no se deforman ni se les cambia el color base fuera
-   de las variantes ya documentadas (color / contorno blanco / monocromo).
+3. El acento teal (`#2dd4bf`) es intercambiable; el isotipo y el logotipo no
+   lo son (ver "Reglas de uso" en `DESIGN.md`).
 
-*Generado por la comunidad, para la comunidad. 🦌*
+*Hecho por la comunidad, para la comunidad. 🦌*
