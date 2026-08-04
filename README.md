@@ -1,10 +1,10 @@
-# devsChile — Design System
+# Chucao
 
 Kit de marca + sistema de diseño web de devsChile, listo para reusar en
 proyectos nuevos. Pensado para copiarse y usarse directo, sin depender de
 piezas externas.
 
-🔗 **[devschile.github.io/design-system](https://devschile.github.io/design-system/)**
+🔗 **[devschile.github.io/chucao](https://devschile.github.io/chucao/)**
 - guía gráfica: paleta, tipografía, todas las variantes del isotipo y el set
 de favicon, renderizados 
 - rama `docs`, publicada con GitHub Pages
