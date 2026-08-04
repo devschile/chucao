@@ -1,5 +1,7 @@
 # Chucao
 
+<img src="chucao-logo.png" width="250">
+
 Kit de marca + sistema de diseño web de devsChile, listo para reusar en
 proyectos nuevos. Pensado para copiarse y usarse directo, sin depender de
 piezas externas.
