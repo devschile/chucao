@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "target": "es2022",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "jsx": "react-jsx",
+    "lib": ["dom", "es2022"],
+    "declaration": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "paths": {
+      "@devschile/chucao": ["./dist/types/index.d.ts"],
+      "@devschile/chucao/dist/components": ["./dist/components/index.d.ts"],
+      "@devschile/chucao/dist/components/*": ["./dist/components/*"]
+    }
+  },
+  "include": ["dist-react/**/*.ts"]
+}
