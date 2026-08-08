@@ -1,0 +1,24 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["typescript", "unicorn", "oxc"],
+  "categories": {
+    "correctness": "error",
+    "suspicious": "warn",
+    "perf": "warn",
+    "style": "warn"
+  },
+  "rules": {
+    "eslint/sort-keys": "off",
+    "eslint/new-cap": "off",
+    "eslint/sort-imports": "off",
+    "eslint/func-style": "off",
+    "eslint/no-ternary": "off",
+    "unicorn/no-null": "off"
+  },
+  "env": {
+    "builtin": true,
+    "browser": true,
+    "es2022": true
+  },
+  "ignorePatterns": ["dist", "dist-react", "dist-vue", "www", "loader", "node_modules", "src/components.d.ts"]
+}

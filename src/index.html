@@ -1,0 +1,46 @@
+<!doctype html>
+<html dir="ltr" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+    <title>Chucao — devsChile design system</title>
+    <link rel="stylesheet" href="/build/chucao.css" />
+
+    <script type="module" src="/build/chucao.esm.js"></script>
+    <script nomodule src="/build/chucao.js"></script>
+  </head>
+  <body style="background-color: var(--bg); background-image: var(--bg-gradient); background-attachment: fixed">
+    <ch-card>
+      <h4>🔗 Links de la semana</h4>
+      <p>Pasa el mouse — el borde y una línea de acento aparecen en hover.</p>
+
+      <ch-button id="btn-1">Click me</ch-button>
+    </ch-card>
+    <ch-badge></ch-badge>
+    <ch-badge variant="warning">placeholder</ch-badge>
+    <ch-badge variant="default">comunidad</ch-badge>
+    <ch-badge variant="positive">Disponible</ch-badge>
+    <ch-input id="input-1" placeholder="tu@email.com" type="email"></ch-input>
+    <ch-select id="select-1" placeholder="Elige un país"></ch-select>
+    <script>
+      const btn = document.getElementById('btn-1');
+      btn.addEventListener('chClick', () => {
+        console.log('Button clicked!');
+      });
+
+      const input = document.getElementById('input-1');
+      input.addEventListener('chChange', ev => {
+        console.log('Input changed!', ev.detail);
+      });
+
+      const select = document.getElementById('select-1');
+      select.options = [
+        { label: 'Chile', value: 'cl' },
+        { label: 'Argentina', value: 'ar' },
+      ];
+      select.addEventListener('chChange', ev => {
+        console.log('Select changed!', ev.detail);
+      });
+    </script>
+  </body>
+</html>

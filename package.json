@@ -1,0 +1,125 @@
+{
+  "name": "@devschile/chucao",
+  "version": "1.0.0",
+  "description": "Chucao — devsChile design system, packaged as StencilJS web components",
+  "keywords": [
+    "stenciljs",
+    "web-components",
+    "design-system",
+    "devschile",
+    "chucao",
+    "ui-components"
+  ],
+  "author": "devsChile",
+  "homepage": "https://github.com/devschile/chucao#readme",
+  "bugs": {
+    "url": "https://github.com/devschile/chucao/issues"
+  },
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.js",
+  "types": "dist/types/index.d.ts",
+  "collection": "dist/collection/collection-manifest.json",
+  "collection:main": "dist/collection/index.js",
+  "unpkg": "dist/chucao/chucao.esm.js",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/chucao/chucao.esm.js",
+      "require": "./dist/chucao/chucao.cjs.js"
+    },
+    "./ch-button": {
+      "import": "./dist/components/ch-button.js",
+      "types": "./dist/components/ch-button.d.ts"
+    },
+    "./dist/components": {
+      "import": "./dist/components/index.js",
+      "types": "./dist/components/index.d.ts"
+    },
+    "./dist/components/*": {
+      "import": "./dist/components/*",
+      "types": "./dist/components/*.d.ts"
+    },
+    "./loader": {
+      "import": "./loader/index.js",
+      "require": "./loader/index.cjs",
+      "types": "./loader/index.d.ts"
+    },
+    "./react": {
+      "import": "./dist-react/components.js",
+      "types": "./dist-react/components.d.ts"
+    },
+    "./vue": {
+      "import": "./dist-vue/index.js",
+      "types": "./dist-vue/index.d.ts"
+    }
+  },
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/devschile/chucao.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=24"
+  },
+  "packageManager": "pnpm@11.17.0",
+  "peerDependencies": {
+    "react": "^18 || ^19",
+    "react-dom": "^18 || ^19",
+    "vue": "^3.4.38"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    },
+    "react-dom": {
+      "optional": true
+    },
+    "vue": {
+      "optional": true
+    }
+  },
+  "files": [
+    "dist/",
+    "dist-react/",
+    "dist-vue/",
+    "loader/"
+  ],
+  "scripts": {
+    "build": "stencil build && pnpm run build:react && pnpm run build:vue",
+    "build:react": "tsc -p tsconfig.react.json",
+    "build:vue": "tsc -p tsconfig.vue.json",
+    "start": "stencil build --dev --watch --serve",
+    "test": "stencil-test --prod",
+    "test:watch": "stencil-test --prod --watch",
+    "test:coverage": "stencil-test --prod --coverage",
+    "generate": "stencil generate",
+    "lint": "oxlint .",
+    "lint:fix": "oxlint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "devDependencies": {
+    "@stencil/core": "^4.27.1 || ^5.0.0-0",
+    "@stencil/react-output-target": "^1.6.1",
+    "@stencil/vitest": "^1.8.3",
+    "@stencil/vue-output-target": "^0.14.1",
+    "@types/node": "^22.13.5",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
+    "@vitest/browser-playwright": "^4.0.0",
+    "@vitest/coverage-istanbul": "^4.1.10",
+    "@vitest/coverage-v8": "^4.1.10",
+    "oxlint": "^1.77.0",
+    "playwright": "^1.52.0",
+    "prettier": "^3.9.6",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "typescript": "^7.0.2",
+    "vitest": "^4.0.0",
+    "vue": "^3.5.41"
+  },
+  "license": "MIT"
+}

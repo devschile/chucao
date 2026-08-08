@@ -1,0 +1,144 @@
+/**
+ * Global stylesheet for the Chucao design system.
+ *
+ * Bundled into every build via `globalStyle` in `stencil.config.ts`. It imports the
+ * generated design tokens (`src/tokens/tokens.css`) as CSS custom properties and adds a
+ * small set of utility classes based on the reference patterns documented in `DESIGN.md`.
+ *
+ * Because Stencil injects `globalStyle` into every shadow root, these variables and
+ * utility classes are available both in the light DOM (e.g. `src/index.html`) and inside
+ * any `shadow: true` component without extra setup.
+ *
+ * This file is meant to keep growing as the design system evolves — it's the single
+ * place for global, project-wide styles.
+ */
+
+@import '../tokens/tokens.css';
+
+/* Self-hosted fonts ---------------------------------------------------
+   Bundled with the library (see `src/global/fonts`) so consumers don't
+   depend on an external request to Google Fonts at runtime. */
+
+@font-face {
+  font-family: 'Fira Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('./fonts/fira-sans-latin-400-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Fira Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('./fonts/fira-sans-latin-600-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Fira Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('./fonts/fira-sans-latin-700-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Inconsolata';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('./fonts/inconsolata-latin-400-normal.woff2') format('woff2');
+}
+
+:root {
+  /* Short aliases matching the `DESIGN.md` reference, mapped onto the generated tokens. */
+  --bg: var(--color-background-base);
+  --bg-gradient:
+    radial-gradient(50% 30% ellipse at center top, var(--color-background-top-glow) 0%, rgba(0, 0, 0, 0) 100%),
+    radial-gradient(60% 50% ellipse at center bottom, var(--color-background-bottom-glow) 0%, var(--color-background-base) 100%);
+  --surface: var(--color-surface-default);
+  --surface-hover: var(--color-surface-hover);
+  --border: var(--color-border-default);
+  --border-hover: var(--color-border-hover);
+  --text: var(--color-text-primary);
+  --text-muted: var(--color-text-secondary);
+  --accent: var(--color-accent-default);
+  --accent-hover: var(--color-accent-hover);
+  --font-body: var(--typography-body);
+  --font-heading: var(--typography-heading);
+  --radius: var(--spacing-radius);
+}
+
+body {
+  font-family: var(--font-body);
+}
+
+/* Utility classes ---------------------------------------------------- */
+
+.ch-container {
+  width: 100%;
+  max-width: var(--layout-max-width);
+  margin-inline: auto;
+}
+
+.ch-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.ch-flex {
+  display: flex;
+}
+
+.ch-flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.ch-items-center {
+  align-items: center;
+}
+
+.ch-justify-center {
+  justify-content: center;
+}
+
+.ch-justify-between {
+  justify-content: space-between;
+}
+
+.ch-gap-sm {
+  gap: 0.5rem;
+}
+
+.ch-gap-md {
+  gap: 1rem;
+}
+
+.ch-text-center {
+  text-align: center;
+}
+
+.ch-text-primary {
+  color: var(--text);
+}
+
+.ch-text-muted {
+  color: var(--text-muted);
+}
+
+.ch-text-accent {
+  color: var(--accent);
+}
+
+.ch-heading {
+  font-family: var(--font-heading);
+}
