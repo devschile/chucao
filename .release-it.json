@@ -3,6 +3,7 @@
     "commitMessage": "chore(release): ${version}",
     "tagName": "${version}",
     "tagAnnotation": "Release ${version}",
+    "tagArgs": ["--sign"],
     "push": true
   },
   "npm": {
