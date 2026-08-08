@@ -19,8 +19,8 @@ dibujadas como llaves de código `{ }`, este es el detalle que conecta la marca 
 el desarrollo web. Ese huemul es el isotipo. Lo acompaña el logotipo
 `<devschile/>`, escrito como una etiqueta HTML.
 
-| Icono (huemul solo) | Logotipo |
-|---|---|
+| Icono (huemul solo)                      | Logotipo                                         |
+| ---------------------------------------- | ------------------------------------------------ |
 | ![huemul](assets/brand/huemul-icono.png) | ![logotipo](assets/brand/devschile-wordmark.png) |
 
 Los dos forman parte del kit oficial. El logotipo casi nunca se usa solo: el
@@ -49,11 +49,11 @@ oscuro:
 Para uso impreso, merch, y cualquier lugar donde el isotipo aparezca en sus
 colores originales:
 
-| | Hex | RGB | CMYK | Pantone |
-|---|---|---|---|---|
-| Huemul — oscuro | `#85422b` | 133, 66, 43 | 32, 74, 79, 37 | 7601 C |
-| Huemul — claro | `#b45b38` | 180, 91, 56 | 23, 70, 80, 13 | 7585 C |
-| Trazo / texto | `#1d1d1b` | — | — | — |
+|                 | Hex       | RGB         | CMYK           | Pantone |
+| --------------- | --------- | ----------- | -------------- | ------- |
+| Huemul — oscuro | `#85422b` | 133, 66, 43 | 32, 74, 79, 37 | 7601 C  |
+| Huemul — claro  | `#b45b38` | 180, 91, 56 | 23, 70, 80, 13 | 7585 C  |
+| Trazo / texto   | `#1d1d1b` | —           | —              | —       |
 
 **Tipografía de marca:** Fira Mono (medium). Coherente con el logotipo
 en formato de tag HTML — la marca es "de developer" incluso en la
@@ -86,7 +86,7 @@ en PDF, troquel para stickers, mockups — vive en:
 ## 2. Sistema de diseño web
 
 Esto es lo que se usó construyendo pegas.devschile.cl — un theme oscuro con
-acento _teal_, pensado para sitios y herramientas internas para desarrolladores. Es una base para 
+acento _teal_, pensado para sitios y herramientas internas para desarrolladores. Es una base para
 generar productos digitales.
 
 ### Filosofía
@@ -102,23 +102,21 @@ devs", igual que el logotipo.
 ```css
 :root {
   --bg: #100a1c;
-  --bg-gradient:
-    radial-gradient(50% 30% ellipse at center top, #201e40 0%, rgba(0,0,0,0) 100%),
-    radial-gradient(60% 50% ellipse at center bottom, #261226 0%, #100a1c 100%);
+  --bg-gradient: radial-gradient(50% 30% ellipse at center top, #201e40 0%, rgba(0, 0, 0, 0) 100%), radial-gradient(60% 50% ellipse at center bottom, #261226 0%, #100a1c 100%);
   --surface: rgba(32, 30, 64, 0.6);
   --surface-hover: rgba(45, 212, 191, 0.08);
   --border: rgba(255, 255, 255, 0.08);
   --border-hover: rgba(45, 212, 191, 0.3);
   --text: #fff;
   --text-muted: rgba(255, 255, 255, 0.55);
-  --accent: #2dd4bf;       /* teal — el color de acento del proyecto */
+  --accent: #2dd4bf; /* teal — el color de acento del proyecto */
   --accent-hover: #5ee8d4;
 }
 ```
 
 El acento (`#2dd4bf`, teal) es intercambiable por proyecto — no es parte de
 la identidad de marca oficial, es una decisión de este producto en
-particular. Lo que sí vale la pena mantener entre proyectos es el *patrón*:
+particular. Lo que sí vale la pena mantener entre proyectos es el _patrón_:
 un solo acento, usado consistentemente, sobre un fondo oscuro con textura
 (gradiente radial, no un plano sólido).
 
@@ -163,12 +161,17 @@ podría ser cualquier lista de items):
   backdrop-filter: blur(10px);
   position: relative;
   overflow: hidden;
-  transition: border-color 0.2s, transform 0.15s, box-shadow 0.2s;
+  transition:
+    border-color 0.2s,
+    transform 0.15s,
+    box-shadow 0.2s;
 }
 .card::before {
   content: '';
   position: absolute;
-  left: 0; top: 0; bottom: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
   width: 3px;
   background: var(--accent);
   opacity: 0;
@@ -179,7 +182,9 @@ podría ser cualquier lista de items):
   transform: translateX(2px);
   box-shadow: 0 4px 20px rgba(45, 212, 191, 0.06);
 }
-.card:hover::before { opacity: 1; }
+.card:hover::before {
+  opacity: 1;
+}
 ```
 
 **Badge/pill** — para categorías, tags, metadata secundaria:
@@ -210,7 +215,9 @@ subrayado:
   font-weight: 700;
   padding: 0.25rem 0.8rem;
   border-radius: 999px;
-  transition: background-color 0.2s, transform 0.15s;
+  transition:
+    background-color 0.2s,
+    transform 0.15s;
 }
 .btn-primary:hover {
   background-color: var(--accent-hover);
@@ -222,7 +229,8 @@ subrayado:
 foco con anillo del color de acento:
 
 ```css
-input, select {
+input,
+select {
   padding: 0.8rem 1.25rem;
   border-radius: var(--radius);
   border: 1px solid var(--border);

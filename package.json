@@ -1,7 +1,20 @@
 {
   "name": "@devschile/chucao",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Chucao — devsChile design system, packaged as StencilJS web components",
+  "keywords": [
+    "stenciljs",
+    "web-components",
+    "design-system",
+    "devschile",
+    "chucao",
+    "ui-components"
+  ],
+  "author": "devsChile",
+  "homepage": "https://github.com/devschile/chucao#readme",
+  "bugs": {
+    "url": "https://github.com/devschile/chucao/issues"
+  },
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
   "types": "dist/types/index.d.ts",
@@ -13,9 +26,9 @@
       "import": "./dist/chucao/chucao.esm.js",
       "require": "./dist/chucao/chucao.cjs.js"
     },
-    "./my-component": {
-      "import": "./dist/components/my-component.js",
-      "types": "./dist/components/my-component.d.ts"
+    "./ch-button": {
+      "import": "./dist/components/ch-button.js",
+      "types": "./dist/components/ch-button.d.ts"
     },
     "./loader": {
       "import": "./loader/index.js",
@@ -38,6 +51,10 @@
   "publishConfig": {
     "access": "public"
   },
+  "engines": {
+    "node": ">=24"
+  },
+  "packageManager": "pnpm@11.17.0",
   "peerDependencies": {
     "react": "^18 || ^19",
     "react-dom": "^18 || ^19",
@@ -61,13 +78,18 @@
     "loader/"
   ],
   "scripts": {
-    "build": "stencil build && npm run build:react && npm run build:vue",
+    "build": "stencil build && pnpm run build:react && pnpm run build:vue",
     "build:react": "tsc -p tsconfig.react.json",
     "build:vue": "tsc -p tsconfig.vue.json",
     "start": "stencil build --dev --watch --serve",
     "test": "stencil-test --prod",
     "test:watch": "stencil-test --prod --watch",
-    "generate": "stencil generate"
+    "test:coverage": "stencil-test --prod --coverage",
+    "generate": "stencil generate",
+    "lint": "oxlint .",
+    "lint:fix": "oxlint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "devDependencies": {
     "@stencil/core": "^4.27.1 || ^5.0.0-0",
@@ -78,7 +100,11 @@
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.4",
     "@vitest/browser-playwright": "^4.0.0",
+    "@vitest/coverage-istanbul": "^4.1.10",
+    "@vitest/coverage-v8": "^4.1.10",
+    "oxlint": "^1.77.0",
     "playwright": "^1.52.0",
+    "prettier": "^3.9.6",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "typescript": "^7.0.2",

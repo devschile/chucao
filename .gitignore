@@ -3,6 +3,7 @@ dist-react/
 dist-vue/
 www/
 loader/
+coverage/
 
 *~
 *.sw[mnpcod]
@@ -19,8 +20,11 @@ log.txt
 .vscode/
 .sass-cache/
 .versions/
+.vitest-attachments/
+**/__screenshots__/
 node_modules/
 $RECYCLE.BIN/
+.junie/
 
 .DS_Store
 Thumbs.db

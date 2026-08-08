@@ -4,15 +4,24 @@
 
 ## Quick start
 
-Import the CSS once (e.g. in your app root or `globalStyle`):
+`src/global/chucao.css` — the file bundled into every build via `globalStyle`
+in `stencil.config.ts` — already imports this stylesheet, so consumers of the
+library get these variables for free:
 
 ```css
-@import "./tokens.css";
+@import '../tokens/tokens.css';
+```
+
+If you're building a separate app that doesn't already pull in `chucao.css`,
+import the CSS the same way (e.g. in your app root or `globalStyle`):
+
+```css
+@import './tokens.css';
 ```
 
 ```tsx
-import { tokens, colorPrimary } from "./tokens";
-import type { ColorToken, TokenName } from "./types";
+import { tokens, colorPrimary } from './tokens';
+import type { ColorToken, TokenName } from './types';
 
 // Use token values directly:
 const primary = colorPrimary;
@@ -21,9 +30,9 @@ const primary = colorPrimary;
 // background: var(--color-primary);
 
 // Type-safe @Prop() for token names:
-@Component({ tag: "my-component" })
+@Component({ tag: 'my-component' })
 export class MyComponent {
-  @Prop() color: ColorToken = "color.primary";
+  @Prop() color: ColorToken = 'color.primary';
 }
 ```
 
@@ -38,7 +47,9 @@ export class MyComponent {
 
 `tokens.css` declares variables on `:root`, so they cascade through Stencil's
 scoped Shadow DOM — `var(--color-primary)` works in any component without
-extra setup.
+extra setup. Since `chucao.css` imports `tokens.css` and is registered as the
+project's `globalStyle`, this `:root` block is inlined into every build output
+(e.g. `www/build/chucao.css`) and injected into every shadow root automatically.
 
 ## Multi-theme usage
 
@@ -48,4 +59,3 @@ Toki currently emits a single theme per run. To produce multiple themes, run `to
 
 - Multi-property composite tokens (`typography`, `border`, `transition`)
   are skipped in `tokens.css`; import them from `tokens.ts` instead.
-

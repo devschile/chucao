@@ -1,0 +1,27 @@
+:host {
+  display: inline-block;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.18rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.badge--default {
+  background: var(--color-surface-hover);
+  color: var(--accent);
+}
+
+.badge--positive {
+  background: var(--color-status-positive-background);
+  color: var(--color-status-positive);
+}
+.badge--warning {
+  background: var(--color-status-warning-background);
+  color: var(--color-status-warning);
+}

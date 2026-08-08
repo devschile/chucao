@@ -27,7 +27,9 @@
     "status": {
       "$description": "Estados",
       "positive": { "$value": "#4ade80", "$description": "Estados positivos, como 'disponible'" },
-      "positive-background": { "$value": "rgba(34, 197, 94, 0.18)", "$description": "Fondo de estados positivos" }
+      "positive-background": { "$value": "rgba(34, 197, 94, 0.18)", "$description": "Fondo de estados positivos" },
+      "warning": { "$value": "#f87171", "$description": "Estados de advertencia" },
+      "warning-background": { "$value": "rgba(248, 113, 113, 0.15)", "$description": "Fondo de estados de advertencia" }
     },
     "text": {
       "$description": "Texto",

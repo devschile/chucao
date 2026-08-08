@@ -5,64 +5,344 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { ChBadgeVariant } from "./components/ch-badge/ch-badge";
+import { ChButtonVariant } from "./components/ch-button/ch-button";
+import { ChSelectOption } from "./components/ch-select/ch-select";
+export { ChBadgeVariant } from "./components/ch-badge/ch-badge";
+export { ChButtonVariant } from "./components/ch-button/ch-button";
+export { ChSelectOption } from "./components/ch-select/ch-select";
 export namespace Components {
-    interface MyComponent {
+    interface ChBadge {
         /**
-          * The first name
+          * The visual style of the badge. Either `default`, `positive`, or `warning`.
+          * @default 'default'
          */
-        "first"?: string;
+        "variant": ChBadgeVariant;
+    }
+    interface ChButton {
         /**
-          * The last name
+          * Whether the button is disabled.
+          * @default false
          */
-        "last"?: string;
+        "disabled": boolean;
         /**
-          * The middle name
+          * Accessible label set as `aria-label` on the native `<button>`. Use it when the button's content doesn't convey its purpose on its own (e.g. an icon-only button).
          */
-        "middle"?: string;
+        "label"?: string;
+        /**
+          * The visual style of the button. Either `primary` or `secondary`.
+          * @default 'primary'
+         */
+        "variant": ChButtonVariant;
+    }
+    interface ChCard {
+    }
+    interface ChInput {
+        /**
+          * Whether the input is disabled.
+          * @default false
+         */
+        "disabled": boolean;
+        /**
+          * Visible label rendered above the input and associated with it via `for`/`id`, so assistive technology announces the input's purpose.
+         */
+        "label"?: string;
+        /**
+          * The name of the input, submitted with form data.
+         */
+        "name"?: string;
+        /**
+          * Placeholder text shown when the input is empty.
+         */
+        "placeholder"?: string;
+        /**
+          * Whether the input is required.
+          * @default false
+         */
+        "required": boolean;
+        /**
+          * The type of the input, mirroring the native `<input type>` attribute.
+          * @default 'text'
+         */
+        "type": string;
+        /**
+          * The value of the input.
+          * @default ''
+         */
+        "value": string;
+    }
+    interface ChSelect {
+        /**
+          * Whether the select is disabled.
+          * @default false
+         */
+        "disabled": boolean;
+        /**
+          * Visible label rendered above the select and associated with it via `for`/`id`, so assistive technology announces the select's purpose.
+         */
+        "label"?: string;
+        /**
+          * The name of the select, submitted with form data.
+         */
+        "name"?: string;
+        /**
+          * The list of options rendered inside the select.
+          * @default []
+         */
+        "options": ChSelectOption[];
+        /**
+          * Placeholder shown as a disabled, hidden first option when no value is selected.
+         */
+        "placeholder"?: string;
+        /**
+          * Whether a value is required.
+          * @default false
+         */
+        "required": boolean;
+        /**
+          * The value of the selected option.
+         */
+        "value"?: string;
     }
 }
+export interface ChButtonCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLChButtonElement;
+}
+export interface ChInputCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLChInputElement;
+}
+export interface ChSelectCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLChSelectElement;
+}
 declare global {
-    interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
+    interface HTMLChBadgeElement extends Components.ChBadge, HTMLStencilElement {
     }
-    var HTMLMyComponentElement: {
-        prototype: HTMLMyComponentElement;
-        new (): HTMLMyComponentElement;
+    var HTMLChBadgeElement: {
+        prototype: HTMLChBadgeElement;
+        new (): HTMLChBadgeElement;
+    };
+    interface HTMLChButtonElementEventMap {
+        "chClick": MouseEvent;
+    }
+    interface HTMLChButtonElement extends Components.ChButton, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLChButtonElementEventMap>(type: K, listener: (this: HTMLChButtonElement, ev: ChButtonCustomEvent<HTMLChButtonElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLChButtonElementEventMap>(type: K, listener: (this: HTMLChButtonElement, ev: ChButtonCustomEvent<HTMLChButtonElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLChButtonElement: {
+        prototype: HTMLChButtonElement;
+        new (): HTMLChButtonElement;
+    };
+    interface HTMLChCardElement extends Components.ChCard, HTMLStencilElement {
+    }
+    var HTMLChCardElement: {
+        prototype: HTMLChCardElement;
+        new (): HTMLChCardElement;
+    };
+    interface HTMLChInputElementEventMap {
+        "chInput": string;
+        "chChange": string;
+    }
+    interface HTMLChInputElement extends Components.ChInput, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLChInputElementEventMap>(type: K, listener: (this: HTMLChInputElement, ev: ChInputCustomEvent<HTMLChInputElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLChInputElementEventMap>(type: K, listener: (this: HTMLChInputElement, ev: ChInputCustomEvent<HTMLChInputElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLChInputElement: {
+        prototype: HTMLChInputElement;
+        new (): HTMLChInputElement;
+    };
+    interface HTMLChSelectElementEventMap {
+        "chChange": string;
+    }
+    interface HTMLChSelectElement extends Components.ChSelect, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLChSelectElementEventMap>(type: K, listener: (this: HTMLChSelectElement, ev: ChSelectCustomEvent<HTMLChSelectElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLChSelectElementEventMap>(type: K, listener: (this: HTMLChSelectElement, ev: ChSelectCustomEvent<HTMLChSelectElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLChSelectElement: {
+        prototype: HTMLChSelectElement;
+        new (): HTMLChSelectElement;
     };
     interface HTMLElementTagNameMap {
-        "my-component": HTMLMyComponentElement;
+        "ch-badge": HTMLChBadgeElement;
+        "ch-button": HTMLChButtonElement;
+        "ch-card": HTMLChCardElement;
+        "ch-input": HTMLChInputElement;
+        "ch-select": HTMLChSelectElement;
     }
 }
 declare namespace LocalJSX {
-    interface MyComponent {
+    interface ChBadge {
         /**
-          * The first name
+          * The visual style of the badge. Either `default`, `positive`, or `warning`.
+          * @default 'default'
          */
-        "first"?: string;
+        "variant"?: ChBadgeVariant;
+    }
+    interface ChButton {
         /**
-          * The last name
+          * Whether the button is disabled.
+          * @default false
          */
-        "last"?: string;
+        "disabled"?: boolean;
         /**
-          * The middle name
+          * Accessible label set as `aria-label` on the native `<button>`. Use it when the button's content doesn't convey its purpose on its own (e.g. an icon-only button).
          */
-        "middle"?: string;
+        "label"?: string;
+        /**
+          * Emitted when the button is clicked.
+         */
+        "onChClick"?: (event: ChButtonCustomEvent<MouseEvent>) => void;
+        /**
+          * The visual style of the button. Either `primary` or `secondary`.
+          * @default 'primary'
+         */
+        "variant"?: ChButtonVariant;
+    }
+    interface ChCard {
+    }
+    interface ChInput {
+        /**
+          * Whether the input is disabled.
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
+          * Visible label rendered above the input and associated with it via `for`/`id`, so assistive technology announces the input's purpose.
+         */
+        "label"?: string;
+        /**
+          * The name of the input, submitted with form data.
+         */
+        "name"?: string;
+        /**
+          * Emitted when the input value is committed (on native `change`).
+         */
+        "onChChange"?: (event: ChInputCustomEvent<string>) => void;
+        /**
+          * Emitted on every keystroke, with the current input value.
+         */
+        "onChInput"?: (event: ChInputCustomEvent<string>) => void;
+        /**
+          * Placeholder text shown when the input is empty.
+         */
+        "placeholder"?: string;
+        /**
+          * Whether the input is required.
+          * @default false
+         */
+        "required"?: boolean;
+        /**
+          * The type of the input, mirroring the native `<input type>` attribute.
+          * @default 'text'
+         */
+        "type"?: string;
+        /**
+          * The value of the input.
+          * @default ''
+         */
+        "value"?: string;
+    }
+    interface ChSelect {
+        /**
+          * Whether the select is disabled.
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
+          * Visible label rendered above the select and associated with it via `for`/`id`, so assistive technology announces the select's purpose.
+         */
+        "label"?: string;
+        /**
+          * The name of the select, submitted with form data.
+         */
+        "name"?: string;
+        /**
+          * Emitted when the selected option changes, with the new value.
+         */
+        "onChChange"?: (event: ChSelectCustomEvent<string>) => void;
+        /**
+          * The list of options rendered inside the select.
+          * @default []
+         */
+        "options"?: ChSelectOption[];
+        /**
+          * Placeholder shown as a disabled, hidden first option when no value is selected.
+         */
+        "placeholder"?: string;
+        /**
+          * Whether a value is required.
+          * @default false
+         */
+        "required"?: boolean;
+        /**
+          * The value of the selected option.
+         */
+        "value"?: string;
     }
 
-    interface MyComponentAttributes {
-        "first": string;
-        "middle": string;
-        "last": string;
+    interface ChBadgeAttributes {
+        "variant": ChBadgeVariant;
+    }
+    interface ChButtonAttributes {
+        "variant": ChButtonVariant;
+        "disabled": boolean;
+        "label": string;
+    }
+    interface ChInputAttributes {
+        "label": string;
+        "type": string;
+        "value": string;
+        "placeholder": string;
+        "name": string;
+        "disabled": boolean;
+        "required": boolean;
+    }
+    interface ChSelectAttributes {
+        "label": string;
+        "value": string;
+        "placeholder": string;
+        "name": string;
+        "disabled": boolean;
+        "required": boolean;
     }
 
     interface IntrinsicElements {
-        "my-component": Omit<MyComponent, keyof MyComponentAttributes> & { [K in keyof MyComponent & keyof MyComponentAttributes]?: MyComponent[K] } & { [K in keyof MyComponent & keyof MyComponentAttributes as `attr:${K}`]?: MyComponentAttributes[K] } & { [K in keyof MyComponent & keyof MyComponentAttributes as `prop:${K}`]?: MyComponent[K] };
+        "ch-badge": Omit<ChBadge, keyof ChBadgeAttributes> & { [K in keyof ChBadge & keyof ChBadgeAttributes]?: ChBadge[K] } & { [K in keyof ChBadge & keyof ChBadgeAttributes as `attr:${K}`]?: ChBadgeAttributes[K] } & { [K in keyof ChBadge & keyof ChBadgeAttributes as `prop:${K}`]?: ChBadge[K] };
+        "ch-button": Omit<ChButton, keyof ChButtonAttributes> & { [K in keyof ChButton & keyof ChButtonAttributes]?: ChButton[K] } & { [K in keyof ChButton & keyof ChButtonAttributes as `attr:${K}`]?: ChButtonAttributes[K] } & { [K in keyof ChButton & keyof ChButtonAttributes as `prop:${K}`]?: ChButton[K] };
+        "ch-card": ChCard;
+        "ch-input": Omit<ChInput, keyof ChInputAttributes> & { [K in keyof ChInput & keyof ChInputAttributes]?: ChInput[K] } & { [K in keyof ChInput & keyof ChInputAttributes as `attr:${K}`]?: ChInputAttributes[K] } & { [K in keyof ChInput & keyof ChInputAttributes as `prop:${K}`]?: ChInput[K] };
+        "ch-select": Omit<ChSelect, keyof ChSelectAttributes> & { [K in keyof ChSelect & keyof ChSelectAttributes]?: ChSelect[K] } & { [K in keyof ChSelect & keyof ChSelectAttributes as `attr:${K}`]?: ChSelectAttributes[K] } & { [K in keyof ChSelect & keyof ChSelectAttributes as `prop:${K}`]?: ChSelect[K] };
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "my-component": LocalJSX.IntrinsicElements["my-component"] & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            "ch-badge": LocalJSX.IntrinsicElements["ch-badge"] & JSXBase.HTMLAttributes<HTMLChBadgeElement>;
+            "ch-button": LocalJSX.IntrinsicElements["ch-button"] & JSXBase.HTMLAttributes<HTMLChButtonElement>;
+            "ch-card": LocalJSX.IntrinsicElements["ch-card"] & JSXBase.HTMLAttributes<HTMLChCardElement>;
+            "ch-input": LocalJSX.IntrinsicElements["ch-input"] & JSXBase.HTMLAttributes<HTMLChInputElement>;
+            "ch-select": LocalJSX.IntrinsicElements["ch-select"] & JSXBase.HTMLAttributes<HTMLChSelectElement>;
         }
     }
 }

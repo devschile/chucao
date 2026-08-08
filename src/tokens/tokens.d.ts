@@ -11,6 +11,8 @@ export declare const colorAccentDefault: string;
 export declare const colorAccentHover: string;
 export declare const colorStatusPositive: string;
 export declare const colorStatusPositiveBackground: string;
+export declare const colorStatusWarning: string;
+export declare const colorStatusWarningBackground: string;
 export declare const colorTextPrimary: string;
 export declare const colorTextSecondary: string;
 export declare const colorBrandHuemulDark: string;
@@ -20,4 +22,3 @@ export declare const typographyBody: string;
 export declare const typographyHeading: string;
 export declare const spacingRadius: string;
 export declare const layoutMaxWidth: string;
-
