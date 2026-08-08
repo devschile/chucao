@@ -5,12 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+### Changed
+
+- Restructured the documentation: the root `README.md` is now a concise
+  Spanish index, and its technical/brand content was split into `docs/`
+  (`components.md`, `using-the-library.md`, `testing.md`, `assets.md`).
+  Added `AGENTS.md` documenting repo rules for AI agents and contributors,
+  including the rule that the root `README.md` must stay in Spanish.
 
 ## 1.1.0 (2026-08-08)
 
 ### Features
 
-* **project:** rename project ([98d1871](https://github.com/devschile/chucao/commit/98d18718b25350ffa28bd75b513ef27827a29faa))
+- **project:** rename project ([98d1871](https://github.com/devschile/chucao/commit/98d18718b25350ffa28bd75b513ef27827a29faa))
 
 ## [1.0.0] - 2026-08-08
 

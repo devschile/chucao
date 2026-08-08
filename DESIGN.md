@@ -68,8 +68,8 @@ en PDF, troquel para stickers, mockups — vive en:
 
 - **[github.com/devschile/media-press](https://github.com/devschile/media-press)**,
   el banco de logotipos oficiales. La licencia con la que se distribuye está
-  detallada en el `README.md` de este repo, sección "Licencia de los assets
-  de marca".
+  detallada en [`docs/assets.md`](docs/assets.md), sección "Licencia de los
+  assets de marca".
 - El logotipo también está disponible suelto en
   [tienda.devschile.cl](https://tienda.devschile.cl/assets/devschile2026-DBecIXs_.png).
 
