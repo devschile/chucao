@@ -35,6 +35,7 @@ export const config: Config = {
     vueOutputTarget({
       componentCorePackage: '@devschile/chucao',
       proxiesFile: 'dist-vue/index.ts',
+      includeImportCustomElements: true,
       customElementsDir: 'dist/components',
     }),
   ],

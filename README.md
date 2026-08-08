@@ -231,7 +231,12 @@ export default App;
 
 Components are wrapped with
 [`@stencil/vue-output-target`](https://www.npmjs.com/package/@stencil/vue-output-target),
-built to `dist-vue/` and exposed as `@devschile/chucao/vue`:
+built to `dist-vue/` and exposed as `@devschile/chucao/vue`. Install the
+runtime peer dependency in your Vue app:
+
+```bash
+pnpm install @stencil/vue-output-target
+```
 
 ```vue
 <script setup lang="ts">
@@ -242,6 +247,9 @@ import { ChButton } from '@devschile/chucao/vue';
   <ChButton>Click me</ChButton>
 </template>
 ```
+
+The Vue wrappers automatically register their underlying custom elements on
+import — no separate `@devschile/chucao/loader` import is required.
 
 #### Svelte / SvelteKit
 

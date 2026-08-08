@@ -23,12 +23,21 @@
   "unpkg": "dist/chucao/chucao.esm.js",
   "exports": {
     ".": {
+      "types": "./dist/types/index.d.ts",
       "import": "./dist/chucao/chucao.esm.js",
       "require": "./dist/chucao/chucao.cjs.js"
     },
     "./ch-button": {
       "import": "./dist/components/ch-button.js",
       "types": "./dist/components/ch-button.d.ts"
+    },
+    "./dist/components": {
+      "import": "./dist/components/index.js",
+      "types": "./dist/components/index.d.ts"
+    },
+    "./dist/components/*": {
+      "import": "./dist/components/*",
+      "types": "./dist/components/*.d.ts"
     },
     "./loader": {
       "import": "./loader/index.js",
@@ -44,6 +53,7 @@
       "types": "./dist-vue/index.d.ts"
     }
   },
+  "sideEffects": false,
   "repository": {
     "type": "git",
     "url": "https://github.com/devschile/chucao.git"

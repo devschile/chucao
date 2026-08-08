@@ -7,13 +7,18 @@ components are added.
 ## Summary
 
 `package.json` is already at `1.0.0` and `docs/backlog.md` claims the
-release-readiness backlog is closed. The overall build/publish surface
-(`exports` map, `files`, output targets) is solid and the component
-structure is consistent across the 5 existing components. One concrete
-API-consistency gap was found — `ch-button` was missing a `disabled`
-prop — and has been fixed as part of this pass (see "Findings" below).
-With that fix applied, **this project is ready for a first npm publish**,
-with a short list of deferred, non-blocking follow-ups noted at the end.
+release-readiness backlog is closed. The component structure is consistent
+across the 5 existing components. One concrete API-consistency gap was
+found — `ch-button` was missing a `disabled` prop — and has been fixed as
+part of this pass (see "Findings" below). A follow-up packaging review also
+found that the build/publish surface (`exports` map) did **not** actually
+support React/Vue consumption once installed from a real npm tarball: the
+`exports` map was missing the `dist/components/*` subpaths that the React
+wrapper imports internally, and the Vue wrapper never wired up custom
+element registration. Both have since been fixed (see "Build/publish
+surface" below). With those fixes applied, **this project is ready for a
+first npm publish**, with a short list of deferred, non-blocking
+follow-ups noted at the end.
 
 ## Documentation review
 
@@ -107,12 +112,20 @@ Observations:
   `README.md`'s "Naming & API conventions" section as a checklist
   (tag prefix, event naming, variant typing, standard interactive prop
   set), which is the actionable scalability fix from this assessment.
-- **Build/publish surface**: `package.json`'s `exports` map already
-  supports the full dist / per-component / loader / react / vue
-  consumption strategies documented in `README.md`; `files` correctly
-  ships only `dist/`, `dist-react/`, `dist-vue/`, `loader/`. This surface
-  does not need to change as components are added — new components are
-  automatically included in the existing output targets.
+- **Build/publish surface**: `package.json`'s `exports` map now supports
+  the full dist / per-component / loader / react / vue consumption
+  strategies documented in `README.md`; `files` correctly ships only
+  `dist/`, `dist-react/`, `dist-vue/`, `loader/`. This previously did
+  **not** work end-to-end: the `exports` map lacked the wildcard
+  `./dist/components/*` and `./dist/components` entries that
+  `dist-react/components.js` and `dist-vue/index.js` import internally,
+  which would have failed with `ERR_PACKAGE_PATH_NOT_EXPORTED` under a
+  real npm install, and the Vue wrapper never registered its custom
+  elements (`vueOutputTarget`'s `customElementsDir` option requires
+  `includeImportCustomElements: true` to take effect). Both have been
+  fixed in `package.json` and `stencil.config.ts`. The wildcard export
+  entries mean this surface still does not need to change as components
+  are added — new components remain automatically covered.
 
 ## Accessibility baseline (follow-up pass)
 
