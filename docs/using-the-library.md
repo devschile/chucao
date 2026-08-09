@@ -48,6 +48,39 @@ function App() {
 export default App;
 ```
 
+## CDN (no build)
+
+Every release is also published to the static CDN under an immutable,
+versioned URL, so consumers can use the stylesheet (and the lazy-loading
+bootstrap) without npm or a bundler:
+
+```html
+<link rel="stylesheet" href="https://static.devschile.cl/chucao/1.1.0/chucao.css">
+
+<script type="module" src="https://static.devschile.cl/chucao/1.1.0/chucao.esm.js"></script>
+<ch-button>Click me</ch-button>
+```
+
+Pinned URLs are write-once: `1.1.0/` never changes, so it can be cached
+forever (`Cache-Control: immutable`) and is fully reproducible. A mutable
+`latest/` alias is also available (`.../chucao/latest/chucao.css`) for
+consumers who want the newest release without editing their HTML, at the cost
+of not being reproducible.
+
+The stylesheet alone (`chucao.css`) carries the design tokens, utility
+classes, and self-hosted fonts, so a plain HTML page that only needs the
+design system's look can skip the JavaScript entirely:
+
+```html
+<link rel="stylesheet" href="https://static.devschile.cl/chucao/1.1.0/chucao.css">
+```
+
+> **Known limitation:** cross-origin pages are subject to CORS. A
+> `<link rel="stylesheet">` loads cross-origin without extra setup, but the
+> `.woff2` fonts (via `@font-face`) and the `<script type="module">` bootstrap
+> require `Access-Control-Allow-Origin` on the bucket. This is deferred until
+> a consumer actually needs it.
+
 ## Framework wrappers
 
 In addition to the framework-agnostic Web Components above, this library
