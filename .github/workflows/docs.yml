@@ -48,17 +48,17 @@ jobs:
 
       - name: Assemble publish dir
         run: |
-          rm -rf .publish
-          mkdir -p .publish
-          cp -R docs-site/. .publish/
-          cp README.md DESIGN.md CHANGELOG.md .publish/
-          cp -R docs .publish/docs
+          rm -rf publish
+          mkdir -p publish
+          cp -R docs-site/. publish/
+          cp README.md DESIGN.md CHANGELOG.md publish/
+          cp -R docs publish/docs
 
       - name: Upload publish dir
         uses: actions/upload-artifact@v4
         with:
           name: docs-publish
-          path: .publish
+          path: publish
           if-no-files-found: error
 
   publish-pages:
@@ -74,7 +74,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: docs-publish
-          path: .publish
+          path: publish
 
       - name: Deploy to docs branch
         run: |
@@ -82,8 +82,8 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git checkout --orphan docs-publish
           git rm -rf . >/dev/null 2>&1 || true
-          cp -R .publish/. .
-          rm -rf .publish
+          cp -R publish/. .
+          rm -rf publish
           git add -A
           git commit -m "docs: publish site from main [skip ci]"
           git push -f origin docs-publish:docs
@@ -96,11 +96,11 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: docs-publish
-          path: .publish
+          path: publish
 
       - name: Deploy to CDN gallery
         run: |
-          aws --endpoint-url "$S3_ENDPOINT_URL" --region garage s3 sync .publish "s3://$S3_BUCKET/gallery/latest/" \
+          aws --endpoint-url "$S3_ENDPOINT_URL" --region garage s3 sync publish "s3://$S3_BUCKET/gallery/latest/" \
             --delete \
             --cache-control "public, max-age=3600"
         env:
