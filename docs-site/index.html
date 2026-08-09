@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="es-CL">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chucao — el sistema de diseño de devsChile</title>
+    <meta name="description" content="Sistema de diseño de devsChile: componentes web, identidad de marca, paleta, tipografía y documentación." />
+    <link rel="icon" href="assets/favicon/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="assets/favicon/favicon.ico" sizes="any" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500;600;700&family=Inconsolata:wght@500;600;700&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="assets/css/styles.css" />
+
+    <link rel="stylesheet" href="https://static.devschile.cl/chucao/latest/chucao.css" />
+    <script type="module" src="https://static.devschile.cl/chucao/latest/chucao.esm.js"></script>
+  </head>
+  <body>
+    <header class="hero">
+      <div class="wrap">
+        <img src="assets/brand/huemul-icono-contorno.svg" alt="Huemul, ícono de devsChile" />
+        <h1>Chucao — el <span>sistema de diseño</span> de devsChile</h1>
+        <p>Web Components hechos con StencilJS, publicados como <code>@devschile/chucao</code>. Identidad de marca, paleta, tipografía y componentes, listos para reusar.</p>
+        <nav class="top-nav">
+          <a href="#componentes">Componentes</a>
+          <a href="#colores">Colores</a>
+          <a href="#tipografia">Tipografía</a>
+          <a href="#marca">Marca</a>
+          <a href="#documentacion">Documentación</a>
+          <a href="https://github.com/devschile/chucao">GitHub ↗</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <section id="componentes">
+        <h2>Componentes</h2>
+        <p class="lead">Los componentes se renderizan acá en vivo, cargados desde el CDN (<code>static.devschile.cl/chucao/latest/</code>). Cada demo incluye el código de uso.</p>
+
+        <div class="comp">
+          <div class="comp-head">
+            <h4>ch-badge</h4>
+            <span class="tag">@devschile/chucao/ch-badge</span>
+          </div>
+          <p class="comp-desc">Etiqueta de estado compacta con tres variantes.</p>
+          <div class="comp-demo">
+            <ch-badge>comunidad</ch-badge>
+            <ch-badge variant="positive">Disponible</ch-badge>
+            <ch-badge variant="warning">placeholder</ch-badge>
+          </div>
+          <pre class="comp-code"><code><span class="t">&lt;ch-badge&gt;</span>comunidad<span class="t">&lt;/ch-badge&gt;</span>
+<span class="t">&lt;ch-badge</span> <span class="a">variant=</span><span class="t">"positive"</span><span class="t">&gt;</span>Disponible<span class="t">&lt;/ch-badge&gt;</span>
+<span class="t">&lt;ch-badge</span> <span class="a">variant=</span><span class="t">"warning"</span><span class="t">&gt;</span>placeholder<span class="t">&lt;/ch-badge&gt;</span></code></pre>
+        </div>
+
+        <div class="comp">
+          <div class="comp-head">
+            <h4>ch-button</h4>
+            <span class="tag">@devschile/chucao/ch-button</span>
+          </div>
+          <p class="comp-desc">Botón accesible, con variantes <code>primary</code>/<code>secondary</code> y estado <code>disabled</code>. Emite <code>chClick</code>.</p>
+          <div class="comp-demo">
+            <ch-button id="demo-button">Primario</ch-button>
+            <ch-button variant="secondary">Secundario</ch-button>
+            <ch-button disabled>Deshabilitado</ch-button>
+            <div id="demo-button-log" class="event-log"></div>
+          </div>
+          <pre class="comp-code"><code><span class="t">&lt;ch-button&gt;</span>Primario<span class="t">&lt;/ch-button&gt;</span>
+<span class="t">&lt;ch-button</span> <span class="a">variant=</span><span class="t">"secondary"</span><span class="t">&gt;</span>Secundario<span class="t">&lt;/ch-button&gt;</span>
+<span class="t">&lt;ch-button</span> <span class="a">disabled</span><span class="t">&gt;</span>Deshabilitado<span class="t">&lt;/ch-button&gt;</span></code></pre>
+        </div>
+
+        <div class="comp">
+          <div class="comp-head">
+            <h4>ch-card</h4>
+            <span class="tag">@devschile/chucao/ch-card</span>
+          </div>
+          <p class="comp-desc">Contenedor de superficie con blur, borde y una línea de acento en hover.</p>
+          <div class="comp-demo">
+            <ch-card>
+              <h4>🔗 Links de la semana</h4>
+              <p>Pasa el mouse — el borde y una línea de acento aparecen en hover.</p>
+              <ch-button variant="secondary">Ver más</ch-button>
+            </ch-card>
+          </div>
+          <pre class="comp-code"><code><span class="t">&lt;ch-card&gt;</span>
+  <span class="t">&lt;h4&gt;</span>🔗 Links de la semana<span class="t">&lt;/h4&gt;</span>
+  <span class="t">&lt;p&gt;</span>Pasa el mouse<span class="t">&lt;/p&gt;</span>
+  <span class="t">&lt;ch-button</span> <span class="a">variant=</span><span class="t">"secondary"</span><span class="t">&gt;</span>Ver más<span class="t">&lt;/ch-button&gt;</span>
+<span class="t">&lt;/ch-card&gt;</span></code></pre>
+        </div>
+
+        <div class="comp">
+          <div class="comp-head">
+            <h4>ch-input</h4>
+            <span class="tag">@devschile/chucao/ch-input</span>
+          </div>
+          <p class="comp-desc">
+            Campo de texto con <code>label</code> asociado vía <code>id</code>/<code>for</code>. Emite <code>chInput</code> (cada tecla) y <code>chChange</code> (al confirmar).
+          </p>
+          <div class="comp-demo">
+            <ch-input id="demo-input" label="Correo" type="email" placeholder="tu@email.com"></ch-input>
+            <div id="demo-input-log" class="event-log"></div>
+          </div>
+          <pre class="comp-code"><code><span class="t">&lt;ch-input</span>
+  <span class="a">label=</span><span class="t">"Correo"</span>
+  <span class="a">type=</span><span class="t">"email"</span>
+  <span class="a">placeholder=</span><span class="t">"tu@email.com"</span>
+<span class="t">&gt;&lt;/ch-input&gt;</span></code></pre>
+        </div>
+
+        <div class="comp">
+          <div class="comp-head">
+            <h4>ch-select</h4>
+            <span class="tag">@devschile/chucao/ch-select</span>
+          </div>
+          <p class="comp-desc">Select estilizado; las opciones se pasan por la prop <code>options</code>. Emite <code>chChange</code>.</p>
+          <div class="comp-demo">
+            <ch-select id="demo-select" label="País" placeholder="Elige un país"></ch-select>
+            <div id="demo-select-log" class="event-log"></div>
+          </div>
+          <pre
+            class="comp-code"
+          ><code><span class="t">&lt;ch-select</span> <span class="a">label=</span><span class="t">"País"</span> <span class="a">placeholder=</span><span class="t">"Elige un país"</span><span class="t">&gt;&lt;/ch-select&gt;</span>
+<span class="t">&lt;script&gt;</span>
+  <span class="a">select</span>.options = [
+    { label: 'Chile', value: 'cl' },
+    { label: 'Argentina', value: 'ar' },
+  ];
+<span class="t">&lt;/script&gt;</span></code></pre>
+        </div>
+      </section>
+
+      <section id="colores">
+        <h2>Colores</h2>
+        <p class="lead">
+          Un fondo oscuro con gradiente sutil, un solo acento vibrante (teal) usado con disciplina, y una paleta de marca separada para uso oficial/impreso. Valores definidos en
+          <code>chucao-tokens.json</code> y consumidos como tokens CSS (<code>var(--token-name)</code>).
+        </p>
+
+        <div class="swatch-grid">
+          <div class="swatch">
+            <div class="swatch-color" style="background: #100a1c"></div>
+            <div class="swatch-meta">
+              <div class="swatch-name">bg</div>
+              <div class="swatch-value">#100a1c</div>
+              <div class="swatch-usage">Fondo base</div>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color checker" style="background-color: rgba(32, 30, 64, 0.6)"></div>
+            <div class="swatch-meta">
+              <div class="swatch-name">surface</div>
+              <div class="swatch-value">rgba(32,30,64,.6)</div>
+              <div class="swatch-usage">Tarjetas, inputs (con blur)</div>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color checker" style="background-color: rgba(45, 212, 191, 0.25)"></div>
+            <div class="swatch-meta">
+              <div class="swatch-name">surface-hover</div>
+              <div class="swatch-value">rgba(45,212,191,.08)</div>
+              <div class="swatch-usage">Fondo en hover</div>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color checker" style="background-color: rgba(255, 255, 255, 0.15)"></div>
+            <div class="swatch-meta">
+              <div class="swatch-name">border</div>
+              <div class="swatch-value">rgba(255,255,255,.08)</div>
+              <div class="swatch-usage">Borde en reposo</div>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color checker" style="background-color: rgba(45, 212, 191, 0.4)"></div>
+            <div class="swatch-meta">
+              <div class="swatch-name">border-hover</div>
+              <div class="swatch-value">rgba(45,212,191,.3)</div>
+              <div class="swatch-usage">Borde en hover</div>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: #2dd4bf"></div>
+            <div class="swatch-meta">
+              <div class="swatch-name">accent</div>
+              <div class="swatch-value">#2dd4bf</div>
+              <div class="swatch-usage">Acento — texto, bordes, botones</div>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: #5ee8d4"></div>
+            <div class="swatch-meta">
+              <div class="swatch-name">accent-hover</div>
+              <div class="swatch-value">#5ee8d4</div>
+              <div class="swatch-usage">Acento en hover</div>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: #4ade80"></div>
+            <div class="swatch-meta">
+              <div class="swatch-name">status.positive</div>
+              <div class="swatch-value">#4ade80</div>
+              <div class="swatch-usage">Estados positivos</div>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: #f87171"></div>
+            <div class="swatch-meta">
+              <div class="swatch-name">status.warning</div>
+              <div class="swatch-value">#f87171</div>
+              <div class="swatch-usage">Estados de advertencia</div>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: #ffffff"></div>
+            <div class="swatch-meta">
+              <div class="swatch-name">text.primary</div>
+              <div class="swatch-value">#ffffff</div>
+              <div class="swatch-usage">Texto principal</div>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color checker" style="background-color: rgba(255, 255, 255, 0.55)"></div>
+            <div class="swatch-meta">
+              <div class="swatch-name">text.secondary</div>
+              <div class="swatch-value">rgba(255,255,255,.55)</div>
+              <div class="swatch-usage">Texto atenuado</div>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: #85422b"></div>
+            <div class="swatch-meta">
+              <div class="swatch-name">brand.huemul-dark</div>
+              <div class="swatch-value">#85422b</div>
+              <div class="swatch-usage">Café oscuro de marca</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="tipografia">
+        <h2>Tipografía</h2>
+        <p class="lead">Fira Sans para cuerpo y Inconsolata para títulos y código.</p>
+
+        <div class="type-sample">
+          <div class="label">Inconsolata — títulos</div>
+          <div class="heading-demo">Chucao, el sistema de diseño de la comunidad</div>
+          <div class="weights">
+            <span style="font-weight: 500">500</span>
+            <span style="font-weight: 600">600</span>
+            <span style="font-weight: 700">700</span>
+          </div>
+        </div>
+
+        <div class="type-sample">
+          <div class="label">Fira Sans — cuerpo</div>
+          <div class="body-demo">El sistema de diseño de devsChile, documentado para reusar en cualquier proyecto de la comunidad.</div>
+          <div class="weights">
+            <span style="font-weight: 400">400</span>
+            <span style="font-weight: 500">500</span>
+            <span style="font-weight: 600">600</span>
+            <span style="font-weight: 700">700</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="marca">
+        <h2>Marca</h2>
+        <p class="lead">El isotipo y el logotipo son las piezas no intercambiables del sistema — ver <a href="DESIGN.md">DESIGN.md</a> para las reglas de uso.</p>
+
+        <div class="mark-grid">
+          <div class="mark-card">
+            <div class="mark-preview on-dark">
+              <img src="assets/brand/huemul-icono-contorno.svg" alt="Huemul con contorno blanco" />
+            </div>
+            <div class="mark-meta">
+              <div class="mark-name">huemul-icono-contorno.svg</div>
+              <div class="mark-file">huemul + contorno blanco</div>
+              <div class="mark-desc">Para fondos oscuros</div>
+            </div>
+          </div>
+          <div class="mark-card">
+            <div class="mark-preview on-light">
+              <img src="assets/brand/huemul-icono.svg" alt="Huemul a color" />
+            </div>
+            <div class="mark-meta">
+              <div class="mark-name">huemul-icono.svg</div>
+              <div class="mark-file">full color, vector</div>
+              <div class="mark-desc">Uso oficial</div>
+            </div>
+          </div>
+          <div class="mark-card">
+            <div class="mark-preview on-dark">
+              <img src="assets/brand/huemul-icono-blanco.svg" alt="Huemul blanco" />
+            </div>
+            <div class="mark-meta">
+              <div class="mark-name">huemul-icono-blanco.svg</div>
+              <div class="mark-file">monocromo blanco</div>
+              <div class="mark-desc">Para fondos oscuros</div>
+            </div>
+          </div>
+          <div class="mark-card">
+            <div class="mark-preview on-light">
+              <img src="assets/brand/devschile-wordmark.svg" alt="Logotipo devschile" />
+            </div>
+            <div class="mark-meta">
+              <div class="mark-name">devschile-wordmark.svg</div>
+              <div class="mark-file">logotipo</div>
+              <div class="mark-desc">Wordmark de devsChile</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="documentacion">
+        <h2>Documentación</h2>
+        <p class="lead">Guías de desarrollo, consumo, testing y release, publicadas en el repo.</p>
+
+        <div class="docs-grid">
+          <a class="doc-card" href="https://github.com/devschile/chucao/blob/main/README.md">
+            <h4>README</h4>
+            <p>Índice del proyecto, qué contiene y cómo reusarlo.</p>
+          </a>
+          <a class="doc-card" href="https://github.com/devschile/chucao/blob/main/DESIGN.md">
+            <h4>DESIGN.md</h4>
+            <p>Identidad de marca + sistema de diseño web completo.</p>
+          </a>
+          <a class="doc-card" href="https://github.com/devschile/chucao/blob/main/docs/components.md">
+            <h4>components.md</h4>
+            <p>Desarrollo de la librería StencilJS: estructura, tokens, convenciones.</p>
+          </a>
+          <a class="doc-card" href="https://github.com/devschile/chucao/blob/main/docs/using-the-library.md">
+            <h4>using-the-library.md</h4>
+            <p>Cómo consumir @devschile/chucao (lazy, standalone, React/Vue/Svelte).</p>
+          </a>
+          <a class="doc-card" href="https://github.com/devschile/chucao/blob/main/docs/testing.md">
+            <h4>testing.md</h4>
+            <p>Testing y cobertura de los componentes.</p>
+          </a>
+          <a class="doc-card" href="https://github.com/devschile/chucao/blob/main/docs/releasing.md">
+            <h4>releasing.md</h4>
+            <p>Releases a npm y despliegue al CDN.</p>
+          </a>
+          <a class="doc-card" href="https://github.com/devschile/chucao/blob/main/docs/assets.md">
+            <h4>assets.md</h4>
+            <p>Inventario de assets, uso del favicon y licencia.</p>
+          </a>
+          <a class="doc-card" href="https://github.com/devschile/chucao/blob/main/CHANGELOG.md">
+            <h4>CHANGELOG</h4>
+            <p>Historial de versiones de @devschile/chucao.</p>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="wrap">
+        <p><a href="https://github.com/devschile/chucao">devschile/chucao</a> — hecho por la comunidad, para la comunidad 🦌</p>
+      </div>
+    </footer>
+
+    <script src="assets/js/app.js"></script>
+  </body>
+</html>
