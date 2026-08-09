@@ -39,6 +39,7 @@ piezas externas.
 | [`docs/using-the-library.md`](docs/using-the-library.md) | English | Cómo consumir `@devschile/chucao` (lazy loading, standalone, React/Vue/Svelte) |
 | [`docs/releasing.md`](docs/releasing.md)                 | English | Cómo publicar releases y desplegar la librería al CDN                          |
 | [`docs/testing.md`](docs/testing.md)                     | English | Testing y cobertura de los componentes                                         |
+| [`docs/storybook.md`](docs/storybook.md)                 | English | Evaluación de desplegar Storybook en el CDN (no adoptado)                      |
 
 ## Cómo reusar esto en un proyecto nuevo
 
