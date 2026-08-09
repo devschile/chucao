@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+
+## [1.2.0](https://github.com/devschile/chucao/compare/1.1.0...1.2.0) (2026-08-09)
+
+### Features
+
+* **ci:** publish docs site to GitHub Pages and CDN gallery ([6b7736e](https://github.com/devschile/chucao/commit/6b7736ef257ae848300f284d39a8eab9f4fbf9f1))
+* **fonts:** serve self-hosted fonts from a static chucao/fonts/ prefix ([bfb8c98](https://github.com/devschile/chucao/commit/bfb8c9817a83539be69bd2d7c3a5fd81fe07b714))
+* **readme:** update logo drawn by [@irmirx](https://github.com/irmirx) ([7f022dd](https://github.com/devschile/chucao/commit/7f022ddceea2c961f66d7abe00d172b4f0c7f805))
+
+### Bug Fixes
+
+* **ci:** rename .publish staging dir so upload-artifact picks it up ([b4996d0](https://github.com/devschile/chucao/commit/b4996d0fcd325c8324bef0d70d032d36a2179abb))
+
 ## Unreleased
 
 ### Added
