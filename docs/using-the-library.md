@@ -55,7 +55,7 @@ versioned URL, so consumers can use the stylesheet (and the lazy-loading
 bootstrap) without npm or a bundler:
 
 ```html
-<link rel="stylesheet" href="https://static.devschile.cl/chucao/1.1.0/chucao.css">
+<link rel="stylesheet" href="https://static.devschile.cl/chucao/1.1.0/chucao.css" />
 
 <script type="module" src="https://static.devschile.cl/chucao/1.1.0/chucao.esm.js"></script>
 <ch-button>Click me</ch-button>
@@ -72,7 +72,7 @@ classes, and self-hosted fonts, so a plain HTML page that only needs the
 design system's look can skip the JavaScript entirely:
 
 ```html
-<link rel="stylesheet" href="https://static.devschile.cl/chucao/1.1.0/chucao.css">
+<link rel="stylesheet" href="https://static.devschile.cl/chucao/1.1.0/chucao.css" />
 ```
 
 > **Known limitation:** cross-origin pages are subject to CORS. A
@@ -80,6 +80,9 @@ design system's look can skip the JavaScript entirely:
 > `.woff2` fonts (via `@font-face`) and the `<script type="module">` bootstrap
 > require `Access-Control-Allow-Origin` on the bucket. This is deferred until
 > a consumer actually needs it.
+
+How these URLs get published (release pipeline, manual redeploy, secrets) is
+documented in [`releasing.md`](releasing.md).
 
 ## Framework wrappers
 

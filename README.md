@@ -37,6 +37,7 @@ piezas externas.
 | [`docs/assets.md`](docs/assets.md)                       | Español | Inventario de `assets/`, uso del favicon, licencia                             |
 | [`docs/components.md`](docs/components.md)               | English | Desarrollo de la librería StencilJS: estructura, tokens, convenciones          |
 | [`docs/using-the-library.md`](docs/using-the-library.md) | English | Cómo consumir `@devschile/chucao` (lazy loading, standalone, React/Vue/Svelte) |
+| [`docs/releasing.md`](docs/releasing.md)                 | English | Cómo publicar releases y desplegar la librería al CDN                          |
 | [`docs/testing.md`](docs/testing.md)                     | English | Testing y cobertura de los componentes                                         |
 
 ## Cómo reusar esto en un proyecto nuevo

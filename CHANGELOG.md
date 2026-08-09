@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Added
+
+- CDN deployment: every npm release now also publishes `dist/chucao/` to
+  versioned, immutable URLs (`https://static.devschile.cl/chucao/<version>/`)
+  plus a mutable `latest/` alias, with a manual redeploy workflow
+  (`.github/workflows/deploy-cdn.yml`). Documented in
+  [`docs/releasing.md`](docs/releasing.md).
+
 ### Changed
 
 - Restructured the documentation: the root `README.md` is now a concise
