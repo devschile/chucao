@@ -58,6 +58,8 @@ jobs:
           aws --endpoint-url "$S3_ENDPOINT_URL" --region garage s3 sync dist/chucao "s3://$S3_BUCKET/chucao/latest/" \
             --exclude "*.map" --delete \
             --cache-control "public, max-age=3600"
+          aws --endpoint-url "$S3_ENDPOINT_URL" --region garage s3 sync dist/chucao/fonts "s3://$S3_BUCKET/chucao/fonts/" \
+            --cache-control "public, max-age=31536000, immutable"
         env:
           S3_ENDPOINT_URL: ${{ secrets.S3_ENDPOINT_URL }}
           S3_BUCKET: ${{ secrets.S3_BUCKET }}

@@ -16,15 +16,18 @@
 @import '../tokens/tokens.css';
 
 /* Self-hosted fonts ---------------------------------------------------
-   Bundled with the library (see `src/global/fonts`) so consumers don't
-   depend on an external request to Google Fonts at runtime. */
+   Fonts are immutable and shared across versions: they live once at the CDN's
+   static `chucao/fonts/` prefix (see `docs/releasing.md`) and are referenced
+   here by absolute URL so browser/edge caches are reused between releases.
+   The files still ship bundled with the library (`src/global/fonts`) as a
+   fallback for consumers who patch `chucao.css`. */
 
 @font-face {
   font-family: 'Fira Sans';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('./fonts/fira-sans-latin-400-normal.woff2') format('woff2');
+  src: url('https://static.devschile.cl/chucao/fonts/fira-sans-latin-400-normal.woff2') format('woff2');
 }
 
 @font-face {
@@ -32,7 +35,7 @@
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url('./fonts/fira-sans-latin-600-normal.woff2') format('woff2');
+  src: url('https://static.devschile.cl/chucao/fonts/fira-sans-latin-600-normal.woff2') format('woff2');
 }
 
 @font-face {
@@ -40,7 +43,7 @@
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url('./fonts/fira-sans-latin-700-normal.woff2') format('woff2');
+  src: url('https://static.devschile.cl/chucao/fonts/fira-sans-latin-700-normal.woff2') format('woff2');
 }
 
 @font-face {
@@ -48,7 +51,7 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('./fonts/inconsolata-latin-400-normal.woff2') format('woff2');
+  src: url('https://static.devschile.cl/chucao/fonts/inconsolata-latin-400-normal.woff2') format('woff2');
 }
 
 :root {

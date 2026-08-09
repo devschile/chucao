@@ -24,9 +24,10 @@ export const config: Config = {
       type: 'www',
       serviceWorker: null, // Disable service workers
       // `chucao.css` is emitted as a standalone file and linked from
-      // `index.html`'s <head> via `<link rel="stylesheet" href="/build/chucao.css">`,
-      // So its relative font URLs (`./fonts/...`) resolve against
-      // `www/build/chucao.css`. Copy the fonts to `www/build/fonts` to match that.
+      // `index.html`'s <head> via `<link rel="stylesheet" href="/build/chucao.css">`.
+      // Fonts are referenced by absolute CDN URL in `chucao.css`, so the copy
+      // Below is only a fallback for locally patched stylesheets. Copy them to
+      // `www/build/fonts` to match the emitted path.
       copy: [{ src: 'global/fonts', dest: 'build/fonts' }],
     },
     reactOutputTarget({
