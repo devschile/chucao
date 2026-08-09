@@ -42,14 +42,16 @@ bucket under these prefixes:
 
 Notes:
 
-- The **whole** `dist/chucao/` folder is uploaded (stylesheets, lazy-loading
-  bootstrap, entry chunks, and `fonts/`). Since v1.2.0 the `@font-face` rules in
-  `chucao.css` reference the fonts by **absolute URL** (`chucao/fonts/…`), so the
-  `fonts/` files inside a versioned directory are only a fallback for consumers
-  who patch the stylesheet. The `fonts/` files themselves are never deleted or
-  versioned: they are synced to `chucao/fonts/` once per release with an
-  immutable cache, so browsers and CDN edges reuse the same cached copy across
-  versions.
+- The versioned (`chucao/<version>/`) and `latest/` prefixes carry the
+  stylesheets, lazy-loading bootstrap, and entry chunks — but **not** `fonts/`:
+  the syncs exclude them (`--exclude "fonts/*"`). Since v1.2.0 the `@font-face`
+  rules in `chucao.css` reference the fonts by **absolute URL**
+  (`chucao/fonts/…`), so the bundled `fonts/` are never served from those
+  prefixes. The npm package still ships them as a self-host fallback.
+- The `fonts/` files themselves live **only** at the static `chucao/fonts/`
+  prefix: synced once per release with an immutable cache, so browsers and CDN
+  edges reuse the same cached copy across versions. Existing `latest/fonts/`
+  leftovers are cleaned up on each deploy with an explicit `s3 rm`.
 - Versioned directories are treated as **write-once**: never overwrite an
   existing `<version>/`; the immutable cache header relies on it.
 - `latest/` is a convenience alias and is not reproducible.
@@ -104,6 +106,14 @@ curl -I https://static.devschile.cl/chucao/fonts/fira-sans-latin-400-normal.woff
 
 Check for `200`, `cache-control: public, max-age=31536000, immutable`, and
 `content-type: font/woff2` on the font files.
+
+The versioned and `latest/` prefixes must **not** carry fonts (they are served
+exclusively from `chucao/fonts/`), so these should return `404`:
+
+```bash
+curl -sI https://static.devschile.cl/chucao/<version>/fonts/fira-sans-latin-400-normal.woff2 | head -1
+curl -sI https://static.devschile.cl/chucao/latest/fonts/fira-sans-latin-400-normal.woff2 | head -1
+```
 
 ## Cross-origin consumption (CORS)
 
