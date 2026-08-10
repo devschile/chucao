@@ -11,13 +11,18 @@ output target, import a small bootstrap script that registers all components
 and loads individual component scripts lazily:
 
 ```html
-<script type="module" src="https://unpkg.com/@devschile/chucao"></script>
+<script type="module" src="https://static.devschile.cl/chucao/latest/chucao.esm.js"></script>
 <!--
-To avoid unpkg.com redirects to the actual file, you can also directly import:
-https://unpkg.com/@devschile/chucao@1.0.0/dist/chucao/chucao.esm.js
+`latest/` always points to the newest release. To pin to a specific version
+(immutable), list the published versions and use that versioned URL instead,
+e.g. https://static.devschile.cl/chucao/1.3.0/chucao.esm.js
 -->
 <ch-button>Click me</ch-button>
 ```
+
+Published versions are listed on the [npm package page](https://www.npmjs.com/package/@devschile/chucao)
+(versions section); every release is also available as a versioned directory
+under `https://static.devschile.cl/chucao/<version>/`.
 
 You can also import the script as part of your `node_modules` in your
 application's entry file:
