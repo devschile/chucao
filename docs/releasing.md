@@ -119,11 +119,10 @@ curl -sI https://static.devschile.cl/chucao/latest/fonts/fira-sans-latin-400-nor
 
 The GitHub Pages showcase (`devschile.github.io/chucao`) loads the library from
 `static.devschile.cl`, and browsers enforce CORS on cross-origin fonts and
-module scripts. The bucket is configured with
-[`.github/cors-bucket.json`](../.github/cors-bucket.json)
-(`Access-Control-Allow-Origin: *` for `GET`/`HEAD`), so cross-origin
-consumption of the stylesheet, the `.woff2` fonts, and the lazy-loading
-bootstrap works out of the box.
+module scripts. The bucket is already configured with
+`Access-Control-Allow-Origin: *` for `GET`/`HEAD` (applied on the Garage bucket
+itself), so cross-origin consumption of the stylesheet, the `.woff2` fonts, and
+the lazy-loading bootstrap works out of the box.
 
 See the CDN section of [`using-the-library.md`](using-the-library.md) for
 consumer-side usage of the CDN URLs.
