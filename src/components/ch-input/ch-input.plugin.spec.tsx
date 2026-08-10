@@ -76,3 +76,41 @@ describe('ch-input', () => {
     expect(root.shadowRoot?.querySelector('label')).toBeNull();
   });
 });
+
+describe('ch-input validation states', () => {
+  it('renders hint text wired via aria-describedby', async () => {
+    const { root } = await render(<ch-input hint="Máx. 20 caracteres" />);
+    const input = root.shadowRoot?.querySelector('input');
+    const hint = root.shadowRoot?.querySelector('p.hint');
+
+    expect(hint?.textContent).toBe('Máx. 20 caracteres');
+    expect(input?.getAttribute('aria-describedby')).toBe(hint?.id);
+    expect(input?.hasAttribute('aria-invalid')).toBe(false);
+  });
+
+  it('renders the error message and aria-invalid when invalid', async () => {
+    const { root } = await render(<ch-input invalid errorMessage="Correo inválido" />);
+    const input = root.shadowRoot?.querySelector('input');
+    const error = root.shadowRoot?.querySelector('p.error');
+
+    expect(input?.getAttribute('aria-invalid')).toBe('true');
+    expect(input?.classList.contains('input--invalid')).toBe(true);
+    expect(error?.textContent).toBe('Correo inválido');
+    expect(error?.getAttribute('role')).toBe('alert');
+    expect(input?.getAttribute('aria-describedby')).toBe(error?.id);
+  });
+
+  it('replaces the hint with the error message in the invalid state', async () => {
+    const { root } = await render(<ch-input hint="Ayuda" invalid errorMessage="Algo salió mal" />);
+    expect(root.shadowRoot?.querySelector('p.hint')).toBeNull();
+    expect(root.shadowRoot?.querySelector('p.error')?.textContent).toBe('Algo salió mal');
+  });
+
+  it('does not render the error message when not invalid', async () => {
+    const { root } = await render(<ch-input errorMessage="Correo inválido" />);
+    const input = root.shadowRoot?.querySelector('input');
+    expect(root.shadowRoot?.querySelector('p.error')).toBeNull();
+    expect(input?.hasAttribute('aria-invalid')).toBe(false);
+    expect(input?.hasAttribute('aria-describedby')).toBe(false);
+  });
+});

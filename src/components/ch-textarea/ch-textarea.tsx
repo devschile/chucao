@@ -1,86 +1,88 @@
 import { Component, Event, type EventEmitter, Host, Prop, h } from '@stencil/core';
 
-let inputIds = 0;
+let textareaIds = 0;
+
+const DEFAULT_ROWS = 4;
 
 @Component({
-  tag: 'ch-input',
-  styleUrl: 'ch-input.css',
+  tag: 'ch-textarea',
+  styleUrl: 'ch-textarea.css',
   shadow: true,
 })
-export class ChInput {
-  private readonly inputId = `ch-input-${++inputIds}`;
-  private readonly hintId = `${this.inputId}-hint`;
-  private readonly errorId = `${this.inputId}-error`;
+export class ChTextarea {
+  private readonly textareaId = `ch-textarea-${++textareaIds}`;
+  private readonly hintId = `${this.textareaId}-hint`;
+  private readonly errorId = `${this.textareaId}-error`;
 
   /**
-   * Visible label rendered above the input and associated with it via
-   * `for`/`id`, so assistive technology announces the input's purpose.
+   * Visible label rendered above the textarea and associated with it via
+   * `for`/`id`, so assistive technology announces the textarea's purpose.
    */
   @Prop() label?: string;
 
   /**
-   * The type of the input, mirroring the native `<input type>` attribute.
-   */
-  @Prop() type = 'text';
-
-  /**
-   * The value of the input.
+   * The value of the textarea.
    */
   @Prop({ mutable: true }) value = '';
 
   /**
-   * Placeholder text shown when the input is empty.
+   * Placeholder text shown when the textarea is empty.
    */
   @Prop() placeholder?: string;
 
   /**
-   * The name of the input, submitted with form data.
+   * The number of visible rows of the textarea.
+   */
+  @Prop() rows = DEFAULT_ROWS;
+
+  /**
+   * The name of the textarea, submitted with form data.
    */
   @Prop() name?: string;
 
   /**
-   * Whether the input is disabled.
+   * Whether the textarea is disabled.
    */
   @Prop() disabled = false;
 
   /**
-   * Whether the input is required.
+   * Whether the textarea is required.
    */
   @Prop() required = false;
 
   /**
-   * Helper text rendered below the input, associated via `aria-describedby`.
-   * Replaced by `errorMessage` when the input is invalid.
+   * Helper text rendered below the textarea, associated via `aria-describedby`.
+   * Replaced by `errorMessage` when the textarea is invalid.
    */
   @Prop() hint?: string;
 
   /**
-   * Error message rendered below the input when it is invalid.
+   * Error message rendered below the textarea when it is invalid.
    */
   @Prop() errorMessage?: string;
 
   /**
-   * Whether the input is in an invalid state; toggles `aria-invalid` and error styling.
+   * Whether the textarea is in an invalid state; toggles `aria-invalid` and error styling.
    */
   @Prop() invalid = false;
 
   /**
-   * Emitted on every keystroke, with the current input value.
+   * Emitted on every keystroke, with the current textarea value.
    */
   @Event() chInput: EventEmitter<string>;
 
   /**
-   * Emitted when the input value is committed (on native `change`).
+   * Emitted when the textarea value is committed (on native `change`).
    */
   @Event() chChange: EventEmitter<string>;
 
   private handleInput = (ev: InputEvent) => {
-    this.value = (ev.target as HTMLInputElement).value;
+    this.value = (ev.target as HTMLTextAreaElement).value;
     this.chInput.emit(this.value);
   };
 
   private handleChange = (ev: Event) => {
-    this.value = (ev.target as HTMLInputElement).value;
+    this.value = (ev.target as HTMLTextAreaElement).value;
     this.chChange.emit(this.value);
   };
 
@@ -98,14 +100,14 @@ export class ChInput {
     return (
       <Host>
         {this.label && (
-          <label class="label" htmlFor={this.inputId}>
+          <label class="label" htmlFor={this.textareaId}>
             {this.label}
           </label>
         )}
-        <input
-          id={this.label ? this.inputId : undefined}
-          class={{ 'input': true, 'input--invalid': this.invalid }}
-          type={this.type}
+        <textarea
+          id={this.label ? this.textareaId : undefined}
+          class={{ 'textarea': true, 'textarea--invalid': this.invalid }}
+          rows={this.rows}
           name={this.name}
           placeholder={this.placeholder}
           disabled={this.disabled}
@@ -115,7 +117,7 @@ export class ChInput {
           aria-describedby={this.describedBy}
           onInput={this.handleInput}
           onChange={this.handleChange}
-        />
+        ></textarea>
         {this.hint && !(this.invalid && this.errorMessage) && (
           <p class="hint" id={this.hintId}>
             {this.hint}

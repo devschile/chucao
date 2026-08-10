@@ -69,3 +69,45 @@ describe('ch-select', () => {
     expect(root.shadowRoot?.querySelector('label')).toBeNull();
   });
 });
+
+describe('ch-select validation states', () => {
+  it('renders hint text wired via aria-describedby', async () => {
+    const options = [{ label: 'Chile', value: 'cl' }];
+    const { root } = await render(<ch-select options={options} hint="Elige tu país" />);
+    const select = root.shadowRoot?.querySelector('select');
+    const hint = root.shadowRoot?.querySelector('p.hint');
+
+    expect(hint?.textContent).toBe('Elige tu país');
+    expect(select?.getAttribute('aria-describedby')).toBe(hint?.id);
+    expect(select?.hasAttribute('aria-invalid')).toBe(false);
+  });
+
+  it('renders the error message and aria-invalid when invalid', async () => {
+    const options = [{ label: 'Chile', value: 'cl' }];
+    const { root } = await render(<ch-select options={options} invalid errorMessage="Debes elegir un país" />);
+    const select = root.shadowRoot?.querySelector('select');
+    const error = root.shadowRoot?.querySelector('p.error');
+
+    expect(select?.getAttribute('aria-invalid')).toBe('true');
+    expect(select?.classList.contains('select--invalid')).toBe(true);
+    expect(error?.textContent).toBe('Debes elegir un país');
+    expect(error?.getAttribute('role')).toBe('alert');
+    expect(select?.getAttribute('aria-describedby')).toBe(error?.id);
+  });
+
+  it('replaces the hint with the error message in the invalid state', async () => {
+    const options = [{ label: 'Chile', value: 'cl' }];
+    const { root } = await render(<ch-select options={options} hint="Ayuda" invalid errorMessage="Algo salió mal" />);
+    expect(root.shadowRoot?.querySelector('p.hint')).toBeNull();
+    expect(root.shadowRoot?.querySelector('p.error')?.textContent).toBe('Algo salió mal');
+  });
+
+  it('does not render the error message when not invalid', async () => {
+    const options = [{ label: 'Chile', value: 'cl' }];
+    const { root } = await render(<ch-select options={options} errorMessage="Algo salió mal" />);
+    const select = root.shadowRoot?.querySelector('select');
+    expect(root.shadowRoot?.querySelector('p.error')).toBeNull();
+    expect(select?.hasAttribute('aria-invalid')).toBe(false);
+    expect(select?.hasAttribute('aria-describedby')).toBe(false);
+  });
+});

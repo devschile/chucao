@@ -100,6 +100,28 @@
 
         <div class="comp">
           <div class="comp-head">
+            <h4>ch-checkbox</h4>
+            <span class="tag">@devschile/chucao/ch-checkbox</span>
+          </div>
+          <p class="comp-desc">
+            Casilla de verificación con <code>label</code> asociada, estado <code>checked</code>, estados <code>hint</code>/<code>errorMessage</code> y evento
+            <code>chChange</code>.
+          </p>
+          <div class="comp-demo">
+            <ch-checkbox label="Acepto los términos"></ch-checkbox>
+            <ch-checkbox id="demo-checkbox" label="Recibir novedades" checked></ch-checkbox>
+            <ch-checkbox label="Deshabilitado" disabled></ch-checkbox>
+            <div id="demo-checkbox-log" class="event-log"></div>
+          </div>
+          <pre
+            class="comp-code"
+          ><code><span class="t">&lt;ch-checkbox</span> <span class="a">label</span>="Acepto los términos"<span class="t">&gt;</span><span class="t">&lt;/ch-checkbox</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-checkbox</span> <span class="a">id</span>="demo-checkbox" <span class="a">label</span>="Recibir novedades" <span class="a">checked</span><span class="t">&gt;</span><span class="t">&lt;/ch-checkbox</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-checkbox</span> <span class="a">label</span>="Deshabilitado" <span class="a">disabled</span><span class="t">&gt;</span><span class="t">&lt;/ch-checkbox</span><span class="t">&gt;</span></code></pre>
+        </div>
+
+        <div class="comp">
+          <div class="comp-head">
             <h4>ch-input</h4>
             <span class="tag">@devschile/chucao/ch-input</span>
           </div>
@@ -108,11 +130,30 @@
           </p>
           <div class="comp-demo">
             <ch-input id="demo-input" label="Correo" type="email" placeholder="tu@email.com"></ch-input>
+            <ch-input label="Contraseña" type="password" placeholder="••••••••" hint="Mínimo 8 caracteres"></ch-input>
+            <ch-input label="Usuario" invalid errorMessage="Este campo es obligatorio"></ch-input>
             <div id="demo-input-log" class="event-log"></div>
           </div>
           <pre
             class="comp-code"
-          ><code><span class="t">&lt;ch-input</span> <span class="a">id</span>="demo-input" <span class="a">label</span>="Correo" <span class="a">type</span>="email" <span class="a">placeholder</span>="tu@email.com"<span class="t">&gt;</span><span class="t">&lt;/ch-input</span><span class="t">&gt;</span></code></pre>
+          ><code><span class="t">&lt;ch-input</span> <span class="a">id</span>="demo-input" <span class="a">label</span>="Correo" <span class="a">type</span>="email" <span class="a">placeholder</span>="tu@email.com"<span class="t">&gt;</span><span class="t">&lt;/ch-input</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-input</span> <span class="a">label</span>="Contraseña" <span class="a">type</span>="password" <span class="a">placeholder</span>="••••••••" <span class="a">hint</span>="Mínimo 8 caracteres"<span class="t">&gt;</span><span class="t">&lt;/ch-input</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-input</span> <span class="a">label</span>="Usuario" <span class="a">invalid</span> <span class="a">error</span>M<span class="a">essage</span>="Este campo es obligatorio"<span class="t">&gt;</span><span class="t">&lt;/ch-input</span><span class="t">&gt;</span></code></pre>
+        </div>
+
+        <div class="comp">
+          <div class="comp-head">
+            <h4>ch-radio</h4>
+            <span class="tag">@devschile/chucao/ch-radio</span>
+          </div>
+          <p class="comp-desc">Grupo de selección única; las opciones se pasan por <code>options</code>. Emite <code>chChange</code> con el valor elegido.</p>
+          <div class="comp-demo">
+            <ch-radio id="demo-radio" label="Elige un tema"></ch-radio>
+            <div id="demo-radio-log" class="event-log"></div>
+          </div>
+          <pre
+            class="comp-code"
+          ><code><span class="t">&lt;ch-radio</span> <span class="a">id</span>="demo-radio" <span class="a">label</span>="Elige un tema"<span class="t">&gt;</span><span class="t">&lt;/ch-radio</span><span class="t">&gt;</span></code></pre>
         </div>
 
         <div class="comp">
@@ -128,6 +169,40 @@
           <pre
             class="comp-code"
           ><code><span class="t">&lt;ch-select</span> <span class="a">id</span>="demo-select" <span class="a">label</span>="País" <span class="a">placeholder</span>="Elige un país"<span class="t">&gt;</span><span class="t">&lt;/ch-select</span><span class="t">&gt;</span></code></pre>
+        </div>
+
+        <div class="comp">
+          <div class="comp-head">
+            <h4>ch-switch</h4>
+            <span class="tag">@devschile/chucao/ch-switch</span>
+          </div>
+          <p class="comp-desc">Interruptor on/off accesible (<code>role="switch"</code>) con <code>label</code> asociada. Emite <code>chChange</code>.</p>
+          <div class="comp-demo">
+            <ch-switch label="Modo oscuro" checked></ch-switch>
+            <ch-switch id="demo-switch" label="Notificaciones"></ch-switch>
+            <ch-switch label="Deshabilitado" disabled></ch-switch>
+            <div id="demo-switch-log" class="event-log"></div>
+          </div>
+          <pre
+            class="comp-code"
+          ><code><span class="t">&lt;ch-switch</span> <span class="a">label</span>="Modo oscuro" <span class="a">checked</span><span class="t">&gt;</span><span class="t">&lt;/ch-switch</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-switch</span> <span class="a">id</span>="demo-switch" <span class="a">label</span>="Notificaciones"<span class="t">&gt;</span><span class="t">&lt;/ch-switch</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-switch</span> <span class="a">label</span>="Deshabilitado" <span class="a">disabled</span><span class="t">&gt;</span><span class="t">&lt;/ch-switch</span><span class="t">&gt;</span></code></pre>
+        </div>
+
+        <div class="comp">
+          <div class="comp-head">
+            <h4>ch-textarea</h4>
+            <span class="tag">@devschile/chucao/ch-textarea</span>
+          </div>
+          <p class="comp-desc">Área de texto con <code>label</code> asociada. Emite <code>chInput</code> (cada tecla) y <code>chChange</code> (al confirmar).</p>
+          <div class="comp-demo">
+            <ch-textarea id="demo-textarea" label="Mensaje" placeholder="Escribe aquí..." rows="4"></ch-textarea>
+            <div id="demo-textarea-log" class="event-log"></div>
+          </div>
+          <pre
+            class="comp-code"
+          ><code><span class="t">&lt;ch-textarea</span> <span class="a">id</span>="demo-textarea" <span class="a">label</span>="Mensaje" <span class="a">placeholder</span>="Escribe aquí..." <span class="a">rows</span>="4"<span class="t">&gt;</span><span class="t">&lt;/ch-textarea</span><span class="t">&gt;</span></code></pre>
         </div>
         <!-- GALLERY:END -->
       </section>

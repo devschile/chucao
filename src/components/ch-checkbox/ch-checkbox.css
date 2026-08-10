@@ -1,0 +1,79 @@
+:host {
+  display: inline-block;
+}
+
+.control {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+  cursor: pointer;
+}
+
+.control--disabled {
+  opacity: var(--opacity-disabled);
+  cursor: not-allowed;
+}
+
+.input {
+  appearance: none;
+  -webkit-appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: var(--spacing-4xl);
+  height: var(--spacing-4xl);
+  margin: 0;
+  flex-shrink: 0;
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  cursor: pointer;
+  transition:
+    border-color var(--duration-normal) var(--easing-default),
+    background-color var(--duration-normal) var(--easing-default),
+    box-shadow var(--duration-normal) var(--easing-default);
+}
+
+.input:focus-visible {
+  outline: var(--focus-outline-width) solid var(--accent);
+  outline-offset: var(--focus-outline-offset);
+}
+
+.input:checked {
+  border-color: var(--accent);
+  background: var(--accent);
+}
+
+.input:checked::before {
+  content: '';
+  width: var(--spacing-xs);
+  height: var(--spacing-lg);
+  border: solid var(--color-accent-text);
+  border-width: 0 var(--spacing-shift) var(--spacing-shift) 0;
+  transform: rotate(45deg);
+  margin-top: calc(-1 * var(--spacing-2xs));
+}
+
+.input--invalid {
+  border-color: var(--color-status-warning);
+}
+
+.input--invalid:focus-visible {
+  outline-color: var(--color-status-warning);
+}
+
+.label-text {
+  color: var(--text);
+}
+
+.hint,
+.error {
+  margin: var(--spacing-sm) 0 0;
+  font-size: var(--typography-size-sm);
+  color: var(--text-muted);
+}
+
+.error {
+  color: var(--color-status-warning);
+}

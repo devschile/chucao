@@ -100,8 +100,9 @@ the tag name; instead prefix component tags with `ch-` (e.g. `ch-input`) so
 they don't collide with other libraries on the page.
 
 Beyond tag naming, follow these conventions — already used consistently
-across `ch-badge`, `ch-button`, `ch-card`, `ch-input`, and `ch-select` — so
-future components stay consistent as the library grows. See
+across `ch-badge`, `ch-button`, `ch-card`, `ch-checkbox`, `ch-input`,
+`ch-radio`, `ch-select`, `ch-switch`, and `ch-textarea` — so future
+components stay consistent as the library grows. See
 [`v1-readiness.md`](v1-readiness.md) for the full readiness assessment that
 identified and documented these conventions.
 
@@ -121,14 +122,16 @@ identified and documented these conventions.
   This is the pattern `ch-input` and `ch-select` already follow, and that
   `ch-button` was updated to match.
 - **Accessibility**: prefer native, keyboard-accessible elements
-  (`<button>`, `<input>`, `<select>`) inside the shadow root instead of
-  reimplementing their semantics — this is what gives `ch-button`,
-  `ch-input`, and `ch-select` working Tab/Space/Enter navigation for free.
-  Because `aria-*` attributes set on the custom element host aren't
-  automatically forwarded into the shadow DOM, components that need a
-  label expose it explicitly: `ch-input`/`ch-select` accept a `label` prop
-  rendered as a `<label>` associated via a generated `id`/`for` pair, and
-  `ch-button` accepts a `label` prop applied as `aria-label` on the native
-  `<button>` (for icon-only buttons). Interactive elements must also keep a
-  visible `:focus-visible` style (see `ch-button.css`) so keyboard users can
-  see where focus is.
+  (`<button>`, `<input>`, `<select>`, `<textarea>`) inside the shadow root
+  instead of reimplementing their semantics — this is what gives `ch-button`,
+  `ch-input`, `ch-select`, and `ch-textarea` working Tab/Space/Enter
+  navigation for free. Because `aria-*` attributes set on the custom element
+  host aren't automatically forwarded into the shadow DOM, components that
+  need a label expose it explicitly: `ch-input`/`ch-select`/`ch-textarea`
+  accept a `label` prop rendered as a `<label>` associated via a generated
+  `id`/`for` pair, `ch-checkbox`/`ch-switch` wrap their native control in a
+  `<label>` (implicit labeling), `ch-radio` renders a `role="radiogroup"`
+  labelled via `aria-labelledby`, and `ch-button` accepts a `label` prop
+  applied as `aria-label` on the native `<button>` (for icon-only buttons).
+  Interactive elements must also keep a visible `:focus-visible` style (see
+  `ch-button.css`) so keyboard users can see where focus is.

@@ -44,14 +44,45 @@ export const gallery = [
     ],
   },
   {
+    tag: 'ch-checkbox',
+    description:
+      'Casilla de verificación con <code>label</code> asociada, estado <code>checked</code>, estados <code>hint</code>/<code>errorMessage</code> y evento <code>chChange</code>.',
+    demos: [
+      '<ch-checkbox label="Acepto los términos"></ch-checkbox>',
+      '<ch-checkbox id="demo-checkbox" label="Recibir novedades" checked></ch-checkbox>',
+      '<ch-checkbox label="Deshabilitado" disabled></ch-checkbox>',
+      '<div id="demo-checkbox-log" class="event-log"></div>',
+    ],
+    bindings: [{ id: 'demo-checkbox', event: 'chChange', format: 'ev => `chChange: ${ev.detail}`' }],
+  },
+  {
     tag: 'ch-input',
     description:
       'Campo de texto con <code>label</code> asociado vía <code>id</code>/<code>for</code>. Emite <code>chInput</code> (cada tecla) y <code>chChange</code> (al confirmar).',
-    demos: ['<ch-input id="demo-input" label="Correo" type="email" placeholder="tu@email.com"></ch-input>', '<div id="demo-input-log" class="event-log"></div>'],
+    demos: [
+      '<ch-input id="demo-input" label="Correo" type="email" placeholder="tu@email.com"></ch-input>',
+      '<ch-input label="Contraseña" type="password" placeholder="••••••••" hint="Mínimo 8 caracteres"></ch-input>',
+      '<ch-input label="Usuario" invalid errorMessage="Este campo es obligatorio"></ch-input>',
+      '<div id="demo-input-log" class="event-log"></div>',
+    ],
     bindings: [
       { id: 'demo-input', event: 'chInput', format: 'ev => `chInput: ${ev.detail}`' },
       { id: 'demo-input', event: 'chChange', format: 'ev => `chChange: ${ev.detail}`' },
     ],
+  },
+  {
+    tag: 'ch-radio',
+    description: 'Grupo de selección única; las opciones se pasan por <code>options</code>. Emite <code>chChange</code> con el valor elegido.',
+    demos: ['<ch-radio id="demo-radio" label="Elige un tema"></ch-radio>', '<div id="demo-radio-log" class="event-log"></div>'],
+    bindings: [{ id: 'demo-radio', event: 'chChange', format: 'ev => `chChange: ${ev.detail}`' }],
+    init: `const radio = document.getElementById('demo-radio');
+  if (radio) {
+    radio.options = [
+      { label: 'Comunidad', value: 'community' },
+      { label: 'Links', value: 'links' },
+      { label: 'Eventos', value: 'events' },
+    ];
+  }`,
   },
   {
     tag: 'ch-select',
@@ -66,5 +97,25 @@ export const gallery = [
       { label: 'Perú', value: 'pe' },
     ];
   }`,
+  },
+  {
+    tag: 'ch-switch',
+    description: 'Interruptor on/off accesible (<code>role="switch"</code>) con <code>label</code> asociada. Emite <code>chChange</code>.',
+    demos: [
+      '<ch-switch label="Modo oscuro" checked></ch-switch>',
+      '<ch-switch id="demo-switch" label="Notificaciones"></ch-switch>',
+      '<ch-switch label="Deshabilitado" disabled></ch-switch>',
+      '<div id="demo-switch-log" class="event-log"></div>',
+    ],
+    bindings: [{ id: 'demo-switch', event: 'chChange', format: 'ev => `chChange: ${ev.detail}`' }],
+  },
+  {
+    tag: 'ch-textarea',
+    description: 'Área de texto con <code>label</code> asociada. Emite <code>chInput</code> (cada tecla) y <code>chChange</code> (al confirmar).',
+    demos: ['<ch-textarea id="demo-textarea" label="Mensaje" placeholder="Escribe aquí..." rows="4"></ch-textarea>', '<div id="demo-textarea-log" class="event-log"></div>'],
+    bindings: [
+      { id: 'demo-textarea', event: 'chInput', format: 'ev => `chInput: ${ev.detail}`' },
+      { id: 'demo-textarea', event: 'chChange', format: 'ev => `chChange: ${ev.detail}`' },
+    ],
   },
 ];

@@ -15,6 +15,8 @@ let selectIds = 0;
 })
 export class ChSelect {
   private readonly selectId = `ch-select-${++selectIds}`;
+  private readonly hintId = `${this.selectId}-hint`;
+  private readonly errorId = `${this.selectId}-error`;
 
   /**
    * Visible label rendered above the select and associated with it via
@@ -53,6 +55,22 @@ export class ChSelect {
   @Prop() required = false;
 
   /**
+   * Helper text rendered below the select, associated via `aria-describedby`.
+   * Replaced by `errorMessage` when the select is invalid.
+   */
+  @Prop() hint?: string;
+
+  /**
+   * Error message rendered below the select when it is invalid.
+   */
+  @Prop() errorMessage?: string;
+
+  /**
+   * Whether the select is in an invalid state; toggles `aria-invalid` and error styling.
+   */
+  @Prop() invalid = false;
+
+  /**
    * Emitted when the selected option changes, with the new value.
    */
   @Event() chChange: EventEmitter<string>;
@@ -61,6 +79,16 @@ export class ChSelect {
     this.value = (ev.target as HTMLSelectElement).value;
     this.chChange.emit(this.value);
   };
+
+  private get describedBy(): string | undefined {
+    if (this.invalid && this.errorMessage) {
+      return this.errorId;
+    }
+    if (this.hint) {
+      return this.hintId;
+    }
+    return undefined;
+  }
 
   render() {
     return (
@@ -72,10 +100,12 @@ export class ChSelect {
         )}
         <select
           id={this.label ? this.selectId : undefined}
-          class="select"
+          class={{ 'select': true, 'select--invalid': this.invalid }}
           name={this.name}
           disabled={this.disabled}
           required={this.required}
+          aria-invalid={this.invalid ? 'true' : undefined}
+          aria-describedby={this.describedBy}
           onChange={this.handleChange}
         >
           {this.placeholder && (
@@ -89,6 +119,16 @@ export class ChSelect {
             </option>
           ))}
         </select>
+        {this.hint && !(this.invalid && this.errorMessage) && (
+          <p class="hint" id={this.hintId}>
+            {this.hint}
+          </p>
+        )}
+        {this.invalid && this.errorMessage && (
+          <p class="error" id={this.errorId} role="alert">
+            {this.errorMessage}
+          </p>
+        )}
       </Host>
     );
   }

@@ -37,7 +37,27 @@
   outline: none;
 }
 
+.input--invalid {
+  border-color: var(--color-status-warning);
+}
+
+.input--invalid:focus {
+  border-color: var(--color-status-warning);
+  box-shadow: 0 0 0 3px var(--color-status-warning-background);
+}
+
 .input:disabled {
   opacity: var(--opacity-disabled);
   cursor: not-allowed;
+}
+
+.hint,
+.error {
+  margin: var(--spacing-sm) 0 0;
+  font-size: var(--typography-size-sm);
+  color: var(--text-muted);
+}
+
+.error {
+  color: var(--color-status-warning);
 }
