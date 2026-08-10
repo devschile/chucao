@@ -96,6 +96,7 @@
     "test:watch": "stencil-test --prod --watch",
     "test:coverage": "stencil-test --prod --coverage",
     "generate": "stencil generate",
+    "generate:gallery": "node scripts/generate-gallery.mjs",
     "lint": "oxlint .",
     "lint:fix": "oxlint . --fix",
     "format": "prettier --write .",

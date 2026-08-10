@@ -14,6 +14,9 @@ function bind(id, events) {
 }
 
 Promise.all(TAG.map(tag => customElements.whenDefined(tag))).then(() => {
+  bind('demo-button', [{ name: 'chClick', format: () => 'chClick' }]);
+  bind('demo-input', [{ name: 'chInput', format: ev => `chInput: ${ev.detail}` }]);
+  bind('demo-input', [{ name: 'chChange', format: ev => `chChange: ${ev.detail}` }]);
   const select = document.getElementById('demo-select');
   if (select) {
     select.options = [
@@ -22,11 +25,5 @@ Promise.all(TAG.map(tag => customElements.whenDefined(tag))).then(() => {
       { label: 'Perú', value: 'pe' },
     ];
   }
-
-  bind('demo-button', [{ name: 'chClick', format: () => 'chClick' }]);
-  bind('demo-input', [
-    { name: 'chInput', format: ev => `chInput: ${ev.detail}` },
-    { name: 'chChange', format: ev => `chChange: ${ev.detail}` },
-  ]);
   bind('demo-select', [{ name: 'chChange', format: ev => `chChange: ${ev.detail}` }]);
 });

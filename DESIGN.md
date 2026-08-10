@@ -138,6 +138,12 @@ monoespaciado marca jerarquía sin perjudicar la lectura de párrafos largos.
 
 ### Espaciado y forma
 
+Todos estos valores — y la paleta, tipografía, sombras, duraciones y capas de
+la sección de color — están formalizados como tokens en
+[`chucao-tokens.json`](chucao-tokens.json) (`spacing`, `radius`, `border`,
+`shadow`, `duration`, `easing`, `focus`, `opacity`, `z-index`, `effect`), que
+se consumen como `var(--token-name)` desde los componentes.
+
 - Radio de borde base: `6px` (`--radius`) para inputs, botones rectangulares,
   tarjetas.
 - Elementos tipo "pill" (badges, botones de acción primaria): `border-radius: 999px`.

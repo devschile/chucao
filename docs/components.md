@@ -63,6 +63,36 @@ source of truth for the generated `:root` custom properties. See
 [`src/tokens/README.md`](../src/tokens/README.md) for their naming conventions,
 CSS custom properties and TypeScript usage.
 
+The token schema covers `color` (background, surface, border, accent, status,
+text, brand), `typography` (families, `size`, `weight`, `tracking`), a `spacing`
+scale (`2xs`–`6xl` plus `shift`/`elevate`), `radius` (`sm`/`md`/`pill`),
+`border` (width, accent bar), `shadow`, `duration`, `easing`, `focus`,
+`opacity`, `z-index`, `effect` (blur) and `layout`. Component stylesheets
+reference these via `var(--token-name)` — no hardcoded colors or sizes. The
+`DESIGN.md`-style short aliases (`--bg`, `--accent`, `--radius`, …) live in
+`chucao.css` and map onto the generated tokens.
+
+To change tokens, edit `chucao-tokens.json`, run `toki build -f stencil`,
+copy the generated `stencil/` files into `src/tokens/`, and format with
+Prettier.
+
+## Docs-site gallery
+
+The component gallery on the docs site is generated, not hand-maintained.
+`pnpm run generate:gallery` reads the demo specs in
+[`scripts/gallery-data.mjs`](../scripts/gallery-data.mjs) (which must cover
+every component folder under `src/components/`) and rewrites two files:
+
+- `docs-site/index.html` — the `.comp` demo blocks inside `<section id="componentes">`,
+  between the `<!-- GALLERY:START -->` / `<!-- GALLERY:END -->` markers.
+- `docs-site/assets/js/app.js` — the `TAG` list, the `whenDefined` gate, and
+  the event-log `bind(...)` wiring derived from each entry's `bindings`/`init`.
+
+The GitHub Pages workflow runs `pnpm run generate:gallery` before assembling the
+publish directory, so the gallery stays in sync automatically. When adding a
+component, add a matching entry to `scripts/gallery-data.mjs`; the generator
+fails if a component folder lacks a gallery entry (or vice versa).
+
 ## Naming & API conventions
 
 When creating new component tags, avoid using `chucao` or `stencil` alone as

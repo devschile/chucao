@@ -75,6 +75,21 @@ design system's look can skip the JavaScript entirely:
 <link rel="stylesheet" href="https://static.devschile.cl/chucao/1.1.0/chucao.css" />
 ```
 
+## Design tokens
+
+`chucao.css` exposes the full token scale as CSS custom properties on `:root`,
+so consumers can theme with the design system's language without using any
+component: colors (`--color-*`), typography (`--typography-*`), a spacing scale
+(`--spacing-2xs` … `--spacing-6xl`), radii (`--radius-sm/md/pill`), shadows,
+durations, `z-index`, and more. The short `DESIGN.md`-style aliases (`--bg`,
+`--accent`, `--radius`, `--text`, …) are also available. See
+[`src/tokens/README.md`](https://github.com/devschile/chucao/blob/main/src/tokens/README.md)
+for the naming conventions.
+
+The interactive component gallery (live demos + usage snippets) is the
+[docs site](https://devschile.github.io/chucao/) — its component section is
+generated from `scripts/gallery-data.mjs` via `pnpm run generate:gallery`.
+
 How these URLs get published (release pipeline, manual redeploy, secrets) is
 documented in [`releasing.md`](releasing.md).
 

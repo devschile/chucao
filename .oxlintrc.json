@@ -20,5 +20,5 @@
     "browser": true,
     "es2022": true
   },
-  "ignorePatterns": ["dist", "dist-react", "dist-vue", "www", "loader", "node_modules", "src/components.d.ts"]
+  "ignorePatterns": ["dist", "dist-react", "dist-vue", "www", "loader", "node_modules", "src/components.d.ts", "scripts"]
 }

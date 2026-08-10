@@ -22,7 +22,10 @@
       <div class="wrap">
         <img src="assets/brand/huemul-icono-contorno.svg" alt="Huemul, ícono de devsChile" />
         <h1>Chucao — el <span>sistema de diseño</span> de devsChile</h1>
-        <p>Web Components hechos con StencilJS, publicados como <code>@devschile/chucao</code>. Identidad de marca, paleta, tipografía y componentes, listos para reusar.</p>
+        <p>
+          Web Components hechos con StencilJS, publicados como
+          <code>@devschile/chucao</code>. Identidad de marca, paleta, tipografía y componentes, listos para reusar.
+        </p>
         <nav class="top-nav">
           <a href="#componentes">Componentes</a>
           <a href="#colores">Colores</a>
@@ -39,6 +42,7 @@
         <h2>Componentes</h2>
         <p class="lead">Los componentes se renderizan acá en vivo, cargados desde el CDN (<code>static.devschile.cl/chucao/latest/</code>). Cada demo incluye el código de uso.</p>
 
+        <!-- GALLERY:START -->
         <div class="comp">
           <div class="comp-head">
             <h4>ch-badge</h4>
@@ -50,9 +54,9 @@
             <ch-badge variant="positive">Disponible</ch-badge>
             <ch-badge variant="warning">placeholder</ch-badge>
           </div>
-          <pre class="comp-code"><code><span class="t">&lt;ch-badge&gt;</span>comunidad<span class="t">&lt;/ch-badge&gt;</span>
-<span class="t">&lt;ch-badge</span> <span class="a">variant=</span><span class="t">"positive"</span><span class="t">&gt;</span>Disponible<span class="t">&lt;/ch-badge&gt;</span>
-<span class="t">&lt;ch-badge</span> <span class="a">variant=</span><span class="t">"warning"</span><span class="t">&gt;</span>placeholder<span class="t">&lt;/ch-badge&gt;</span></code></pre>
+          <pre class="comp-code"><code><span class="t">&lt;ch-badge</span><span class="t">&gt;</span>comunidad<span class="t">&lt;/ch-badge</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-badge</span> <span class="a">variant</span>="positive"<span class="t">&gt;</span>Disponible<span class="t">&lt;/ch-badge</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-badge</span> <span class="a">variant</span>="warning"<span class="t">&gt;</span>placeholder<span class="t">&lt;/ch-badge</span><span class="t">&gt;</span></code></pre>
         </div>
 
         <div class="comp">
@@ -67,9 +71,11 @@
             <ch-button disabled>Deshabilitado</ch-button>
             <div id="demo-button-log" class="event-log"></div>
           </div>
-          <pre class="comp-code"><code><span class="t">&lt;ch-button&gt;</span>Primario<span class="t">&lt;/ch-button&gt;</span>
-<span class="t">&lt;ch-button</span> <span class="a">variant=</span><span class="t">"secondary"</span><span class="t">&gt;</span>Secundario<span class="t">&lt;/ch-button&gt;</span>
-<span class="t">&lt;ch-button</span> <span class="a">disabled</span><span class="t">&gt;</span>Deshabilitado<span class="t">&lt;/ch-button&gt;</span></code></pre>
+          <pre
+            class="comp-code"
+          ><code><span class="t">&lt;ch-button</span> <span class="a">id</span>="demo-button"<span class="t">&gt;</span>Primario<span class="t">&lt;/ch-button</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-button</span> <span class="a">variant</span>="secondary"<span class="t">&gt;</span>Secundario<span class="t">&lt;/ch-button</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-button</span> <span class="a">disabled</span><span class="t">&gt;</span>Deshabilitado<span class="t">&lt;/ch-button</span><span class="t">&gt;</span></code></pre>
         </div>
 
         <div class="comp">
@@ -85,11 +91,11 @@
               <ch-button variant="secondary">Ver más</ch-button>
             </ch-card>
           </div>
-          <pre class="comp-code"><code><span class="t">&lt;ch-card&gt;</span>
-  <span class="t">&lt;h4&gt;</span>🔗 Links de la semana<span class="t">&lt;/h4&gt;</span>
-  <span class="t">&lt;p&gt;</span>Pasa el mouse<span class="t">&lt;/p&gt;</span>
-  <span class="t">&lt;ch-button</span> <span class="a">variant=</span><span class="t">"secondary"</span><span class="t">&gt;</span>Ver más<span class="t">&lt;/ch-button&gt;</span>
-<span class="t">&lt;/ch-card&gt;</span></code></pre>
+          <pre class="comp-code"><code><span class="t">&lt;ch-card</span><span class="t">&gt;</span>
+  <span class="t">&lt;h4</span><span class="t">&gt;</span>🔗 Links de la semana<span class="t">&lt;/h4</span><span class="t">&gt;</span>
+  <span class="t">&lt;p</span><span class="t">&gt;</span>Pasa el mouse — el borde y una línea de acento aparecen en hover.<span class="t">&lt;/p</span><span class="t">&gt;</span>
+  <span class="t">&lt;ch-button</span> <span class="a">variant</span>="secondary"<span class="t">&gt;</span>Ver más<span class="t">&lt;/ch-button</span><span class="t">&gt;</span>
+<span class="t">&lt;/ch-card</span><span class="t">&gt;</span></code></pre>
         </div>
 
         <div class="comp">
@@ -104,11 +110,9 @@
             <ch-input id="demo-input" label="Correo" type="email" placeholder="tu@email.com"></ch-input>
             <div id="demo-input-log" class="event-log"></div>
           </div>
-          <pre class="comp-code"><code><span class="t">&lt;ch-input</span>
-  <span class="a">label=</span><span class="t">"Correo"</span>
-  <span class="a">type=</span><span class="t">"email"</span>
-  <span class="a">placeholder=</span><span class="t">"tu@email.com"</span>
-<span class="t">&gt;&lt;/ch-input&gt;</span></code></pre>
+          <pre
+            class="comp-code"
+          ><code><span class="t">&lt;ch-input</span> <span class="a">id</span>="demo-input" <span class="a">label</span>="Correo" <span class="a">type</span>="email" <span class="a">placeholder</span>="tu@email.com"<span class="t">&gt;</span><span class="t">&lt;/ch-input</span><span class="t">&gt;</span></code></pre>
         </div>
 
         <div class="comp">
@@ -123,14 +127,9 @@
           </div>
           <pre
             class="comp-code"
-          ><code><span class="t">&lt;ch-select</span> <span class="a">label=</span><span class="t">"País"</span> <span class="a">placeholder=</span><span class="t">"Elige un país"</span><span class="t">&gt;&lt;/ch-select&gt;</span>
-<span class="t">&lt;script&gt;</span>
-  <span class="a">select</span>.options = [
-    { label: 'Chile', value: 'cl' },
-    { label: 'Argentina', value: 'ar' },
-  ];
-<span class="t">&lt;/script&gt;</span></code></pre>
+          ><code><span class="t">&lt;ch-select</span> <span class="a">id</span>="demo-select" <span class="a">label</span>="País" <span class="a">placeholder</span>="Elige un país"<span class="t">&gt;</span><span class="t">&lt;/ch-select</span><span class="t">&gt;</span></code></pre>
         </div>
+        <!-- GALLERY:END -->
       </section>
 
       <section id="colores">
