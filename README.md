@@ -4,6 +4,9 @@
 
 <img src="chucao-irmirx.png" width="250">
 
+*Isotipo diseñado por [@irmirx](https://www.instagram.com/irmirx/); su uso en
+este proyecto está aprobado por la autora.*
+
 Kit de marca + sistema de diseño web de devsChile, listo para reusar en
 proyectos nuevos. Pensado para copiarse y usarse directo, sin depender de
 piezas externas.
