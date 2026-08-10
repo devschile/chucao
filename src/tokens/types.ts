@@ -10,6 +10,7 @@ export type ColorToken =
   | 'color.border.hover'
   | 'color.accent.default'
   | 'color.accent.hover'
+  | 'color.accent.text'
   | 'color.status.positive'
   | 'color.status.positive-background'
   | 'color.status.warning'
@@ -20,10 +21,65 @@ export type ColorToken =
   | 'color.brand.huemul-light'
   | 'color.brand.stroke';
 
-export type TypographyToken = 'typography.body' | 'typography.heading';
+export type TypographyToken =
+  | 'typography.body'
+  | 'typography.heading'
+  | 'typography.size.xs'
+  | 'typography.size.sm'
+  | 'typography.size.md'
+  | 'typography.size.lg'
+  | 'typography.size.xl'
+  | 'typography.weight.regular'
+  | 'typography.weight.semibold'
+  | 'typography.weight.bold'
+  | 'typography.tracking.badge';
 
-export type SpacingToken = 'spacing.radius';
+export type SpacingToken =
+  | 'spacing.2xs'
+  | 'spacing.xs'
+  | 'spacing.sm'
+  | 'spacing.md'
+  | 'spacing.lg'
+  | 'spacing.xl'
+  | 'spacing.2xl'
+  | 'spacing.3xl'
+  | 'spacing.4xl'
+  | 'spacing.5xl'
+  | 'spacing.6xl'
+  | 'spacing.shift'
+  | 'spacing.elevate';
+
+export type RadiusToken = 'radius.sm' | 'radius.md' | 'radius.pill';
+
+export type BorderToken = 'border.width' | 'border.accent-bar';
+
+export type ShadowToken = 'shadow.focus-ring' | 'shadow.card-hover';
+
+export type EffectToken = 'effect.blur';
+
+export type DurationToken = 'duration.fast' | 'duration.normal';
+
+export type EasingToken = 'easing.default';
+
+export type FocusToken = 'focus.outline-width' | 'focus.outline-offset';
+
+export type OpacityToken = 'opacity.disabled';
+
+export type ZIndexToken = 'z-index.base' | 'z-index.dropdown' | 'z-index.modal';
 
 export type LayoutToken = 'layout.max-width';
 
-export type TokenName = ColorToken | TypographyToken | SpacingToken | LayoutToken;
+export type TokenName =
+  | ColorToken
+  | TypographyToken
+  | SpacingToken
+  | RadiusToken
+  | BorderToken
+  | ShadowToken
+  | EffectToken
+  | DurationToken
+  | EasingToken
+  | FocusToken
+  | OpacityToken
+  | ZIndexToken
+  | LayoutToken;

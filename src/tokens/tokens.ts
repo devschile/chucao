@@ -9,6 +9,7 @@ export const colorBorderDefault = 'rgba(255, 255, 255, 0.08)';
 export const colorBorderHover = 'rgba(45, 212, 191, 0.3)';
 export const colorAccentDefault = '#2dd4bf';
 export const colorAccentHover = '#5ee8d4';
+export const colorAccentText = '#06210f';
 export const colorStatusPositive = '#4ade80';
 export const colorStatusPositiveBackground = 'rgba(34, 197, 94, 0.18)';
 export const colorStatusWarning = '#f87171';
@@ -20,11 +21,49 @@ export const colorBrandHuemulLight = '#b45b38';
 export const colorBrandStroke = '#1d1d1b';
 export const typographyBody = 'Fira Sans, Droid Sans, Helvetica Neue, sans-serif';
 export const typographyHeading = 'Inconsolata, monospace';
-export const spacingRadius = '6px';
+export const typographySizeXs = '0.68rem';
+export const typographySizeSm = '0.85rem';
+export const typographySizeMd = '1rem';
+export const typographySizeLg = '1.25rem';
+export const typographySizeXl = '1.5rem';
+export const typographyWeightRegular = '400';
+export const typographyWeightSemibold = '600';
+export const typographyWeightBold = '700';
+export const typographyTrackingBadge = '0.03em';
+export const spacing2xs = '0.18rem';
+export const spacingXs = '0.25rem';
+export const spacingSm = '0.35rem';
+export const spacingMd = '0.5rem';
+export const spacingLg = '0.6rem';
+export const spacingXl = '0.8rem';
+export const spacing2xl = '1rem';
+export const spacing3xl = '1.25rem';
+export const spacing4xl = '1.35rem';
+export const spacing5xl = '1.5rem';
+export const spacing6xl = '2rem';
+export const spacingShift = '2px';
+export const spacingElevate = '1px';
+export const radiusSm = '6px';
+export const radiusMd = '8px';
+export const radiusPill = '999px';
+export const borderWidth = '1px';
+export const borderAccentBar = '3px';
+export const shadowFocusRing = '0 0 0 3px rgba(45, 212, 191, 0.12)';
+export const shadowCardHover = '0 4px 20px rgba(45, 212, 191, 0.06)';
+export const effectBlur = '10px';
+export const durationFast = '150ms';
+export const durationNormal = '200ms';
+export const easingDefault = 'ease';
+export const focusOutlineWidth = '2px';
+export const focusOutlineOffset = '2px';
+export const opacityDisabled = 0.5;
+export const zIndexBase = 0;
+export const zIndexDropdown = 100;
+export const zIndexModal = 1000;
 export const layoutMaxWidth = '68rem';
 
 export const tokens = {
-  color: {
+  'color': {
     background: {
       base: '#100a1c',
       topGlow: '#201e40',
@@ -41,6 +80,7 @@ export const tokens = {
     accent: {
       default: '#2dd4bf',
       hover: '#5ee8d4',
+      text: '#06210f',
     },
     status: {
       positive: '#4ade80',
@@ -58,14 +98,76 @@ export const tokens = {
       stroke: '#1d1d1b',
     },
   },
-  typography: {
+  'typography': {
     body: 'Fira Sans, Droid Sans, Helvetica Neue, sans-serif',
     heading: 'Inconsolata, monospace',
+    size: {
+      xs: '0.68rem',
+      sm: '0.85rem',
+      md: '1rem',
+      lg: '1.25rem',
+      xl: '1.5rem',
+    },
+    weight: {
+      regular: '400',
+      semibold: '600',
+      bold: '700',
+    },
+    tracking: {
+      badge: '0.03em',
+    },
   },
-  spacing: {
-    radius: '6px',
+  'spacing': {
+    '2xs': '0.18rem',
+    'xs': '0.25rem',
+    'sm': '0.35rem',
+    'md': '0.5rem',
+    'lg': '0.6rem',
+    'xl': '0.8rem',
+    '2xl': '1rem',
+    '3xl': '1.25rem',
+    '4xl': '1.35rem',
+    '5xl': '1.5rem',
+    '6xl': '2rem',
+    'shift': '2px',
+    'elevate': '1px',
   },
-  layout: {
+  'radius': {
+    sm: '6px',
+    md: '8px',
+    pill: '999px',
+  },
+  'border': {
+    width: '1px',
+    accentBar: '3px',
+  },
+  'shadow': {
+    focusRing: '0 0 0 3px rgba(45, 212, 191, 0.12)',
+    cardHover: '0 4px 20px rgba(45, 212, 191, 0.06)',
+  },
+  'effect': {
+    blur: '10px',
+  },
+  'duration': {
+    fast: '150ms',
+    normal: '200ms',
+  },
+  'easing': {
+    default: 'ease',
+  },
+  'focus': {
+    outlineWidth: '2px',
+    outlineOffset: '2px',
+  },
+  'opacity': {
+    disabled: 0.5,
+  },
+  'z-index': {
+    base: 0,
+    dropdown: 100,
+    modal: 1000,
+  },
+  'layout': {
     maxWidth: '68rem',
   },
 } as const;

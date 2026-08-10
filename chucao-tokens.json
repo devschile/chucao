@@ -22,7 +22,8 @@
     "accent": {
       "$description": "Acento",
       "default": { "$value": "#2dd4bf", "$description": "Acento — texto, bordes, botones" },
-      "hover": { "$value": "#5ee8d4", "$description": "Acento en hover" }
+      "hover": { "$value": "#5ee8d4", "$description": "Acento en hover" },
+      "text": { "$value": "#06210f", "$description": "Texto sobre el acento (botones primarios)" }
     },
     "status": {
       "$description": "Estados",
@@ -47,12 +48,98 @@
     "$type": "fontFamily",
     "$description": "Familias tipográficas",
     "body": { "$value": "Fira Sans, Droid Sans, Helvetica Neue, sans-serif", "$description": "Tipografía de cuerpo" },
-    "heading": { "$value": "Inconsolata, monospace", "$description": "Tipografía de títulos" }
+    "heading": { "$value": "Inconsolata, monospace", "$description": "Tipografía de títulos" },
+    "size": {
+      "$type": "dimension",
+      "$description": "Tamaños de fuente",
+      "xs": { "$value": "0.68rem", "$description": "Badges y metadata secundaria" },
+      "sm": { "$value": "0.85rem", "$description": "Labels de campos" },
+      "md": { "$value": "1rem", "$description": "Cuerpo por defecto" },
+      "lg": { "$value": "1.25rem", "$description": "Encabezados secundarios" },
+      "xl": { "$value": "1.5rem", "$description": "Encabezados" }
+    },
+    "weight": {
+      "$type": "fontWeight",
+      "$description": "Pesos de fuente",
+      "regular": { "$value": "400", "$description": "Cuerpo" },
+      "semibold": { "$value": "600", "$description": "Énfasis medio" },
+      "bold": { "$value": "700", "$description": "Botones y encabezados" }
+    },
+    "tracking": {
+      "$type": "letterSpacing",
+      "$description": "Tracking (letter-spacing)",
+      "badge": { "$value": "0.03em", "$description": "Badges en mayúsculas" }
+    }
   },
   "spacing": {
     "$type": "dimension",
-    "$description": "Radios y espaciado",
-    "radius": { "$value": "6px", "$description": "Radio de esquinas" }
+    "$description": "Escala de espaciado",
+    "2xs": { "$value": "0.18rem", "$description": "Padding vertical de badges" },
+    "xs": { "$value": "0.25rem", "$description": "Padding vertical de botones" },
+    "sm": { "$value": "0.35rem", "$description": "Gaps internos, margen de labels" },
+    "md": { "$value": "0.5rem", "$description": "Gap pequeño (flex)" },
+    "lg": { "$value": "0.6rem", "$description": "Padding horizontal de badges" },
+    "xl": { "$value": "0.8rem", "$description": "Padding horizontal de botones / vertical de inputs" },
+    "2xl": { "$value": "1rem", "$description": "Gap mediano (flex)" },
+    "3xl": { "$value": "1.25rem", "$description": "Padding horizontal de inputs" },
+    "4xl": { "$value": "1.35rem", "$description": "Padding vertical de tarjetas" },
+    "5xl": { "$value": "1.5rem", "$description": "Padding horizontal de tarjetas" },
+    "6xl": { "$value": "2rem", "$description": "Espaciado de secciones" },
+    "shift": { "$value": "2px", "$description": "Desplazamiento en hover (tarjetas)" },
+    "elevate": { "$value": "1px", "$description": "Elevación en hover (botones)" }
+  },
+  "radius": {
+    "$type": "dimension",
+    "$description": "Radios de esquina",
+    "sm": { "$value": "6px", "$description": "Contenedores, inputs" },
+    "md": { "$value": "8px", "$description": "Contenedores medianos" },
+    "pill": { "$value": "999px", "$description": "Badges y botones de acción primaria" }
+  },
+  "border": {
+    "$type": "dimension",
+    "$description": "Grosor de bordes",
+    "width": { "$value": "1px", "$description": "Borde base de superficies" },
+    "accent-bar": { "$value": "3px", "$description": "Línea lateral de acento (tarjetas)" }
+  },
+  "shadow": {
+    "$type": "shadow",
+    "$description": "Sombras",
+    "focus-ring": { "$value": "0 0 0 3px rgba(45, 212, 191, 0.12)", "$description": "Anillo de foco en inputs" },
+    "card-hover": { "$value": "0 4px 20px rgba(45, 212, 191, 0.06)", "$description": "Sombra de tarjeta en hover" }
+  },
+  "effect": {
+    "$type": "dimension",
+    "$description": "Efectos de superficie",
+    "blur": { "$value": "10px", "$description": "Desenfoque de superficies (vidrio esmerilado)" }
+  },
+  "duration": {
+    "$type": "duration",
+    "$description": "Duraciones de transición",
+    "fast": { "$value": "150ms", "$description": "Transiciones de transform" },
+    "normal": { "$value": "200ms", "$description": "Transiciones de color/borde/sombra" }
+  },
+  "easing": {
+    "$type": "cubicBezier",
+    "$description": "Curvas de easing",
+    "default": { "$value": "ease", "$description": "Easing por defecto" }
+  },
+  "focus": {
+    "$type": "dimension",
+    "$description": "Foco visible",
+    "outline-width": { "$value": "2px", "$description": "Grosor del outline de foco" },
+    "outline-offset": { "$value": "2px", "$description": "Separación del outline de foco" }
+  },
+  "opacity": {
+    "$type": "number",
+    "$description": "Opacidades",
+    "disabled": { "$value": 0.5, "$description": "Controles deshabilitados" }
+  },
+  "z-index": {
+    "$type": "number",
+    "$description": "Capas de apilamiento",
+    "base": { "$value": 0, "$description": "Capa base" },
+    "dropdown": { "$value": 100, "$description": "Menús y dropdowns" },
+    "modal": { "$value": 1000, "$description": "Modales y overlays" }
   },
   "layout": {
     "$type": "dimension",

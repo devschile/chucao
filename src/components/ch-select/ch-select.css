@@ -5,37 +5,37 @@
 
 .label {
   display: block;
-  margin-bottom: 0.35rem;
-  font-size: 0.85rem;
-  font-weight: 600;
+  margin-bottom: var(--spacing-sm);
+  font-size: var(--typography-size-sm);
+  font-weight: var(--typography-weight-semibold);
   color: var(--text);
 }
 
 .select {
   box-sizing: border-box;
   width: 100%;
-  padding: 0.8rem 1.25rem;
+  padding: var(--spacing-xl) var(--spacing-3xl);
   border-radius: var(--radius);
-  border: 1px solid var(--border);
+  border: var(--border-width) solid var(--border);
   background: var(--surface);
   color: var(--text);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(var(--effect-blur));
   font-family: inherit;
   font-size: inherit;
   cursor: pointer;
   transition:
-    border-color 0.2s,
-    box-shadow 0.2s;
+    border-color var(--duration-normal) var(--easing-default),
+    box-shadow var(--duration-normal) var(--easing-default);
 }
 
 .select:focus {
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(45, 212, 191, 0.12);
+  box-shadow: var(--shadow-focus-ring);
   outline: none;
 }
 
 .select:disabled {
-  opacity: 0.5;
+  opacity: var(--opacity-disabled);
   cursor: not-allowed;
 }
 

@@ -70,7 +70,7 @@
   --accent-hover: var(--color-accent-hover);
   --font-body: var(--typography-body);
   --font-heading: var(--typography-heading);
-  --radius: var(--spacing-radius);
+  --radius: var(--radius-sm);
 }
 
 body {
@@ -119,11 +119,11 @@ body {
 }
 
 .ch-gap-sm {
-  gap: 0.5rem;
+  gap: var(--spacing-md);
 }
 
 .ch-gap-md {
-  gap: 1rem;
+  gap: var(--spacing-2xl);
 }
 
 .ch-text-center {

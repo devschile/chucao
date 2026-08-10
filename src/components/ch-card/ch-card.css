@@ -9,16 +9,16 @@
 .card {
   color: var(--text);
   background: var(--surface);
-  border: 1px solid var(--border);
+  border: var(--border-width) solid var(--border);
   border-radius: var(--radius);
-  padding: 1.35rem 1.5rem;
-  backdrop-filter: blur(10px);
+  padding: var(--spacing-4xl) var(--spacing-5xl);
+  backdrop-filter: blur(var(--effect-blur));
   position: relative;
   overflow: hidden;
   transition:
-    border-color 0.2s,
-    transform 0.15s,
-    box-shadow 0.2s;
+    border-color var(--duration-normal) var(--easing-default),
+    transform var(--duration-fast) var(--easing-default),
+    box-shadow var(--duration-normal) var(--easing-default);
 }
 
 .card::before {
@@ -27,16 +27,16 @@
   left: 0;
   top: 0;
   bottom: 0;
-  width: 3px;
+  width: var(--border-accent-bar);
   background: var(--accent);
   opacity: 0;
-  transition: opacity 0.2s;
+  transition: opacity var(--duration-normal) var(--easing-default);
 }
 
 .card:hover {
   border-color: var(--border-hover);
-  transform: translateX(2px);
-  box-shadow: 0 4px 20px rgba(45, 212, 191, 0.06);
+  transform: translateX(var(--spacing-shift));
+  box-shadow: var(--shadow-card-hover);
 }
 
 .card:hover::before {
