@@ -75,12 +75,6 @@ design system's look can skip the JavaScript entirely:
 <link rel="stylesheet" href="https://static.devschile.cl/chucao/1.1.0/chucao.css" />
 ```
 
-> **Known limitation:** cross-origin pages are subject to CORS. A
-> `<link rel="stylesheet">` loads cross-origin without extra setup, but the
-> `.woff2` fonts (via `@font-face`) and the `<script type="module">` bootstrap
-> require `Access-Control-Allow-Origin` on the bucket. This is deferred until
-> a consumer actually needs it.
-
 How these URLs get published (release pipeline, manual redeploy, secrets) is
 documented in [`releasing.md`](releasing.md).
 

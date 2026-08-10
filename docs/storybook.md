@@ -29,9 +29,8 @@ Deploying a Storybook instance to the existing Garage S3 bucket
 - One `.stories.ts` file per component to author and maintain, plus the
   Storybook config (`main.ts`, `preview.ts`) and a `pnpm storybook`/`build`
   scripts.
-- Build output needs the same CORS/cache considerations as `chucao/` if loaded
-  cross-origin (it would live on the same host as the library, so same-origin
-  when both are on `static.devschile.cl`).
+- Build output needs the same cache considerations as `chucao/` when served
+  from the CDN.
 - Ongoing cost: every component/API change implies keeping stories in sync.
 
 ### What it buys
