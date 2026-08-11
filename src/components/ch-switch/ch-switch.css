@@ -63,7 +63,7 @@
   background: var(--accent);
 }
 
-.input:checked ~ .track + .thumb {
+.input:checked ~ .track .thumb {
   left: calc(100% - var(--spacing-2xl) - var(--spacing-2xs));
   background: var(--color-accent-text);
 }

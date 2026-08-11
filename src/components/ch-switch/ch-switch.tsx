@@ -98,8 +98,9 @@ export class ChSwitch {
             aria-describedby={this.describedBy}
             onChange={this.handleChange}
           />
-          <span class="track"></span>
-          <span class="thumb"></span>
+          <span class="track">
+            <span class="thumb"></span>
+          </span>
           {this.label && <span class="label-text">{this.label}</span>}
         </label>
         {this.hint && !(this.invalid && this.errorMessage) && (
