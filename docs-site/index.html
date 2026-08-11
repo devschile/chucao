@@ -45,6 +45,24 @@
         <!-- GALLERY:START -->
         <div class="comp">
           <div class="comp-head">
+            <h4>ch-accordion</h4>
+            <span class="tag">@devschile/chucao/ch-accordion</span>
+          </div>
+          <p class="comp-desc">
+            Acordeón de apertura única; cada ítem es un botón accesible con panel <code>role="region"</code> (contenido por slot <code>panel-&lt;value&gt;</code>). Emite
+            <code>chChange</code>.
+          </p>
+          <div class="comp-demo">
+            <ch-accordion id="demo-accordion"></ch-accordion>
+            <div id="demo-accordion-log" class="event-log"></div>
+          </div>
+          <pre
+            class="comp-code"
+          ><code><span class="t">&lt;ch-accordion</span> <span class="a">id</span>="demo-accordion"<span class="t">&gt;</span><span class="t">&lt;/ch-accordion</span><span class="t">&gt;</span></code></pre>
+        </div>
+
+        <div class="comp">
+          <div class="comp-head">
             <h4>ch-badge</h4>
             <span class="tag">@devschile/chucao/ch-badge</span>
           </div>
@@ -122,6 +140,36 @@
 
         <div class="comp">
           <div class="comp-head">
+            <h4>ch-divider</h4>
+            <span class="tag">@devschile/chucao/ch-divider</span>
+          </div>
+          <p class="comp-desc">Separador horizontal (por defecto) o vertical con <code>aria-orientation</code>.</p>
+          <div class="comp-demo">
+            <ch-card>
+              <p>Bloque superior</p>
+              <ch-divider></ch-divider>
+              <p>Bloque inferior</p>
+              <div class="ch-flex ch-gap-sm" style="height: 3.5rem">
+                <span>Izquierda</span>
+                <ch-divider orientation="vertical"></ch-divider>
+                <span>Derecha</span>
+              </div>
+            </ch-card>
+          </div>
+          <pre class="comp-code"><code><span class="t">&lt;ch-card</span><span class="t">&gt;</span>
+  <span class="t">&lt;p</span><span class="t">&gt;</span>Bloque superior<span class="t">&lt;/p</span><span class="t">&gt;</span>
+  <span class="t">&lt;ch-divider</span><span class="t">&gt;</span><span class="t">&lt;/ch-divider</span><span class="t">&gt;</span>
+  <span class="t">&lt;p</span><span class="t">&gt;</span>Bloque inferior<span class="t">&lt;/p</span><span class="t">&gt;</span>
+  <span class="t">&lt;div</span> <span class="a">class</span>="ch-flex ch-gap-sm" <span class="a">style</span>="height: 3.5rem"<span class="t">&gt;</span>
+    <span class="t">&lt;span</span><span class="t">&gt;</span>Izquierda<span class="t">&lt;/span</span><span class="t">&gt;</span>
+    <span class="t">&lt;ch-divider</span> <span class="a">orientation</span>="vertical"<span class="t">&gt;</span><span class="t">&lt;/ch-divider</span><span class="t">&gt;</span>
+    <span class="t">&lt;span</span><span class="t">&gt;</span>Derecha<span class="t">&lt;/span</span><span class="t">&gt;</span>
+  <span class="t">&lt;/div</span><span class="t">&gt;</span>
+<span class="t">&lt;/ch-card</span><span class="t">&gt;</span></code></pre>
+        </div>
+
+        <div class="comp">
+          <div class="comp-head">
             <h4>ch-input</h4>
             <span class="tag">@devschile/chucao/ch-input</span>
           </div>
@@ -139,6 +187,27 @@
           ><code><span class="t">&lt;ch-input</span> <span class="a">id</span>="demo-input" <span class="a">label</span>="Correo" <span class="a">type</span>="email" <span class="a">placeholder</span>="tu@email.com"<span class="t">&gt;</span><span class="t">&lt;/ch-input</span><span class="t">&gt;</span>
 <span class="t">&lt;ch-input</span> <span class="a">label</span>="Contraseña" <span class="a">type</span>="password" <span class="a">placeholder</span>="••••••••" <span class="a">hint</span>="Mínimo 8 caracteres"<span class="t">&gt;</span><span class="t">&lt;/ch-input</span><span class="t">&gt;</span>
 <span class="t">&lt;ch-input</span> <span class="a">label</span>="Usuario" <span class="a">invalid</span> <span class="a">error</span>M<span class="a">essage</span>="Este campo es obligatorio"<span class="t">&gt;</span><span class="t">&lt;/ch-input</span><span class="t">&gt;</span></code></pre>
+        </div>
+
+        <div class="comp">
+          <div class="comp-head">
+            <h4>ch-link</h4>
+            <span class="tag">@devschile/chucao/ch-link</span>
+          </div>
+          <p class="comp-desc">Enlace accesible con variantes <code>default</code>/<code>muted</code> y estado <code>disabled</code>. Emite <code>chClick</code>.</p>
+          <div class="comp-demo">
+            <ch-link id="demo-link" href="#componentes">Ir a componentes</ch-link>
+            <ch-link href="https://github.com/devschile/chucao" target="_blank">GitHub ↗</ch-link>
+            <ch-link variant="muted">Enlace atenuado</ch-link>
+            <ch-link disabled>Deshabilitado</ch-link>
+            <div id="demo-link-log" class="event-log"></div>
+          </div>
+          <pre
+            class="comp-code"
+          ><code><span class="t">&lt;ch-link</span> <span class="a">id</span>="demo-link" <span class="a">href</span>="#componentes"<span class="t">&gt;</span>Ir a componentes<span class="t">&lt;/ch-link</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-link</span> <span class="a">href</span>="https://github.com/devschile/chucao" <span class="a">target</span>="_blank"<span class="t">&gt;</span>GitHub ↗<span class="t">&lt;/ch-link</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-link</span> <span class="a">variant</span>="muted"<span class="t">&gt;</span>Enlace atenuado<span class="t">&lt;/ch-link</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-link</span> <span class="a">disabled</span><span class="t">&gt;</span>Deshabilitado<span class="t">&lt;/ch-link</span><span class="t">&gt;</span></code></pre>
         </div>
 
         <div class="comp">
@@ -188,6 +257,24 @@
           ><code><span class="t">&lt;ch-switch</span> <span class="a">label</span>="Modo oscuro" <span class="a">checked</span><span class="t">&gt;</span><span class="t">&lt;/ch-switch</span><span class="t">&gt;</span>
 <span class="t">&lt;ch-switch</span> <span class="a">id</span>="demo-switch" <span class="a">label</span>="Notificaciones"<span class="t">&gt;</span><span class="t">&lt;/ch-switch</span><span class="t">&gt;</span>
 <span class="t">&lt;ch-switch</span> <span class="a">label</span>="Deshabilitado" <span class="a">disabled</span><span class="t">&gt;</span><span class="t">&lt;/ch-switch</span><span class="t">&gt;</span></code></pre>
+        </div>
+
+        <div class="comp">
+          <div class="comp-head">
+            <h4>ch-tabs</h4>
+            <span class="tag">@devschile/chucao/ch-tabs</span>
+          </div>
+          <p class="comp-desc">
+            Pestañas accesibles (WAI-ARIA) con navegación por flechas; las opciones van por <code>tabs</code> y el panel activo recibe contenido por slot
+            <code>panel-&lt;value&gt;</code>. Emite <code>chChange</code>.
+          </p>
+          <div class="comp-demo">
+            <ch-tabs id="demo-tabs" label="Secciones"></ch-tabs>
+            <div id="demo-tabs-log" class="event-log"></div>
+          </div>
+          <pre
+            class="comp-code"
+          ><code><span class="t">&lt;ch-tabs</span> <span class="a">id</span>="demo-tabs" <span class="a">label</span>="Secciones"<span class="t">&gt;</span><span class="t">&lt;/ch-tabs</span><span class="t">&gt;</span></code></pre>
         </div>
 
         <div class="comp">

@@ -17,6 +17,24 @@
 
 export const gallery = [
   {
+    tag: 'ch-accordion',
+    description:
+      'Acordeón de apertura única; cada ítem es un botón accesible con panel <code>role="region"</code> (contenido por slot <code>panel-&lt;value&gt;</code>). Emite <code>chChange</code>.',
+    demos: ['<ch-accordion id="demo-accordion"></ch-accordion>', '<div id="demo-accordion-log" class="event-log"></div>'],
+    bindings: [{ id: 'demo-accordion', event: 'chChange', format: 'ev => `chChange: ${ev.detail}`' }],
+    init: `const accordion = document.getElementById('demo-accordion');
+  if (accordion) {
+    accordion.items = [
+      { title: '¿Qué es Chucao?', value: 'que-es' },
+      { title: '¿Cómo instalo?', value: 'instalar' },
+    ];
+    const panelAccordion = document.createElement('div');
+    panelAccordion.setAttribute('slot', 'panel-que-es');
+    panelAccordion.innerHTML = 'Chucao es el sistema de diseño de devsChile.';
+    accordion.appendChild(panelAccordion);
+  }`,
+  },
+  {
     tag: 'ch-badge',
     description: 'Etiqueta de estado compacta con tres variantes.',
     demos: ['<ch-badge>comunidad</ch-badge>', '<ch-badge variant="positive">Disponible</ch-badge>', '<ch-badge variant="warning">placeholder</ch-badge>'],
@@ -56,6 +74,22 @@ export const gallery = [
     bindings: [{ id: 'demo-checkbox', event: 'chChange', format: 'ev => `chChange: ${ev.detail}`' }],
   },
   {
+    tag: 'ch-divider',
+    description: 'Separador horizontal (por defecto) o vertical con <code>aria-orientation</code>.',
+    demos: [
+      '<ch-card>',
+      '  <p>Bloque superior</p>',
+      '  <ch-divider></ch-divider>',
+      '  <p>Bloque inferior</p>',
+      '  <div class="ch-flex ch-gap-sm" style="height: 3.5rem">',
+      '    <span>Izquierda</span>',
+      '    <ch-divider orientation="vertical"></ch-divider>',
+      '    <span>Derecha</span>',
+      '  </div>',
+      '</ch-card>',
+    ],
+  },
+  {
     tag: 'ch-input',
     description:
       'Campo de texto con <code>label</code> asociado vía <code>id</code>/<code>for</code>. Emite <code>chInput</code> (cada tecla) y <code>chChange</code> (al confirmar).',
@@ -69,6 +103,18 @@ export const gallery = [
       { id: 'demo-input', event: 'chInput', format: 'ev => `chInput: ${ev.detail}`' },
       { id: 'demo-input', event: 'chChange', format: 'ev => `chChange: ${ev.detail}`' },
     ],
+  },
+  {
+    tag: 'ch-link',
+    description: 'Enlace accesible con variantes <code>default</code>/<code>muted</code> y estado <code>disabled</code>. Emite <code>chClick</code>.',
+    demos: [
+      '<ch-link id="demo-link" href="#componentes">Ir a componentes</ch-link>',
+      '<ch-link href="https://github.com/devschile/chucao" target="_blank">GitHub ↗</ch-link>',
+      '<ch-link variant="muted">Enlace atenuado</ch-link>',
+      '<ch-link disabled>Deshabilitado</ch-link>',
+      '<div id="demo-link-log" class="event-log"></div>',
+    ],
+    bindings: [{ id: 'demo-link', event: 'chClick', format: "() => 'chClick'" }],
   },
   {
     tag: 'ch-radio',
@@ -108,6 +154,25 @@ export const gallery = [
       '<div id="demo-switch-log" class="event-log"></div>',
     ],
     bindings: [{ id: 'demo-switch', event: 'chChange', format: 'ev => `chChange: ${ev.detail}`' }],
+  },
+  {
+    tag: 'ch-tabs',
+    description:
+      'Pestañas accesibles (WAI-ARIA) con navegación por flechas; las opciones van por <code>tabs</code> y el panel activo recibe contenido por slot <code>panel-&lt;value&gt;</code>. Emite <code>chChange</code>.',
+    demos: ['<ch-tabs id="demo-tabs" label="Secciones"></ch-tabs>', '<div id="demo-tabs-log" class="event-log"></div>'],
+    bindings: [{ id: 'demo-tabs', event: 'chChange', format: 'ev => `chChange: ${ev.detail}`' }],
+    init: `const tabsEl = document.getElementById('demo-tabs');
+  if (tabsEl) {
+    tabsEl.tabs = [
+      { label: 'Comunidad', value: 'comunidad' },
+      { label: 'Links', value: 'links' },
+      { label: 'Eventos', value: 'eventos' },
+    ];
+    const panelTabs = document.createElement('div');
+    panelTabs.setAttribute('slot', 'panel-comunidad');
+    panelTabs.innerHTML = 'Contenido de la pestaña Comunidad.';
+    tabsEl.appendChild(panelTabs);
+  }`,
   },
   {
     tag: 'ch-textarea',

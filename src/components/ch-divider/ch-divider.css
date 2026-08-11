@@ -1,0 +1,25 @@
+:host {
+  display: block;
+}
+
+:host(.divider--vertical) {
+  display: inline-block;
+  height: 100%;
+  align-self: stretch;
+}
+
+.divider {
+  margin: 0;
+  border: none;
+  background: var(--border);
+}
+
+.divider--horizontal {
+  width: 100%;
+  height: var(--border-width);
+}
+
+.divider--vertical {
+  width: var(--border-width);
+  height: 100%;
+}

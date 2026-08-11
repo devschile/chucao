@@ -100,8 +100,9 @@ the tag name; instead prefix component tags with `ch-` (e.g. `ch-input`) so
 they don't collide with other libraries on the page.
 
 Beyond tag naming, follow these conventions — already used consistently
-across `ch-badge`, `ch-button`, `ch-card`, `ch-checkbox`, `ch-input`,
-`ch-radio`, `ch-select`, `ch-switch`, and `ch-textarea` — so future
+across `ch-accordion`, `ch-badge`, `ch-button`, `ch-card`, `ch-checkbox`,
+`ch-divider`, `ch-input`, `ch-link`, `ch-radio`, `ch-select`, `ch-switch`,
+`ch-tabs`, and `ch-textarea` — so future
 components stay consistent as the library grows. See
 [`v1-readiness.md`](v1-readiness.md) for the full readiness assessment that
 identified and documented these conventions.
@@ -135,3 +136,20 @@ identified and documented these conventions.
   applied as `aria-label` on the native `<button>` (for icon-only buttons).
   Interactive elements must also keep a visible `:focus-visible` style (see
   `ch-button.css`) so keyboard users can see where focus is.
+- **Composite widgets (keyboard + panels)**: `ch-tabs` and `ch-accordion`
+  implement keyboard-accessible, non-form composites. `ch-tabs` follows the
+  WAI-ARIA tablist pattern: arrow keys move and activate (Left/Right wrap
+  around, Home/End jump to first/last, disabled tabs are skipped), the active
+  tab carries `aria-selected` and a roving `tabindex` (`0`/`-1`), and each tab
+  is wired to its `role="tabpanel"` via `aria-controls`/`aria-labelledby`.
+  `ch-accordion` follows the WAI-ARIA accordion pattern with native `<button>`
+  toggles (Enter/Space for free), single-open semantics, and
+  `aria-expanded`/`aria-controls`/`role="region"` wiring. Both keep panel
+  content in the consumer's light DOM, distributed into the shadow root via a
+  named slot per panel: `panel-<value>` (`ch-tabs`), `panel-<value>`
+  (`ch-accordion`). Only the active panel is rendered visible.
+- **Links & dividers**: `ch-link` renders a native `<a>` with
+  `default`/`muted` variants; it auto-adds `rel="noopener noreferrer"` for
+  `target="_blank"` and, when `disabled`, renders a non-interactive element
+  with `aria-disabled="true"`. `ch-divider` renders a native `<hr>` with
+  `horizontal` (default) / `vertical` orientations and `aria-orientation`.
