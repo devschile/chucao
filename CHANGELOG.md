@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+## [1.5.1](https://github.com/devschile/chucao/compare/1.5.0...1.5.1) (2026-08-11)
+
+### Bug Fixes
+
+* **switch:** keep thumb inside the track when checked ([f2b9544](https://github.com/devschile/chucao/commit/f2b9544d0f40f13565a58fd8da7a01a2331b62da))
+
 ## [1.5.0](https://github.com/devschile/chucao/compare/1.4.0...1.5.0) (2026-08-11)
 
 ### Features
