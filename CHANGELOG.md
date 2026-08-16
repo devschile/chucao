@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+## [1.5.3](https://github.com/devschile/chucao/compare/1.5.2...1.5.3) (2026-08-16)
+
+### Bug Fixes
+
+* **build:** disable stencil hydrated flag to prevent SSR hydration mismatch ([4e1b420](https://github.com/devschile/chucao/commit/4e1b4207ef2aa241ba8c02dbbe2b79ff8d27bfe9))
+
 ## [1.5.2](https://github.com/devschile/chucao/compare/1.5.1...1.5.2) (2026-08-16)
 
 ### Bug Fixes
