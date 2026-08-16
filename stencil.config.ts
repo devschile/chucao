@@ -5,6 +5,7 @@ import { vueOutputTarget } from '@stencil/vue-output-target';
 export const config: Config = {
   namespace: 'chucao',
   globalStyle: 'src/global/chucao.css',
+  hydratedFlag: null,
   sourceMap: true,
   outputTargets: [
     {

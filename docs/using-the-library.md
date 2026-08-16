@@ -148,6 +148,27 @@ import { ChButton } from '@devschile/chucao/vue';
 The Vue wrappers automatically register their underlying custom elements on
 import — no separate `@devschile/chucao/loader` import is required.
 
+#### Vue / Nuxt SSR hydration
+
+The library is built with Stencil's `hydrated` flag disabled
+(`hydratedFlag: null` in `stencil.config.ts`), so the custom element host never
+gains Stencil's `hydrated` class at runtime. This means Vue's hydration (e.g.
+under Nuxt SSR) sees exactly the same `class` attribute that the server
+rendered, and no `Hydration class mismatch` warnings are produced.
+
+Trade-offs to be aware of:
+
+- The `:host(:not(.hydrated))` visibility hook is not available; and the lazy
+  `dist` build does not inject Stencil's prehydration `visibility: hidden`
+  rule, so content is visible immediately on page load rather than only after
+  hydration.
+- If you ever observe a class mismatch for another reason, Vue 3.5+ allows
+  suppressing it per element with `data-allow-mismatch="class"` (see the
+  [Vue SSR docs](https://vuejs.org/api/ssr.html#data-allow-mismatch)).
+
+True server-side rendering of the shadow DOM itself (via Stencil's
+`dist-hydrate-script`) is tracked in `docs/backlog.md` and not yet shipped.
+
 ### Svelte / SvelteKit
 
 Svelte doesn't need a dedicated wrapper package — it has first-class support
