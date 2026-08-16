@@ -66,6 +66,13 @@ Follow these API conventions (documented in `docs/components.md`):
 - `pnpm run release` — `release-it` release (creates a version tag; the CI
   workflow `.github/workflows/release.yml` builds, lints, tests, and publishes
   to npm when a version tag is pushed).
+- **Always add a release description** — after `pnpm run release`, the CI
+  workflow creates the GitHub Release with auto-generated notes. Edit it with
+  `gh release edit <version> --notes-file …` and a hand-written description
+  following the format of previous releases (e.g. 1.5.1): a `# Chucao <version>`
+  heading, a one-line summary, `##`-sectioned changes with `- **`item`** — …`
+  bullets, a `## Quality` block (tests/lint/build), and the `**Full Changelog**`
+  comparison link. Do this before the release is considered done.
 
 **Always run `pnpm lint` and `pnpm test` after making changes** and keep them
 green — the release pipeline depends on them.

@@ -44,6 +44,11 @@
       "require": "./loader/index.cjs",
       "types": "./loader/index.d.ts"
     },
+    "./hydrate": {
+      "types": "./hydrate/index.d.ts",
+      "import": "./hydrate/index.mjs",
+      "require": "./hydrate/index.js"
+    },
     "./react": {
       "import": "./dist-react/components.js",
       "types": "./dist-react/components.d.ts"
@@ -85,6 +90,7 @@
     "dist/",
     "dist-react/",
     "dist-vue/",
+    "hydrate/",
     "loader/"
   ],
   "scripts": {

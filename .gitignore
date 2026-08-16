@@ -1,6 +1,7 @@
 dist/
 dist-react/
 dist-vue/
+hydrate/
 www/
 loader/
 coverage/

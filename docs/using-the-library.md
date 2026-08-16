@@ -166,8 +166,41 @@ Trade-offs to be aware of:
   suppressing it per element with `data-allow-mismatch="class"` (see the
   [Vue SSR docs](https://vuejs.org/api/ssr.html#data-allow-mismatch)).
 
-True server-side rendering of the shadow DOM itself (via Stencil's
-`dist-hydrate-script`) is tracked in `docs/backlog.md` and not yet shipped.
+True server-side rendering of the shadow DOM itself is possible with the
+`@devschile/chucao/hydrate` renderer — see
+[Server-side rendering](#server-side-rendering-ssr) below.
+
+### Server-side rendering (SSR)
+
+The library ships a Node server-side renderer (`@devschile/chucao/hydrate`) built
+by Stencil's `dist-hydrate-script` output target. It executes the components in
+Node and serializes their shadow roots as
+[Declarative Shadow DOM](https://web.dev/articles/declarative-shadow-dom), so
+server and client render the same markup — including each component's internal
+styles — with no hydration mismatches:
+
+```js
+import { renderToString } from '@devschile/chucao/hydrate';
+
+const { html } = await renderToString('<ch-button>Click me</ch-button>');
+// → <!doctype html>…<ch-button><template shadowrootmode="open">…</template>…</ch-button>
+```
+
+The renderer is framework-agnostic: return `html` from any server route or hook
+(e.g. a Nuxt server plugin, a SvelteKit `load`, or your own Node render step) and
+let the framework hydrate the page on the client. Because the host never gains
+Stencil's `hydrated` class (see `hydratedFlag: null` above), Vue/Nuxt hydration
+sees exactly the `class` the server rendered.
+
+Notes:
+
+- `renderToString` accepts an HTML string or a single component and returns
+  `{ html, diagnostics, … }`. See `dist/hydrate/index.d.ts` for the full option
+  set (`beforeHydrate`/`afterHydrate` hooks, `clientHydrateAnnotations`, …).
+- Both CJS (`require('@devschile/chucao/hydrate')`) and ESM
+  (`import … from '@devschile/chucao/hydrate'`) entry points are published.
+- The renderer bundles the components and their styles itself, so it does not
+  require the Vue wrappers or the lazy-loader bootstrap.
 
 ### Svelte / SvelteKit
 

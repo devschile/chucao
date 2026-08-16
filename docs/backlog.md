@@ -128,6 +128,25 @@ build/test verification) has been completed and shipped in `1.0.0`.
   **100%** statements/functions/lines (94.88% branches); `pnpm lint` (no
   warnings) and `pnpm run build` green; new files Prettier-clean.
 
+### CH-11 — Real SSR via `dist-hydrate-script`
+
+- **CH-11.1** Added the `dist-hydrate-script` output target to
+  `stencil.config.ts`; it generates the `hydrate/` Node renderer (`index.js` CJS,
+  `index.mjs` ESM, `index.d.ts`) exposing `renderToString` with Declarative
+  Shadow DOM.
+- **CH-11.2** Exposed it as `@devschile/chucao/hydrate` via the `package.json`
+  `exports` map and `files` entry (plus `hydrate/` in `.gitignore`); the
+  tag-pushed release pipeline builds it (`pnpm build`) and ships it to npm
+  alongside `dist/`.
+- **CH-11.3** Documented consumer wiring in `docs/using-the-library.md` (new SSR
+  section). Kept `hydratedFlag: null` (the 1.5.3 fix): the server renderer
+  already emits the same markup the client produces, so there's no reason to
+  restore the `hydrated` class and re-risk the Vue/Nuxt mismatch for consumers
+  who don't adopt the renderer.
+- **CH-11.4** Verified: `pnpm run build` produces the `hydrate/` output; a smoke
+  test renders `<ch-button>` server-side with Declarative Shadow DOM and no
+  diagnostics; `pnpm lint` and `pnpm test` green.
+
 ## Planned — next increment (beyond 1.3.0)
 
 Target: minor release, purely additive (no breaking API/behavior changes).
@@ -150,24 +169,6 @@ Form-associated custom elements and multi-theme are intentionally deferred
 - **CH-04.2** `ch-modal` (focus trap, ESC, scroll lock) is the heaviest — flag as optional
   within this increment if scope balloons.
 - **CH-04.3** Verify: tests for each; a11y assertions (keyboard + aria) in specs.
-
-### CH-11 — Real SSR via `dist-hydrate-script`
-
-Issue #7's short-term fix (`hydratedFlag: null`, shipped in 1.5.3) removes the
-Vue/Nuxt hydration class mismatch by dropping the `hydrated` flag entirely.
-Genuine SSR — server-rendering the shadow DOM itself so server and client agree
-instead of removing the flag — is deferred here.
-
-- **CH-11.1** Add the `dist-hydrate-script` output target to `stencil.config.ts`
-  so the library publishes a `hydrate/` Node renderer exposing `renderToString`
-  (Declarative Shadow DOM).
-- **CH-11.2** Add a `hydrate` export to the `package.json` `exports` map and make
-  sure the release pipeline builds it.
-- **CH-11.3** Document consumer wiring (e.g. a Nuxt server plugin that runs
-  `renderToString` and injects the serialized markup); revisit whether the
-  `hydrated` flag can then be restored.
-- **CH-11.4** Verify: `pnpm run build` produces the hydrate script; consumer
-  SSR smoke test renders shadow DOM without hydration warnings.
 
 ## Deferred (needs 2.0, breaking)
 
