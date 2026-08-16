@@ -5,61 +5,60 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-
 ## [1.6.0](https://github.com/devschile/chucao/compare/1.5.3...1.6.0) (2026-08-16)
 
 ### Features
 
-* **ssr:** ship server-side renderer via dist-hydrate-script ([a6b99d9](https://github.com/devschile/chucao/commit/a6b99d9f6e6fc8b37928fd7e77de0716eb5ff8fc))
+- **ssr:** ship server-side renderer via dist-hydrate-script ([a6b99d9](https://github.com/devschile/chucao/commit/a6b99d9f6e6fc8b37928fd7e77de0716eb5ff8fc))
 
 ## [1.5.3](https://github.com/devschile/chucao/compare/1.5.2...1.5.3) (2026-08-16)
 
 ### Bug Fixes
 
-* **build:** disable stencil hydrated flag to prevent SSR hydration mismatch ([4e1b420](https://github.com/devschile/chucao/commit/4e1b4207ef2aa241ba8c02dbbe2b79ff8d27bfe9))
+- **build:** disable stencil hydrated flag to prevent SSR hydration mismatch ([4e1b420](https://github.com/devschile/chucao/commit/4e1b4207ef2aa241ba8c02dbbe2b79ff8d27bfe9))
 
 ## [1.5.2](https://github.com/devschile/chucao/compare/1.5.1...1.5.2) (2026-08-16)
 
 ### Bug Fixes
 
-* **link:** expose underline opt-out via custom property and part ([3db9000](https://github.com/devschile/chucao/commit/3db9000b2c0d7b1bfc21e8877465a6e2965defe7))
+- **link:** expose underline opt-out via custom property and part ([3db9000](https://github.com/devschile/chucao/commit/3db9000b2c0d7b1bfc21e8877465a6e2965defe7))
 
 ## [1.5.1](https://github.com/devschile/chucao/compare/1.5.0...1.5.1) (2026-08-11)
 
 ### Bug Fixes
 
-* **switch:** keep thumb inside the track when checked ([f2b9544](https://github.com/devschile/chucao/commit/f2b9544d0f40f13565a58fd8da7a01a2331b62da))
+- **switch:** keep thumb inside the track when checked ([f2b9544](https://github.com/devschile/chucao/commit/f2b9544d0f40f13565a58fd8da7a01a2331b62da))
 
 ## [1.5.0](https://github.com/devschile/chucao/compare/1.4.0...1.5.0) (2026-08-11)
 
 ### Features
 
-* **nav:** add ch-link, ch-divider, ch-tabs and ch-accordion ([97fdbe6](https://github.com/devschile/chucao/commit/97fdbe6fb276e72d25aa69d89ca8db18dda0b288))
+- **nav:** add ch-link, ch-divider, ch-tabs and ch-accordion ([97fdbe6](https://github.com/devschile/chucao/commit/97fdbe6fb276e72d25aa69d89ca8db18dda0b288))
 
 ## [1.4.0](https://github.com/devschile/chucao/compare/1.3.0...1.4.0) (2026-08-10)
 
 ### Features
 
-* **form:** add validation states and four new form controls ([ef6901d](https://github.com/devschile/chucao/commit/ef6901def5bb85802dd78b5f9fda14d25ecd4275))
+- **form:** add validation states and four new form controls ([ef6901d](https://github.com/devschile/chucao/commit/ef6901def5bb85802dd78b5f9fda14d25ecd4275))
 
 ## [1.3.0](https://github.com/devschile/chucao/compare/1.2.0...1.3.0) (2026-08-10)
 
 ### Features
 
-* **docs:** generate the component gallery from scripts ([9e72dc7](https://github.com/devschile/chucao/commit/9e72dc76cb2c277126cdc59cea8e1f183dcd5f8b))
-* **tokens:** expand token schema and de-hardcode component styles ([27b063f](https://github.com/devschile/chucao/commit/27b063f2913f9867e5e252f9bff83e50bf8877e5))
+- **docs:** generate the component gallery from scripts ([9e72dc7](https://github.com/devschile/chucao/commit/9e72dc76cb2c277126cdc59cea8e1f183dcd5f8b))
+- **tokens:** expand token schema and de-hardcode component styles ([27b063f](https://github.com/devschile/chucao/commit/27b063f2913f9867e5e252f9bff83e50bf8877e5))
 
 ## [1.2.0](https://github.com/devschile/chucao/compare/1.1.0...1.2.0) (2026-08-09)
 
 ### Features
 
-* **ci:** publish docs site to GitHub Pages and CDN gallery ([6b7736e](https://github.com/devschile/chucao/commit/6b7736ef257ae848300f284d39a8eab9f4fbf9f1))
-* **fonts:** serve self-hosted fonts from a static chucao/fonts/ prefix ([bfb8c98](https://github.com/devschile/chucao/commit/bfb8c9817a83539be69bd2d7c3a5fd81fe07b714))
-* **readme:** update logo drawn by [@irmirx](https://github.com/irmirx) ([7f022dd](https://github.com/devschile/chucao/commit/7f022ddceea2c961f66d7abe00d172b4f0c7f805))
+- **ci:** publish docs site to GitHub Pages and CDN gallery ([6b7736e](https://github.com/devschile/chucao/commit/6b7736ef257ae848300f284d39a8eab9f4fbf9f1))
+- **fonts:** serve self-hosted fonts from a static chucao/fonts/ prefix ([bfb8c98](https://github.com/devschile/chucao/commit/bfb8c9817a83539be69bd2d7c3a5fd81fe07b714))
+- **readme:** update logo drawn by [@irmirx](https://github.com/irmirx) ([7f022dd](https://github.com/devschile/chucao/commit/7f022ddceea2c961f66d7abe00d172b4f0c7f805))
 
 ### Bug Fixes
 
-* **ci:** rename .publish staging dir so upload-artifact picks it up ([b4996d0](https://github.com/devschile/chucao/commit/b4996d0fcd325c8324bef0d70d032d36a2179abb))
+- **ci:** rename .publish staging dir so upload-artifact picks it up ([b4996d0](https://github.com/devschile/chucao/commit/b4996d0fcd325c8324bef0d70d032d36a2179abb))
 
 ## Unreleased
 

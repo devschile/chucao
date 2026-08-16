@@ -37,13 +37,7 @@ export class ChButton {
   render() {
     return (
       <Host>
-        <button
-          class={{ btn: true, [`btn--${this.variant}`]: true }}
-          type="button"
-          disabled={this.disabled}
-          aria-label={this.label}
-          onClick={this.handleClick}
-        >
+        <button class={{ btn: true, [`btn--${this.variant}`]: true }} type="button" disabled={this.disabled} aria-label={this.label} onClick={this.handleClick}>
           <slot></slot>
         </button>
       </Host>
