@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+## [1.6.0](https://github.com/devschile/chucao/compare/1.5.3...1.6.0) (2026-08-16)
+
+### Features
+
+* **ssr:** ship server-side renderer via dist-hydrate-script ([a6b99d9](https://github.com/devschile/chucao/commit/a6b99d9f6e6fc8b37928fd7e77de0716eb5ff8fc))
+
 ## [1.5.3](https://github.com/devschile/chucao/compare/1.5.2...1.5.3) (2026-08-16)
 
 ### Bug Fixes
