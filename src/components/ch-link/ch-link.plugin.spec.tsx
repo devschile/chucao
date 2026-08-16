@@ -37,6 +37,20 @@ describe('ch-link', () => {
     expect(root.shadowRoot?.querySelector('a')?.classList.contains('link--muted')).toBe(true);
   });
 
+  it('renders the internal element with a link part', async () => {
+    const { root } = await render(<ch-link href="#x">Link</ch-link>);
+    expect(root.shadowRoot?.querySelector('a')?.getAttribute('part')).toBe('link');
+  });
+
+  it('exposes a link part on the disabled element', async () => {
+    const { root } = await render(
+      <ch-link href="#x" disabled>
+        Link
+      </ch-link>,
+    );
+    expect(root.shadowRoot?.querySelector('span.link--disabled')?.getAttribute('part')).toBe('link');
+  });
+
   it('renders a non-interactive element with aria-disabled when disabled', async () => {
     const { root } = await render(
       <ch-link href="https://devschile.cl" disabled>

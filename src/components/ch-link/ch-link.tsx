@@ -43,7 +43,7 @@ export class ChLink {
     if (this.disabled) {
       return (
         <Host>
-          <span class={{ 'link': true, [`link--${this.variant}`]: true, 'link--disabled': true }} aria-disabled="true">
+          <span class={{ 'link': true, [`link--${this.variant}`]: true, 'link--disabled': true }} part="link" aria-disabled="true">
             <slot></slot>
           </span>
         </Host>
@@ -53,6 +53,7 @@ export class ChLink {
       <Host>
         <a
           class={{ link: true, [`link--${this.variant}`]: true }}
+          part="link"
           href={this.href}
           target={this.target}
           rel={this.target === '_blank' ? 'noopener noreferrer' : undefined}

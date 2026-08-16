@@ -151,5 +151,8 @@ identified and documented these conventions.
 - **Links & dividers**: `ch-link` renders a native `<a>` with
   `default`/`muted` variants; it auto-adds `rel="noopener noreferrer"` for
   `target="_blank"` and, when `disabled`, renders a non-interactive element
-  with `aria-disabled="true"`. `ch-divider` renders a native `<hr>` with
+  with `aria-disabled="true"`. The underline is an opt-out: set
+  `--ch-link-text-decoration` to `none` on the host (e.g. for button-like
+  CTAs), or style the internal element via `ch-link::part(link)`.
+  `ch-divider` renders a native `<hr>` with
   `horizontal` (default) / `vertical` orientations and `aria-orientation`.

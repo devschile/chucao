@@ -22,6 +22,13 @@
 | `chClick` | Emitted when the link is clicked. | `CustomEvent<MouseEvent>` |
 
 
+## Shadow Parts
+
+| Part     | Description |
+| -------- | ----------- |
+| `"link"` |             |
+
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

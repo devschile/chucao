@@ -5,7 +5,7 @@
 .link {
   color: var(--accent);
   font-weight: var(--typography-weight-semibold);
-  text-decoration: underline;
+  text-decoration: var(--ch-link-text-decoration, underline);
   text-decoration-thickness: var(--border-width);
   text-underline-offset: var(--spacing-shift);
   border-radius: var(--radius-sm);
