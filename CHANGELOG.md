@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+## [1.5.2](https://github.com/devschile/chucao/compare/1.5.1...1.5.2) (2026-08-16)
+
+### Bug Fixes
+
+* **link:** expose underline opt-out via custom property and part ([3db9000](https://github.com/devschile/chucao/commit/3db9000b2c0d7b1bfc21e8877465a6e2965defe7))
+
 ## [1.5.1](https://github.com/devschile/chucao/compare/1.5.0...1.5.1) (2026-08-11)
 
 ### Bug Fixes
