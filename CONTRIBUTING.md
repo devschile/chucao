@@ -99,7 +99,7 @@ Si `format:check` encuentra algo raro, `pnpm run format` lo corrige.
 
 ## Archivos que no se editan a mano
 
-Varios archivos del repo son generados. Editarlos a mano hará que el cambio 
+Varios archivos del repo son generados. Editarlos a mano hará que el cambio
 se pierda en la regeneración siguiente:
 
 | Archivo                       | Lo genera                                 |
