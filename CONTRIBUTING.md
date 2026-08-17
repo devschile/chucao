@@ -1,7 +1,7 @@
 # Cómo contribuir a Chucao
 
 Chucao es el kit de marca y sistema de diseño de devsChile. Se hizo por y para
-la comunidad, así que los aportes son bienvenidos: desde corregir una typo en la
+la comunidad, así que los aportes son bienvenidos: desde corregir un typo en la
 documentación hasta proponer un componente nuevo.
 
 Esta guía cubre el proceso. Las convenciones técnicas están en
@@ -49,19 +49,19 @@ Los comandos completos están en [`AGENTS.md`](AGENTS.md) y en
 1. Crea una rama desde `main`. La convención es `<tipo>/<descripción-corta>`,
    usando los mismos tipos que los commits: `feat/`, `fix/`, `chore/`, `ci/`.
    Por ejemplo: `feat/ch-tooltip`, `fix/switch-thumb-position`.
-2. Haz tus cambios y deja el gate local en verde (ver más abajo).
-3. Abre un pull request contra `main`.
-4. Espera revisión de alguno de los mantenedores.
+2. Haz tus cambios y deja el _gate_ en verde (ver más abajo).
+3. Abre un pull request hacia `main`.
+4. Espera la revisión de alguno de los mantenedores.
 
 Un par de cosas que conviene saber:
 
-- **`main` está protegido.** No se puede pushear directo; todo entra por PR con
-  el check de CI en verde.
+- **`main` está protegido.** No se puede _pushear_ directo. Todo cambio entra por un
+  PR con el check de CI en verde.
 - **El merge es siempre squash.** Es el único método habilitado en el repo, así
   que el título del PR termina siendo el mensaje del commit en `main` — escríbelo
   siguiendo la convención de commits.
-- **La rama `docs` la genera CI** (`.github/workflows/docs.yml`) para publicar el
-  sitio en GitHub Pages. No se edita a mano.
+- **La rama `docs` se genera con el CI** (`.github/workflows/docs.yml`) para publicar el
+  sitio en GitHub Pages. Nunca se edita a mano.
 - **`docs/` no sirve como prefijo de rama.** Justamente porque ya existe una rama
   llamada `docs`, Git no deja crear otra que empiece con `docs/` — el push se
   rechaza con `directory file conflict`. Para cambios de documentación usa
@@ -78,15 +78,15 @@ docs(readme): link the contributing guide
 chore(release): 1.6.0
 ```
 
-Esto no es solo estilo: `release-it` calcula la próxima versión y genera el
+Este formato es obligatorio ya que `release-it` calcula la próxima versión y genera el
 `CHANGELOG.md` a partir de estos mensajes. Un commit fuera de convención ensucia
-el changelog y puede afectar el número de versión.
+el changelog y podría afectar el número de versión.
 
 Como el merge es squash, **lo que importa es el título del PR**.
 
-## Antes de mandar el PR
+## Antes de crear el PR
 
-Corre el mismo gate que corre CI:
+Ejecuta estas tareas en tu local:
 
 ```bash
 pnpm lint
@@ -95,12 +95,12 @@ pnpm test
 pnpm build
 ```
 
-Si `format:check` reclama, `pnpm run format` lo arregla.
+Si `format:check` encuentra algo raro, `pnpm run format` lo corrige.
 
 ## Archivos que no se editan a mano
 
-Varios archivos del repo son generados. Editarlos a mano se pierde en la
-siguiente regeneración:
+Varios archivos del repo son generados. Editarlos a mano hará que el cambio 
+se pierda en la regeneración siguiente:
 
 | Archivo                       | Lo genera                                 |
 | ----------------------------- | ----------------------------------------- |
@@ -129,7 +129,7 @@ orden:
    - tag con prefijo `ch-` (por ejemplo `ch-tooltip`);
    - eventos con prefijo `ch` en camelCase (`chClick`, `chChange`);
    - `shadow: true`;
-   - colores y medidas vía `var(--token)` — nunca valores hardcodeados;
+   - colores y medidas usando `var(--token)`, nunca valores _hardcodeados_;
    - accesibilidad: elementos nativos, `label` expuesto, `:focus-visible`
      visible;
    - entrada correspondiente en `scripts/gallery-data.mjs` (el generador de la
@@ -144,5 +144,5 @@ Mantienen el proyecto [@hectorpalmatellez](https://github.com/hectorpalmatellez)
 y [@juanbrujo](https://github.com/juanbrujo). Ellos revisan y mergean los PRs, y
 el proyecto está abierto a que se sume quien contribuya de forma sostenida.
 
-Si un PR queda sin respuesta por varios días, mencionar a alguno de ellos en el
-mismo PR es la forma más directa de retomarlo.
+Si un PR queda sin respuesta por muchas horas o días, mencionar a alguno de ellos en el
+mismo PR es la forma más directa de retomarlo. O puedes dejar un mensaje en Slack en #comunidad
