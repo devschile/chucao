@@ -1,0 +1,41 @@
+name: Documentación
+description: Algo falta, está desactualizado o confunde en la documentación.
+labels: ['documentation']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Si lo que falta lo tienes claro y es acotado, también puedes mandar el PR directamente — no hace falta abrir el issue primero.
+
+  - type: dropdown
+    id: documento
+    attributes:
+      label: Qué documento
+      options:
+        - README.md
+        - CONTRIBUTING.md
+        - AGENTS.md
+        - DESIGN.md
+        - docs/components.md
+        - docs/using-the-library.md
+        - docs/testing.md
+        - docs/releasing.md
+        - docs/assets.md
+        - El sitio de documentación (docs-site)
+        - Otro / documentación que no existe todavía
+    validations:
+      required: true
+
+  - type: textarea
+    id: problema
+    attributes:
+      label: Qué falta o qué está mal
+      description: Si aplica, indica la sección o la línea.
+    validations:
+      required: true
+
+  - type: textarea
+    id: propuesta
+    attributes:
+      label: Qué propones
+      description: Cómo debería quedar.

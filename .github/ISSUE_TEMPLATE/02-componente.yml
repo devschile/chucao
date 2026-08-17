@@ -1,0 +1,73 @@
+name: Proponer un componente
+description: Sugerir un componente nuevo para la librería.
+labels: ['enhancement']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        La idea de proponer antes de programar es que acordemos el enfoque primero, para que nadie invierta tiempo escribiendo algo que después haya que rehacer o descartar.
+
+        No necesitas tener la API resuelta: con el caso de uso claro se puede conversar.
+
+  - type: input
+    id: nombre
+    attributes:
+      label: Nombre propuesto
+      description: Con el prefijo `ch-`, como el resto de la librería.
+      placeholder: ch-tooltip
+    validations:
+      required: true
+
+  - type: textarea
+    id: caso-de-uso
+    attributes:
+      label: Qué problema resuelve
+      description: Para qué se necesita y qué se hace hoy en su ausencia.
+    validations:
+      required: true
+
+  - type: input
+    id: donde
+    attributes:
+      label: Dónde se necesita
+      description: Qué proyecto de la comunidad lo usaría. Sirve para priorizar.
+      placeholder: pegas.devschile.cl
+    validations:
+      required: true
+
+  - type: textarea
+    id: api
+    attributes:
+      label: API tentativa
+      description: Props, eventos y variantes que imaginas. Un borrador basta.
+      placeholder: |
+        Props: placement ('top' | 'bottom' | 'left' | 'right'), text, disabled
+        Eventos: chShow, chHide
+        Variantes: default, inverted
+
+  - type: textarea
+    id: referencias
+    attributes:
+      label: Referencias
+      description: Componentes parecidos en otras librerías, capturas o enlaces que ayuden a entender la idea.
+
+  - type: dropdown
+    id: implementacion
+    attributes:
+      label: ¿Te gustaría implementarlo?
+      options:
+        - Sí, puedo tomarlo yo
+        - Sí, pero necesitaría ayuda o revisión temprana
+        - No, solo estoy proponiendo la idea
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: convenciones
+    attributes:
+      label: Antes de enviar
+      options:
+        - label: Revisé la sección «Proponer un componente nuevo» de CONTRIBUTING.md.
+          required: true
+        - label: Busqué en los issues existentes y no encontré esta propuesta.
+          required: true
