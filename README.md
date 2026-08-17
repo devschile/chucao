@@ -36,6 +36,8 @@ piezas externas.
 
 | Documento                                                | Idioma  | Contenido                                                                      |
 | -------------------------------------------------------- | ------- | ------------------------------------------------------------------------------ |
+| [`CONTRIBUTING.md`](CONTRIBUTING.md)                     | Español | Cómo contribuir: flujo de trabajo, commits, proponer un componente             |
+| [`AGENTS.md`](AGENTS.md)                                 | English | Convenciones del repo para contribuyentes y agentes de IA                      |
 | [`DESIGN.md`](DESIGN.md)                                 | Español | Identidad de marca + sistema de diseño web                                     |
 | [`docs/assets.md`](docs/assets.md)                       | Español | Inventario de `assets/`, uso del favicon, licencia                             |
 | [`docs/components.md`](docs/components.md)               | English | Desarrollo de la librería StencilJS: estructura, tokens, convenciones          |
