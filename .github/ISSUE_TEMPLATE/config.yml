@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Comunidad devsChile en Slack
+    url: https://devschile.cl
+    about: Para preguntas, dudas de uso o conversar una idea antes de abrir un issue. El canal es #comunidad.

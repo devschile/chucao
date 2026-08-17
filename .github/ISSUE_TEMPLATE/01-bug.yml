@@ -1,0 +1,86 @@
+name: Reportar un bug
+description: Algo no funciona como debería en un componente o en la librería.
+labels: ['bug']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Gracias por reportarlo. Con que completes lo esencial basta — si algún campo no aplica, déjalo en blanco.
+
+  - type: textarea
+    id: descripcion
+    attributes:
+      label: Qué pasa
+      description: Describe el problema en una o dos frases.
+      placeholder: El thumb de ch-switch se sale del track cuando está checked en Safari.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: componente
+    attributes:
+      label: Componente afectado
+      options:
+        - No aplica / no estoy seguro
+        - ch-accordion
+        - ch-badge
+        - ch-button
+        - ch-card
+        - ch-checkbox
+        - ch-divider
+        - ch-input
+        - ch-link
+        - ch-radio
+        - ch-select
+        - ch-switch
+        - ch-tabs
+        - ch-textarea
+        - Tokens / estilos globales
+        - Build o publicación
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Versión de @devschile/chucao
+      placeholder: 1.6.0
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduccion
+    attributes:
+      label: Cómo reproducirlo
+      description: Los pasos mínimos para verlo. Si tienes un ejemplo en línea o un snippet, mejor todavía.
+      placeholder: |
+        1. Renderizar <ch-switch checked></ch-switch>
+        2. Abrir en Safari 17
+        3. El thumb queda fuera del track
+    validations:
+      required: true
+
+  - type: textarea
+    id: esperado
+    attributes:
+      label: Qué esperabas que pasara
+
+  - type: dropdown
+    id: entorno
+    attributes:
+      label: Cómo estás usando la librería
+      options:
+        - Sin framework (HTML + script)
+        - React
+        - Vue
+        - Svelte
+        - Angular
+        - Otro
+
+  - type: checkboxes
+    id: previo
+    attributes:
+      label: Antes de enviar
+      options:
+        - label: Busqué en los issues existentes y no encontré este problema reportado.
+          required: true
