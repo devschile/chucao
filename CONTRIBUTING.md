@@ -22,9 +22,12 @@ Si el cambio es más que una corrección menor, **abre un issue primero**. Sirve
 para acordar el enfoque antes de que alguien invierta tiempo escribiendo código,
 y para que quede registro de por qué se hizo.
 
-El plan por incrementos vive en [`docs/backlog.md`](docs/backlog.md), y cada
-ítem abierto enlaza a su issue. Si lo que quieres hacer no está listado ahí y es
-algo que da forma a un release, el backlog explica cómo agregarlo.
+**Los issues de GitHub son la única fuente de verdad del trabajo pendiente.** No
+hay archivo de backlog ni lista de tareas paralela en el repo: si algo no tiene
+issue, no está planificado todavía.
+
+Los issues con label `discussion` son ideas que todavía necesitan una decisión.
+No empieces a escribir código para esos — comenta en el issue.
 
 Lecturas útiles según lo que vayas a tocar:
 
@@ -34,7 +37,7 @@ Lecturas útiles según lo que vayas a tocar:
 | Cambiar tokens o estilos              | [`DESIGN.md`](DESIGN.md) y la sección de tokens de [`AGENTS.md`](AGENTS.md) |
 | Escribir o ajustar tests              | [`docs/testing.md`](docs/testing.md)                                        |
 | Consumir la librería en otro proyecto | [`docs/using-the-library.md`](docs/using-the-library.md)                    |
-| Buscar en qué ayudar                  | [`docs/backlog.md`](docs/backlog.md) y los issues con `good first issue`    |
+| Buscar en qué ayudar                  | Los issues con `good first issue` o `help wanted`                           |
 
 ## Ambiente local
 

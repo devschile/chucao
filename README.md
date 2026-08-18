@@ -46,7 +46,6 @@ piezas externas.
 | [`docs/releasing.md`](docs/releasing.md)                 | English | Cómo publicar releases y desplegar la librería al CDN                          |
 | [`docs/testing.md`](docs/testing.md)                     | English | Testing y cobertura de los componentes                                         |
 | [`docs/storybook.md`](docs/storybook.md)                 | English | Evaluación de desplegar Storybook en el CDN (no adoptado)                      |
-| [`docs/backlog.md`](docs/backlog.md)                     | English | Plan por incrementos hacia la próxima versión (`CH-*`) y backlog de releases   |
 
 ## Cómo reusar esto en un proyecto nuevo
 

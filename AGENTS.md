@@ -4,6 +4,28 @@ This file documents the conventions and guardrails for working on the Chucao
 repo. Read it before making changes. It applies to human contributors and to
 AI agents working in this repository.
 
+## Where work comes from
+
+**GitHub issues are the only source of truth for open work.** There is no
+backlog file, roadmap document, or task list checked into this repository — if
+something has no issue, it is not planned yet.
+
+- Before starting anything, find the issue it belongs to. If there is none,
+  **open one first** and settle the approach there before writing code. The
+  templates live in `.github/ISSUE_TEMPLATE/` and cover bug reports, component
+  proposals, and documentation.
+- A minor correction (a typo, an obvious one-line fix) can go straight to a pull
+  request — see `CONTRIBUTING.md`. Anything larger needs an issue first.
+- Issues labelled `discussion` are ideas that still need a decision. **Do not
+  implement them.** Comment on the issue instead.
+- Reference the issue from the pull request: `Closes #123` when the PR finishes
+  it, `Refs #123` when it only advances it.
+- **Never reintroduce a checked-in backlog, roadmap, or TASKS file.** Planning
+  belongs in issues, where the whole community can see and pick it up. A file
+  in the repo drifts from reality and splits the source of truth in two.
+- For what already shipped, read `CHANGELOG.md` and the git history rather than
+  a planning document.
+
 ## Documentation rules
 
 - **The root `README.md` must be written in Spanish and kept concise.** Do
