@@ -115,7 +115,7 @@
     "@stencil/react-output-target": "^1.6.1",
     "@stencil/vitest": "^1.8.3",
     "@stencil/vue-output-target": "^0.14.1",
-    "@types/node": "^22.13.5",
+    "@types/node": "^26.2.0",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.4",
     "@vitest/browser-playwright": "^4.0.0",
