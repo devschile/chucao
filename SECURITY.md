@@ -4,7 +4,10 @@ Chucao se publica en npm como [`@devschile/chucao`](https://www.npmjs.com/packag
 
 ## Cómo reportar
 
-**No abras un issue público.** Escribe a **huemul@devschile.cl** con el detalle.
+**No abras un issue público.** Hay dos vías privadas:
+
+1. **[Reportar una vulnerabilidad en GitHub](https://github.com/devschile/chucao/security/advisories/new)** — la vía preferida. Abre un hilo privado con los mantenedores dentro del mismo repositorio, así que queda todo en un solo lugar.
+2. **Correo a huemul@devschile.cl**, si prefieres no pasar por GitHub.
 
 Ayuda mucho incluir:
 
@@ -13,7 +16,7 @@ Ayuda mucho incluir:
 - qué impacto le ves;
 - si ya tienes una idea de cómo arreglarlo.
 
-Chucao lo mantiene gente de la comunidad en su tiempo libre, así que no podemos comprometer un plazo de respuesta formal. Lo que sí: hacemos lo posible por acusar recibo dentro de la primera semana y te contamos en qué quedó, se arregle o no.
+Acusamos recibo dentro de **72 horas**, aunque sea para decirte que lo estamos viendo. Después te contamos en qué quedó, se arregle o no.
 
 Si reportas algo válido y quieres crédito público, lo damos en las notas del release. Si prefieres quedar anónimo, también.
 
@@ -34,4 +37,4 @@ Los sitios de la comunidad que usan Chucao (`pegas.devschile.cl`, `semanario.dev
 
 ## Reporting in English
 
-If you'd rather write in English, that's fine — email **huemul@devschile.cl** instead of opening a public issue, and include the affected version, reproduction steps, and the impact you see.
+If you'd rather write in English, that's fine. Don't open a public issue — either [report a vulnerability through GitHub](https://github.com/devschile/chucao/security/advisories/new) or email **huemul@devschile.cl**, and include the affected version, reproduction steps, and the impact you see. We acknowledge reports within 72 hours.
