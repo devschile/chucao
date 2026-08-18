@@ -1,0 +1,37 @@
+version: 2
+
+updates:
+  # Dependencies of the library and its toolchain. Everything lives in
+  # devDependencies, so minor and patch bumps are batched into a single weekly
+  # pull request while majors arrive on their own to get a proper review.
+  - package-ecosystem: npm
+    directory: '/'
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: chore
+      include: scope
+    groups:
+      minor-and-patch:
+        patterns:
+          - '*'
+        update-types:
+          - minor
+          - patch
+
+  # Actions used by the release, docs and check-pr workflows.
+  - package-ecosystem: github-actions
+    directory: '/'
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: ci
+      include: scope
+    groups:
+      actions:
+        patterns:
+          - '*'
