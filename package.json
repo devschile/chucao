@@ -100,6 +100,8 @@
     "start": "stencil build --dev --watch --serve",
     "test": "stencil-test --prod",
     "test:watch": "stencil-test --prod --watch",
+    "tokens": "toki build && cp -R .toki/out/stencil/. src/tokens/ && prettier --write 'src/tokens/*.css' 'src/tokens/*.ts' 'src/tokens/*.d.ts' 'src/tokens/README.md'",
+    "tokens:check": "toki validate -i chucao-tokens.json",
     "test:coverage": "stencil-test --prod --coverage",
     "generate": "stencil generate",
     "generate:gallery": "node scripts/generate-gallery.mjs",
@@ -110,6 +112,7 @@
     "release": "release-it"
   },
   "devDependencies": {
+    "@hectorpalmatellez/toki": "1.12.1",
     "@release-it/conventional-changelog": "^12.0.0",
     "@stencil/core": "^4.27.1 || ^5.0.0-0",
     "@stencil/react-output-target": "^1.6.1",
