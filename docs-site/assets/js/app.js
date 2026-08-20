@@ -9,6 +9,7 @@ const TAG = [
   'ch-link',
   'ch-radio',
   'ch-select',
+  'ch-spinner',
   'ch-switch',
   'ch-tabs',
   'ch-textarea',

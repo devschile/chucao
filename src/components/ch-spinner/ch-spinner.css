@@ -1,0 +1,40 @@
+:host {
+  display: inline-block;
+  vertical-align: middle;
+  color: var(--ch-spinner-color, currentColor);
+}
+
+.spinner {
+  display: block;
+  box-sizing: border-box;
+  width: 1em;
+  height: 1em;
+  border: 0.125em solid currentColor;
+  border-top-color: transparent;
+  border-radius: var(--radius-pill);
+  animation: ch-spinner-rotate var(--duration-spin) var(--easing-linear) infinite;
+}
+
+.spinner--sm {
+  font-size: var(--typography-size-sm);
+}
+
+.spinner--md {
+  font-size: var(--typography-size-lg);
+}
+
+.spinner--lg {
+  font-size: var(--typography-size-xl);
+}
+
+@keyframes ch-spinner-rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spinner {
+    animation-duration: calc(var(--duration-spin) * 4);
+  }
+}

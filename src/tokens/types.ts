@@ -57,9 +57,9 @@ export type ShadowToken = 'shadow.focus-ring' | 'shadow.card-hover';
 
 export type EffectToken = 'effect.blur';
 
-export type DurationToken = 'duration.fast' | 'duration.normal';
+export type DurationToken = 'duration.fast' | 'duration.normal' | 'duration.spin';
 
-export type EasingToken = 'easing.default';
+export type EasingToken = 'easing.default' | 'easing.linear';
 
 export type FocusToken = 'focus.outline-width' | 'focus.outline-offset';
 

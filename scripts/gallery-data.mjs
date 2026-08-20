@@ -145,6 +145,18 @@ export const gallery = [
   }`,
   },
   {
+    tag: 'ch-spinner',
+    description:
+      'Indicador de carga en tres tamaños. Se dibuja con <code>currentColor</code>, así que toma el color del texto que lo rodea y se mantiene legible sobre cualquier superficie — dentro de un <code>ch-button</code> primario toma el color del texto del botón en vez del acento, que ahí sería invisible. Para cambiarlo, define <code>color</code> sobre el elemento o la custom property <code>--ch-spinner-color</code>. Con <code>label</code> se anuncia como <code>role="status"</code>; sin <code>label</code> queda decorativo y oculto para lectores de pantalla.',
+    demos: [
+      '<ch-spinner size="sm" label="Cargando"></ch-spinner>',
+      '<ch-spinner label="Cargando"></ch-spinner>',
+      '<ch-spinner size="lg" label="Cargando"></ch-spinner>',
+      '<ch-spinner style="--ch-spinner-color: var(--accent)" label="Cargando"></ch-spinner>',
+      '<ch-button variant="primary">Guardando <ch-spinner size="sm"></ch-spinner></ch-button>',
+    ],
+  },
+  {
     tag: 'ch-switch',
     description: 'Interruptor on/off accesible (<code>role="switch"</code>) con <code>label</code> asociada. Emite <code>chChange</code>.',
     demos: [

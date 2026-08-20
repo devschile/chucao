@@ -242,6 +242,33 @@
 
         <div class="comp">
           <div class="comp-head">
+            <h4>ch-spinner</h4>
+            <span class="tag">@devschile/chucao/ch-spinner</span>
+          </div>
+          <p class="comp-desc">
+            Indicador de carga en tres tamaños. Se dibuja con <code>currentColor</code>, así que toma el color del texto que lo rodea y se mantiene legible sobre cualquier
+            superficie — dentro de un <code>ch-button</code> primario toma el color del texto del botón en vez del acento, que ahí sería invisible. Para cambiarlo, define
+            <code>color</code> sobre el elemento o la custom property <code>--ch-spinner-color</code>. Con <code>label</code> se anuncia como <code>role="status"</code>; sin
+            <code>label</code> queda decorativo y oculto para lectores de pantalla.
+          </p>
+          <div class="comp-demo">
+            <ch-spinner size="sm" label="Cargando"></ch-spinner>
+            <ch-spinner label="Cargando"></ch-spinner>
+            <ch-spinner size="lg" label="Cargando"></ch-spinner>
+            <ch-spinner style="--ch-spinner-color: var(--accent)" label="Cargando"></ch-spinner>
+            <ch-button variant="primary">Guardando <ch-spinner size="sm"></ch-spinner></ch-button>
+          </div>
+          <pre
+            class="comp-code"
+          ><code><span class="t">&lt;ch-spinner</span> <span class="a">size</span>="sm" <span class="a">label</span>="Cargando"<span class="t">&gt;</span><span class="t">&lt;/ch-spinner</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-spinner</span> <span class="a">label</span>="Cargando"<span class="t">&gt;</span><span class="t">&lt;/ch-spinner</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-spinner</span> <span class="a">size</span>="lg" <span class="a">label</span>="Cargando"<span class="t">&gt;</span><span class="t">&lt;/ch-spinner</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-spinner</span> <span class="a">style</span>="--ch-spinner-color: var(--accent)" <span class="a">label</span>="Cargando"<span class="t">&gt;</span><span class="t">&lt;/ch-spinner</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-button</span> <span class="a">variant</span>="primary"<span class="t">&gt;</span>Guardando <span class="t">&lt;ch-spinner</span> <span class="a">size</span>="sm"<span class="t">&gt;</span><span class="t">&lt;/ch-spinner</span><span class="t">&gt;</span><span class="t">&lt;/ch-button</span><span class="t">&gt;</span></code></pre>
+        </div>
+
+        <div class="comp">
+          <div class="comp-head">
             <h4>ch-switch</h4>
             <span class="tag">@devschile/chucao/ch-switch</span>
           </div>
