@@ -5,7 +5,7 @@
  * Outputs:
  *   - `docs-site/index.html` — the `<div class="comp">` blocks inside the
  *     `<section id="componentes">` (replaced between the start/end markers).
- *   - `docs-site/assets/js/app.js` — the `TAG` list, `whenDefined` gate, and
+ *   - `docs-site/assets/js/app.js` — a per-component `whenDefined` gate and
  *     event-log wiring derived from each entry's `bindings`/`init`.
  *
  * Run with `pnpm run generate:gallery`.
@@ -73,10 +73,7 @@ function generateGalleryHtml() {
 }
 
 function generateAppJs() {
-  const tags = gallery.map(entry => `'${entry.tag}'`);
   const lines = [
-    `const TAG = [${tags.join(', ')}];`,
-    '',
     'function bind(id, events) {',
     '  const el = document.getElementById(id);',
     '  const out = document.getElementById(`${id}-log`);',
@@ -89,18 +86,25 @@ function generateAppJs() {
     '    });',
     '  });',
     '}',
-    '',
-    'Promise.all(TAG.map(tag => customElements.whenDefined(tag))).then(() => {',
   ];
+  // One `whenDefined` per component rather than a single `Promise.all` gate:
+  // `whenDefined` never resolves for an element the loaded library does not
+  // define, so a global gate lets one unpublished component silently stop every
+  // other demo from being seeded.
   for (const entry of gallery) {
+    const bindings = entry.bindings ?? [];
+    if (!entry.init && bindings.length === 0) {
+      continue;
+    }
+    lines.push('', `customElements.whenDefined('${entry.tag}').then(() => {`);
     if (entry.init) {
       lines.push(`  ${entry.init.replace(/\n/g, '\n  ')}`);
     }
-    for (const binding of entry.bindings ?? []) {
+    for (const binding of bindings) {
       lines.push(`  bind('${binding.id}', [{ name: '${binding.event}', format: ${binding.format} }]);`);
     }
+    lines.push('});');
   }
-  lines.push('});');
   return `${lines.join('\n')}\n`;
 }
 

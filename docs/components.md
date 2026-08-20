@@ -87,8 +87,12 @@ every component folder under `src/components/`) and rewrites two files:
 
 - `docs-site/index.html` — the `.comp` demo blocks inside `<section id="componentes">`,
   between the `<!-- GALLERY:START -->` / `<!-- GALLERY:END -->` markers.
-- `docs-site/assets/js/app.js` — the `TAG` list, the `whenDefined` gate, and
-  the event-log `bind(...)` wiring derived from each entry's `bindings`/`init`.
+- `docs-site/assets/js/app.js` — one `customElements.whenDefined(...)` block per
+  component, containing the event-log `bind(...)` wiring and the seeding derived
+  from each entry's `bindings`/`init`. The gate is deliberately per-component:
+  `whenDefined` never resolves for an element the loaded library does not define,
+  so a single shared gate would let one unpublished component silently stop every
+  other demo from being seeded.
 
 The GitHub Pages workflow runs `pnpm run generate:gallery` before assembling the
 publish directory, so the gallery stays in sync automatically. When adding a
