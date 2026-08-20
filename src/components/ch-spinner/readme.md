@@ -12,8 +12,7 @@ Loading indicator.
 The spinner is drawn in `currentColor`, so it takes the surrounding text
 colour and stays legible on any surface — inside a primary `ch-button` it
 picks up the button's own text colour instead of the accent, which would be
-invisible there. Set `color` on the element, or the `--ch-spinner-color`
-custom property, to override it.
+invisible there. Set `color` on or above the element to change it.
 
 ## Properties
 

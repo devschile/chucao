@@ -1,7 +1,6 @@
 :host {
   display: inline-block;
   vertical-align: middle;
-  color: var(--ch-spinner-color, currentColor);
 }
 
 .spinner {
@@ -11,7 +10,7 @@
   height: 1em;
   border: 0.125em solid currentColor;
   border-top-color: transparent;
-  border-radius: var(--radius-pill);
+  border-radius: 50%;
   animation: ch-spinner-rotate var(--duration-spin) var(--easing-linear) infinite;
 }
 

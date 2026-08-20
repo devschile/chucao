@@ -36,18 +36,31 @@ describe('ch-spinner', () => {
     `);
   });
 
-  it('does not mark a labelled spinner as hidden', async () => {
-    const { root } = await render(<ch-spinner label="Cargando"></ch-spinner>);
-    const span = root.shadowRoot.querySelector('span');
-    expect(span.getAttribute('aria-hidden')).toBe(null);
-    expect(span.getAttribute('role')).toBe('status');
-  });
-
-  it('hides a decorative spinner and gives it no role', async () => {
-    const { root } = await render(<ch-spinner></ch-spinner>);
+  it('treats an empty label as decorative rather than announcing an empty name', async () => {
+    const { root } = await render(<ch-spinner label=""></ch-spinner>);
     const span = root.shadowRoot.querySelector('span');
     expect(span.getAttribute('aria-hidden')).toBe('true');
     expect(span.getAttribute('role')).toBe(null);
     expect(span.getAttribute('aria-label')).toBe(null);
+  });
+
+  it('stops announcing when the label is removed at runtime', async () => {
+    const { root, waitForChanges } = await render(<ch-spinner label="Cargando"></ch-spinner>);
+    const span = root.shadowRoot.querySelector('span');
+    expect(span.getAttribute('role')).toBe('status');
+
+    (root as HTMLChSpinnerElement).label = undefined;
+    await waitForChanges();
+
+    expect(span.getAttribute('role')).toBe(null);
+    expect(span.getAttribute('aria-label')).toBe(null);
+    expect(span.getAttribute('aria-hidden')).toBe('true');
+  });
+
+  it('falls back to the inherited size when given an unknown size', async () => {
+    const { root } = await render(<ch-spinner size={'huge' as never}></ch-spinner>);
+    const span = root.shadowRoot.querySelector('span');
+    expect(span.classList.contains('spinner')).toBe(true);
+    expect(span.className).toBe('spinner spinner--huge');
   });
 });
