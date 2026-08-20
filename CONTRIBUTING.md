@@ -118,8 +118,9 @@ se pierda en la regeneración siguiente:
 | `CHANGELOG.md`                | `release-it`                              |
 | La galería de `docs-site/`    | `pnpm run generate:gallery`               |
 
-Para cambiar tokens, edita [`chucao-tokens.json`](chucao-tokens.json) y corre el
-pipeline de `toki` (ver [`AGENTS.md`](AGENTS.md)).
+Para cambiar tokens, edita [`chucao-tokens.json`](chucao-tokens.json) y corre
+`pnpm run tokens`, que regenera, copia y formatea `src/tokens/` automáticamente
+(ver [`AGENTS.md`](AGENTS.md)).
 
 ## Proponer un componente nuevo
 

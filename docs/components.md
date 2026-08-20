@@ -56,7 +56,7 @@ src/
 The files under [`src/tokens`](../src/tokens) (`tokens.ts`, `tokens.css`,
 `tokens.d.ts`, `types.ts`) are generated from
 [`chucao-tokens.json`](../chucao-tokens.json) by
-[toki](https://github.com/devschile/toki) — **do not edit them by hand**.
+[toki](https://github.com/hectorpalmatellez/toki) — **do not edit them by hand**.
 [`src/global/chucao.css`](../src/global/chucao.css) (the file bundled into every
 build via `globalStyle`) imports `tokens.css` directly, so there's a single
 source of truth for the generated `:root` custom properties. See
@@ -72,9 +72,11 @@ reference these via `var(--token-name)` — no hardcoded colors or sizes. The
 `DESIGN.md`-style short aliases (`--bg`, `--accent`, `--radius`, …) live in
 `chucao.css` and map onto the generated tokens.
 
-To change tokens, edit `chucao-tokens.json`, run `toki build -f stencil`,
-copy the generated `stencil/` files into `src/tokens/`, and format with
-Prettier.
+To change tokens, edit `chucao-tokens.json` and run `pnpm run tokens`. The
+script regenerates the `stencil` output with `toki build` (reading
+`toki.config.ts`), copies the generated files into `src/tokens/`, and formats
+them with Prettier. Run `pnpm run tokens:check` (→ `toki validate`) to lint the
+token file.
 
 ## Docs-site gallery
 
