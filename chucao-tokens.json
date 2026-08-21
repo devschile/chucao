@@ -116,12 +116,14 @@
     "$type": "duration",
     "$description": "Duraciones de transición",
     "fast": { "$value": "150ms", "$description": "Transiciones de transform" },
-    "normal": { "$value": "200ms", "$description": "Transiciones de color/borde/sombra" }
+    "normal": { "$value": "200ms", "$description": "Transiciones de color/borde/sombra" },
+    "spin": { "$value": "800ms", "$description": "Rotación continua, como el spinner" }
   },
   "easing": {
     "$type": "cubicBezier",
     "$description": "Curvas de easing",
-    "default": { "$value": "ease", "$description": "Easing por defecto" }
+    "default": { "$value": "ease", "$description": "Easing por defecto" },
+    "linear": { "$value": "linear", "$description": "Movimiento continuo, sin aceleración" }
   },
   "focus": {
     "$type": "dimension",

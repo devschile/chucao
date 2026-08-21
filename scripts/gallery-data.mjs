@@ -145,6 +145,18 @@ export const gallery = [
   }`,
   },
   {
+    tag: 'ch-spinner',
+    description:
+      'Indicador de carga en tres tamaños; hereda el color del texto que lo rodea. Con <code>label</code> se anuncia como <code>role="status"</code>, sin él queda decorativo.',
+    demos: [
+      '<ch-spinner size="sm" label="Cargando"></ch-spinner>',
+      '<ch-spinner label="Cargando"></ch-spinner>',
+      '<ch-spinner size="lg" label="Cargando"></ch-spinner>',
+      '<ch-spinner style="color: var(--accent)" label="Cargando"></ch-spinner>',
+      '<ch-button variant="primary">Guardando <ch-spinner size="sm"></ch-spinner></ch-button>',
+    ],
+  },
+  {
     tag: 'ch-switch',
     description: 'Interruptor on/off accesible (<code>role="switch"</code>) con <code>label</code> asociada. Emite <code>chChange</code>.',
     demos: [

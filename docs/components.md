@@ -87,8 +87,12 @@ every component folder under `src/components/`) and rewrites two files:
 
 - `docs-site/index.html` — the `.comp` demo blocks inside `<section id="componentes">`,
   between the `<!-- GALLERY:START -->` / `<!-- GALLERY:END -->` markers.
-- `docs-site/assets/js/app.js` — the `TAG` list, the `whenDefined` gate, and
-  the event-log `bind(...)` wiring derived from each entry's `bindings`/`init`.
+- `docs-site/assets/js/app.js` — one `customElements.whenDefined(...)` block per
+  component, containing the event-log `bind(...)` wiring and the seeding derived
+  from each entry's `bindings`/`init`. The gate is deliberately per-component:
+  `whenDefined` never resolves for an element the loaded library does not define,
+  so a single shared gate would let one unpublished component silently stop every
+  other demo from being seeded.
 
 The GitHub Pages workflow runs `pnpm run generate:gallery` before assembling the
 publish directory, so the gallery stays in sync automatically. When adding a
@@ -103,8 +107,8 @@ they don't collide with other libraries on the page.
 
 Beyond tag naming, follow these conventions — already used consistently
 across `ch-accordion`, `ch-badge`, `ch-button`, `ch-card`, `ch-checkbox`,
-`ch-divider`, `ch-input`, `ch-link`, `ch-radio`, `ch-select`, `ch-switch`,
-`ch-tabs`, and `ch-textarea` — so future
+`ch-divider`, `ch-input`, `ch-link`, `ch-radio`, `ch-select`, `ch-spinner`,
+`ch-switch`, `ch-tabs`, and `ch-textarea` — so future
 components stay consistent as the library grows. See
 [`v1-readiness.md`](v1-readiness.md) for the full readiness assessment that
 identified and documented these conventions.

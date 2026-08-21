@@ -22,6 +22,13 @@
 | `chClick` | Emitted when the link is clicked. | `CustomEvent<MouseEvent>` |
 
 
+## Slots
+
+| Slot | Description      |
+| ---- | ---------------- |
+|      | The default slot |
+
+
 ## Shadow Parts
 
 | Part     | Description |

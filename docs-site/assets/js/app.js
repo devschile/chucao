@@ -1,19 +1,3 @@
-const TAG = [
-  'ch-accordion',
-  'ch-badge',
-  'ch-button',
-  'ch-card',
-  'ch-checkbox',
-  'ch-divider',
-  'ch-input',
-  'ch-link',
-  'ch-radio',
-  'ch-select',
-  'ch-switch',
-  'ch-tabs',
-  'ch-textarea',
-];
-
 function bind(id, events) {
   const el = document.getElementById(id);
   const out = document.getElementById(`${id}-log`);
@@ -27,7 +11,7 @@ function bind(id, events) {
   });
 }
 
-Promise.all(TAG.map(tag => customElements.whenDefined(tag))).then(() => {
+customElements.whenDefined('ch-accordion').then(() => {
   const accordion = document.getElementById('demo-accordion');
   if (accordion) {
     accordion.items = [
@@ -40,11 +24,26 @@ Promise.all(TAG.map(tag => customElements.whenDefined(tag))).then(() => {
     accordion.appendChild(panelAccordion);
   }
   bind('demo-accordion', [{ name: 'chChange', format: ev => `chChange: ${ev.detail}` }]);
+});
+
+customElements.whenDefined('ch-button').then(() => {
   bind('demo-button', [{ name: 'chClick', format: () => 'chClick' }]);
+});
+
+customElements.whenDefined('ch-checkbox').then(() => {
   bind('demo-checkbox', [{ name: 'chChange', format: ev => `chChange: ${ev.detail}` }]);
+});
+
+customElements.whenDefined('ch-input').then(() => {
   bind('demo-input', [{ name: 'chInput', format: ev => `chInput: ${ev.detail}` }]);
   bind('demo-input', [{ name: 'chChange', format: ev => `chChange: ${ev.detail}` }]);
+});
+
+customElements.whenDefined('ch-link').then(() => {
   bind('demo-link', [{ name: 'chClick', format: () => 'chClick' }]);
+});
+
+customElements.whenDefined('ch-radio').then(() => {
   const radio = document.getElementById('demo-radio');
   if (radio) {
     radio.options = [
@@ -54,6 +53,9 @@ Promise.all(TAG.map(tag => customElements.whenDefined(tag))).then(() => {
     ];
   }
   bind('demo-radio', [{ name: 'chChange', format: ev => `chChange: ${ev.detail}` }]);
+});
+
+customElements.whenDefined('ch-select').then(() => {
   const select = document.getElementById('demo-select');
   if (select) {
     select.options = [
@@ -63,7 +65,13 @@ Promise.all(TAG.map(tag => customElements.whenDefined(tag))).then(() => {
     ];
   }
   bind('demo-select', [{ name: 'chChange', format: ev => `chChange: ${ev.detail}` }]);
+});
+
+customElements.whenDefined('ch-switch').then(() => {
   bind('demo-switch', [{ name: 'chChange', format: ev => `chChange: ${ev.detail}` }]);
+});
+
+customElements.whenDefined('ch-tabs').then(() => {
   const tabsEl = document.getElementById('demo-tabs');
   if (tabsEl) {
     tabsEl.tabs = [
@@ -77,6 +85,9 @@ Promise.all(TAG.map(tag => customElements.whenDefined(tag))).then(() => {
     tabsEl.appendChild(panelTabs);
   }
   bind('demo-tabs', [{ name: 'chChange', format: ev => `chChange: ${ev.detail}` }]);
+});
+
+customElements.whenDefined('ch-textarea').then(() => {
   bind('demo-textarea', [{ name: 'chInput', format: ev => `chInput: ${ev.detail}` }]);
   bind('demo-textarea', [{ name: 'chChange', format: ev => `chChange: ${ev.detail}` }]);
 });

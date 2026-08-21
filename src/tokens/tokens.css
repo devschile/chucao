@@ -54,7 +54,9 @@
   --effect-blur: 10px;
   --duration-fast: 150ms;
   --duration-normal: 200ms;
+  --duration-spin: 800ms;
   --easing-default: ease;
+  --easing-linear: linear;
   --focus-outline-width: 2px;
   --focus-outline-offset: 2px;
   --opacity-disabled: 0.5;

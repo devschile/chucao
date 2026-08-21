@@ -53,7 +53,9 @@ export const shadowCardHover = '0 4px 20px rgba(45, 212, 191, 0.06)';
 export const effectBlur = '10px';
 export const durationFast = '150ms';
 export const durationNormal = '200ms';
+export const durationSpin = '800ms';
 export const easingDefault = 'ease';
+export const easingLinear = 'linear';
 export const focusOutlineWidth = '2px';
 export const focusOutlineOffset = '2px';
 export const opacityDisabled = 0.5;
@@ -151,9 +153,11 @@ export const tokens = {
   'duration': {
     fast: '150ms',
     normal: '200ms',
+    spin: '800ms',
   },
   'easing': {
     default: 'ease',
+    linear: 'linear',
   },
   'focus': {
     outlineWidth: '2px',
