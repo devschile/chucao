@@ -1,0 +1,646 @@
+<!doctype html>
+<html lang="es-CL">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chucao — el sistema de diseño de devsChile</title>
+    <meta name="description" content="Sistema de diseño de devsChile: componentes web, identidad de marca, paleta, tipografía y documentación." />
+    <link rel="icon" href="assets/favicon/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="assets/favicon/favicon.ico" sizes="any" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500;600;700&family=Inconsolata:wght@500;600;700&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="assets/css/styles.css" />
+
+    <link rel="stylesheet" href="https://static.devschile.cl/chucao/latest/chucao.css" />
+    <script type="module" src="https://static.devschile.cl/chucao/latest/chucao.esm.js"></script>
+  </head>
+  <body>
+    <script>
+      document.documentElement.classList.add('js');
+    </script>
+    <a class="skip-link" href="#main-content">Saltar al contenido</a>
+    <header class="hero">
+      <div class="wrap">
+        <img src="assets/brand/huemul-icono-contorno.svg" alt="Huemul, ícono de devsChile" />
+        <h1>Chucao — el <span>sistema de diseño</span> de devsChile</h1>
+        <p>
+          Web Components hechos con StencilJS, publicados como
+          <code>@devschile/chucao</code>. Identidad de marca, paleta, tipografía y componentes, listos para reusar.
+        </p>
+        <nav class="top-nav">
+          <a href="#componentes">Componentes</a>
+          <a href="#colores">Colores</a>
+          <a href="#tipografia">Tipografía</a>
+          <a href="#marca">Marca</a>
+          <a href="#documentacion">Documentación</a>
+          <a href="https://github.com/devschile/chucao">GitHub ↗</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="page-shell wrap">
+      <aside class="side-nav" id="side-nav">
+        <nav aria-labelledby="side-components-heading">
+          <h2 class="side-heading" id="side-components-heading">Componentes</h2>
+          <ul class="side-list" id="comp-index-list">
+            <!-- SIDEBAR:START -->
+            <li
+              class="side-item"
+              data-name="ch-accordion"
+              data-desc='Acordeón de apertura única; cada ítem es un botón accesible con panel role="region" (contenido por slot panel-&lt;value&gt;). Emite chChange.'
+            >
+              <a class="side-link" href="#ch-accordion">ch-accordion</a>
+            </li>
+            <li class="side-item" data-name="ch-badge" data-desc="Etiqueta de estado compacta con tres variantes.">
+              <a class="side-link" href="#ch-badge">ch-badge</a>
+            </li>
+            <li class="side-item" data-name="ch-button" data-desc="Botón accesible, con variantes primary/secondary y estado disabled. Emite chClick.">
+              <a class="side-link" href="#ch-button">ch-button</a>
+            </li>
+            <li class="side-item" data-name="ch-card" data-desc="Contenedor de superficie con blur, borde y una línea de acento en hover.">
+              <a class="side-link" href="#ch-card">ch-card</a>
+            </li>
+            <li class="side-item" data-name="ch-checkbox" data-desc="Casilla de verificación con label asociada, estado checked, estados hint/errorMessage y evento chChange.">
+              <a class="side-link" href="#ch-checkbox">ch-checkbox</a>
+            </li>
+            <li class="side-item" data-name="ch-divider" data-desc="Separador horizontal (por defecto) o vertical con aria-orientation.">
+              <a class="side-link" href="#ch-divider">ch-divider</a>
+            </li>
+            <li class="side-item" data-name="ch-input" data-desc="Campo de texto con label asociado vía id/for. Emite chInput (cada tecla) y chChange (al confirmar).">
+              <a class="side-link" href="#ch-input">ch-input</a>
+            </li>
+            <li class="side-item" data-name="ch-link" data-desc="Enlace accesible con variantes default/muted y estado disabled. Emite chClick.">
+              <a class="side-link" href="#ch-link">ch-link</a>
+            </li>
+            <li class="side-item" data-name="ch-radio" data-desc="Grupo de selección única; las opciones se pasan por options. Emite chChange con el valor elegido.">
+              <a class="side-link" href="#ch-radio">ch-radio</a>
+            </li>
+            <li class="side-item" data-name="ch-select" data-desc="Select estilizado; las opciones se pasan por la prop options. Emite chChange.">
+              <a class="side-link" href="#ch-select">ch-select</a>
+            </li>
+            <li
+              class="side-item"
+              data-name="ch-spinner"
+              data-desc='Indicador de carga en tres tamaños; hereda el color del texto que lo rodea. Con label se anuncia como role="status", sin él queda decorativo.'
+            >
+              <a class="side-link" href="#ch-spinner">ch-spinner</a>
+            </li>
+            <li class="side-item" data-name="ch-switch" data-desc='Interruptor on/off accesible (role="switch") con label asociada. Emite chChange.'>
+              <a class="side-link" href="#ch-switch">ch-switch</a>
+            </li>
+            <li
+              class="side-item"
+              data-name="ch-tabs"
+              data-desc="Pestañas accesibles (WAI-ARIA) con navegación por flechas; las opciones van por tabs y el panel activo recibe contenido por slot panel-&lt;value&gt;. Emite chChange."
+            >
+              <a class="side-link" href="#ch-tabs">ch-tabs</a>
+            </li>
+            <li class="side-item" data-name="ch-textarea" data-desc="Área de texto con label asociada. Emite chInput (cada tecla) y chChange (al confirmar).">
+              <a class="side-link" href="#ch-textarea">ch-textarea</a>
+            </li>
+            <!-- SIDEBAR:END -->
+          </ul>
+          <p class="side-empty" id="comp-index-empty" hidden></p>
+        </nav>
+
+        <nav aria-labelledby="side-sections-heading">
+          <h2 class="side-heading" id="side-sections-heading">Secciones</h2>
+          <ul class="side-list">
+            <li><a class="side-link" href="#colores">Colores</a></li>
+            <li><a class="side-link" href="#tipografia">Tipografía</a></li>
+            <li><a class="side-link" href="#marca">Marca</a></li>
+            <li><a class="side-link" href="#documentacion">Documentación</a></li>
+          </ul>
+        </nav>
+      </aside>
+
+      <main id="main-content" tabindex="-1">
+        <section id="componentes" tabindex="-1">
+          <h2>Componentes</h2>
+          <p class="lead">
+            Los componentes se renderizan acá en vivo, cargados desde el CDN (<code>static.devschile.cl/chucao/latest/</code>). Cada demo incluye el código de uso.
+          </p>
+
+          <!-- GALLERY:START -->
+          <div class="comp" id="ch-accordion" tabindex="-1">
+            <div class="comp-head">
+              <h3>ch-accordion</h3>
+              <span class="tag">@devschile/chucao/ch-accordion</span>
+            </div>
+            <p class="comp-desc">
+              Acordeón de apertura única; cada ítem es un botón accesible con panel <code>role="region"</code> (contenido por slot <code>panel-&lt;value&gt;</code>). Emite
+              <code>chChange</code>.
+            </p>
+            <div class="comp-demo">
+              <ch-accordion id="demo-accordion"></ch-accordion>
+              <div id="demo-accordion-log" class="event-log"></div>
+            </div>
+            <pre
+              class="comp-code"
+            ><code><span class="t">&lt;ch-accordion</span> <span class="a">id</span>="demo-accordion"<span class="t">&gt;</span><span class="t">&lt;/ch-accordion</span><span class="t">&gt;</span></code></pre>
+          </div>
+
+          <div class="comp" id="ch-badge" tabindex="-1">
+            <div class="comp-head">
+              <h3>ch-badge</h3>
+              <span class="tag">@devschile/chucao/ch-badge</span>
+            </div>
+            <p class="comp-desc">Etiqueta de estado compacta con tres variantes.</p>
+            <div class="comp-demo">
+              <ch-badge>comunidad</ch-badge>
+              <ch-badge variant="positive">Disponible</ch-badge>
+              <ch-badge variant="warning">placeholder</ch-badge>
+            </div>
+            <pre class="comp-code"><code><span class="t">&lt;ch-badge</span><span class="t">&gt;</span>comunidad<span class="t">&lt;/ch-badge</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-badge</span> <span class="a">variant</span>="positive"<span class="t">&gt;</span>Disponible<span class="t">&lt;/ch-badge</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-badge</span> <span class="a">variant</span>="warning"<span class="t">&gt;</span>placeholder<span class="t">&lt;/ch-badge</span><span class="t">&gt;</span></code></pre>
+          </div>
+
+          <div class="comp" id="ch-button" tabindex="-1">
+            <div class="comp-head">
+              <h3>ch-button</h3>
+              <span class="tag">@devschile/chucao/ch-button</span>
+            </div>
+            <p class="comp-desc">Botón accesible, con variantes <code>primary</code>/<code>secondary</code> y estado <code>disabled</code>. Emite <code>chClick</code>.</p>
+            <div class="comp-demo">
+              <ch-button id="demo-button">Primario</ch-button>
+              <ch-button variant="secondary">Secundario</ch-button>
+              <ch-button disabled>Deshabilitado</ch-button>
+              <div id="demo-button-log" class="event-log"></div>
+            </div>
+            <pre
+              class="comp-code"
+            ><code><span class="t">&lt;ch-button</span> <span class="a">id</span>="demo-button"<span class="t">&gt;</span>Primario<span class="t">&lt;/ch-button</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-button</span> <span class="a">variant</span>="secondary"<span class="t">&gt;</span>Secundario<span class="t">&lt;/ch-button</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-button</span> <span class="a">disabled</span><span class="t">&gt;</span>Deshabilitado<span class="t">&lt;/ch-button</span><span class="t">&gt;</span></code></pre>
+          </div>
+
+          <div class="comp" id="ch-card" tabindex="-1">
+            <div class="comp-head">
+              <h3>ch-card</h3>
+              <span class="tag">@devschile/chucao/ch-card</span>
+            </div>
+            <p class="comp-desc">Contenedor de superficie con blur, borde y una línea de acento en hover.</p>
+            <div class="comp-demo">
+              <ch-card>
+                <h4>🔗 Links de la semana</h4>
+                <p>Pasa el mouse — el borde y una línea de acento aparecen en hover.</p>
+                <ch-button variant="secondary">Ver más</ch-button>
+              </ch-card>
+            </div>
+            <pre class="comp-code"><code><span class="t">&lt;ch-card</span><span class="t">&gt;</span>
+  <span class="t">&lt;h4</span><span class="t">&gt;</span>🔗 Links de la semana<span class="t">&lt;/h4</span><span class="t">&gt;</span>
+  <span class="t">&lt;p</span><span class="t">&gt;</span>Pasa el mouse — el borde y una línea de acento aparecen en hover.<span class="t">&lt;/p</span><span class="t">&gt;</span>
+  <span class="t">&lt;ch-button</span> <span class="a">variant</span>="secondary"<span class="t">&gt;</span>Ver más<span class="t">&lt;/ch-button</span><span class="t">&gt;</span>
+<span class="t">&lt;/ch-card</span><span class="t">&gt;</span></code></pre>
+          </div>
+
+          <div class="comp" id="ch-checkbox" tabindex="-1">
+            <div class="comp-head">
+              <h3>ch-checkbox</h3>
+              <span class="tag">@devschile/chucao/ch-checkbox</span>
+            </div>
+            <p class="comp-desc">
+              Casilla de verificación con <code>label</code> asociada, estado <code>checked</code>, estados <code>hint</code>/<code>errorMessage</code> y evento
+              <code>chChange</code>.
+            </p>
+            <div class="comp-demo">
+              <ch-checkbox label="Acepto los términos"></ch-checkbox>
+              <ch-checkbox id="demo-checkbox" label="Recibir novedades" checked></ch-checkbox>
+              <ch-checkbox label="Deshabilitado" disabled></ch-checkbox>
+              <div id="demo-checkbox-log" class="event-log"></div>
+            </div>
+            <pre
+              class="comp-code"
+            ><code><span class="t">&lt;ch-checkbox</span> <span class="a">label</span>="Acepto los términos"<span class="t">&gt;</span><span class="t">&lt;/ch-checkbox</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-checkbox</span> <span class="a">id</span>="demo-checkbox" <span class="a">label</span>="Recibir novedades" <span class="a">checked</span><span class="t">&gt;</span><span class="t">&lt;/ch-checkbox</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-checkbox</span> <span class="a">label</span>="Deshabilitado" <span class="a">disabled</span><span class="t">&gt;</span><span class="t">&lt;/ch-checkbox</span><span class="t">&gt;</span></code></pre>
+          </div>
+
+          <div class="comp" id="ch-divider" tabindex="-1">
+            <div class="comp-head">
+              <h3>ch-divider</h3>
+              <span class="tag">@devschile/chucao/ch-divider</span>
+            </div>
+            <p class="comp-desc">Separador horizontal (por defecto) o vertical con <code>aria-orientation</code>.</p>
+            <div class="comp-demo">
+              <ch-card>
+                <p>Bloque superior</p>
+                <ch-divider></ch-divider>
+                <p>Bloque inferior</p>
+                <div class="ch-flex ch-gap-sm" style="height: 3.5rem">
+                  <span>Izquierda</span>
+                  <ch-divider orientation="vertical"></ch-divider>
+                  <span>Derecha</span>
+                </div>
+              </ch-card>
+            </div>
+            <pre class="comp-code"><code><span class="t">&lt;ch-card</span><span class="t">&gt;</span>
+  <span class="t">&lt;p</span><span class="t">&gt;</span>Bloque superior<span class="t">&lt;/p</span><span class="t">&gt;</span>
+  <span class="t">&lt;ch-divider</span><span class="t">&gt;</span><span class="t">&lt;/ch-divider</span><span class="t">&gt;</span>
+  <span class="t">&lt;p</span><span class="t">&gt;</span>Bloque inferior<span class="t">&lt;/p</span><span class="t">&gt;</span>
+  <span class="t">&lt;div</span> <span class="a">class</span>="ch-flex ch-gap-sm" <span class="a">style</span>="height: 3.5rem"<span class="t">&gt;</span>
+    <span class="t">&lt;span</span><span class="t">&gt;</span>Izquierda<span class="t">&lt;/span</span><span class="t">&gt;</span>
+    <span class="t">&lt;ch-divider</span> <span class="a">orientation</span>="vertical"<span class="t">&gt;</span><span class="t">&lt;/ch-divider</span><span class="t">&gt;</span>
+    <span class="t">&lt;span</span><span class="t">&gt;</span>Derecha<span class="t">&lt;/span</span><span class="t">&gt;</span>
+  <span class="t">&lt;/div</span><span class="t">&gt;</span>
+<span class="t">&lt;/ch-card</span><span class="t">&gt;</span></code></pre>
+          </div>
+
+          <div class="comp" id="ch-input" tabindex="-1">
+            <div class="comp-head">
+              <h3>ch-input</h3>
+              <span class="tag">@devschile/chucao/ch-input</span>
+            </div>
+            <p class="comp-desc">
+              Campo de texto con <code>label</code> asociado vía <code>id</code>/<code>for</code>. Emite <code>chInput</code> (cada tecla) y <code>chChange</code> (al confirmar).
+            </p>
+            <div class="comp-demo">
+              <ch-input id="demo-input" label="Correo" type="email" placeholder="tu@email.com"></ch-input>
+              <ch-input label="Contraseña" type="password" placeholder="••••••••" hint="Mínimo 8 caracteres"></ch-input>
+              <ch-input label="Usuario" invalid errorMessage="Este campo es obligatorio"></ch-input>
+              <div id="demo-input-log" class="event-log"></div>
+            </div>
+            <pre
+              class="comp-code"
+            ><code><span class="t">&lt;ch-input</span> <span class="a">id</span>="demo-input" <span class="a">label</span>="Correo" <span class="a">type</span>="email" <span class="a">placeholder</span>="tu@email.com"<span class="t">&gt;</span><span class="t">&lt;/ch-input</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-input</span> <span class="a">label</span>="Contraseña" <span class="a">type</span>="password" <span class="a">placeholder</span>="••••••••" <span class="a">hint</span>="Mínimo 8 caracteres"<span class="t">&gt;</span><span class="t">&lt;/ch-input</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-input</span> <span class="a">label</span>="Usuario" <span class="a">invalid</span> <span class="a">error</span>M<span class="a">essage</span>="Este campo es obligatorio"<span class="t">&gt;</span><span class="t">&lt;/ch-input</span><span class="t">&gt;</span></code></pre>
+          </div>
+
+          <div class="comp" id="ch-link" tabindex="-1">
+            <div class="comp-head">
+              <h3>ch-link</h3>
+              <span class="tag">@devschile/chucao/ch-link</span>
+            </div>
+            <p class="comp-desc">Enlace accesible con variantes <code>default</code>/<code>muted</code> y estado <code>disabled</code>. Emite <code>chClick</code>.</p>
+            <div class="comp-demo">
+              <ch-link id="demo-link" href="#componentes">Ir a componentes</ch-link>
+              <ch-link href="https://github.com/devschile/chucao" target="_blank">GitHub ↗</ch-link>
+              <ch-link variant="muted">Enlace atenuado</ch-link>
+              <ch-link disabled>Deshabilitado</ch-link>
+              <div id="demo-link-log" class="event-log"></div>
+            </div>
+            <pre
+              class="comp-code"
+            ><code><span class="t">&lt;ch-link</span> <span class="a">id</span>="demo-link" <span class="a">href</span>="#componentes"<span class="t">&gt;</span>Ir a componentes<span class="t">&lt;/ch-link</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-link</span> <span class="a">href</span>="https://github.com/devschile/chucao" <span class="a">target</span>="_blank"<span class="t">&gt;</span>GitHub ↗<span class="t">&lt;/ch-link</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-link</span> <span class="a">variant</span>="muted"<span class="t">&gt;</span>Enlace atenuado<span class="t">&lt;/ch-link</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-link</span> <span class="a">disabled</span><span class="t">&gt;</span>Deshabilitado<span class="t">&lt;/ch-link</span><span class="t">&gt;</span></code></pre>
+          </div>
+
+          <div class="comp" id="ch-radio" tabindex="-1">
+            <div class="comp-head">
+              <h3>ch-radio</h3>
+              <span class="tag">@devschile/chucao/ch-radio</span>
+            </div>
+            <p class="comp-desc">Grupo de selección única; las opciones se pasan por <code>options</code>. Emite <code>chChange</code> con el valor elegido.</p>
+            <div class="comp-demo">
+              <ch-radio id="demo-radio" label="Elige un tema"></ch-radio>
+              <div id="demo-radio-log" class="event-log"></div>
+            </div>
+            <pre
+              class="comp-code"
+            ><code><span class="t">&lt;ch-radio</span> <span class="a">id</span>="demo-radio" <span class="a">label</span>="Elige un tema"<span class="t">&gt;</span><span class="t">&lt;/ch-radio</span><span class="t">&gt;</span></code></pre>
+          </div>
+
+          <div class="comp" id="ch-select" tabindex="-1">
+            <div class="comp-head">
+              <h3>ch-select</h3>
+              <span class="tag">@devschile/chucao/ch-select</span>
+            </div>
+            <p class="comp-desc">Select estilizado; las opciones se pasan por la prop <code>options</code>. Emite <code>chChange</code>.</p>
+            <div class="comp-demo">
+              <ch-select id="demo-select" label="País" placeholder="Elige un país"></ch-select>
+              <div id="demo-select-log" class="event-log"></div>
+            </div>
+            <pre
+              class="comp-code"
+            ><code><span class="t">&lt;ch-select</span> <span class="a">id</span>="demo-select" <span class="a">label</span>="País" <span class="a">placeholder</span>="Elige un país"<span class="t">&gt;</span><span class="t">&lt;/ch-select</span><span class="t">&gt;</span></code></pre>
+          </div>
+
+          <div class="comp" id="ch-spinner" tabindex="-1">
+            <div class="comp-head">
+              <h3>ch-spinner</h3>
+              <span class="tag">@devschile/chucao/ch-spinner</span>
+            </div>
+            <p class="comp-desc">
+              Indicador de carga en tres tamaños; hereda el color del texto que lo rodea. Con <code>label</code> se anuncia como <code>role="status"</code>, sin él queda
+              decorativo.
+            </p>
+            <div class="comp-demo">
+              <ch-spinner size="sm" label="Cargando"></ch-spinner>
+              <ch-spinner label="Cargando"></ch-spinner>
+              <ch-spinner size="lg" label="Cargando"></ch-spinner>
+              <ch-spinner style="color: var(--accent)" label="Cargando"></ch-spinner>
+              <ch-button variant="primary">Guardando <ch-spinner size="sm"></ch-spinner></ch-button>
+            </div>
+            <pre
+              class="comp-code"
+            ><code><span class="t">&lt;ch-spinner</span> <span class="a">size</span>="sm" <span class="a">label</span>="Cargando"<span class="t">&gt;</span><span class="t">&lt;/ch-spinner</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-spinner</span> <span class="a">label</span>="Cargando"<span class="t">&gt;</span><span class="t">&lt;/ch-spinner</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-spinner</span> <span class="a">size</span>="lg" <span class="a">label</span>="Cargando"<span class="t">&gt;</span><span class="t">&lt;/ch-spinner</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-spinner</span> <span class="a">style</span>="color: var(--accent)" <span class="a">label</span>="Cargando"<span class="t">&gt;</span><span class="t">&lt;/ch-spinner</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-button</span> <span class="a">variant</span>="primary"<span class="t">&gt;</span>Guardando <span class="t">&lt;ch-spinner</span> <span class="a">size</span>="sm"<span class="t">&gt;</span><span class="t">&lt;/ch-spinner</span><span class="t">&gt;</span><span class="t">&lt;/ch-button</span><span class="t">&gt;</span></code></pre>
+          </div>
+
+          <div class="comp" id="ch-switch" tabindex="-1">
+            <div class="comp-head">
+              <h3>ch-switch</h3>
+              <span class="tag">@devschile/chucao/ch-switch</span>
+            </div>
+            <p class="comp-desc">Interruptor on/off accesible (<code>role="switch"</code>) con <code>label</code> asociada. Emite <code>chChange</code>.</p>
+            <div class="comp-demo">
+              <ch-switch label="Modo oscuro" checked></ch-switch>
+              <ch-switch id="demo-switch" label="Notificaciones"></ch-switch>
+              <ch-switch label="Deshabilitado" disabled></ch-switch>
+              <div id="demo-switch-log" class="event-log"></div>
+            </div>
+            <pre
+              class="comp-code"
+            ><code><span class="t">&lt;ch-switch</span> <span class="a">label</span>="Modo oscuro" <span class="a">checked</span><span class="t">&gt;</span><span class="t">&lt;/ch-switch</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-switch</span> <span class="a">id</span>="demo-switch" <span class="a">label</span>="Notificaciones"<span class="t">&gt;</span><span class="t">&lt;/ch-switch</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-switch</span> <span class="a">label</span>="Deshabilitado" <span class="a">disabled</span><span class="t">&gt;</span><span class="t">&lt;/ch-switch</span><span class="t">&gt;</span></code></pre>
+          </div>
+
+          <div class="comp" id="ch-tabs" tabindex="-1">
+            <div class="comp-head">
+              <h3>ch-tabs</h3>
+              <span class="tag">@devschile/chucao/ch-tabs</span>
+            </div>
+            <p class="comp-desc">
+              Pestañas accesibles (WAI-ARIA) con navegación por flechas; las opciones van por <code>tabs</code> y el panel activo recibe contenido por slot
+              <code>panel-&lt;value&gt;</code>. Emite <code>chChange</code>.
+            </p>
+            <div class="comp-demo">
+              <ch-tabs id="demo-tabs" label="Secciones"></ch-tabs>
+              <div id="demo-tabs-log" class="event-log"></div>
+            </div>
+            <pre
+              class="comp-code"
+            ><code><span class="t">&lt;ch-tabs</span> <span class="a">id</span>="demo-tabs" <span class="a">label</span>="Secciones"<span class="t">&gt;</span><span class="t">&lt;/ch-tabs</span><span class="t">&gt;</span></code></pre>
+          </div>
+
+          <div class="comp" id="ch-textarea" tabindex="-1">
+            <div class="comp-head">
+              <h3>ch-textarea</h3>
+              <span class="tag">@devschile/chucao/ch-textarea</span>
+            </div>
+            <p class="comp-desc">Área de texto con <code>label</code> asociada. Emite <code>chInput</code> (cada tecla) y <code>chChange</code> (al confirmar).</p>
+            <div class="comp-demo">
+              <ch-textarea id="demo-textarea" label="Mensaje" placeholder="Escribe aquí..." rows="4"></ch-textarea>
+              <div id="demo-textarea-log" class="event-log"></div>
+            </div>
+            <pre
+              class="comp-code"
+            ><code><span class="t">&lt;ch-textarea</span> <span class="a">id</span>="demo-textarea" <span class="a">label</span>="Mensaje" <span class="a">placeholder</span>="Escribe aquí..." <span class="a">rows</span>="4"<span class="t">&gt;</span><span class="t">&lt;/ch-textarea</span><span class="t">&gt;</span></code></pre>
+          </div>
+          <!-- GALLERY:END -->
+        </section>
+
+        <section id="colores" tabindex="-1">
+          <h2>Colores</h2>
+          <p class="lead">
+            Un fondo oscuro con gradiente sutil, un solo acento vibrante (teal) usado con disciplina, y una paleta de marca separada para uso oficial/impreso. Valores definidos en
+            <code>chucao-tokens.json</code> y consumidos como tokens CSS (<code>var(--token-name)</code>).
+          </p>
+
+          <!--
+            Los chips opacos leen su color del token con var(--color-*), así que
+            no se pueden desincronizar de la paleta real.
+
+            surface-hover, border y border-hover son la excepción a propósito:
+            usan un alpha amplificado (.25/.15/.4 en vez de .08/.08/.3) porque
+            con el valor real serían casi invisibles sobre el fondo de cuadros.
+            El valor documentado abajo del chip sigue siendo el del token. No
+            los cambies a var(--color-*) sin resolver antes la legibilidad.
+          -->
+          <div class="swatch-grid">
+            <div class="swatch">
+              <div class="swatch-color" style="background: var(--color-background-base)"></div>
+              <div class="swatch-meta">
+                <div class="swatch-name">bg</div>
+                <div class="swatch-value">#100a1c</div>
+                <div class="swatch-usage">Fondo base</div>
+              </div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color checker" style="background-color: var(--color-surface-default)"></div>
+              <div class="swatch-meta">
+                <div class="swatch-name">surface</div>
+                <div class="swatch-value">rgba(32,30,64,.6)</div>
+                <div class="swatch-usage">Tarjetas, inputs (con blur)</div>
+              </div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color checker" style="background-color: rgba(45, 212, 191, 0.25)"></div>
+              <div class="swatch-meta">
+                <div class="swatch-name">surface-hover</div>
+                <div class="swatch-value">rgba(45,212,191,.08)</div>
+                <div class="swatch-usage">Fondo en hover</div>
+              </div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color checker" style="background-color: rgba(255, 255, 255, 0.15)"></div>
+              <div class="swatch-meta">
+                <div class="swatch-name">border</div>
+                <div class="swatch-value">rgba(255,255,255,.08)</div>
+                <div class="swatch-usage">Borde en reposo</div>
+              </div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color checker" style="background-color: rgba(45, 212, 191, 0.4)"></div>
+              <div class="swatch-meta">
+                <div class="swatch-name">border-hover</div>
+                <div class="swatch-value">rgba(45,212,191,.3)</div>
+                <div class="swatch-usage">Borde en hover</div>
+              </div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background: var(--color-accent-default)"></div>
+              <div class="swatch-meta">
+                <div class="swatch-name">accent</div>
+                <div class="swatch-value">#2dd4bf</div>
+                <div class="swatch-usage">Acento — texto, bordes, botones</div>
+              </div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background: var(--color-accent-hover)"></div>
+              <div class="swatch-meta">
+                <div class="swatch-name">accent-hover</div>
+                <div class="swatch-value">#5ee8d4</div>
+                <div class="swatch-usage">Acento en hover</div>
+              </div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background: var(--color-status-positive)"></div>
+              <div class="swatch-meta">
+                <div class="swatch-name">status.positive</div>
+                <div class="swatch-value">#4ade80</div>
+                <div class="swatch-usage">Estados positivos</div>
+              </div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background: var(--color-status-warning)"></div>
+              <div class="swatch-meta">
+                <div class="swatch-name">status.warning</div>
+                <div class="swatch-value">#f87171</div>
+                <div class="swatch-usage">Estados de advertencia</div>
+              </div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background: var(--color-text-primary)"></div>
+              <div class="swatch-meta">
+                <div class="swatch-name">text.primary</div>
+                <div class="swatch-value">#ffffff</div>
+                <div class="swatch-usage">Texto principal</div>
+              </div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color checker" style="background-color: var(--color-text-secondary)"></div>
+              <div class="swatch-meta">
+                <div class="swatch-name">text.secondary</div>
+                <div class="swatch-value">rgba(255,255,255,.55)</div>
+                <div class="swatch-usage">Texto atenuado</div>
+              </div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background: var(--color-brand-huemul-dark)"></div>
+              <div class="swatch-meta">
+                <div class="swatch-name">brand.huemul-dark</div>
+                <div class="swatch-value">#85422b</div>
+                <div class="swatch-usage">Café oscuro de marca</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="tipografia" tabindex="-1">
+          <h2>Tipografía</h2>
+          <p class="lead">Fira Sans para cuerpo y Inconsolata para títulos y código.</p>
+
+          <div class="type-sample">
+            <div class="label">Inconsolata — títulos</div>
+            <div class="heading-demo">Chucao, el sistema de diseño de la comunidad</div>
+            <div class="weights">
+              <span style="font-weight: 500">500</span>
+              <span style="font-weight: 600">600</span>
+              <span style="font-weight: 700">700</span>
+            </div>
+          </div>
+
+          <div class="type-sample">
+            <div class="label">Fira Sans — cuerpo</div>
+            <div class="body-demo">El sistema de diseño de devsChile, documentado para reusar en cualquier proyecto de la comunidad.</div>
+            <div class="weights">
+              <span style="font-weight: 400">400</span>
+              <span style="font-weight: 500">500</span>
+              <span style="font-weight: 600">600</span>
+              <span style="font-weight: 700">700</span>
+            </div>
+          </div>
+        </section>
+
+        <section id="marca" tabindex="-1">
+          <h2>Marca</h2>
+          <p class="lead">El isotipo y el logotipo son las piezas no intercambiables del sistema — ver <a href="DESIGN.md">DESIGN.md</a> para las reglas de uso.</p>
+
+          <div class="mark-grid">
+            <div class="mark-card">
+              <div class="mark-preview on-dark">
+                <img src="assets/brand/huemul-icono-contorno.svg" alt="Huemul con contorno blanco" />
+              </div>
+              <div class="mark-meta">
+                <div class="mark-name">huemul-icono-contorno.svg</div>
+                <div class="mark-file">huemul + contorno blanco</div>
+                <div class="mark-desc">Para fondos oscuros</div>
+              </div>
+            </div>
+            <div class="mark-card">
+              <div class="mark-preview on-light">
+                <img src="assets/brand/huemul-icono.svg" alt="Huemul a color" />
+              </div>
+              <div class="mark-meta">
+                <div class="mark-name">huemul-icono.svg</div>
+                <div class="mark-file">full color, vector</div>
+                <div class="mark-desc">Uso oficial</div>
+              </div>
+            </div>
+            <div class="mark-card">
+              <div class="mark-preview on-dark">
+                <img src="assets/brand/huemul-icono-blanco.svg" alt="Huemul blanco" />
+              </div>
+              <div class="mark-meta">
+                <div class="mark-name">huemul-icono-blanco.svg</div>
+                <div class="mark-file">monocromo blanco</div>
+                <div class="mark-desc">Para fondos oscuros</div>
+              </div>
+            </div>
+            <div class="mark-card">
+              <div class="mark-preview on-light">
+                <img src="assets/brand/devschile-wordmark.svg" alt="Logotipo devschile" />
+              </div>
+              <div class="mark-meta">
+                <div class="mark-name">devschile-wordmark.svg</div>
+                <div class="mark-file">logotipo</div>
+                <div class="mark-desc">Wordmark de devsChile</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="documentacion" tabindex="-1">
+          <h2>Documentación</h2>
+          <p class="lead">Guías de desarrollo, consumo, testing y release, publicadas en el repo.</p>
+
+          <div class="docs-grid">
+            <a class="doc-card" href="https://github.com/devschile/chucao/blob/main/README.md">
+              <h3>README</h3>
+              <p>Índice del proyecto, qué contiene y cómo reusarlo.</p>
+            </a>
+            <a class="doc-card" href="https://github.com/devschile/chucao/blob/main/DESIGN.md">
+              <h3>DESIGN.md</h3>
+              <p>Identidad de marca + sistema de diseño web completo.</p>
+            </a>
+            <a class="doc-card" href="https://github.com/devschile/chucao/blob/main/docs/components.md">
+              <h3>components.md</h3>
+              <p>Desarrollo de la librería StencilJS: estructura, tokens, convenciones.</p>
+            </a>
+            <a class="doc-card" href="https://github.com/devschile/chucao/blob/main/docs/using-the-library.md">
+              <h3>using-the-library.md</h3>
+              <p>Cómo consumir @devschile/chucao (lazy, standalone, React/Vue/Svelte).</p>
+            </a>
+            <a class="doc-card" href="https://github.com/devschile/chucao/blob/main/docs/testing.md">
+              <h3>testing.md</h3>
+              <p>Testing y cobertura de los componentes.</p>
+            </a>
+            <a class="doc-card" href="https://github.com/devschile/chucao/blob/main/docs/releasing.md">
+              <h3>releasing.md</h3>
+              <p>Releases a npm y despliegue al CDN.</p>
+            </a>
+            <a class="doc-card" href="https://github.com/devschile/chucao/blob/main/docs/assets.md">
+              <h3>assets.md</h3>
+              <p>Inventario de assets, uso del favicon y licencia.</p>
+            </a>
+            <a class="doc-card" href="https://github.com/devschile/chucao/blob/main/CHANGELOG.md">
+              <h3>CHANGELOG</h3>
+              <p>Historial de versiones de @devschile/chucao.</p>
+            </a>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <footer>
+      <div class="wrap">
+        <p><a href="https://github.com/devschile/chucao">devschile/chucao</a> — hecho por la comunidad, para la comunidad 🦌</p>
+      </div>
+    </footer>
+
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/nav.js" defer></script>
+  </body>
+</html>

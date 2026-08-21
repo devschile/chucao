@@ -1,0 +1,669 @@
+/* The palette, radius and font aliases all come from chucao.css, which is
+   loaded after this file and derives them from chucao-tokens.json. Redefining
+   them here would be dead code that silently drifts from the tokens. */
+:root {
+  --positive: var(--color-status-positive);
+  --warning: var(--color-status-warning);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg);
+  background-image: var(--bg-gradient);
+  background-attachment: fixed;
+  color: var(--text);
+  font-family: var(--font-body), sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0 0 0.5rem;
+}
+
+p {
+  margin: 0 0 1rem;
+  color: var(--text-muted);
+}
+
+a {
+  color: var(--accent);
+}
+
+code {
+  font-family: var(--font-heading);
+  background: rgba(255, 255, 255, 0.06);
+  padding: 0.1em 0.4em;
+  border-radius: 4px;
+  color: var(--accent);
+  font-size: 0.9em;
+}
+
+.wrap {
+  max-width: var(--layout-max-width);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+header.hero {
+  padding: 4rem 0 3rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+}
+
+header.hero img {
+  width: 96px;
+  height: auto;
+  margin-bottom: 1.25rem;
+}
+
+header.hero h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin-bottom: 0.5rem;
+}
+
+header.hero h1 span {
+  color: var(--accent);
+}
+
+header.hero p {
+  max-width: 34rem;
+  margin: 0 auto;
+}
+
+.top-nav {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+}
+
+.top-nav a {
+  color: var(--text-muted);
+  text-decoration: none;
+}
+
+.top-nav a:hover {
+  color: var(--accent);
+}
+
+section {
+  padding: 3.5rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+section:last-of-type {
+  border-bottom: none;
+}
+
+section > h2 {
+  font-size: 1.6rem;
+  margin-bottom: 0.4rem;
+}
+
+section > p.lead {
+  max-width: 40rem;
+  margin-bottom: 2rem;
+}
+
+h3.subhead {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 2.5rem 0 1rem;
+}
+
+h3.subhead:first-of-type {
+  margin-top: 0;
+}
+
+/* ── Componentes ─────────────────────────────────────────────── */
+
+.comp {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  backdrop-filter: blur(10px);
+  padding: 1.5rem 1.75rem;
+  margin-bottom: 1.75rem;
+  transition: border-color 0.2s;
+}
+
+.comp:hover {
+  border-color: var(--border-hover);
+}
+
+.comp-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin-bottom: 0.35rem;
+}
+
+.comp-head h3 {
+  font-size: 1.15rem;
+  margin: 0;
+}
+
+.comp-head .tag {
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.comp-desc {
+  font-size: 0.95rem;
+  margin-bottom: 1.25rem;
+}
+
+.comp-demo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  padding: 1.25rem;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  background: rgba(0, 0, 0, 0.18);
+  margin-bottom: 1.1rem;
+}
+
+.comp-demo.stack {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.comp-demo > * {
+  min-width: 0;
+}
+
+.comp-code {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 0.82rem;
+  line-height: 1.55;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.1rem;
+  overflow-x: auto;
+  color: var(--text-muted);
+}
+
+.comp-code .t {
+  color: var(--accent);
+}
+
+.comp-code .a {
+  color: var(--warning);
+}
+
+.event-log {
+  font-family: var(--font-heading);
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.6rem 0.9rem;
+  min-height: 2rem;
+  min-width: 16rem;
+}
+
+.event-log:empty::before {
+  content: 'Los eventos se loguean acá…';
+  opacity: 0.5;
+}
+
+/* ── Colores ─────────────────────────────────────────────────── */
+
+.swatch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
+  gap: 1rem;
+}
+
+.swatch {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--surface);
+  backdrop-filter: blur(10px);
+}
+
+.swatch-color {
+  height: 5.5rem;
+}
+
+.swatch-meta {
+  padding: 0.75rem 1rem;
+}
+
+.swatch-name {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 0.15rem;
+}
+
+.swatch-value {
+  font-family: var(--font-heading);
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  word-break: break-all;
+}
+
+.swatch-usage {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-top: 0.3rem;
+}
+
+.checker {
+  background-image:
+    linear-gradient(45deg, #2a2a2a 25%, transparent 25%), linear-gradient(-45deg, #2a2a2a 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #2a2a2a 75%),
+    linear-gradient(-45deg, transparent 75%, #2a2a2a 75%);
+  background-size: 16px 16px;
+  background-position:
+    0 0,
+    0 8px,
+    8px -8px,
+    -8px 0px;
+  background-color: #1a1a1a;
+}
+
+/* ── Tipografía ──────────────────────────────────────────────── */
+
+.type-sample {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  backdrop-filter: blur(10px);
+  padding: 1.5rem 1.75rem;
+  margin-bottom: 1rem;
+}
+
+.type-sample .label {
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.75rem;
+}
+
+.type-sample .heading-demo {
+  font-family: var(--font-heading);
+  font-weight: 700;
+}
+
+.type-sample .body-demo {
+  font-family: var(--font-body);
+  color: var(--text);
+  max-width: 42rem;
+}
+
+.weights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-top: 0.75rem;
+}
+
+.weights span {
+  font-size: 1.1rem;
+}
+
+/* ── Marca ───────────────────────────────────────────────────── */
+
+.mark-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  gap: 1.25rem;
+}
+
+.mark-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--surface);
+  backdrop-filter: blur(10px);
+}
+
+.mark-preview {
+  height: 11rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.mark-preview.on-light {
+  background: #f4f3f7;
+}
+
+.mark-preview.on-dark {
+  background: #0b0713;
+}
+
+.mark-preview img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.mark-meta {
+  padding: 0.9rem 1.1rem;
+  border-top: 1px solid var(--border);
+}
+
+.mark-name {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin-bottom: 0.2rem;
+}
+
+.mark-file {
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.mark-desc {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 0.3rem;
+}
+
+/* ── Documentación ───────────────────────────────────────────── */
+
+.docs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+  gap: 1rem;
+}
+
+.doc-card {
+  display: block;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  backdrop-filter: blur(10px);
+  padding: 1.1rem 1.3rem;
+  text-decoration: none;
+  transition:
+    border-color 0.2s,
+    transform 0.15s;
+}
+
+.doc-card:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-1px);
+}
+
+.doc-card h3 {
+  font-size: 0.95rem;
+  margin-bottom: 0.25rem;
+  color: var(--text);
+}
+
+.doc-card p {
+  font-size: 0.8rem;
+  margin: 0;
+}
+
+footer {
+  padding: 2.5rem 0 3.5rem;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+footer a {
+  color: var(--accent);
+}
+
+/* ── Navegación lateral ──────────────────────────────────────── */
+
+/* First reduced-motion handling in this file. Smooth anchor scrolling is
+   native and works with JavaScript disabled, so it is gated here rather than
+   in nav.js. */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+.skip-link {
+  /* Fixed, not absolute: an absolutely positioned skip link scrolls away with
+     the document and lands off-screen when focused part-way down the page. */
+  position: fixed;
+  left: -9999px;
+  top: var(--spacing-md);
+  z-index: 100;
+  padding: var(--spacing-md) var(--spacing-2xl);
+  border: var(--border-width) solid var(--accent);
+  border-radius: var(--radius-pill);
+  background: var(--color-background-base);
+  color: var(--accent);
+  font-family: var(--font-heading);
+  font-size: var(--typography-size-sm);
+}
+
+/* A skip link must appear for any focus method, not only :focus-visible —
+   it is the first tab stop and exists precisely for keyboard users. */
+.skip-link:focus {
+  left: var(--spacing-md);
+}
+
+.page-shell {
+  display: block;
+}
+
+.side-heading {
+  font-size: var(--typography-size-sm);
+  letter-spacing: var(--typography-tracking-badge);
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0 0 var(--spacing-md);
+}
+
+.side-list {
+  list-style: none;
+  margin: 0 0 var(--spacing-6xl);
+  padding: 0;
+}
+
+.side-link {
+  display: block;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-left: var(--border-accent-bar) solid transparent;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  color: var(--text-muted);
+  font-family: var(--font-heading);
+  font-size: var(--typography-size-md);
+  text-decoration: none;
+}
+
+.side-link:hover {
+  background: var(--surface-hover);
+  color: var(--text);
+}
+
+/* Styling the ARIA state directly keeps the visual highlight and the
+   assistive-technology semantic from drifting apart. */
+.side-link[aria-current='location'] {
+  border-left-color: var(--accent);
+  background: var(--surface-hover);
+  color: var(--accent);
+}
+
+.side-empty {
+  color: var(--text-muted);
+  font-size: var(--typography-size-sm);
+  margin: 0 0 var(--spacing-6xl);
+}
+
+.side-search-label {
+  display: block;
+  margin-bottom: var(--spacing-sm);
+  color: var(--text-muted);
+  font-size: var(--typography-size-sm);
+  letter-spacing: var(--typography-tracking-badge);
+  text-transform: uppercase;
+}
+
+.side-search {
+  width: 100%;
+  margin-bottom: var(--spacing-2xl);
+  padding: var(--spacing-md) var(--spacing-lg);
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: var(--typography-size-md);
+}
+
+.side-search::placeholder {
+  color: var(--text-muted);
+}
+
+.nav-toggle,
+.nav-close {
+  display: none;
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  font-family: var(--font-heading);
+  font-size: var(--typography-size-sm);
+  padding: var(--spacing-md) var(--spacing-2xl);
+}
+
+.side-empty-reset {
+  border: 0;
+  padding: 0;
+  background: none;
+  color: var(--accent);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  text-decoration: underline;
+}
+
+.nav-backdrop {
+  display: none;
+}
+
+.comp:target {
+  border-color: var(--border-hover);
+}
+
+/* Interactive controls only. `.comp`, `section` and `main` are focused
+   programmatically by fragment navigation so that Tab resumes from the right
+   place and the region is announced — an outline around a whole section reads
+   as a rendering fault, and `.comp:target` already marks where you landed. */
+.skip-link:focus-visible,
+.side-link:focus-visible,
+.side-empty-reset:focus-visible,
+.side-search:focus-visible,
+.nav-toggle:focus-visible,
+.nav-close:focus-visible {
+  outline: var(--focus-outline-width) solid var(--accent);
+  outline-offset: var(--focus-outline-offset);
+}
+
+.comp:focus-visible,
+section:focus-visible,
+main:focus-visible {
+  outline: none;
+}
+
+/* Desktop: a persistent sidebar alongside the content, using the horizontal
+   space the centred single column left empty. */
+@media (min-width: 60rem) {
+  .page-shell {
+    display: grid;
+    grid-template-columns: 15rem 1fr;
+    gap: var(--spacing-6xl);
+    align-items: start;
+  }
+
+  .side-nav {
+    position: sticky;
+    top: var(--spacing-2xl);
+    max-height: calc(100vh - 2 * var(--spacing-2xl));
+    overflow-y: auto;
+    padding-top: var(--spacing-6xl);
+    padding-right: var(--spacing-md);
+  }
+}
+
+/* Mobile drawer. Scoped to html.js because without JavaScript there is no
+   toggle to open it — the sidebar then stays in flow as an ordinary list,
+   which is a complete experience on its own. */
+@media (max-width: 59.99rem) {
+  .js .nav-toggle,
+  .js .nav-close {
+    display: inline-block;
+    margin-bottom: var(--spacing-2xl);
+    padding: var(--spacing-xl) var(--spacing-2xl);
+    font-size: var(--typography-size-md);
+  }
+
+  .js .side-nav {
+    position: fixed;
+    inset: 0 auto 0 0;
+    z-index: 50;
+    width: min(20rem, 85vw);
+    padding: var(--spacing-6xl) var(--spacing-2xl) var(--spacing-2xl);
+    background: var(--color-background-base);
+    border-right: var(--border-width) solid var(--border);
+    overflow-y: auto;
+    transform: translateX(-100%);
+  }
+
+  .js .side-nav.side-nav--open {
+    transform: translateX(0);
+  }
+
+  /* Roomier rows on touch: 44px minimum tap target. Desktop keeps the denser
+     spacing, where pointer precision makes it unnecessary. */
+  .side-link {
+    padding: var(--spacing-lg) var(--spacing-md);
+  }
+
+  /* `:not([hidden])` matters: a bare `display: block` here outranks the UA's
+     `[hidden] { display: none }`, which would leave the backdrop painted over
+     the page while the drawer is closed. */
+  .js .nav-backdrop:not([hidden]) {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    background: rgba(0, 0, 0, 0.6);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .js .side-nav {
+      transition: transform var(--duration-normal) var(--easing-default);
+    }
+  }
+}
