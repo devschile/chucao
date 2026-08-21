@@ -476,7 +476,7 @@ footer a {
 }
 
 .side-heading {
-  font-size: var(--typography-size-xs);
+  font-size: var(--typography-size-sm);
   letter-spacing: var(--typography-tracking-badge);
   text-transform: uppercase;
   color: var(--text-muted);
@@ -491,12 +491,12 @@ footer a {
 
 .side-link {
   display: block;
-  padding: var(--spacing-xs) var(--spacing-md);
+  padding: var(--spacing-sm) var(--spacing-md);
   border-left: var(--border-accent-bar) solid transparent;
   border-radius: 0 var(--radius) var(--radius) 0;
   color: var(--text-muted);
   font-family: var(--font-heading);
-  font-size: var(--typography-size-sm);
+  font-size: var(--typography-size-md);
   text-decoration: none;
 }
 
@@ -523,7 +523,7 @@ footer a {
   display: block;
   margin-bottom: var(--spacing-sm);
   color: var(--text-muted);
-  font-size: var(--typography-size-xs);
+  font-size: var(--typography-size-sm);
   letter-spacing: var(--typography-tracking-badge);
   text-transform: uppercase;
 }
@@ -537,7 +537,7 @@ footer a {
   background: var(--surface);
   color: var(--text);
   font-family: var(--font-body);
-  font-size: var(--typography-size-sm);
+  font-size: var(--typography-size-md);
 }
 
 .side-search::placeholder {
@@ -611,6 +611,7 @@ main:focus-visible {
     top: var(--spacing-2xl);
     max-height: calc(100vh - 2 * var(--spacing-2xl));
     overflow-y: auto;
+    padding-top: var(--spacing-6xl);
     padding-right: var(--spacing-md);
   }
 }
@@ -623,6 +624,8 @@ main:focus-visible {
   .js .nav-close {
     display: inline-block;
     margin-bottom: var(--spacing-2xl);
+    padding: var(--spacing-xl) var(--spacing-2xl);
+    font-size: var(--typography-size-md);
   }
 
   .js .side-nav {
@@ -639,6 +642,12 @@ main:focus-visible {
 
   .js .side-nav.side-nav--open {
     transform: translateX(0);
+  }
+
+  /* Roomier rows on touch: 44px minimum tap target. Desktop keeps the denser
+     spacing, where pointer precision makes it unnecessary. */
+  .side-link {
+    padding: var(--spacing-lg) var(--spacing-md);
   }
 
   /* `:not([hidden])` matters: a bare `display: block` here outranks the UA's
