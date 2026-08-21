@@ -450,7 +450,9 @@ footer a {
 }
 
 .skip-link {
-  position: absolute;
+  /* Fixed, not absolute: an absolutely positioned skip link scrolls away with
+     the document and lands off-screen when focused part-way down the page. */
+  position: fixed;
   left: -9999px;
   top: var(--spacing-md);
   z-index: 100;
@@ -581,17 +583,24 @@ footer a {
   border-color: var(--border-hover);
 }
 
+/* Interactive controls only. `.comp`, `section` and `main` are focused
+   programmatically by fragment navigation so that Tab resumes from the right
+   place and the region is announced — an outline around a whole section reads
+   as a rendering fault, and `.comp:target` already marks where you landed. */
 .skip-link:focus-visible,
 .side-link:focus-visible,
 .side-empty-reset:focus-visible,
 .side-search:focus-visible,
 .nav-toggle:focus-visible,
-.nav-close:focus-visible,
+.nav-close:focus-visible {
+  outline: var(--focus-outline-width) solid var(--accent);
+  outline-offset: var(--focus-outline-offset);
+}
+
 .comp:focus-visible,
 section:focus-visible,
 main:focus-visible {
-  outline: var(--focus-outline-width) solid var(--accent);
-  outline-offset: var(--focus-outline-offset);
+  outline: none;
 }
 
 /* Desktop: a persistent sidebar alongside the content, using the horizontal
