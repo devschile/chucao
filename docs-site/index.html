@@ -408,6 +408,16 @@
             <code>chucao-tokens.json</code> y consumidos como tokens CSS (<code>var(--token-name)</code>).
           </p>
 
+          <!--
+            Los chips opacos leen su color del token con var(--color-*), así que
+            no se pueden desincronizar de la paleta real.
+
+            surface-hover, border y border-hover son la excepción a propósito:
+            usan un alpha amplificado (.25/.15/.4 en vez de .08/.08/.3) porque
+            con el valor real serían casi invisibles sobre el fondo de cuadros.
+            El valor documentado abajo del chip sigue siendo el del token. No
+            los cambies a var(--color-*) sin resolver antes la legibilidad.
+          -->
           <div class="swatch-grid">
             <div class="swatch">
               <div class="swatch-color" style="background: var(--color-background-base)"></div>

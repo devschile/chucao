@@ -185,7 +185,10 @@
 
   /* ── Cajón en móvil ───────────────────────────────────────── */
 
-  const narrow = window.matchMedia('(max-width: 59.99rem)');
+  // Must match the drawer breakpoint in styles.css. A media-query condition
+  // cannot read a custom property, so the value is duplicated by necessity.
+  const narrowQuery = '(max-width: 59.99rem)';
+  const narrow = window.matchMedia(narrowQuery);
   const inertTargets = [document.querySelector('header.hero'), document.getElementById('main-content'), document.querySelector('footer')];
 
   const toggle = document.createElement('button');
@@ -208,7 +211,14 @@
   sidebar.insertBefore(close, sidebar.firstChild);
   document.body.append(backdrop);
 
-  function setDrawer(open) {
+  // A closed drawer is only translated off-screen, so without this its search
+  // field, close button and 18 links stay in the tab order and the
+  // accessibility tree while invisible.
+  function syncSidebarInert(open) {
+    sidebar.inert = narrow.matches && !open;
+  }
+
+  function setDrawer(open, moveFocus = true) {
     sidebar.classList.toggle('side-nav--open', open);
     toggle.setAttribute('aria-expanded', String(open));
     backdrop.hidden = !open;
@@ -219,12 +229,28 @@
         element.inert = open;
       }
     }
+    // The toggle sits outside the inert containers, so without this it stays
+    // tabbable underneath the backdrop while the drawer is meant to be modal.
+    toggle.inert = open;
+    syncSidebarInert(open);
+    if (!moveFocus) {
+      return;
+    }
     if (open) {
       close.focus();
     } else {
       toggle.focus();
     }
   }
+
+  syncSidebarInert(false);
+
+  // Crossing the breakpoint with the drawer open would otherwise leave a
+  // full-viewport backdrop over inert content, with both dismiss controls
+  // hidden by the desktop styles.
+  // Without `moveFocus: false` a plain window resize would steal focus, and at
+  // desktop widths the toggle it would move to is `display: none`.
+  narrow.addEventListener('change', () => setDrawer(false, false));
 
   toggle.addEventListener('click', () => setDrawer(!sidebar.classList.contains('side-nav--open')));
   close.addEventListener('click', () => setDrawer(false));

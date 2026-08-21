@@ -546,6 +546,7 @@ footer a {
 
 .nav-toggle,
 .nav-close {
+  display: none;
   border: var(--border-width) solid var(--border);
   border-radius: var(--radius-pill);
   background: var(--surface);
@@ -554,11 +555,6 @@ footer a {
   font-family: var(--font-heading);
   font-size: var(--typography-size-sm);
   padding: var(--spacing-md) var(--spacing-2xl);
-}
-
-.nav-toggle,
-.nav-close {
-  display: none;
 }
 
 .side-empty-reset {
@@ -573,10 +569,7 @@ footer a {
 }
 
 .nav-backdrop {
-  position: fixed;
-  inset: 0;
-  z-index: 40;
-  background: rgba(0, 0, 0, 0.6);
+  display: none;
 }
 
 .comp:target {
@@ -626,11 +619,7 @@ main:focus-visible {
    toggle to open it — the sidebar then stays in flow as an ordinary list,
    which is a complete experience on its own. */
 @media (max-width: 59.99rem) {
-  .js .nav-toggle {
-    display: inline-block;
-    margin-bottom: var(--spacing-2xl);
-  }
-
+  .js .nav-toggle,
   .js .nav-close {
     display: inline-block;
     margin-bottom: var(--spacing-2xl);
@@ -650,6 +639,17 @@ main:focus-visible {
 
   .js .side-nav.side-nav--open {
     transform: translateX(0);
+  }
+
+  /* `:not([hidden])` matters: a bare `display: block` here outranks the UA's
+     `[hidden] { display: none }`, which would leave the backdrop painted over
+     the page while the drawer is closed. */
+  .js .nav-backdrop:not([hidden]) {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    background: rgba(0, 0, 0, 0.6);
   }
 
   @media (prefers-reduced-motion: no-preference) {

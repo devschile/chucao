@@ -126,6 +126,12 @@ The search field and the drawer toggle are **created by `nav.js`**, not present
 in the HTML. Without JavaScript there is no dead control to confuse anyone; the
 complete fallback is the full static list.
 
+The search query round-trips through the URL as `?q=`, so a filtered view is
+shareable and Back steps through the queries actually searched for. It is
+written on commit — on blur or after a pause — never on each keystroke:
+mixing `replaceState` while typing with `pushState` on commit corrupts history,
+because the replace overwrites the entry the previous push created.
+
 ### Previewing the docs-site locally
 
 `docs-site/index.html` loads the library from the CDN
