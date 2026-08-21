@@ -47,7 +47,7 @@ const MIME = {
 
 const BANNER = `
     <div class="preview-banner">
-      preview local — build desde <code>src/</code>, no el CDN
+      local preview — served from the <code>src/</code> build, not the CDN
     </div>
     <style>
       .preview-banner {
@@ -130,9 +130,9 @@ function serve() {
   });
 
   server.listen(PORT, () => {
-    console.log(`[docs] preview en http://localhost:${PORT}/`);
-    console.log(`[docs] sirviendo .docs-preview/ con el build local de www/build/`);
-    console.log(`[docs] volvé a correr \`pnpm run docs:serve\` después de cambiar un componente`);
+    console.log(`[docs] preview at http://localhost:${PORT}/`);
+    console.log(`[docs] serving .docs-preview/ with the local www/build/ output`);
+    console.log(`[docs] run \`pnpm run docs:serve\` again after changing a component`);
   });
 
   server.on('error', error => {
