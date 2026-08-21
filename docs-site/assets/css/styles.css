@@ -1,20 +1,9 @@
+/* The palette, radius and font aliases all come from chucao.css, which is
+   loaded after this file and derives them from chucao-tokens.json. Redefining
+   them here would be dead code that silently drifts from the tokens. */
 :root {
-  --bg: #100a1c;
-  --bg-gradient: radial-gradient(50% 30% ellipse at center top, #201e40 0%, rgba(0, 0, 0, 0) 100%), radial-gradient(60% 50% ellipse at center bottom, #261226 0%, #100a1c 100%);
-  --surface: rgba(32, 30, 64, 0.6);
-  --surface-hover: rgba(45, 212, 191, 0.08);
-  --border: rgba(255, 255, 255, 0.08);
-  --border-hover: rgba(45, 212, 191, 0.3);
-  --text: #fff;
-  --text-muted: rgba(255, 255, 255, 0.55);
-  --accent: #2dd4bf;
-  --accent-hover: #5ee8d4;
-  --positive: #4ade80;
-  --warning: #f87171;
-  --radius: 6px;
-  --font-body: 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-  --font-heading: 'Inconsolata', monospace;
-  --maxw: 68rem;
+  --positive: var(--color-status-positive);
+  --warning: var(--color-status-warning);
 }
 
 * {
@@ -61,7 +50,7 @@ code {
 }
 
 .wrap {
-  max-width: var(--maxw);
+  max-width: var(--layout-max-width);
   margin: 0 auto;
   padding: 0 1.5rem;
 }
@@ -165,7 +154,7 @@ h3.subhead:first-of-type {
   margin-bottom: 0.35rem;
 }
 
-.comp-head h4 {
+.comp-head h3 {
   font-size: 1.15rem;
   margin: 0;
 }
@@ -427,7 +416,7 @@ h3.subhead:first-of-type {
   transform: translateY(-1px);
 }
 
-.doc-card h4 {
+.doc-card h3 {
   font-size: 0.95rem;
   margin-bottom: 0.25rem;
   color: var(--text);
@@ -447,4 +436,216 @@ footer {
 
 footer a {
   color: var(--accent);
+}
+
+/* ── Navegación lateral ──────────────────────────────────────── */
+
+/* First reduced-motion handling in this file. Smooth anchor scrolling is
+   native and works with JavaScript disabled, so it is gated here rather than
+   in nav.js. */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: var(--spacing-md);
+  z-index: 100;
+  padding: var(--spacing-md) var(--spacing-2xl);
+  border: var(--border-width) solid var(--accent);
+  border-radius: var(--radius-pill);
+  background: var(--color-background-base);
+  color: var(--accent);
+  font-family: var(--font-heading);
+  font-size: var(--typography-size-sm);
+}
+
+/* A skip link must appear for any focus method, not only :focus-visible —
+   it is the first tab stop and exists precisely for keyboard users. */
+.skip-link:focus {
+  left: var(--spacing-md);
+}
+
+.page-shell {
+  display: block;
+}
+
+.side-heading {
+  font-size: var(--typography-size-xs);
+  letter-spacing: var(--typography-tracking-badge);
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0 0 var(--spacing-md);
+}
+
+.side-list {
+  list-style: none;
+  margin: 0 0 var(--spacing-6xl);
+  padding: 0;
+}
+
+.side-link {
+  display: block;
+  padding: var(--spacing-xs) var(--spacing-md);
+  border-left: var(--border-accent-bar) solid transparent;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  color: var(--text-muted);
+  font-family: var(--font-heading);
+  font-size: var(--typography-size-sm);
+  text-decoration: none;
+}
+
+.side-link:hover {
+  background: var(--surface-hover);
+  color: var(--text);
+}
+
+/* Styling the ARIA state directly keeps the visual highlight and the
+   assistive-technology semantic from drifting apart. */
+.side-link[aria-current='location'] {
+  border-left-color: var(--accent);
+  background: var(--surface-hover);
+  color: var(--accent);
+}
+
+.side-empty {
+  color: var(--text-muted);
+  font-size: var(--typography-size-sm);
+  margin: 0 0 var(--spacing-6xl);
+}
+
+.side-search-label {
+  display: block;
+  margin-bottom: var(--spacing-sm);
+  color: var(--text-muted);
+  font-size: var(--typography-size-xs);
+  letter-spacing: var(--typography-tracking-badge);
+  text-transform: uppercase;
+}
+
+.side-search {
+  width: 100%;
+  margin-bottom: var(--spacing-2xl);
+  padding: var(--spacing-md) var(--spacing-lg);
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: var(--typography-size-sm);
+}
+
+.side-search::placeholder {
+  color: var(--text-muted);
+}
+
+.nav-toggle,
+.nav-close {
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  font-family: var(--font-heading);
+  font-size: var(--typography-size-sm);
+  padding: var(--spacing-md) var(--spacing-2xl);
+}
+
+.nav-toggle,
+.nav-close {
+  display: none;
+}
+
+.side-empty-reset {
+  border: 0;
+  padding: 0;
+  background: none;
+  color: var(--accent);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  text-decoration: underline;
+}
+
+.nav-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.comp:target {
+  border-color: var(--border-hover);
+}
+
+.skip-link:focus-visible,
+.side-link:focus-visible,
+.side-empty-reset:focus-visible,
+.side-search:focus-visible,
+.nav-toggle:focus-visible,
+.nav-close:focus-visible,
+.comp:focus-visible,
+section:focus-visible,
+main:focus-visible {
+  outline: var(--focus-outline-width) solid var(--accent);
+  outline-offset: var(--focus-outline-offset);
+}
+
+/* Desktop: a persistent sidebar alongside the content, using the horizontal
+   space the centred single column left empty. */
+@media (min-width: 60rem) {
+  .page-shell {
+    display: grid;
+    grid-template-columns: 15rem 1fr;
+    gap: var(--spacing-6xl);
+    align-items: start;
+  }
+
+  .side-nav {
+    position: sticky;
+    top: var(--spacing-2xl);
+    max-height: calc(100vh - 2 * var(--spacing-2xl));
+    overflow-y: auto;
+    padding-right: var(--spacing-md);
+  }
+}
+
+/* Mobile drawer. Scoped to html.js because without JavaScript there is no
+   toggle to open it — the sidebar then stays in flow as an ordinary list,
+   which is a complete experience on its own. */
+@media (max-width: 59.99rem) {
+  .js .nav-toggle {
+    display: inline-block;
+    margin-bottom: var(--spacing-2xl);
+  }
+
+  .js .nav-close {
+    display: inline-block;
+    margin-bottom: var(--spacing-2xl);
+  }
+
+  .js .side-nav {
+    position: fixed;
+    inset: 0 auto 0 0;
+    z-index: 50;
+    width: min(20rem, 85vw);
+    padding: var(--spacing-6xl) var(--spacing-2xl) var(--spacing-2xl);
+    background: var(--color-background-base);
+    border-right: var(--border-width) solid var(--border);
+    overflow-y: auto;
+    transform: translateX(-100%);
+  }
+
+  .js .side-nav.side-nav--open {
+    transform: translateX(0);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .js .side-nav {
+      transition: transform var(--duration-normal) var(--easing-default);
+    }
+  }
 }

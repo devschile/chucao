@@ -99,6 +99,33 @@ publish directory, so the gallery stays in sync automatically. When adding a
 component, add a matching entry to `scripts/gallery-data.mjs`; the generator
 fails if a component folder lacks a gallery entry (or vice versa).
 
+### Sidebar, search and anchors
+
+The sidebar's component list is a **second generated region**, delimited by
+`<!-- SIDEBAR:START -->` / `<!-- SIDEBAR:END -->`, emitted from the same
+`gallery` array in the same pass as the `.comp` blocks. A component therefore
+cannot appear in the gallery without appearing in the navigation.
+
+Each `.comp` block carries `id="<tag>"` so components are linkable
+(`#ch-select`) and `tabindex="-1"` so following such a link moves focus to the
+block rather than only scrolling. The generator **fails the build** if a tag is
+not usable as a URL fragment, alongside the existing coverage checks.
+
+The sidebar is emitted as real markup rather than assembled at runtime, so
+navigation still works with JavaScript disabled. The four section links
+(Colores, Tipografía, Marca, Documentación) are hand-written — they do not grow
+with the component count, so generating them would be pointless.
+
+`docs-site/assets/js/nav.js` holds the interaction layer: search filtering,
+active-item tracking via `aria-current`, and the mobile drawer. It is
+hand-written and **the generator never touches it** — `app.js` is rewritten
+wholesale on every run, so interaction code there would be deleted by the next
+`pnpm run generate:gallery`.
+
+The search field and the drawer toggle are **created by `nav.js`**, not present
+in the HTML. Without JavaScript there is no dead control to confuse anyone; the
+complete fallback is the full static list.
+
 ### Previewing the docs-site locally
 
 `docs-site/index.html` loads the library from the CDN
