@@ -49,6 +49,13 @@ pnpm install
 pnpm start
 ```
 
+Para ver la galería del sitio de documentación con **tu** build local, en vez de
+la última versión publicada:
+
+```bash
+pnpm run docs:serve
+```
+
 Los comandos completos están en [`AGENTS.md`](AGENTS.md) y en
 [`docs/components.md`](docs/components.md).
 

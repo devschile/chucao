@@ -99,6 +99,27 @@ publish directory, so the gallery stays in sync automatically. When adding a
 component, add a matching entry to `scripts/gallery-data.mjs`; the generator
 fails if a component folder lacks a gallery entry (or vice versa).
 
+### Previewing the docs-site locally
+
+`docs-site/index.html` loads the library from the CDN
+(`static.devschile.cl/chucao/latest/`). That is correct for the published site,
+but it means the site always shows the **last release**, never the working tree —
+a component you just added stays invisible there until a release ships.
+
+```bash
+pnpm run docs:serve
+```
+
+That builds, regenerates the gallery, and serves the site against the local
+Stencil output on <http://localhost:4173> (set `PORT` to change it). It assembles
+a throwaway `.docs-preview/` directory rather than editing `docs-site/`, so the
+committed HTML keeps pointing at the CDN and there is no dev-only variant to
+commit by accident. The CDN URLs for the stylesheet, the module and the
+self-hosted fonts are rewritten to the local copy, so the preview also works
+offline, and a badge in the corner marks it as a local build.
+
+It is a snapshot, not a watcher: re-run it after changing a component.
+
 ## Naming & API conventions
 
 When creating new component tags, avoid using `chucao` or `stencil` alone as

@@ -10,3 +10,4 @@ package-lock.json
 src/components.d.ts
 src/components/**/readme.md
 CHANGELOG.md
+.docs-preview/
