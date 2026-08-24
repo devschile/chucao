@@ -1,6 +1,16 @@
 /* The palette, radius and font aliases all come from chucao.css, which is
    loaded after this file and derives them from chucao-tokens.json. Redefining
    them here would be dead code that silently drifts from the tokens. */
+/* Literal values left here are deliberate: colors, borders, radii and blur
+   come from tokens, and spacing/typography do too where a token matches both
+   value and meaning. Remaining literals cover page layout (breakpoints, text
+   widths, sidebar and grid track widths, hero height, section padding, the
+   44px tap target) — the --spacing-* scale ends at 2rem and suits component
+   internals, not page layout — padding pairs chosen together (1.5rem/1.75rem,
+   1rem/1.1rem), and font sizes that fall between the five --typography-size-*
+   steps (see #39). Note: a matching value is not a matching meaning — 0.8rem
+   equals --spacing-xl, but as a font-size it would be semantically wrong. */
+
 :root {
   --positive: var(--color-status-positive);
   --warning: var(--color-status-warning);
@@ -28,11 +38,11 @@ h4 {
   font-family: var(--font-heading);
   font-weight: 700;
   line-height: 1.2;
-  margin: 0 0 0.5rem;
+  margin: 0 0 var(--spacing-md);
 }
 
 p {
-  margin: 0 0 1rem;
+  margin: 0 0 var(--spacing-2xl);
   color: var(--text-muted);
 }
 
@@ -52,24 +62,24 @@ code {
 .wrap {
   max-width: var(--layout-max-width);
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 var(--spacing-5xl);
 }
 
 header.hero {
   padding: 4rem 0 3rem;
   text-align: center;
-  border-bottom: 1px solid var(--border);
+  border-bottom: var(--border-width) solid var(--border);
 }
 
 header.hero img {
   width: 96px;
   height: auto;
-  margin-bottom: 1.25rem;
+  margin-bottom: var(--spacing-3xl);
 }
 
 header.hero h1 {
   font-size: clamp(2rem, 5vw, 3rem);
-  margin-bottom: 0.5rem;
+  margin-bottom: var(--spacing-md);
 }
 
 header.hero h1 span {
@@ -83,9 +93,9 @@ header.hero p {
 
 .top-nav {
   display: flex;
-  gap: 1.5rem;
+  gap: var(--spacing-5xl);
   justify-content: center;
-  margin-top: 1.5rem;
+  margin-top: var(--spacing-5xl);
   font-size: 0.9rem;
   flex-wrap: wrap;
 }
@@ -101,7 +111,7 @@ header.hero p {
 
 section {
   padding: 3.5rem 0;
-  border-bottom: 1px solid var(--border);
+  border-bottom: var(--border-width) solid var(--border);
 }
 
 section:last-of-type {
@@ -115,29 +125,16 @@ section > h2 {
 
 section > p.lead {
   max-width: 40rem;
-  margin-bottom: 2rem;
-}
-
-h3.subhead {
-  font-family: var(--font-heading);
-  font-size: 1rem;
-  color: var(--accent);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  margin: 2.5rem 0 1rem;
-}
-
-h3.subhead:first-of-type {
-  margin-top: 0;
+  margin-bottom: var(--spacing-6xl);
 }
 
 /* ── Componentes ─────────────────────────────────────────────── */
 
 .comp {
-  border: 1px solid var(--border);
+  border: var(--border-width) solid var(--border);
   border-radius: var(--radius);
   background: var(--surface);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(var(--effect-blur));
   padding: 1.5rem 1.75rem;
   margin-bottom: 1.75rem;
   transition: border-color 0.2s;
@@ -151,7 +148,7 @@ h3.subhead:first-of-type {
   display: flex;
   align-items: baseline;
   gap: 0.75rem;
-  margin-bottom: 0.35rem;
+  margin-bottom: var(--spacing-sm);
 }
 
 .comp-head h3 {
@@ -167,16 +164,16 @@ h3.subhead:first-of-type {
 
 .comp-desc {
   font-size: 0.95rem;
-  margin-bottom: 1.25rem;
+  margin-bottom: var(--spacing-3xl);
 }
 
 .comp-demo {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: var(--spacing-2xl);
   align-items: center;
-  padding: 1.25rem;
-  border: 1px dashed var(--border);
+  padding: var(--spacing-3xl);
+  border: var(--border-width) dashed var(--border);
   border-radius: var(--radius);
   background: rgba(0, 0, 0, 0.18);
   margin-bottom: 1.1rem;
@@ -197,7 +194,7 @@ h3.subhead:first-of-type {
   font-size: 0.82rem;
   line-height: 1.55;
   background: rgba(0, 0, 0, 0.3);
-  border: 1px solid var(--border);
+  border: var(--border-width) solid var(--border);
   border-radius: var(--radius);
   padding: 1rem 1.1rem;
   overflow-x: auto;
@@ -217,9 +214,9 @@ h3.subhead:first-of-type {
   font-size: 0.78rem;
   color: var(--text-muted);
   background: rgba(0, 0, 0, 0.3);
-  border: 1px solid var(--border);
+  border: var(--border-width) solid var(--border);
   border-radius: var(--radius);
-  padding: 0.6rem 0.9rem;
+  padding: var(--spacing-lg) 0.9rem;
   min-height: 2rem;
   min-width: 16rem;
 }
@@ -234,15 +231,15 @@ h3.subhead:first-of-type {
 .swatch-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
-  gap: 1rem;
+  gap: var(--spacing-2xl);
 }
 
 .swatch {
-  border: 1px solid var(--border);
+  border: var(--border-width) solid var(--border);
   border-radius: var(--radius);
   overflow: hidden;
   background: var(--surface);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(var(--effect-blur));
 }
 
 .swatch-color {
@@ -255,7 +252,7 @@ h3.subhead:first-of-type {
 
 .swatch-name {
   font-family: var(--font-heading);
-  font-size: 0.85rem;
+  font-size: var(--typography-size-sm);
   font-weight: 700;
   margin-bottom: 0.15rem;
 }
@@ -289,12 +286,12 @@ h3.subhead:first-of-type {
 /* ── Tipografía ──────────────────────────────────────────────── */
 
 .type-sample {
-  border: 1px solid var(--border);
+  border: var(--border-width) solid var(--border);
   border-radius: var(--radius);
   background: var(--surface);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(var(--effect-blur));
   padding: 1.5rem 1.75rem;
-  margin-bottom: 1rem;
+  margin-bottom: var(--spacing-2xl);
 }
 
 .type-sample .label {
@@ -320,7 +317,7 @@ h3.subhead:first-of-type {
 .weights {
   display: flex;
   flex-wrap: wrap;
-  gap: 1.5rem;
+  gap: var(--spacing-5xl);
   margin-top: 0.75rem;
 }
 
@@ -333,15 +330,15 @@ h3.subhead:first-of-type {
 .mark-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
-  gap: 1.25rem;
+  gap: var(--spacing-3xl);
 }
 
 .mark-card {
-  border: 1px solid var(--border);
+  border: var(--border-width) solid var(--border);
   border-radius: var(--radius);
   overflow: hidden;
   background: var(--surface);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(var(--effect-blur));
 }
 
 .mark-preview {
@@ -349,7 +346,7 @@ h3.subhead:first-of-type {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1.5rem;
+  padding: var(--spacing-5xl);
 }
 
 .mark-preview.on-light {
@@ -368,7 +365,7 @@ h3.subhead:first-of-type {
 
 .mark-meta {
   padding: 0.9rem 1.1rem;
-  border-top: 1px solid var(--border);
+  border-top: var(--border-width) solid var(--border);
 }
 
 .mark-name {
@@ -395,15 +392,15 @@ h3.subhead:first-of-type {
 .docs-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
-  gap: 1rem;
+  gap: var(--spacing-2xl);
 }
 
 .doc-card {
   display: block;
-  border: 1px solid var(--border);
+  border: var(--border-width) solid var(--border);
   border-radius: var(--radius);
   background: var(--surface);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(var(--effect-blur));
   padding: 1.1rem 1.3rem;
   text-decoration: none;
   transition:
@@ -413,12 +410,12 @@ h3.subhead:first-of-type {
 
 .doc-card:hover {
   border-color: var(--border-hover);
-  transform: translateY(-1px);
+  transform: translateY(calc(-1 * var(--spacing-elevate)));
 }
 
 .doc-card h3 {
   font-size: 0.95rem;
-  margin-bottom: 0.25rem;
+  margin-bottom: var(--spacing-xs);
   color: var(--text);
 }
 
@@ -431,7 +428,7 @@ footer {
   padding: 2.5rem 0 3.5rem;
   text-align: center;
   color: var(--text-muted);
-  font-size: 0.85rem;
+  font-size: var(--typography-size-sm);
 }
 
 footer a {
