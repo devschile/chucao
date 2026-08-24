@@ -169,7 +169,7 @@ the tag name; instead prefix component tags with `ch-` (e.g. `ch-input`) so
 they don't collide with other libraries on the page.
 
 Beyond tag naming, follow these conventions — already used consistently
-across `ch-accordion`, `ch-badge`, `ch-button`, `ch-card`, `ch-checkbox`,
+across `ch-accordion`, `ch-alert`, `ch-badge`, `ch-button`, `ch-card`, `ch-checkbox`,
 `ch-divider`, `ch-input`, `ch-link`, `ch-radio`, `ch-select`, `ch-spinner`,
 `ch-switch`, `ch-tabs`, and `ch-textarea` — so future
 components stay consistent as the library grows. See

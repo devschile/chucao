@@ -57,7 +57,7 @@
             <li
               class="side-item"
               data-name="ch-alert"
-              data-desc='Mensaje de estado en bloque, con tres variantes. warning se anuncia con role="alert"; info y positive usan role="status". Con dismissible aparece un botón de cierre que emite chDismiss.'
+              data-desc='Mensaje de estado en bloque, con tres variantes. warning se anuncia con role="alert"; default y positive usan role="status". Definir dismiss-label agrega un botón de cierre que emite chDismiss.'
             >
               <a class="side-link" href="#ch-alert">ch-alert</a>
             </li>
@@ -156,14 +156,14 @@
               <span class="tag">@devschile/chucao/ch-alert</span>
             </div>
             <p class="comp-desc">
-              Mensaje de estado en bloque, con tres variantes. <code>warning</code> se anuncia con <code>role="alert"</code>; <code>info</code> y <code>positive</code> usan
-              <code>role="status"</code>. Con <code>dismissible</code> aparece un botón de cierre que emite <code>chDismiss</code>.
+              Mensaje de estado en bloque, con tres variantes. <code>warning</code> se anuncia con <code>role="alert"</code>; <code>default</code> y <code>positive</code> usan
+              <code>role="status"</code>. Definir <code>dismiss-label</code> agrega un botón de cierre que emite <code>chDismiss</code>.
             </p>
             <div class="comp-demo">
               <ch-alert>Los cambios se guardan solos mientras editas.</ch-alert>
               <ch-alert variant="positive">Componente publicado en el CDN.</ch-alert>
               <ch-alert variant="warning">No pudimos conectar con el servidor.</ch-alert>
-              <ch-alert id="demo-alert" dismissible dismiss-label="Descartar aviso">Este aviso se puede cerrar.</ch-alert>
+              <ch-alert id="demo-alert" dismiss-label="Descartar aviso">Este aviso se puede cerrar.</ch-alert>
               <div id="demo-alert-log" class="event-log"></div>
             </div>
             <pre
@@ -171,7 +171,7 @@
             ><code><span class="t">&lt;ch-alert</span><span class="t">&gt;</span>Los cambios se guardan solos mientras editas.<span class="t">&lt;/ch-alert</span><span class="t">&gt;</span>
 <span class="t">&lt;ch-alert</span> <span class="a">variant</span>="positive"<span class="t">&gt;</span>Componente publicado en el CDN.<span class="t">&lt;/ch-alert</span><span class="t">&gt;</span>
 <span class="t">&lt;ch-alert</span> <span class="a">variant</span>="warning"<span class="t">&gt;</span>No pudimos conectar con el servidor.<span class="t">&lt;/ch-alert</span><span class="t">&gt;</span>
-<span class="t">&lt;ch-alert</span> <span class="a">id</span>="demo-alert" <span class="a">dismissible</span> <span class="a">dismiss-label</span>="Descartar aviso"<span class="t">&gt;</span>Este aviso se puede cerrar.<span class="t">&lt;/ch-alert</span><span class="t">&gt;</span></code></pre>
+<span class="t">&lt;ch-alert</span> <span class="a">id</span>="demo-alert" <span class="a">dismiss-label</span>="Descartar aviso"<span class="t">&gt;</span>Este aviso se puede cerrar.<span class="t">&lt;/ch-alert</span><span class="t">&gt;</span></code></pre>
           </div>
 
           <div class="comp" id="ch-badge" tabindex="-1">
