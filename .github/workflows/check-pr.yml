@@ -41,3 +41,16 @@ jobs:
 
       - name: Build
         run: pnpm build
+
+      - name: Generate gallery
+        run: pnpm run generate:gallery
+
+      # The generators above rewrite tracked files. Without this the CI runs
+      # them and throws the result away, so a pull request can commit stale
+      # generated output and still go green.
+      - name: Check generated output is committed
+        run: |
+          if ! git diff --exit-code; then
+            echo "::error::Generated files are out of date. Run 'pnpm build && pnpm run generate:gallery' and commit the result."
+            exit 1
+          fi
