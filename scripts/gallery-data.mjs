@@ -35,6 +35,19 @@ export const gallery = [
   }`,
   },
   {
+    tag: 'ch-alert',
+    description:
+      'Mensaje de estado en bloque, con tres variantes. <code>warning</code> se anuncia con <code>role="alert"</code>; <code>info</code> y <code>positive</code> usan <code>role="status"</code>. Con <code>dismissible</code> aparece un botón de cierre que emite <code>chDismiss</code>.',
+    demos: [
+      '<ch-alert>Los cambios se guardan solos mientras editas.</ch-alert>',
+      '<ch-alert variant="positive">Componente publicado en el CDN.</ch-alert>',
+      '<ch-alert variant="warning">No pudimos conectar con el servidor.</ch-alert>',
+      '<ch-alert id="demo-alert" dismissible dismiss-label="Descartar aviso">Este aviso se puede cerrar.</ch-alert>',
+      '<div id="demo-alert-log" class="event-log"></div>',
+    ],
+    bindings: [{ id: 'demo-alert', event: 'chDismiss', format: '() => `chDismiss`' }],
+  },
+  {
     tag: 'ch-badge',
     description: 'Etiqueta de estado compacta con tres variantes.',
     demos: ['<ch-badge>comunidad</ch-badge>', '<ch-badge variant="positive">Disponible</ch-badge>', '<ch-badge variant="warning">placeholder</ch-badge>'],

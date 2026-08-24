@@ -26,6 +26,14 @@
     <ch-select id="select-1" placeholder="Elige un país"></ch-select>
 
     <ch-card>
+      <h4>Alert</h4>
+      <ch-alert>Los cambios se guardan solos.</ch-alert>
+      <ch-alert variant="positive">Publicado en el CDN.</ch-alert>
+      <ch-alert variant="warning">No pudimos conectar.</ch-alert>
+      <ch-alert id="alert-1" dismissible dismiss-label="Descartar aviso">Este se puede cerrar.</ch-alert>
+    </ch-card>
+
+    <ch-card>
       <h4>Spinner</h4>
       <p>Tres tamaños. Hereda el color del texto.</p>
       <ch-spinner size="sm" label="Cargando"></ch-spinner>

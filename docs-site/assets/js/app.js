@@ -26,6 +26,10 @@ customElements.whenDefined('ch-accordion').then(() => {
   bind('demo-accordion', [{ name: 'chChange', format: ev => `chChange: ${ev.detail}` }]);
 });
 
+customElements.whenDefined('ch-alert').then(() => {
+  bind('demo-alert', [{ name: 'chDismiss', format: () => `chDismiss` }]);
+});
+
 customElements.whenDefined('ch-button').then(() => {
   bind('demo-button', [{ name: 'chClick', format: () => 'chClick' }]);
 });
