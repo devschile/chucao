@@ -19,7 +19,10 @@ something has no issue, it is not planned yet.
 - Issues labelled `discussion` are ideas that still need a decision. **Do not
   implement them.** Comment on the issue instead.
 - Reference the issue from the pull request: `Closes #123` when the PR finishes
-  it, `Refs #123` when it only advances it.
+  it, `Refs #123` when it only advances it. **Keep the keyword in English even
+  though pull request bodies are written in Spanish** — GitHub only recognises
+  `closes`, `fixes` and `resolves`, so a Spanish «Cierra #123» silently fails
+  and leaves the issue open after the work has shipped.
 - **Never reintroduce a checked-in backlog, roadmap, or TASKS file.** Planning
   belongs in issues, where the whole community can see and pick it up. A file
   in the repo drifts from reality and splits the source of truth in two.

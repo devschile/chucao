@@ -99,6 +99,18 @@ el changelog y podría afectar el número de versión.
 
 Como el merge es squash, **lo que importa es el título del PR**.
 
+### Cerrar issues desde el PR
+
+Para que GitHub cierre el issue al mergear, la referencia va **en inglés**:
+
+```
+Closes #123
+```
+
+Aunque el resto del PR esté en español. GitHub solo reconoce `closes`, `fixes` y
+`resolves`; «Cierra #123» no hace nada y el issue queda abierto aunque el
+trabajo esté hecho. Si el PR avanza un issue sin terminarlo, `Refs #123`.
+
 ## Antes de crear el PR
 
 Ejecuta estas tareas en tu local:
