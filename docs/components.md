@@ -95,7 +95,16 @@ every component folder under `src/components/`) and rewrites two files:
   other demo from being seeded.
 
 The GitHub Pages workflow runs `pnpm run generate:gallery` before assembling the
-publish directory, so the gallery stays in sync automatically. When adding a
+publish directory, and `check-pr` runs it too and then fails if the result
+differs from what is committed — running the generators without checking their
+output let stale generated files sit in `main` unnoticed. Regenerate and commit
+before pushing:
+
+```bash
+pnpm build && pnpm run generate:gallery
+```
+
+When adding a
 component, add a matching entry to `scripts/gallery-data.mjs`; the generator
 fails if a component folder lacks a gallery entry (or vice versa).
 
