@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+
+## [1.7.0](https://github.com/devschile/chucao/compare/1.6.0...1.7.0) (2026-08-25)
+
+### Features
+
+* **alert:** add ch-alert status message component ([#44](https://github.com/devschile/chucao/issues/44)) ([6ff199c](https://github.com/devschile/chucao/commit/6ff199c1b4c41fc72a1cef1eb4b2090892100dba)), closes [#17](https://github.com/devschile/chucao/issues/17), references [#17](https://github.com/devschile/chucao/issues/17) [#17](https://github.com/devschile/chucao/issues/17)
+* **docs-site:** add docs:serve to preview the gallery against the local build ([#33](https://github.com/devschile/chucao/issues/33)) ([e1f22ea](https://github.com/devschile/chucao/commit/e1f22eaccffd3a1973e08ab0ce56eff839f55328)), closes [#18](https://github.com/devschile/chucao/issues/18)
+* **docs-site:** make the component gallery navigable ([#35](https://github.com/devschile/chucao/issues/35)) ([afa36da](https://github.com/devschile/chucao/commit/afa36dad161d25044dcfc6281895984cafda2e2c)), references [#34](https://github.com/devschile/chucao/issues/34)
+* **spinner:** add ch-spinner loading indicator ([#32](https://github.com/devschile/chucao/issues/32)) ([b6bbb8a](https://github.com/devschile/chucao/commit/b6bbb8a613a18c03e4b82411adacc11ea73bad24)), closes [#16](https://github.com/devschile/chucao/issues/16), references [#27](https://github.com/devschile/chucao/issues/27) [#16](https://github.com/devschile/chucao/issues/16)
+* **tokens:** reproducible token regeneration via a fixed toki (closes [#21](https://github.com/devschile/chucao/issues/21), addresses [#29](https://github.com/devschile/chucao/issues/29)) ([#30](https://github.com/devschile/chucao/issues/30)) ([9849696](https://github.com/devschile/chucao/commit/9849696e39cb91ba374f98c7f1341723f727c4c5))
+
 ## [1.6.0](https://github.com/devschile/chucao/compare/1.5.3...1.6.0) (2026-08-16)
 
 ### Features
