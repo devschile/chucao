@@ -1,0 +1,72 @@
+.modal {
+  /* Shadow DOM does not inherit the page's box-sizing reset, so without this
+     the padding is added outside max-width and the modal reaches the viewport
+     edges on a narrow screen. */
+  box-sizing: border-box;
+  max-width: min(32rem, calc(100vw - var(--spacing-6xl)));
+  max-height: calc(100vh - var(--spacing-6xl));
+  padding: var(--spacing-5xl);
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius);
+  background: var(--color-background-base);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: var(--typography-size-md);
+}
+
+.modal::backdrop {
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(var(--effect-blur));
+}
+
+.modal-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--spacing-2xl);
+  margin-bottom: var(--spacing-2xl);
+}
+
+.modal-body {
+  overflow-y: auto;
+}
+
+.modal-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  padding: var(--spacing-2xs) var(--spacing-md);
+  border: 0;
+  border-radius: var(--radius);
+  background: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-family: var(--font-heading);
+  font-size: var(--typography-size-lg);
+  line-height: 1;
+  transition: background-color var(--duration-normal) var(--easing-default);
+}
+
+.modal-close:hover {
+  background: var(--surface-hover);
+  color: var(--text);
+}
+
+.modal-close:focus-visible {
+  outline: var(--focus-outline-width) solid var(--accent);
+  outline-offset: var(--focus-outline-offset);
+}
+
+@media (pointer: coarse) {
+  .modal-close {
+    min-width: 44px;
+    min-height: 44px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .modal-close {
+    transition: none;
+  }
+}

@@ -130,6 +130,24 @@ export const gallery = [
     bindings: [{ id: 'demo-link', event: 'chClick', format: "() => 'chClick'" }],
   },
   {
+    tag: 'ch-modal',
+    description:
+      'Diálogo modal sobre el <code>&lt;dialog&gt;</code> nativo, abierto con <code>showModal()</code>: el navegador se encarga del foco, de marcar el resto de la página como inerte, del cierre con <code>Escape</code> y del backdrop. Emite <code>chOpen</code> y <code>chClose</code>.',
+    demos: [
+      '<ch-button id="demo-modal-trigger">Abrir diálogo</ch-button>',
+      '<ch-modal id="demo-modal" label="Confirmar publicación" close-label="Cerrar diálogo"><h4 slot="heading">¿Publicar al CDN?</h4><p>Se publicará la versión actual de la librería. La acción no se puede deshacer.</p></ch-modal>',
+      '<div id="demo-modal-log" class="event-log"></div>',
+    ],
+    bindings: [{ id: 'demo-modal', event: 'chClose', format: '() => `chClose`' }],
+    init: `const modalTrigger = document.getElementById('demo-modal-trigger');
+  const modalEl = document.getElementById('demo-modal');
+  if (modalTrigger && modalEl) {
+    modalTrigger.addEventListener('chClick', () => {
+      modalEl.open = true;
+    });
+  }`,
+  },
+  {
     tag: 'ch-radio',
     description: 'Grupo de selección única; las opciones se pasan por <code>options</code>. Emite <code>chChange</code> con el valor elegido.',
     demos: ['<ch-radio id="demo-radio" label="Elige un tema"></ch-radio>', '<div id="demo-radio-log" class="event-log"></div>'],

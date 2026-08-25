@@ -82,6 +82,13 @@
             <li class="side-item" data-name="ch-link" data-desc="Enlace accesible con variantes default/muted y estado disabled. Emite chClick.">
               <a class="side-link" href="#ch-link">ch-link</a>
             </li>
+            <li
+              class="side-item"
+              data-name="ch-modal"
+              data-desc="Diálogo modal sobre el &lt;dialog&gt; nativo, abierto con showModal(): el navegador se encarga del foco, de marcar el resto de la página como inerte, del cierre con Escape y del backdrop. Emite chOpen y chClose."
+            >
+              <a class="side-link" href="#ch-modal">ch-modal</a>
+            </li>
             <li class="side-item" data-name="ch-radio" data-desc="Grupo de selección única; las opciones se pasan por options. Emite chChange con el valor elegido.">
               <a class="side-link" href="#ch-radio">ch-radio</a>
             </li>
@@ -321,6 +328,29 @@
 <span class="t">&lt;ch-link</span> <span class="a">href</span>="https://github.com/devschile/chucao" <span class="a">target</span>="_blank"<span class="t">&gt;</span>GitHub ↗<span class="t">&lt;/ch-link</span><span class="t">&gt;</span>
 <span class="t">&lt;ch-link</span> <span class="a">variant</span>="muted"<span class="t">&gt;</span>Enlace atenuado<span class="t">&lt;/ch-link</span><span class="t">&gt;</span>
 <span class="t">&lt;ch-link</span> <span class="a">disabled</span><span class="t">&gt;</span>Deshabilitado<span class="t">&lt;/ch-link</span><span class="t">&gt;</span></code></pre>
+          </div>
+
+          <div class="comp" id="ch-modal" tabindex="-1">
+            <div class="comp-head">
+              <h3>ch-modal</h3>
+              <span class="tag">@devschile/chucao/ch-modal</span>
+            </div>
+            <p class="comp-desc">
+              Diálogo modal sobre el <code>&lt;dialog&gt;</code> nativo, abierto con <code>showModal()</code>: el navegador se encarga del foco, de marcar el resto de la página
+              como inerte, del cierre con <code>Escape</code> y del backdrop. Emite <code>chOpen</code> y <code>chClose</code>.
+            </p>
+            <div class="comp-demo">
+              <ch-button id="demo-modal-trigger">Abrir diálogo</ch-button>
+              <ch-modal id="demo-modal" label="Confirmar publicación" close-label="Cerrar diálogo"
+                ><h4 slot="heading">¿Publicar al CDN?</h4>
+                <p>Se publicará la versión actual de la librería. La acción no se puede deshacer.</p></ch-modal
+              >
+              <div id="demo-modal-log" class="event-log"></div>
+            </div>
+            <pre
+              class="comp-code"
+            ><code><span class="t">&lt;ch-button</span> <span class="a">id</span>="demo-modal-trigger"<span class="t">&gt;</span>Abrir diálogo<span class="t">&lt;/ch-button</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-modal</span> <span class="a">id</span>="demo-modal" <span class="a">label</span>="Confirmar publicación" <span class="a">close-label</span>="Cerrar diálogo"<span class="t">&gt;</span><span class="t">&lt;h4</span> <span class="a">slot</span>="heading"<span class="t">&gt;</span>¿Publicar al CDN?<span class="t">&lt;/h4</span><span class="t">&gt;</span><span class="t">&lt;p</span><span class="t">&gt;</span>Se publicará la versión actual de la librería. La acción no se puede deshacer.<span class="t">&lt;/p</span><span class="t">&gt;</span><span class="t">&lt;/ch-modal</span><span class="t">&gt;</span></code></pre>
           </div>
 
           <div class="comp" id="ch-radio" tabindex="-1">
