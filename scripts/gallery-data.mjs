@@ -132,7 +132,7 @@ export const gallery = [
   {
     tag: 'ch-modal',
     description:
-      'Diálogo modal sobre el <code>&lt;dialog&gt;</code> nativo, abierto con <code>showModal()</code>: el navegador se encarga del foco, de marcar el resto de la página como inerte, del cierre con <code>Escape</code> y del backdrop. Emite <code>chOpen</code> y <code>chClose</code>.',
+      'Diálogo modal sobre el <code>&lt;dialog&gt;</code> nativo, abierto con <code>showModal()</code>: el navegador se encarga del foco, de marcar el resto de la página como inerte, del cierre con <code>Escape</code> y del backdrop. Se cierra además al hacer clic fuera del diálogo. Emite <code>chOpen</code> y <code>chClose</code>.',
     demos: [
       '<ch-button id="demo-modal-trigger">Abrir diálogo</ch-button>',
       '<ch-modal id="demo-modal" label="Confirmar publicación" close-label="Cerrar diálogo"><h4 slot="heading">¿Publicar al CDN?</h4><p>Se publicará la versión actual de la librería. La acción no se puede deshacer.</p></ch-modal>',

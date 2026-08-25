@@ -6,6 +6,7 @@ export type ColorToken =
   | 'color.background.bottom-glow'
   | 'color.surface.default'
   | 'color.surface.hover'
+  | 'color.scrim.default'
   | 'color.border.default'
   | 'color.border.hover'
   | 'color.accent.default'

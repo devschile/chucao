@@ -170,8 +170,8 @@ they don't collide with other libraries on the page.
 
 Beyond tag naming, follow these conventions — already used consistently
 across `ch-accordion`, `ch-alert`, `ch-badge`, `ch-button`, `ch-card`, `ch-checkbox`,
-`ch-divider`, `ch-input`, `ch-link`, `ch-radio`, `ch-select`, `ch-spinner`,
-`ch-switch`, `ch-tabs`, and `ch-textarea` — so future
+`ch-divider`, `ch-input`, `ch-link`, `ch-modal`, `ch-radio`, `ch-select`,
+`ch-spinner`, `ch-switch`, `ch-tabs`, and `ch-textarea` — so future
 components stay consistent as the library grows. See
 [`v1-readiness.md`](v1-readiness.md) for the full readiness assessment that
 identified and documented these conventions.
@@ -217,6 +217,23 @@ identified and documented these conventions.
   content in the consumer's light DOM, distributed into the shadow root via a
   named slot per panel: `panel-<value>` (`ch-tabs`), `panel-<value>`
   (`ch-accordion`). Only the active panel is rendered visible.
+- **Overlays**: `ch-modal` is built on the native `<dialog>` opened with
+  `showModal()`, so the browser owns the hard parts — moving focus in and
+  returning it on close, marking the rest of the page inert, `Escape`, the top
+  layer, `::backdrop`, and the implicit `dialog` role with `aria-modal="true"`.
+  Deliberately absent is a focus trap: the W3C APA group concluded a modal
+  should still let keyboard users reach browser UI, so hand-rolling one would
+  be less correct. Two things the platform does not cover are added here —
+  locking the page behind the dialog so it cannot scroll (reference-counted, so
+  nested modals and unmounts cannot unlock it early), and closing on a click
+  outside the dialog, which is `closedby="any"` in the platform but is
+  implemented in JavaScript for every browser alike while Safari lacks it.
+  Because a slotted heading cannot be referenced with `aria-labelledby` across
+  the shadow boundary, the accessible name comes through the `label` prop:
+  always pass it, with the same text as the heading. Native `<dialog>` events
+  are wired with `addEventListener` rather than JSX, since Stencil derives a
+  listener's event name from whether `on<name>` exists on `window` and that
+  differs between the browser and the test environment for pointer events.
 - **Links & dividers**: `ch-link` renders a native `<a>` with
   `default`/`muted` variants; it auto-adds `rel="noopener noreferrer"` for
   `target="_blank"` and, when `disabled`, renders a non-interactive element

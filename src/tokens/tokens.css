@@ -6,6 +6,7 @@
   --color-background-bottom-glow: #261226;
   --color-surface-default: rgba(32, 30, 64, 0.6);
   --color-surface-hover: rgba(45, 212, 191, 0.08);
+  --color-scrim-default: rgba(0, 0, 0, 0.6);
   --color-border-default: rgba(255, 255, 255, 0.08);
   --color-border-hover: rgba(45, 212, 191, 0.3);
   --color-accent-default: #2dd4bf;

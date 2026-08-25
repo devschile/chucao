@@ -5,6 +5,7 @@ export declare const colorBackgroundTopGlow: string;
 export declare const colorBackgroundBottomGlow: string;
 export declare const colorSurfaceDefault: string;
 export declare const colorSurfaceHover: string;
+export declare const colorScrimDefault: string;
 export declare const colorBorderDefault: string;
 export declare const colorBorderHover: string;
 export declare const colorAccentDefault: string;
