@@ -314,6 +314,18 @@ section > p.lead {
   max-width: 42rem;
 }
 
+.size-demo {
+  height: 5.5rem;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  font-family: var(--font-body);
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .weights {
   display: flex;
   flex-wrap: wrap;
