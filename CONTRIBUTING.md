@@ -7,6 +7,28 @@ documentación hasta proponer un componente nuevo.
 Esta guía cubre el proceso. Las convenciones técnicas están en
 [`AGENTS.md`](AGENTS.md) y en [`docs/`](docs/) — acá no se duplican, se enlazan.
 
+## Código de conducta
+
+Participar en Chucao implica respetar el [Código de Conducta de
+devsChile](https://github.com/devschile/.github/blob/main/CODE_OF_CONDUCT.md), que
+es el [Contributor Covenant](https://www.contributor-covenant.org/es/version/2/1/code_of_conduct/)
+2.1 y aplica a todos los repositorios de la organización, no solo a este.
+
+Si algo se sale de esos límites, se reporta a **huemul@devschile.cl**. Los
+reportes los ven los administradores de la organización, que están obligados a
+respetar la privacidad de quien reporta.
+
+## Dónde se conversa
+
+- **Issues de GitHub** para todo lo que sea trabajo: propuestas, bugs, dudas
+  concretas sobre el código. Los que llevan label `discussion` son ideas
+  abiertas, todavía sin decisión.
+- **Slack `#comunidad`** para lo informal, o cuando no sabes si algo amerita un
+  issue.
+
+GitHub Discussions no está habilitado en el repo, así que no hay que buscar ahí:
+para una idea temprana, abre un issue y márcalo como `discussion`.
+
 ## Idioma
 
 - **Issues, pull requests y discusiones: español.** Es una comunidad chilena, no
