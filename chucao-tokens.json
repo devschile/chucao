@@ -14,6 +14,10 @@
       "default": { "$value": "rgba(32, 30, 64, 0.6)", "$description": "Tarjetas, inputs (con blur)" },
       "hover": { "$value": "rgba(45, 212, 191, 0.08)", "$description": "Fondo en hover" }
     },
+    "scrim": {
+      "$description": "Velo",
+      "default": { "$value": "rgba(0, 0, 0, 0.6)", "$description": "Velo sobre la página detrás de un modal" }
+    },
     "border": {
       "$description": "Bordes",
       "default": { "$value": "rgba(255, 255, 255, 0.08)", "$description": "Borde en reposo" },

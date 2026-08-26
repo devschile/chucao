@@ -47,6 +47,17 @@ customElements.whenDefined('ch-link').then(() => {
   bind('demo-link', [{ name: 'chClick', format: () => 'chClick' }]);
 });
 
+customElements.whenDefined('ch-modal').then(() => {
+  const modalTrigger = document.getElementById('demo-modal-trigger');
+  const modalEl = document.getElementById('demo-modal');
+  if (modalTrigger && modalEl) {
+    modalTrigger.addEventListener('chClick', () => {
+      modalEl.open = true;
+    });
+  }
+  bind('demo-modal', [{ name: 'chClose', format: () => `chClose` }]);
+});
+
 customElements.whenDefined('ch-radio').then(() => {
   const radio = document.getElementById('demo-radio');
   if (radio) {

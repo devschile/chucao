@@ -5,6 +5,7 @@ export const colorBackgroundTopGlow = '#201e40';
 export const colorBackgroundBottomGlow = '#261226';
 export const colorSurfaceDefault = 'rgba(32, 30, 64, 0.6)';
 export const colorSurfaceHover = 'rgba(45, 212, 191, 0.08)';
+export const colorScrimDefault = 'rgba(0, 0, 0, 0.6)';
 export const colorBorderDefault = 'rgba(255, 255, 255, 0.08)';
 export const colorBorderHover = 'rgba(45, 212, 191, 0.3)';
 export const colorAccentDefault = '#2dd4bf';
@@ -74,6 +75,9 @@ export const tokens = {
     surface: {
       default: 'rgba(32, 30, 64, 0.6)',
       hover: 'rgba(45, 212, 191, 0.08)',
+    },
+    scrim: {
+      default: 'rgba(0, 0, 0, 0.6)',
     },
     border: {
       default: 'rgba(255, 255, 255, 0.08)',
