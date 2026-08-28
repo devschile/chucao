@@ -171,7 +171,7 @@ they don't collide with other libraries on the page.
 Beyond tag naming, follow these conventions — already used consistently
 across `ch-accordion`, `ch-alert`, `ch-badge`, `ch-button`, `ch-card`, `ch-checkbox`,
 `ch-divider`, `ch-input`, `ch-link`, `ch-modal`, `ch-radio`, `ch-select`,
-`ch-spinner`, `ch-switch`, `ch-tabs`, and `ch-textarea` — so future
+`ch-spinner`, `ch-switch`, `ch-tabs`, `ch-textarea`, and `ch-tooltip` — so future
 components stay consistent as the library grows. See
 [`v1-readiness.md`](v1-readiness.md) for the full readiness assessment that
 identified and documented these conventions.
@@ -234,6 +234,34 @@ identified and documented these conventions.
   are wired with `addEventListener` rather than JSX, since Stencil derives a
   listener's event name from whether `on<name>` exists on `window` and that
   differs between the browser and the test environment for pointer events.
+- **Cross-boundary ARIA**: `ch-tooltip` takes both its trigger and its text
+  from the consumer's light DOM through the `trigger` and `content` slots. That
+  is not a stylistic choice — an `aria-describedby` IDREF only resolves within a
+  single tree, and slotted nodes stay in the document tree even though they
+  render inside the shadow root, so putting both there is what makes the
+  association work at all. Rendering the text inside the shadow root would need
+  a reference pointing _into_ a shadow tree: ARIA element reflection
+  (`ariaDescribedByElements`) only points outwards, and assigning it inwards
+  fails silently — the assignment is accepted and reads back empty. The
+  platform's real fix, `referenceTarget`, has not shipped. The component
+  generates an `id` on the text (respecting one the consumer already set), marks
+  it `role="tooltip"`, and points the trigger at it, re-running on `slotchange`
+  since a framework re-render can replace the slotted nodes. The trigger must be
+  a natively focusable element: `aria-*` set on a custom element host does not
+  reach the native element inside it, so a `ch-button` trigger would not be
+  described — tracked in the library-wide discussion on accessible names.
+  Hover and focus are tracked as two independent flags rather than one open
+  boolean, so a pointer passing over and away cannot hide a tooltip whose
+  trigger still holds keyboard focus, and a third flag records an `Escape`
+  dismissal. `Escape` is handled on the `document`, not the host: a tooltip
+  opened by hovering leaves focus wherever it was, so a host-scoped handler
+  would never see the key. The empty `.bubble::before` in the stylesheet is
+  load-bearing — it spans the offset between trigger and bubble so the pointer
+  stays inside the component while it crosses, which is what keeps the bubble
+  reachable. Without it the pointer passes over the page behind the gap, the
+  host gets `mouseleave`, and the bubble disappears before it can be read.
+  Together these cover the three parts of WCAG 1.4.13 (hoverable, dismissible,
+  persistent).
 - **Links & dividers**: `ch-link` renders a native `<a>` with
   `default`/`muted` variants; it auto-adds `rel="noopener noreferrer"` for
   `target="_blank"` and, when `disabled`, renders a non-interactive element

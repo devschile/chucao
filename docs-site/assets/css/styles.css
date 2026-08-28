@@ -676,3 +676,33 @@ main:focus-visible {
     }
   }
 }
+
+/* The ch-tooltip demos use native buttons on purpose: the tooltip only
+   describes natively focusable triggers. Styled here so they sit alongside the
+   other components instead of falling back to the browser default. */
+.demo-tooltip-trigger {
+  padding: var(--spacing-lg) var(--spacing-3xl);
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: var(--typography-size-sm);
+  cursor: pointer;
+  transition: border-color var(--duration-normal) var(--easing-default);
+}
+
+.demo-tooltip-trigger:hover {
+  border-color: var(--border-hover);
+}
+
+.demo-tooltip-trigger:focus-visible {
+  outline: var(--focus-outline-width) solid var(--accent);
+  outline-offset: var(--focus-outline-offset);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .demo-tooltip-trigger {
+    transition: none;
+  }
+}

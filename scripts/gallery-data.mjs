@@ -226,4 +226,15 @@ export const gallery = [
       { id: 'demo-textarea', event: 'chChange', format: 'ev => `chChange: ${ev.detail}`' },
     ],
   },
+  {
+    tag: 'ch-tooltip',
+    description:
+      'Texto de ayuda que aparece al pasar el mouse y al enfocar con el teclado, con cuatro posiciones. El disparador y el texto van por slot (<code>trigger</code> y <code>content</code>) para que queden en el mismo árbol: así el <code>aria-describedby</code> resuelve y el texto llega a los lectores de pantalla. El disparador debe ser un elemento nativo enfocable.',
+    demos: [
+      '<ch-tooltip><button class="demo-tooltip-trigger" type="button" slot="trigger">Arriba</button><span slot="content">Se publica al CDN</span></ch-tooltip>',
+      '<ch-tooltip placement="bottom"><button class="demo-tooltip-trigger" type="button" slot="trigger">Abajo</button><span slot="content">Se publica al CDN</span></ch-tooltip>',
+      '<ch-tooltip placement="left"><button class="demo-tooltip-trigger" type="button" slot="trigger">Izquierda</button><span slot="content">Se publica al CDN</span></ch-tooltip>',
+      '<ch-tooltip placement="right"><button class="demo-tooltip-trigger" type="button" slot="trigger">Derecha</button><span slot="content">Se publica al CDN</span></ch-tooltip>',
+    ],
+  },
 ];
