@@ -115,6 +115,13 @@
             <li class="side-item" data-name="ch-textarea" data-desc="Área de texto con label asociada. Emite chInput (cada tecla) y chChange (al confirmar).">
               <a class="side-link" href="#ch-textarea">ch-textarea</a>
             </li>
+            <li
+              class="side-item"
+              data-name="ch-tooltip"
+              data-desc="Texto de ayuda que aparece al pasar el mouse y al enfocar con el teclado, con cuatro posiciones. El disparador y el texto van por slot (trigger y content) para que queden en el mismo árbol: así el aria-describedby resuelve y el texto llega a los lectores de pantalla. El disparador debe ser un elemento nativo enfocable."
+            >
+              <a class="side-link" href="#ch-tooltip">ch-tooltip</a>
+            </li>
             <!-- SIDEBAR:END -->
           </ul>
           <p class="side-empty" id="comp-index-empty" hidden></p>
@@ -458,6 +465,36 @@
             <pre
               class="comp-code"
             ><code><span class="t">&lt;ch-textarea</span> <span class="a">id</span>="demo-textarea" <span class="a">label</span>="Mensaje" <span class="a">placeholder</span>="Escribe aquí..." <span class="a">rows</span>="4"<span class="t">&gt;</span><span class="t">&lt;/ch-textarea</span><span class="t">&gt;</span></code></pre>
+          </div>
+
+          <div class="comp" id="ch-tooltip" tabindex="-1">
+            <div class="comp-head">
+              <h3>ch-tooltip</h3>
+              <span class="tag">@devschile/chucao/ch-tooltip</span>
+            </div>
+            <p class="comp-desc">
+              Texto de ayuda que aparece al pasar el mouse y al enfocar con el teclado, con cuatro posiciones. El disparador y el texto van por slot (<code>trigger</code> y
+              <code>content</code>) para que queden en el mismo árbol: así el <code>aria-describedby</code> resuelve y el texto llega a los lectores de pantalla. El disparador debe
+              ser un elemento nativo enfocable.
+            </p>
+            <div class="comp-demo">
+              <ch-tooltip><button class="demo-tooltip-trigger" type="button" slot="trigger">Arriba</button><span slot="content">Se publica al CDN</span></ch-tooltip>
+              <ch-tooltip placement="bottom"
+                ><button class="demo-tooltip-trigger" type="button" slot="trigger">Abajo</button><span slot="content">Se publica al CDN</span></ch-tooltip
+              >
+              <ch-tooltip placement="left"
+                ><button class="demo-tooltip-trigger" type="button" slot="trigger">Izquierda</button><span slot="content">Se publica al CDN</span></ch-tooltip
+              >
+              <ch-tooltip placement="right"
+                ><button class="demo-tooltip-trigger" type="button" slot="trigger">Derecha</button><span slot="content">Se publica al CDN</span></ch-tooltip
+              >
+            </div>
+            <pre
+              class="comp-code"
+            ><code><span class="t">&lt;ch-tooltip</span><span class="t">&gt;</span><span class="t">&lt;button</span> <span class="a">class</span>="demo-tooltip-trigger" <span class="a">type</span>="button" <span class="a">slot</span>="trigger"<span class="t">&gt;</span>Arriba<span class="t">&lt;/button</span><span class="t">&gt;</span><span class="t">&lt;span</span> <span class="a">slot</span>="content"<span class="t">&gt;</span>Se publica al CDN<span class="t">&lt;/span</span><span class="t">&gt;</span><span class="t">&lt;/ch-tooltip</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-tooltip</span> <span class="a">placement</span>="bottom"<span class="t">&gt;</span><span class="t">&lt;button</span> <span class="a">class</span>="demo-tooltip-trigger" <span class="a">type</span>="button" <span class="a">slot</span>="trigger"<span class="t">&gt;</span>Abajo<span class="t">&lt;/button</span><span class="t">&gt;</span><span class="t">&lt;span</span> <span class="a">slot</span>="content"<span class="t">&gt;</span>Se publica al CDN<span class="t">&lt;/span</span><span class="t">&gt;</span><span class="t">&lt;/ch-tooltip</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-tooltip</span> <span class="a">placement</span>="left"<span class="t">&gt;</span><span class="t">&lt;button</span> <span class="a">class</span>="demo-tooltip-trigger" <span class="a">type</span>="button" <span class="a">slot</span>="trigger"<span class="t">&gt;</span>Izquierda<span class="t">&lt;/button</span><span class="t">&gt;</span><span class="t">&lt;span</span> <span class="a">slot</span>="content"<span class="t">&gt;</span>Se publica al CDN<span class="t">&lt;/span</span><span class="t">&gt;</span><span class="t">&lt;/ch-tooltip</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-tooltip</span> <span class="a">placement</span>="right"<span class="t">&gt;</span><span class="t">&lt;button</span> <span class="a">class</span>="demo-tooltip-trigger" <span class="a">type</span>="button" <span class="a">slot</span>="trigger"<span class="t">&gt;</span>Derecha<span class="t">&lt;/button</span><span class="t">&gt;</span><span class="t">&lt;span</span> <span class="a">slot</span>="content"<span class="t">&gt;</span>Se publica al CDN<span class="t">&lt;/span</span><span class="t">&gt;</span><span class="t">&lt;/ch-tooltip</span><span class="t">&gt;</span></code></pre>
           </div>
           <!-- GALLERY:END -->
         </section>

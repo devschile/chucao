@@ -1,0 +1,100 @@
+:host {
+  display: inline-block;
+}
+
+.anchor {
+  position: relative;
+  display: inline-flex;
+}
+
+.bubble {
+  position: absolute;
+  z-index: var(--z-index-dropdown);
+  width: max-content;
+  max-width: 16rem;
+  padding: var(--spacing-md) var(--spacing-2xl);
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--color-background-base);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: var(--typography-size-sm);
+  line-height: 1.4;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity var(--duration-fast) var(--easing-default),
+    visibility var(--duration-fast) var(--easing-default);
+}
+
+.bubble--visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.bubble::before {
+  content: '';
+  position: absolute;
+}
+
+.bubble--top {
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: var(--spacing-md);
+}
+
+.bubble--top::before {
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: var(--spacing-md);
+}
+
+.bubble--bottom {
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: var(--spacing-md);
+}
+
+.bubble--bottom::before {
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  height: var(--spacing-md);
+}
+
+.bubble--left {
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-right: var(--spacing-md);
+}
+
+.bubble--left::before {
+  left: 100%;
+  top: 0;
+  bottom: 0;
+  width: var(--spacing-md);
+}
+
+.bubble--right {
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-left: var(--spacing-md);
+}
+
+.bubble--right::before {
+  right: 100%;
+  top: 0;
+  bottom: 0;
+  width: var(--spacing-md);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bubble {
+    transition: none;
+  }
+}
