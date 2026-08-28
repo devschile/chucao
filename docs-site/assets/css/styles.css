@@ -608,6 +608,10 @@ main:focus-visible {
 /* Desktop: a persistent sidebar alongside the content, using the horizontal
    space the centred single column left empty. */
 @media (min-width: 60rem) {
+  #main-content {
+    min-width: 0;
+  }
+
   .page-shell {
     display: grid;
     grid-template-columns: 15rem 1fr;
