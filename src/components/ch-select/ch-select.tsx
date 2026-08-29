@@ -111,8 +111,6 @@ export class ChSelect {
   componentDidLoad() {
     this.initialValue = this.value;
     this.syncForm();
-    this.host.addEventListener('focusin', this.markTouched);
-    this.host.addEventListener('input', this.markTouched);
     this.host.addEventListener('change', this.markTouched);
     this.host.addEventListener('focusout', this.markTouched);
     this.host.addEventListener('invalid', this.markTouched);

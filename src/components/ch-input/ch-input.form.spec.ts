@@ -93,17 +93,28 @@ describe('ch-input form association', () => {
     expect(form.checkValidity()).toBe(false);
   });
 
-  it('does not mark a required-empty field as touched until a submit attempt', async () => {
+  it('does not mark a required-empty field as touched on focus, only after blur or submit', async () => {
     document.body.innerHTML = `<form id="f"><ch-input name="email" required></ch-input></form>`;
     await settle();
     const form = document.getElementById('f') as HTMLFormElement;
     const el = document.querySelector('ch-input') as HTMLElement;
+    const input = el.shadowRoot?.querySelector('input') as HTMLInputElement;
 
     expect(el.hasAttribute('data-touched')).toBe(false);
 
+    input.focus();
+    input.value = '';
+    input.dispatchEvent(new Event('input', { bubbles: true }));
+    await settle();
+    expect(el.hasAttribute('data-touched')).toBe(false);
+
+    input.blur();
+    await settle();
+    expect(el.hasAttribute('data-touched')).toBe(true);
+
+    el.removeAttribute('data-touched');
     form.requestSubmit();
     await settle();
-
     expect(el.hasAttribute('data-touched')).toBe(true);
   });
 

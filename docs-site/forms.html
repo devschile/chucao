@@ -182,8 +182,9 @@ form.addEventListener('submit', (event) =&gt; {
           </li>
           <li>
             <strong>Resaltado del campo inválido.</strong> Los componentes pintan el borde del control en color de advertencia cuando el campo es inválido <em>después</em> de que
-            el usuario interactuó con él o intentó enviar el formulario — nunca antes. Internamente se marcan al primer <code>focusin</code>/<code>input</code>/<code>change</code>
-            o ante un intento de submit (evento <code>invalid</code>), y el estilo se resuelve con la validez nativa:
+            el usuario terminó la interacción — al salir del campo (<code>focusout</code>) o al confirmar el valor (<code>change</code>) — o ante un intento de submit (evento
+            <code>invalid</code>). Un campo con foco aún no se resalta mientras el usuario lo está editando. Internamente se marca al terminar la interacción, y el estilo se
+            resuelve con la validez nativa:
             <pre class="comp-code"><code>/* dentro del componente */
 :host([data-touched]:invalid) .input,
 :host(:user-invalid) .input {
