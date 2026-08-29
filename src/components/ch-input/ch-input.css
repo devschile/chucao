@@ -46,6 +46,17 @@
   box-shadow: 0 0 0 3px var(--color-status-warning-background);
 }
 
+:host(:invalid) .input,
+:host(:user-invalid) .input {
+  border-color: var(--color-status-warning);
+}
+
+:host(:invalid) .input:focus,
+:host(:user-invalid) .input:focus {
+  border-color: var(--color-status-warning);
+  box-shadow: 0 0 0 3px var(--color-status-warning-background);
+}
+
 .input:disabled {
   opacity: var(--opacity-disabled);
   cursor: not-allowed;

@@ -181,9 +181,19 @@ form.addEventListener('submit', (event) =&gt; {
 });</code></pre>
           </li>
           <li>
-            <strong>Mensaje de error inline.</strong> El mensaje rojo bajo el campo se renderiza cuando pasas <code>invalid</code> + <code>error-message</code> (por ejemplo, desde
-            la validación del servidor). El <code>required</code> vacío valida solo por la API nativa: el navegador muestra el <code>validationMessage</code> en el control inválido
-            y bloquea el submit.
+            <strong>Resaltado del campo inválido.</strong> Los componentes pintan el borde del control en color de advertencia cuando el host matchea <code>:invalid</code> o
+            <code>:user-invalid</code> — por ejemplo, un campo <code>required</code> vacío queda resaltado. Es CSS puro sobre la validez nativa, sin JavaScript:
+            <pre class="comp-code"><code>ch-input:invalid .input,
+ch-input:user-invalid .input {
+  border-color: var(--color-status-warning);
+}</code></pre>
+            <code>:user-invalid</code> se aplica después de que el usuario interactuó con el campo; el resaltado por <code>:invalid</code> es el que ves en los ejemplos de esta
+            página.
+          </li>
+          <li>
+            <strong>Mensaje de error inline.</strong> El texto rojo bajo el campo se renderiza cuando pasas <code>invalid</code> + <code>error-message</code> (por ejemplo, desde la
+            validación del servidor). El <code>required</code> vacío valida solo por la API nativa: el navegador muestra el <code>validationMessage</code> en el control inválido y
+            bloquea el submit.
           </li>
           <li>
             <strong>Validación de formato.</strong> El <code>type</code> (p. ej. <code>email</code>) se aplica al input interno. La validez del host refleja <code>required</code> y

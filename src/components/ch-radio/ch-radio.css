@@ -73,6 +73,16 @@
   outline-color: var(--color-status-warning);
 }
 
+:host(:invalid) .input,
+:host(:user-invalid) .input {
+  border-color: var(--color-status-warning);
+}
+
+:host(:invalid) .input:focus-visible,
+:host(:user-invalid) .input:focus-visible {
+  outline-color: var(--color-status-warning);
+}
+
 .label-text {
   color: var(--text);
 }
