@@ -57,7 +57,7 @@
           <li>Su valor/estado se envía en <code>FormData</code> y en el submit (por su <code>name</code>).</li>
           <li>Aparecen en <code>form.elements</code> y <code>form.checkValidity()</code> los ve.</li>
           <li>Un campo <code>required</code> vacío es inválido (<code>valueMissing</code>) y bloquea el submit.</li>
-          <li>El host matchea <code>:invalid</code>/<code>:valid</code>, así podés estilarlo desde tu CSS.</li>
+          <li>El host matchea <code>:invalid</code>/<code>:valid</code>, así puedes estilarlo desde tu CSS.</li>
           <li><code>form.reset()</code> restaura el valor o estado inicial.</li>
           <li>Un <code>&lt;fieldset disabled&gt;</code> deshabilita los controles que contiene y excluye sus valores.</li>
         </ul>
@@ -70,9 +70,14 @@
         <p>Un formulario con un solo campo, leído con JavaScript puro:</p>
         <pre class="comp-code"><code>&lt;form id="contacto"&gt;
   &lt;ch-input name="email" label="Correo" type="email" required&gt;&lt;/ch-input&gt;
-  &lt;button type="submit"&gt;Enviar&lt;/button&gt;
+  &lt;ch-button id="enviar"&gt;Enviar&lt;/ch-button&gt;
 &lt;/form&gt;</code></pre>
         <pre class="comp-code"><code>const form = document.getElementById('contacto');
+const submit = document.getElementById('enviar');
+
+// ch-button no puede disparar el submit por sí solo (vive en su shadow
+// root): conecta chClick con requestSubmit(), que valida y dispara submit.
+submit.addEventListener('chClick', () =&gt; form.requestSubmit());
 
 form.addEventListener('submit', (event) =&gt; {
   event.preventDefault(); // sin backend real, acá solo leemos los datos
@@ -91,7 +96,7 @@ form.addEventListener('submit', (event) =&gt; {
           <form id="login-form">
             <ch-input name="email" label="Correo electrónico" type="email" required error-message="Ingresa un correo válido"></ch-input>
             <ch-input name="password" label="Contraseña" type="password" required error-message="Ingresa tu contraseña"></ch-input>
-            <button type="submit" class="demo-form-submit">Entrar</button>
+            <ch-button id="login-submit">Entrar</ch-button>
           </form>
           <pre class="form-result" id="login-result" aria-live="polite"></pre>
         </div>
@@ -99,11 +104,16 @@ form.addEventListener('submit', (event) =&gt; {
         <pre class="comp-code"><code>&lt;form id="login-form"&gt;
   &lt;ch-input name="email" label="Correo electrónico" type="email" required error-message="Ingresa un correo válido"&gt;&lt;/ch-input&gt;
   &lt;ch-input name="password" label="Contraseña" type="password" required error-message="Ingresa tu contraseña"&gt;&lt;/ch-input&gt;
-  &lt;button type="submit"&gt;Entrar&lt;/button&gt;
+  &lt;ch-button id="login-submit"&gt;Entrar&lt;/ch-button&gt;
 &lt;/form&gt;</code></pre>
         <h3>JavaScript</h3>
         <pre class="comp-code"><code>const form = document.getElementById('login-form');
 const output = document.getElementById('login-result');
+const submit = document.getElementById('login-submit');
+
+// ch-button no puede disparar el submit por sí solo: conecta chClick con
+// requestSubmit(), que valida y dispara `submit` si el formulario es válido.
+submit.addEventListener('chClick', () =&gt; form.requestSubmit());
 
 form.addEventListener('submit', (event) =&gt; {
   event.preventDefault(); // en este demo no hay backend
@@ -125,7 +135,7 @@ form.addEventListener('submit', (event) =&gt; {
           <form id="newsletter-form">
             <ch-input name="email" label="Correo electrónico" type="email" required error-message="Ingresa un correo válido"></ch-input>
             <ch-checkbox name="consent" label="Acepto recibir novedades por correo" required error-message="Necesitamos tu consentimiento"></ch-checkbox>
-            <button type="submit" class="demo-form-submit">Suscribirme</button>
+            <ch-button id="newsletter-submit">Suscribirme</ch-button>
           </form>
           <pre class="form-result" id="newsletter-result" aria-live="polite"></pre>
         </div>
@@ -133,11 +143,14 @@ form.addEventListener('submit', (event) =&gt; {
         <pre class="comp-code"><code>&lt;form id="newsletter-form"&gt;
   &lt;ch-input name="email" label="Correo electrónico" type="email" required error-message="Ingresa un correo válido"&gt;&lt;/ch-input&gt;
   &lt;ch-checkbox name="consent" label="Acepto recibir novedades por correo" required error-message="Necesitamos tu consentimiento"&gt;&lt;/ch-checkbox&gt;
-  &lt;button type="submit"&gt;Suscribirme&lt;/button&gt;
+  &lt;ch-button id="newsletter-submit"&gt;Suscribirme&lt;/ch-button&gt;
 &lt;/form&gt;</code></pre>
         <h3>JavaScript</h3>
         <pre class="comp-code"><code>const form = document.getElementById('newsletter-form');
 const output = document.getElementById('newsletter-result');
+const submit = document.getElementById('newsletter-submit');
+
+submit.addEventListener('chClick', () =&gt; form.requestSubmit());
 
 form.addEventListener('submit', (event) =&gt; {
   event.preventDefault();
@@ -161,14 +174,14 @@ form.addEventListener('submit', (event) =&gt; {
         <ul>
           <li>
             <strong>Botón de submit.</strong> <code>ch-button</code> renderiza un <code>&lt;button type="button"&gt;</code> dentro de su shadow root, así que no dispara el submit
-            de un formulario del light DOM. Usá un <code>&lt;button type="submit"&gt;</code> junto a los controles, o conectá <code>chClick</code> con
-            <code>form.requestSubmit()</code>:
+            por sí solo. Conecta <code>chClick</code> con <code>form.requestSubmit()</code>: ese método corre la validación nativa y dispara <code>submit</code> si el formulario es
+            válido:
             <pre class="comp-code"><code>document.getElementById('entrar').addEventListener('chClick', () =&gt; {
   document.getElementById('login-form').requestSubmit();
 });</code></pre>
           </li>
           <li>
-            <strong>Mensaje de error inline.</strong> El mensaje rojo bajo el campo se renderiza cuando pasás <code>invalid</code> + <code>error-message</code> (por ejemplo, desde
+            <strong>Mensaje de error inline.</strong> El mensaje rojo bajo el campo se renderiza cuando pasas <code>invalid</code> + <code>error-message</code> (por ejemplo, desde
             la validación del servidor). El <code>required</code> vacío valida solo por la API nativa: el navegador muestra el <code>validationMessage</code> en el control inválido
             y bloquea el submit.
           </li>
@@ -198,6 +211,8 @@ form.addEventListener('submit', (event) =&gt; {
     <script>
       const loginForm = document.getElementById('login-form');
       const loginResult = document.getElementById('login-result');
+      const loginSubmit = document.getElementById('login-submit');
+      loginSubmit?.addEventListener('chClick', () => loginForm?.requestSubmit());
       loginForm?.addEventListener('submit', event => {
         event.preventDefault();
         loginResult.textContent = JSON.stringify(Object.fromEntries(new FormData(loginForm)), null, 2);
@@ -205,6 +220,8 @@ form.addEventListener('submit', (event) =&gt; {
 
       const newsletterForm = document.getElementById('newsletter-form');
       const newsletterResult = document.getElementById('newsletter-result');
+      const newsletterSubmit = document.getElementById('newsletter-submit');
+      newsletterSubmit?.addEventListener('chClick', () => newsletterForm?.requestSubmit());
       newsletterForm?.addEventListener('submit', event => {
         event.preventDefault();
         newsletterResult.textContent = JSON.stringify(Object.fromEntries(new FormData(newsletterForm)), null, 2);

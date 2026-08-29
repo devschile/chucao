@@ -325,28 +325,6 @@ section > p.lead {
   max-width: 26rem;
 }
 
-.demo-form-submit {
-  align-self: flex-start;
-  padding: var(--spacing-lg) var(--spacing-3xl);
-  border: var(--border-width) solid var(--border);
-  border-radius: var(--radius);
-  background: var(--surface);
-  color: var(--text);
-  font-family: var(--font-heading);
-  font-size: var(--typography-size-sm);
-  cursor: pointer;
-  transition: border-color var(--duration-normal) var(--easing-default);
-}
-
-.demo-form-submit:hover {
-  border-color: var(--border-hover);
-}
-
-.demo-form-submit:focus-visible {
-  outline: var(--focus-outline-width) solid var(--accent);
-  outline-offset: var(--focus-outline-offset);
-}
-
 .form-result {
   margin: 0;
   font-family: var(--font-heading);
