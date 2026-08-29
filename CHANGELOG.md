@@ -6,6 +6,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+## [2.0.0](https://github.com/devschile/chucao/compare/1.7.0...2.0.0) (2026-08-29)
+
+### Features
+
+* **docs-site:** mostrar la escala de tamaños de tipografía ([#46](https://github.com/devschile/chucao/issues/46)) ([51e4aa4](https://github.com/devschile/chucao/commit/51e4aa46ade1a619bae7abe0110cbb9c84485282)), closes [#43](https://github.com/devschile/chucao/issues/43)
+* **forms:** make form controls participate in native forms via ElementInternals ([#63](https://github.com/devschile/chucao/issues/63)) ([8d64838](https://github.com/devschile/chucao/commit/8d6483831e38cf32b8b2df7ae4caf891ba393d91)), closes [#22](https://github.com/devschile/chucao/issues/22)
+* **modal:** add ch-modal built on the native dialog element ([#48](https://github.com/devschile/chucao/issues/48)) ([5067a62](https://github.com/devschile/chucao/commit/5067a62d57a8175efe61349cd98ffb711336d94d)), closes [#20](https://github.com/devschile/chucao/issues/20) [#20](https://github.com/devschile/chucao/issues/20), references [#20](https://github.com/devschile/chucao/issues/20)
+* **tooltip:** add ch-tooltip with slot-based accessible association ([#52](https://github.com/devschile/chucao/issues/52)) ([2363df3](https://github.com/devschile/chucao/commit/2363df38a8590dea375986bdc8649defce92bfcb)), closes [#19](https://github.com/devschile/chucao/issues/19), references [#19](https://github.com/devschile/chucao/issues/19) [#47](https://github.com/devschile/chucao/issues/47)
+
+### Bug Fixes
+
+* **docs-site:** keep main-content inside the page-shell wrap width ([4629138](https://github.com/devschile/chucao/commit/4629138afb28c45ce04a9572569ca698464f8e52))
+
 ## [1.8.0](https://github.com/devschile/chucao/compare/1.7.0...1.8.0) (2026-08-28)
 
 ### Features
