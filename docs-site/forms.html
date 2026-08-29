@@ -181,14 +181,18 @@ form.addEventListener('submit', (event) =&gt; {
 });</code></pre>
           </li>
           <li>
-            <strong>Resaltado del campo inválido.</strong> Los componentes pintan el borde del control en color de advertencia cuando el host matchea <code>:invalid</code> o
-            <code>:user-invalid</code> — por ejemplo, un campo <code>required</code> vacío queda resaltado. Es CSS puro sobre la validez nativa, sin JavaScript:
-            <pre class="comp-code"><code>ch-input:invalid .input,
-ch-input:user-invalid .input {
+            <strong>Resaltado del campo inválido.</strong> Los componentes pintan el borde del control en color de advertencia cuando el campo es inválido <em>después</em> de que
+            el usuario interactuó con él o intentó enviar el formulario — nunca antes. Internamente se marcan al primer <code>focusin</code>/<code>input</code>/<code>change</code>
+            o ante un intento de submit (evento <code>invalid</code>), y el estilo se resuelve con la validez nativa:
+            <pre class="comp-code"><code>/* dentro del componente */
+:host([data-touched]:invalid) .input,
+:host(:user-invalid) .input {
   border-color: var(--color-status-warning);
 }</code></pre>
-            <code>:user-invalid</code> se aplica después de que el usuario interactuó con el campo; el resaltado por <code>:invalid</code> es el que ves en los ejemplos de esta
-            página.
+            Desde tu CSS también puedes apuntar al host con las mismas pseudoclases (p. ej.
+            <code>ch-input[data-touched]:invalid</code>) para estilos propios. <code>:user-invalid</code>
+            hace lo mismo en navegadores que lo reportan sobre custom elements; el atributo
+            <code>data-touched</code> cubre el resto.
           </li>
           <li>
             <strong>Mensaje de error inline.</strong> El texto rojo bajo el campo se renderiza cuando pasas <code>invalid</code> + <code>error-message</code> (por ejemplo, desde la

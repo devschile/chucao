@@ -93,6 +93,20 @@ describe('ch-input form association', () => {
     expect(form.checkValidity()).toBe(false);
   });
 
+  it('does not mark a required-empty field as touched until a submit attempt', async () => {
+    document.body.innerHTML = `<form id="f"><ch-input name="email" required></ch-input></form>`;
+    await settle();
+    const form = document.getElementById('f') as HTMLFormElement;
+    const el = document.querySelector('ch-input') as HTMLElement;
+
+    expect(el.hasAttribute('data-touched')).toBe(false);
+
+    form.requestSubmit();
+    await settle();
+
+    expect(el.hasAttribute('data-touched')).toBe(true);
+  });
+
   it('becomes valid when a required empty input receives a value', async () => {
     document.body.innerHTML = `<form id="f"><ch-input name="email" required></ch-input></form>`;
     await settle();

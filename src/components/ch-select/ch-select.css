@@ -43,12 +43,12 @@
   box-shadow: 0 0 0 3px var(--color-status-warning-background);
 }
 
-:host(:invalid) .select,
+:host([data-touched]:invalid) .select,
 :host(:user-invalid) .select {
   border-color: var(--color-status-warning);
 }
 
-:host(:invalid) .select:focus,
+:host([data-touched]:invalid) .select:focus,
 :host(:user-invalid) .select:focus {
   border-color: var(--color-status-warning);
   box-shadow: 0 0 0 3px var(--color-status-warning-background);

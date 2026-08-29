@@ -49,12 +49,12 @@
   box-shadow: 0 0 0 3px var(--color-status-warning-background);
 }
 
-:host(:invalid) .textarea,
+:host([data-touched]:invalid) .textarea,
 :host(:user-invalid) .textarea {
   border-color: var(--color-status-warning);
 }
 
-:host(:invalid) .textarea:focus,
+:host([data-touched]:invalid) .textarea:focus,
 :host(:user-invalid) .textarea:focus {
   border-color: var(--color-status-warning);
   box-shadow: 0 0 0 3px var(--color-status-warning-background);

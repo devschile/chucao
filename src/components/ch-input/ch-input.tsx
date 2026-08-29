@@ -1,4 +1,4 @@
-import { AttachInternals, Component, Event, type EventEmitter, Host, Prop, State, Watch, h } from '@stencil/core';
+import { AttachInternals, Component, Element, Event, type EventEmitter, Host, Prop, State, Watch, h } from '@stencil/core';
 
 let inputIds = 0;
 
@@ -16,6 +16,7 @@ export class ChInput {
 
   @AttachInternals() internals!: ElementInternals;
   @State() formDisabled = false;
+  @Element() private host!: HTMLElement;
 
   /**
    * Visible label rendered above the input and associated with it via
@@ -114,7 +115,16 @@ export class ChInput {
   componentDidLoad() {
     this.initialValue = this.value;
     this.syncForm();
+    this.host.addEventListener('focusin', this.markTouched);
+    this.host.addEventListener('input', this.markTouched);
+    this.host.addEventListener('change', this.markTouched);
+    this.host.addEventListener('focusout', this.markTouched);
+    this.host.addEventListener('invalid', this.markTouched);
   }
+
+  private markTouched = (): void => {
+    this.host.setAttribute('data-touched', '');
+  };
 
   formResetCallback(): void {
     this.value = this.initialValue;

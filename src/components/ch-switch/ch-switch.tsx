@@ -1,4 +1,4 @@
-import { AttachInternals, Component, Event, type EventEmitter, Host, Prop, State, Watch, h } from '@stencil/core';
+import { AttachInternals, Component, Element, Event, type EventEmitter, Host, Prop, State, Watch, h } from '@stencil/core';
 
 let switchIds = 0;
 
@@ -16,6 +16,7 @@ export class ChSwitch {
 
   @AttachInternals() internals!: ElementInternals;
   @State() formDisabled = false;
+  @Element() private host!: HTMLElement;
 
   /**
    * Visible label rendered next to the switch, associated with it via
@@ -99,7 +100,16 @@ export class ChSwitch {
   componentDidLoad() {
     this.initialChecked = this.checked;
     this.syncForm();
+    this.host.addEventListener('focusin', this.markTouched);
+    this.host.addEventListener('input', this.markTouched);
+    this.host.addEventListener('change', this.markTouched);
+    this.host.addEventListener('focusout', this.markTouched);
+    this.host.addEventListener('invalid', this.markTouched);
   }
+
+  private markTouched = (): void => {
+    this.host.setAttribute('data-touched', '');
+  };
 
   formResetCallback(): void {
     this.checked = this.initialChecked;

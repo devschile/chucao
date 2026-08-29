@@ -1,4 +1,4 @@
-import { AttachInternals, Component, Event, type EventEmitter, Host, Prop, State, Watch, h } from '@stencil/core';
+import { AttachInternals, Component, Element, Event, type EventEmitter, Host, Prop, State, Watch, h } from '@stencil/core';
 
 export interface ChRadioOption {
   label: string;
@@ -23,6 +23,7 @@ export class ChRadio {
 
   @AttachInternals() internals!: ElementInternals;
   @State() formDisabled = false;
+  @Element() private host!: HTMLElement;
 
   /**
    * Visible label describing the radio group, associated with it via
@@ -107,7 +108,16 @@ export class ChRadio {
   componentDidLoad() {
     this.initialValue = this.value;
     this.syncForm();
+    this.host.addEventListener('focusin', this.markTouched);
+    this.host.addEventListener('input', this.markTouched);
+    this.host.addEventListener('change', this.markTouched);
+    this.host.addEventListener('focusout', this.markTouched);
+    this.host.addEventListener('invalid', this.markTouched);
   }
+
+  private markTouched = (): void => {
+    this.host.setAttribute('data-touched', '');
+  };
 
   formResetCallback(): void {
     this.value = this.initialValue;
