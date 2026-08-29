@@ -20,7 +20,7 @@
  */
 
 import { createServer } from 'node:http';
-import { cpSync, existsSync, mkdirSync, readFileSync, rmSync, statSync, writeFileSync } from 'node:fs';
+import { cpSync, existsSync, mkdirSync, readFileSync, rmSync, statSync, writeFileSync, readdirSync } from 'node:fs';
 import { extname, join, normalize, resolve } from 'node:path';
 
 const PREVIEW_DIR = resolve('.docs-preview');
@@ -80,17 +80,22 @@ function assemble() {
   cpSync(DOCS_SITE_DIR, PREVIEW_DIR, { recursive: true });
   cpSync(BUILD_DIR, join(PREVIEW_DIR, 'build'), { recursive: true });
 
-  // Point the page at the local build instead of the CDN.
-  const indexPath = join(PREVIEW_DIR, 'index.html');
-  let html = readFileSync(indexPath, 'utf8');
-  const before = html;
-  html = html.replaceAll(CDN_ASSETS, '/build/');
-  html = html.replaceAll('cargados desde el CDN (<code>static.devschile.cl/chucao/latest/</code>)', 'cargados desde el build local (<code>www/build/</code>)');
-  if (html === before) {
-    throw new Error('Expected CDN asset URLs in docs-site/index.html; found none. Has the markup changed?');
+  // Point every page at the local build instead of the CDN.
+  for (const file of readdirSync(PREVIEW_DIR)) {
+    if (!file.endsWith('.html')) {
+      continue;
+    }
+    const pagePath = join(PREVIEW_DIR, file);
+    let html = readFileSync(pagePath, 'utf8');
+    const before = html;
+    html = html.replaceAll(CDN_ASSETS, '/build/');
+    html = html.replaceAll('cargados desde el CDN (<code>static.devschile.cl/chucao/latest/</code>)', 'cargados desde el build local (<code>www/build/</code>)');
+    if (html === before) {
+      throw new Error(`Expected CDN asset URLs in docs-site/${file}; found none. Has the markup changed?`);
+    }
+    html = html.replace('</body>', `${BANNER}  </body>`);
+    writeFileSync(pagePath, html);
   }
-  html = html.replace('</body>', `${BANNER}  </body>`);
-  writeFileSync(indexPath, html);
 
   // The generated stylesheet points at CDN-hosted fonts even in a local build;
   // rewrite them so the preview needs no network.
