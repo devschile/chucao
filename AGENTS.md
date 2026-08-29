@@ -78,6 +78,18 @@ Follow these API conventions (documented in `docs/components.md`):
   `ch-input`/`ch-select`, `aria-label` for `ch-button`); keep a visible
   `:focus-visible` style on interactive elements.
 - All components use `shadow: true`.
+- **Any component change that the docs-site gallery reflects ships with a
+  release.** The gallery (`scripts/gallery-data.mjs`) documents every component
+  on the next `main` push (`.github/workflows/docs.yml`), but the docs site
+  loads the library from the CDN `static.devschile.cl/chucao/latest/`, which
+  only updates when a release is cut (`pnpm run release` → tag →
+  `.github/workflows/release.yml`). This applies to a new component **and** to
+  an existing component whose API or behavior changes (a new prop/attribute,
+  variant, event, or behavior the gallery demos). The docs publish is gated on
+  that release (`scripts/check-released.mjs` fails the deploy if the released
+  bundle is missing a component or prop the gallery uses), so treat the change
+  and its release as one unit of work — never merge a component change without
+  releasing it.
 
 ## Commands
 
@@ -89,6 +101,9 @@ Follow these API conventions (documented in `docs/components.md`):
 - `pnpm lint` (oxlint) / `pnpm lint:fix` — linting.
 - `pnpm run format` / `pnpm run format:check` — Prettier.
 - `pnpm run generate` — `stencil generate` scaffolding.
+- `pnpm run check:released` — fails if the built bundle has components or props
+  the released CDN bundle (`chucao/latest/`) does not carry yet; runs in CI
+  before publishing the docs site.
 - `pnpm run release` — `release-it` release (creates a version tag; the CI
   workflow `.github/workflows/release.yml` builds, lints, tests, and publishes
   to npm when a version tag is pushed).

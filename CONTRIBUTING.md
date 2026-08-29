@@ -185,6 +185,15 @@ orden:
    - entrada correspondiente en `scripts/gallery-data.mjs` (el generador de la
      galería falla si falta).
 
+3. **Cada cambio de componente se publica con una release.** La galería del
+   sitio de documentación incluye el componente apenas se mergea a `main`, pero
+   el sitio carga la librería desde el CDN (`chucao/latest/`), que solo se
+   actualiza al lanzar una versión (`pnpm run release`). Sin esa release, el
+   deploy de la documentación queda bloqueado (`pnpm run check:released`) y el
+   sitio mostraría una sección rota. Esto vale tanto para un componente nuevo
+   como para uno existente que cambie su API pública (una prop, variante,
+   evento o comportamiento nuevo). El merge y su release van de la mano.
+
 La forma más rápida de partir es copiar la estructura de un componente que ya
 exista.
 

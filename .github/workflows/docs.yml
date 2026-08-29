@@ -49,6 +49,14 @@ jobs:
       - name: Generate gallery
         run: pnpm run generate:gallery
 
+      # The gallery documents every component on the next main push, but the
+      # site loads the library from the CDN chucao/latest/, which only updates
+      # on a release. Fail the publish when the gallery would reference a
+      # component or prop the release does not carry yet, so the live site
+      # keeps the last consistent version instead of a broken section.
+      - name: Check gallery components are released
+        run: pnpm run check:released
+
       - name: Assemble publish dir
         run: |
           rm -rf publish
@@ -56,6 +64,12 @@ jobs:
           cp -R docs-site/. publish/
           cp README.md DESIGN.md CHANGELOG.md publish/
           cp -R docs publish/docs
+
+      # The committed index.html pins the last released version; the publish
+      # copy is stamped with the current package.json version, so the deployed
+      # page names the release that carries every component it documents.
+      - name: Stamp published version
+        run: node scripts/stamp-version.mjs publish/index.html
 
       - name: Upload publish dir
         uses: actions/upload-artifact@v7

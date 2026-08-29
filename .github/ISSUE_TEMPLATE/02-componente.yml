@@ -71,3 +71,5 @@ body:
           required: true
         - label: Busqué en los issues existentes y no encontré esta propuesta.
           required: true
+        - label: Entiendo que documentar este componente en el sitio requiere lanzar una versión (release) de la librería.
+          required: true
