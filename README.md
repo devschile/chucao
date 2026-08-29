@@ -38,6 +38,7 @@ piezas externas.
 | ----------------------------------------------------------------------------------------- | ------- | ------------------------------------------------------------------------------ |
 | [`CONTRIBUTING.md`](CONTRIBUTING.md)                                                      | Español | Cómo contribuir: flujo de trabajo, commits, proponer un componente             |
 | [`AGENTS.md`](AGENTS.md)                                                                  | English | Convenciones del repo para contribuyentes y agentes de IA                      |
+| [`CLAUDE.md`](CLAUDE.md)                                                                  | English | Router para agentes de Claude Code: apunta a `AGENTS.md` sin duplicar reglas   |
 | [`SECURITY.md`](SECURITY.md)                                                              | Español | Cómo reportar un problema de seguridad y versiones soportadas                  |
 | [`CODE_OF_CONDUCT.md`](https://github.com/devschile/.github/blob/main/CODE_OF_CONDUCT.md) | Español | Código de conducta de devsChile — aplica a todos los repos de la organización  |
 | [`DESIGN.md`](DESIGN.md)                                                                  | Español | Identidad de marca + sistema de diseño web                                     |
