@@ -201,7 +201,26 @@ identified and documented these conventions.
   — reflect each prop straight onto the native element (e.g.
   `<button disabled={this.disabled}>`, `<input disabled={this.disabled} required={this.required} />`).
   This is the pattern `ch-input` and `ch-select` already follow, and that
-  `ch-button` was updated to match.
+  `ch-button` was updated to match. The form controls declare `name`,
+  `disabled` and `required` as `@Prop({ reflect: true })` so the host also
+  carries them: the platform reads those attributes on the host for form
+  association (see the form participation bullet below).
+- **Form participation & native validation**: the six form controls
+  (`ch-checkbox`, `ch-input`, `ch-radio`, `ch-select`, `ch-switch`,
+  `ch-textarea`) are form-associated custom elements
+  (`@Component({ formAssociated: true })`). Inside a `<form>` they behave like
+  native controls: their value/checked state is submitted through
+  `ElementInternals.setFormValue()`, they appear in `form.elements`, and
+  `form.checkValidity()`/`FormData` see them. `required` with an empty value is
+  invalid (`valueMissing`), blocking submit, and the `invalid`/`errorMessage`
+  props are mirrored into `setValidity({ customError })`, so the host matches
+  `:invalid`/`:valid`. The constraint-validation API for form-associated custom
+  elements lives on `element.internals` (not on the element): `checkValidity()`,
+  `validationMessage`, `validity`, `willValidate`. `formResetCallback` restores
+  `value`/`checked` to the initial state on form reset. This is a 2.0 breaking
+  change: controls inside a form that previously contributed nothing now
+  participate — consumers who compensated by hand (e.g. hidden inputs feeding
+  `FormData`) must remove that workaround to avoid duplicate values.
 - **Accessibility**: prefer native, keyboard-accessible elements
   (`<button>`, `<input>`, `<select>`, `<textarea>`) inside the shadow root
   instead of reimplementing their semantics — this is what gives `ch-button`,

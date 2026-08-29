@@ -1,4 +1,4 @@
-import { Component, Event, type EventEmitter, Host, Prop, h } from '@stencil/core';
+import { AttachInternals, Component, Event, type EventEmitter, Host, Prop, State, Watch, h } from '@stencil/core';
 
 export interface ChSelectOption {
   label: string;
@@ -12,11 +12,16 @@ let selectIds = 0;
   tag: 'ch-select',
   styleUrl: 'ch-select.css',
   shadow: true,
+  formAssociated: true,
 })
 export class ChSelect {
   private readonly selectId = `ch-select-${++selectIds}`;
   private readonly hintId = `${this.selectId}-hint`;
   private readonly errorId = `${this.selectId}-error`;
+  private initialValue: string | undefined;
+
+  @AttachInternals() internals!: ElementInternals;
+  @State() formDisabled = false;
 
   /**
    * Visible label rendered above the select and associated with it via
@@ -42,17 +47,17 @@ export class ChSelect {
   /**
    * The name of the select, submitted with form data.
    */
-  @Prop() name?: string;
+  @Prop({ reflect: true }) name?: string;
 
   /**
    * Whether the select is disabled.
    */
-  @Prop() disabled = false;
+  @Prop({ reflect: true }) disabled = false;
 
   /**
    * Whether a value is required.
    */
-  @Prop() required = false;
+  @Prop({ reflect: true }) required = false;
 
   /**
    * Helper text rendered below the select, associated via `aria-describedby`.
@@ -80,6 +85,41 @@ export class ChSelect {
     this.chChange.emit(this.value);
   };
 
+  @Watch('value')
+  @Watch('required')
+  @Watch('invalid')
+  @Watch('errorMessage')
+  protected syncForm(): void {
+    const internals = this.internals;
+    if (typeof internals?.setFormValue !== 'function') {
+      return;
+    }
+    internals.setFormValue(this.value ?? '');
+    const flags: ValidityStateFlags = {};
+    let message: string | undefined;
+    if (this.required && !this.value) {
+      flags.valueMissing = true;
+    }
+    if (this.invalid && this.errorMessage) {
+      flags.customError = true;
+    }
+    message = this.errorMessage ?? (flags.valueMissing ? 'Please fill out this field.' : undefined);
+    internals.setValidity(flags, message);
+  }
+
+  componentDidLoad() {
+    this.initialValue = this.value;
+    this.syncForm();
+  }
+
+  formResetCallback(): void {
+    this.value = this.initialValue;
+  }
+
+  formDisabledCallback(isDisabled: boolean): void {
+    this.formDisabled = isDisabled;
+  }
+
   private get describedBy(): string | undefined {
     if (this.invalid && this.errorMessage) {
       return this.errorId;
@@ -102,7 +142,7 @@ export class ChSelect {
           id={this.label ? this.selectId : undefined}
           class={{ 'select': true, 'select--invalid': this.invalid }}
           name={this.name}
-          disabled={this.disabled}
+          disabled={this.disabled || this.formDisabled}
           required={this.required}
           aria-invalid={this.invalid ? 'true' : undefined}
           aria-describedby={this.describedBy}
