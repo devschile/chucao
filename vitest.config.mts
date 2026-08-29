@@ -27,9 +27,9 @@ export default defineVitestConfig({
           environment: 'stencil',
         },
       },
-      // Form association tests - run in a real browser because jsdom/happy-dom/mock-doc
-      // do not implement ElementInternals. Uses the built `dist/` custom elements output,
-      // which `stencil-test` produces before running Vitest.
+      // Form-association tests run in a real browser because jsdom/happy-dom/mock-doc
+      // ElementInternals is absent there. These specs use the built `dist/` custom-elements output,
+      // `stencil-test` produces it before running Vitest.
       {
         test: {
           name: 'forms',
