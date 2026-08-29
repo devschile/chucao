@@ -4,7 +4,8 @@
     "tagName": "${version}",
     "tagAnnotation": "Release ${version}",
     "tagArgs": ["--sign"],
-    "push": true
+    "push": true,
+    "getLatestTagFromAllRefs": true
   },
   "npm": {
     "publish": false
