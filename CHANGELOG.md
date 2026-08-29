@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+## [2.0.0](https://github.com/devschile/chucao/compare/1.8.0...2.0.0) (2026-08-29)
+
+### Features
+
+* **forms:** make form controls participate in native forms via ElementInternals ([#63](https://github.com/devschile/chucao/issues/63)) ([8d64838](https://github.com/devschile/chucao/commit/8d6483831e38cf32b8b2df7ae4caf891ba393d91)), closes [#22](https://github.com/devschile/chucao/issues/22)
+
 ## [1.8.0](https://github.com/devschile/chucao/compare/1.7.0...1.8.0) (2026-08-28)
 
 ### Features
