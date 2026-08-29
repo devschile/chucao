@@ -1,4 +1,4 @@
-import { Component, Event, type EventEmitter, Host, Prop, h } from '@stencil/core';
+import { AttachInternals, Component, Element, Event, type EventEmitter, Host, Prop, State, Watch, h } from '@stencil/core';
 
 export interface ChRadioOption {
   label: string;
@@ -12,12 +12,18 @@ let radioIds = 0;
   tag: 'ch-radio',
   styleUrl: 'ch-radio.css',
   shadow: true,
+  formAssociated: true,
 })
 export class ChRadio {
   private readonly groupId = `ch-radio-${++radioIds}`;
   private readonly labelId = `${this.groupId}-label`;
   private readonly hintId = `${this.groupId}-hint`;
   private readonly errorId = `${this.groupId}-error`;
+  private initialValue: string | undefined;
+
+  @AttachInternals() internals!: ElementInternals;
+  @State() formDisabled = false;
+  @Element() private host!: HTMLElement;
 
   /**
    * Visible label describing the radio group, associated with it via
@@ -39,17 +45,17 @@ export class ChRadio {
    * The name shared by all radio inputs in the group. Defaults to an
    * auto-generated group name so options are mutually exclusive out of the box.
    */
-  @Prop() name?: string;
+  @Prop({ reflect: true }) name?: string;
 
   /**
    * Whether all radios in the group are disabled.
    */
-  @Prop() disabled = false;
+  @Prop({ reflect: true }) disabled = false;
 
   /**
    * Whether a value is required.
    */
-  @Prop() required = false;
+  @Prop({ reflect: true }) required = false;
 
   /**
    * Helper text rendered below the radio group, associated via `aria-describedby`.
@@ -77,6 +83,48 @@ export class ChRadio {
     this.chChange.emit(this.value);
   };
 
+  @Watch('value')
+  @Watch('required')
+  @Watch('invalid')
+  @Watch('errorMessage')
+  protected syncForm(): void {
+    const internals = this.internals;
+    if (typeof internals?.setFormValue !== 'function') {
+      return;
+    }
+    internals.setFormValue(this.value ?? null);
+    const flags: ValidityStateFlags = {};
+    let message: string | undefined;
+    if (this.required && !this.value) {
+      flags.valueMissing = true;
+    }
+    if (this.invalid && this.errorMessage) {
+      flags.customError = true;
+    }
+    message = this.errorMessage ?? (flags.valueMissing ? 'Please fill out this field.' : undefined);
+    internals.setValidity(flags, message);
+  }
+
+  componentDidLoad() {
+    this.initialValue = this.value;
+    this.syncForm();
+    this.host.addEventListener('change', this.markTouched);
+    this.host.addEventListener('focusout', this.markTouched);
+    this.host.addEventListener('invalid', this.markTouched);
+  }
+
+  private markTouched = (): void => {
+    this.host.setAttribute('data-touched', '');
+  };
+
+  formResetCallback(): void {
+    this.value = this.initialValue;
+  }
+
+  formDisabledCallback(isDisabled: boolean): void {
+    this.formDisabled = isDisabled;
+  }
+
   private get describedBy(): string | undefined {
     if (this.invalid && this.errorMessage) {
       return this.errorId;
@@ -98,14 +146,14 @@ export class ChRadio {
         )}
         <div class="radio-group" role="radiogroup" aria-labelledby={this.label ? this.labelId : undefined}>
           {this.options.map(option => (
-            <label class={{ 'control': true, 'control--disabled': this.disabled || option.disabled }}>
+            <label class={{ 'control': true, 'control--disabled': this.disabled || this.formDisabled || option.disabled }}>
               <input
                 class={{ 'input': true, 'input--invalid': this.invalid }}
                 type="radio"
                 name={groupName}
                 value={option.value}
                 checked={option.value === this.value}
-                disabled={this.disabled || option.disabled}
+                disabled={this.disabled || this.formDisabled || option.disabled}
                 aria-invalid={this.invalid ? 'true' : undefined}
                 aria-describedby={this.describedBy}
                 onChange={this.handleChange}

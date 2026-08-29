@@ -1,4 +1,4 @@
-import { Component, Event, type EventEmitter, Host, Prop, h } from '@stencil/core';
+import { AttachInternals, Component, Element, Event, type EventEmitter, Host, Prop, State, Watch, h } from '@stencil/core';
 
 let textareaIds = 0;
 
@@ -8,11 +8,17 @@ const DEFAULT_ROWS = 4;
   tag: 'ch-textarea',
   styleUrl: 'ch-textarea.css',
   shadow: true,
+  formAssociated: true,
 })
 export class ChTextarea {
   private readonly textareaId = `ch-textarea-${++textareaIds}`;
   private readonly hintId = `${this.textareaId}-hint`;
   private readonly errorId = `${this.textareaId}-error`;
+  private initialValue = '';
+
+  @AttachInternals() internals!: ElementInternals;
+  @State() formDisabled = false;
+  @Element() private host!: HTMLElement;
 
   /**
    * Visible label rendered above the textarea and associated with it via
@@ -38,17 +44,17 @@ export class ChTextarea {
   /**
    * The name of the textarea, submitted with form data.
    */
-  @Prop() name?: string;
+  @Prop({ reflect: true }) name?: string;
 
   /**
    * Whether the textarea is disabled.
    */
-  @Prop() disabled = false;
+  @Prop({ reflect: true }) disabled = false;
 
   /**
    * Whether the textarea is required.
    */
-  @Prop() required = false;
+  @Prop({ reflect: true }) required = false;
 
   /**
    * Helper text rendered below the textarea, associated via `aria-describedby`.
@@ -86,6 +92,48 @@ export class ChTextarea {
     this.chChange.emit(this.value);
   };
 
+  @Watch('value')
+  @Watch('required')
+  @Watch('invalid')
+  @Watch('errorMessage')
+  protected syncForm(): void {
+    const internals = this.internals;
+    if (typeof internals?.setFormValue !== 'function') {
+      return;
+    }
+    internals.setFormValue(this.value);
+    const flags: ValidityStateFlags = {};
+    let message: string | undefined;
+    if (this.required && this.value === '') {
+      flags.valueMissing = true;
+    }
+    if (this.invalid && this.errorMessage) {
+      flags.customError = true;
+    }
+    message = this.errorMessage ?? (flags.valueMissing ? 'Please fill out this field.' : undefined);
+    internals.setValidity(flags, message);
+  }
+
+  componentDidLoad() {
+    this.initialValue = this.value;
+    this.syncForm();
+    this.host.addEventListener('change', this.markTouched);
+    this.host.addEventListener('focusout', this.markTouched);
+    this.host.addEventListener('invalid', this.markTouched);
+  }
+
+  private markTouched = (): void => {
+    this.host.setAttribute('data-touched', '');
+  };
+
+  formResetCallback(): void {
+    this.value = this.initialValue;
+  }
+
+  formDisabledCallback(isDisabled: boolean): void {
+    this.formDisabled = isDisabled;
+  }
+
   private get describedBy(): string | undefined {
     if (this.invalid && this.errorMessage) {
       return this.errorId;
@@ -110,7 +158,7 @@ export class ChTextarea {
           rows={this.rows}
           name={this.name}
           placeholder={this.placeholder}
-          disabled={this.disabled}
+          disabled={this.disabled || this.formDisabled}
           required={this.required}
           value={this.value}
           aria-invalid={this.invalid ? 'true' : undefined}

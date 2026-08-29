@@ -17,7 +17,7 @@ describe('ch-input', () => {
   it('renders a disabled input with the given type and value', async () => {
     const { root } = await render(<ch-input type="email" value="hi@devschile.cl" disabled />);
     await expect(root).toEqualHtml(`
-      <ch-input class="hydrated">
+      <ch-input disabled class="hydrated">
         <mock:shadow-root>
           <input class="input" type="email" disabled value="hi@devschile.cl">
         </mock:shadow-root>

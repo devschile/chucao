@@ -43,6 +43,17 @@
   box-shadow: 0 0 0 3px var(--color-status-warning-background);
 }
 
+:host([data-touched]:invalid) .select,
+:host(:user-invalid) .select {
+  border-color: var(--color-status-warning);
+}
+
+:host([data-touched]:invalid) .select:focus,
+:host(:user-invalid) .select:focus {
+  border-color: var(--color-status-warning);
+  box-shadow: 0 0 0 3px var(--color-status-warning-background);
+}
+
 .select:disabled {
   opacity: var(--opacity-disabled);
   cursor: not-allowed;

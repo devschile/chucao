@@ -1,4 +1,4 @@
-import { Component, Event, type EventEmitter, Host, Prop, h } from '@stencil/core';
+import { AttachInternals, Component, Element, Event, type EventEmitter, Host, Prop, State, Watch, h } from '@stencil/core';
 
 let switchIds = 0;
 
@@ -6,11 +6,17 @@ let switchIds = 0;
   tag: 'ch-switch',
   styleUrl: 'ch-switch.css',
   shadow: true,
+  formAssociated: true,
 })
 export class ChSwitch {
   private readonly switchId = `ch-switch-${++switchIds}`;
   private readonly hintId = `${this.switchId}-hint`;
   private readonly errorId = `${this.switchId}-error`;
+  private initialChecked = false;
+
+  @AttachInternals() internals!: ElementInternals;
+  @State() formDisabled = false;
+  @Element() private host!: HTMLElement;
 
   /**
    * Visible label rendered next to the switch, associated with it via
@@ -21,7 +27,7 @@ export class ChSwitch {
   /**
    * The name of the switch, submitted with form data.
    */
-  @Prop() name?: string;
+  @Prop({ reflect: true }) name?: string;
 
   /**
    * The value of the switch, submitted with form data.
@@ -36,12 +42,12 @@ export class ChSwitch {
   /**
    * Whether the switch is disabled.
    */
-  @Prop() disabled = false;
+  @Prop({ reflect: true }) disabled = false;
 
   /**
    * Whether the switch is required.
    */
-  @Prop() required = false;
+  @Prop({ reflect: true }) required = false;
 
   /**
    * Helper text rendered below the switch, associated via `aria-describedby`.
@@ -69,6 +75,48 @@ export class ChSwitch {
     this.chChange.emit(this.checked);
   };
 
+  @Watch('checked')
+  @Watch('required')
+  @Watch('invalid')
+  @Watch('errorMessage')
+  protected syncForm(): void {
+    const internals = this.internals;
+    if (typeof internals?.setFormValue !== 'function') {
+      return;
+    }
+    internals.setFormValue(this.checked ? this.value : null);
+    const flags: ValidityStateFlags = {};
+    let message: string | undefined;
+    if (this.required && !this.checked) {
+      flags.valueMissing = true;
+    }
+    if (this.invalid && this.errorMessage) {
+      flags.customError = true;
+    }
+    message = this.errorMessage ?? (flags.valueMissing ? 'Please fill out this field.' : undefined);
+    internals.setValidity(flags, message);
+  }
+
+  componentDidLoad() {
+    this.initialChecked = this.checked;
+    this.syncForm();
+    this.host.addEventListener('change', this.markTouched);
+    this.host.addEventListener('focusout', this.markTouched);
+    this.host.addEventListener('invalid', this.markTouched);
+  }
+
+  private markTouched = (): void => {
+    this.host.setAttribute('data-touched', '');
+  };
+
+  formResetCallback(): void {
+    this.checked = this.initialChecked;
+  }
+
+  formDisabledCallback(isDisabled: boolean): void {
+    this.formDisabled = isDisabled;
+  }
+
   private get describedBy(): string | undefined {
     if (this.invalid && this.errorMessage) {
       return this.errorId;
@@ -82,7 +130,7 @@ export class ChSwitch {
   render() {
     return (
       <Host>
-        <label class={{ 'control': true, 'control--disabled': this.disabled }} htmlFor={this.switchId}>
+        <label class={{ 'control': true, 'control--disabled': this.disabled || this.formDisabled }} htmlFor={this.switchId}>
           <input
             id={this.switchId}
             class={{ 'input': true, 'input--invalid': this.invalid }}
@@ -91,7 +139,7 @@ export class ChSwitch {
             name={this.name}
             value={this.value}
             checked={this.checked}
-            disabled={this.disabled}
+            disabled={this.disabled || this.formDisabled}
             required={this.required}
             aria-checked={this.checked ? 'true' : 'false'}
             aria-invalid={this.invalid ? 'true' : undefined}

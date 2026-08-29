@@ -1,5 +1,6 @@
 import { defineVitestConfig } from '@stencil/vitest/config';
 import { stencilVitestPlugin } from '@stencil/vitest/plugin';
+import { playwright } from '@vitest/browser-playwright';
 
 export default defineVitestConfig({
   stencilConfig: './stencil.config.ts',
@@ -24,6 +25,21 @@ export default defineVitestConfig({
           name: 'components',
           include: ['src/**/*.plugin.spec.{ts,tsx}'],
           environment: 'stencil',
+        },
+      },
+      // Form-association tests run in a real browser because jsdom/happy-dom/mock-doc
+      // ElementInternals is absent there. These specs use the built `dist/` custom-elements output,
+      // `stencil-test` produces it before running Vitest.
+      {
+        test: {
+          name: 'forms',
+          include: ['src/**/*.form.spec.{ts,tsx}'],
+          coverage: { enabled: false },
+          browser: {
+            enabled: true,
+            provider: playwright(),
+            instances: [{ browser: 'chromium' }],
+          },
         },
       },
     ],

@@ -305,6 +305,45 @@ section > p.lead {
   opacity: 0.5;
 }
 
+/* ── Página de formularios ───────────────────────────────────── */
+
+.form-demo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2xl);
+  padding: var(--spacing-3xl);
+  border: var(--border-width) dashed var(--border);
+  border-radius: var(--radius);
+  background: rgba(0, 0, 0, 0.18);
+  margin-bottom: 1.1rem;
+}
+
+.form-demo form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2xl);
+  max-width: 26rem;
+}
+
+.form-result {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  line-height: 1.55;
+  background: rgba(0, 0, 0, 0.3);
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.1rem;
+  overflow-x: auto;
+  color: var(--text-muted);
+  white-space: pre;
+}
+
+.form-result:empty::before {
+  content: 'Los datos del submit se muestran acá…';
+  opacity: 0.5;
+}
+
 /* ── Colores ─────────────────────────────────────────────────── */
 
 .swatch-grid {
