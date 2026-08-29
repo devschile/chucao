@@ -138,6 +138,56 @@ header.hero p {
   color: var(--accent);
 }
 
+.install-command-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.install-copy {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-sm);
+  background: rgba(0, 0, 0, 0.3);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition:
+    border-color 0.2s,
+    color 0.2s;
+}
+
+.install-copy svg {
+  width: 1.1em;
+  height: 1.1em;
+}
+
+.install-copy .icon-check {
+  display: none;
+}
+
+.install-copy.copied .icon-copy {
+  display: none;
+}
+
+.install-copy.copied .icon-check {
+  display: inline-block;
+}
+
+.install-copy:hover {
+  border-color: var(--border-hover);
+  color: var(--accent);
+}
+
+.install-copy:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
 section {
   padding: 3.5rem 0;
   border-bottom: var(--border-width) solid var(--border);

@@ -1,6 +1,6 @@
 /**
  * Sidebar behaviour for the docs-site: search, active-item tracking and the
- * mobile drawer.
+ * mobile drawer. Also wires the hero install-command copy button.
  *
  * Hand-written — `scripts/generate-gallery.mjs` owns `app.js` and rewrites it
  * wholesale, so interaction code cannot live there without being deleted by the
@@ -279,5 +279,59 @@
       // inconsistent across browsers; doing it explicitly makes it reliable.
       target.focus({ preventScroll: true });
     }
+  });
+})();
+
+/* ── Copiar comando de instalación ───────────────────────────── */
+
+(() => {
+  const command = document.querySelector('.install-command');
+  if (!command) {
+    return;
+  }
+
+  // Created by this script rather than sitting dead in the HTML, so a page
+  // without JavaScript never shows a control that does nothing.
+  const wrap = document.createElement('span');
+  wrap.className = 'install-command-wrap';
+  command.parentNode.insertBefore(wrap, command);
+  wrap.appendChild(command);
+
+  const COPY_LABEL = 'Copiar comando de instalación';
+  const COPIED_LABEL = 'Comando copiado';
+
+  const copy = document.createElement('button');
+  copy.type = 'button';
+  copy.className = 'install-copy';
+  copy.setAttribute('aria-label', COPY_LABEL);
+  copy.title = COPY_LABEL;
+  copy.innerHTML =
+    '<svg class="icon-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>' +
+    '<svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+  wrap.appendChild(copy);
+
+  copy.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(command.textContent.trim());
+    } catch {
+      // Clipboard API unavailable (e.g. non-secure context): select the text
+      // and use the legacy copy command instead.
+      const range = document.createRange();
+      range.selectNodeContents(command);
+      const selection = window.getSelection();
+      selection.removeAllRanges();
+      selection.addRange(range);
+      try {
+        document.execCommand('copy');
+      } finally {
+        selection.removeAllRanges();
+      }
+    }
+    copy.classList.add('copied');
+    copy.setAttribute('aria-label', COPIED_LABEL);
+    window.setTimeout(() => {
+      copy.classList.remove('copied');
+      copy.setAttribute('aria-label', COPY_LABEL);
+    }, 2000);
   });
 })();
