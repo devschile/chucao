@@ -29,6 +29,24 @@ Pushing that tag triggers `.github/workflows/release.yml`
 4. publishes the package to npm (`pnpm publish`),
 5. deploys `dist/chucao/` to the CDN (see below).
 
+## New components and API changes require a release
+
+The docs-site gallery documents every component on the next `main` push
+(`.github/workflows/docs.yml`), but the site loads the library from the
+`chucao/latest/` CDN prefix, which only changes on release. `docs.yml`
+therefore gates the publish on `scripts/check-released.mjs`
+(`pnpm run check:released`): it diffs the local build's component manifest
+(tags and props per tag) against the released CDN bundle and fails the deploy
+whenever the gallery references something the release does not carry — a new
+component, or a new prop/attribute on an existing one.
+
+The deploy stays blocked until the release catches up: the live site keeps the
+last consistent version instead of showing a broken section, and the failure
+message names exactly which components or props are missing. A doc-only change
+passes, since the manifest is unchanged. Merging a component change without
+releasing it is what triggers this, so treat the change and its release as one
+unit of work.
+
 ## CDN deployment
 
 On every release the built `dist/chucao/` folder is synced to the Garage S3

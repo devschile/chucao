@@ -105,6 +105,7 @@
     "test:coverage": "stencil-test --prod --coverage",
     "generate": "stencil generate",
     "generate:gallery": "node scripts/generate-gallery.mjs",
+    "check:released": "node scripts/check-released.mjs",
     "docs:serve": "pnpm build && pnpm run generate:gallery && node scripts/serve-docs.mjs",
     "lint": "oxlint .",
     "lint:fix": "oxlint . --fix",

@@ -108,6 +108,17 @@ When adding a
 component, add a matching entry to `scripts/gallery-data.mjs`; the generator
 fails if a component folder lacks a gallery entry (or vice versa).
 
+**Adding or changing a component means releasing it.** The gallery ships to the
+live site on the next `main` push (`.github/workflows/docs.yml`), but the site
+loads the library from the CDN `chucao/latest/` prefix, which only updates on a
+release (`pnpm run release`). The docs publish is gated on that:
+`pnpm run check:released` (run by `docs.yml`) diffs the local build's component
+manifest — tags and props — against the released CDN bundle, and fails the
+deploy if the gallery references a component, prop or attribute the release
+does not carry yet. This applies to a new component and to an existing one
+whose API or behavior changes. Merge a component change and cut its release
+together.
+
 ### Sidebar, search and anchors
 
 The sidebar's component list is a **second generated region**, delimited by

@@ -49,6 +49,14 @@ jobs:
       - name: Generate gallery
         run: pnpm run generate:gallery
 
+      # The gallery documents every component on the next main push, but the
+      # site loads the library from the CDN chucao/latest/, which only updates
+      # on a release. Fail the publish when the gallery would reference a
+      # component or prop the release does not carry yet, so the live site
+      # keeps the last consistent version instead of a broken section.
+      - name: Check gallery components are released
+        run: pnpm run check:released
+
       - name: Assemble publish dir
         run: |
           rm -rf publish
