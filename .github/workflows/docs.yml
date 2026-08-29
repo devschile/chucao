@@ -65,6 +65,12 @@ jobs:
           cp README.md DESIGN.md CHANGELOG.md publish/
           cp -R docs publish/docs
 
+      # The committed index.html pins the last released version; the publish
+      # copy is stamped with the current package.json version, so the deployed
+      # page names the release that carries every component it documents.
+      - name: Stamp published version
+        run: node scripts/stamp-version.mjs publish/index.html
+
       - name: Upload publish dir
         uses: actions/upload-artifact@v7
         with:
