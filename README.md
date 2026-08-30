@@ -48,6 +48,7 @@ piezas externas.
 | [`docs/releasing.md`](docs/releasing.md)                                                  | English | Cómo publicar releases y desplegar la librería al CDN                          |
 | [`docs/testing.md`](docs/testing.md)                                                      | English | Testing y cobertura de los componentes                                         |
 | [`docs/storybook.md`](docs/storybook.md)                                                  | English | Evaluación de desplegar Storybook en el CDN (no adoptado)                      |
+| [`docs/ai.md`](docs/ai.md)                                                                | English | Guía para agentes IA que consumen Chucao                                       |
 
 ## Cómo reusar esto en un proyecto nuevo
 
