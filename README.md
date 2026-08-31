@@ -49,6 +49,7 @@ piezas externas.
 | [`docs/testing.md`](docs/testing.md)                                                      | English | Testing y cobertura de los componentes                                         |
 | [`docs/storybook.md`](docs/storybook.md)                                                  | English | Evaluación de desplegar Storybook en el CDN (no adoptado)                      |
 | [`llms.txt`](llms.txt)                                                                    | English | Índice para agentes y crawlers (componentes, tokens, docs)                     |
+| [`docs/ai.md`](docs/ai.md)                                                                | English | Guía para agentes IA que consumen Chucao                                       |
 
 ## Cómo reusar esto en un proyecto nuevo
 

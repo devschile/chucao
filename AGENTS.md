@@ -78,6 +78,7 @@ Follow these API conventions (documented in `docs/components.md`):
   `ch-input`/`ch-select`, `aria-label` for `ch-button`); keep a visible
   `:focus-visible` style on interactive elements.
 - All components use `shadow: true`.
+- When adding or removing a component, update the allow-list table in `docs/ai.md`.
 - **Any component change that the docs-site gallery reflects ships with a
   release.** The gallery (`scripts/gallery-data.mjs`) documents every component
   on the next `main` push (`.github/workflows/docs.yml`), but the docs site
