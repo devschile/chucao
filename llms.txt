@@ -1,0 +1,44 @@
+# Chucao
+
+> Kit de marca + sistema de diseño web de devsChile
+
+## Getting Started
+
+- [README](https://devschile.github.io/chucao/README.md): Documentación principal del proyecto
+- [Design System](https://devschile.github.io/chucao/DESIGN.md): Sistema de diseño y marca
+- [Changelog](https://devschile.github.io/chucao/CHANGELOG.md): Historial de cambios
+
+## Components
+
+- [ch-accordion](https://devschile.github.io/chucao/components/ch-accordion/): ch-accordion component
+- [ch-alert](https://devschile.github.io/chucao/components/ch-alert/): Block-level status message.
+- [ch-badge](https://devschile.github.io/chucao/components/ch-badge/): ch-badge component
+- [ch-button](https://devschile.github.io/chucao/components/ch-button/): ch-button component
+- [ch-card](https://devschile.github.io/chucao/components/ch-card/): ch-card component
+- [ch-checkbox](https://devschile.github.io/chucao/components/ch-checkbox/): ch-checkbox component
+- [ch-divider](https://devschile.github.io/chucao/components/ch-divider/): ch-divider component
+- [ch-input](https://devschile.github.io/chucao/components/ch-input/): ch-input component
+- [ch-link](https://devschile.github.io/chucao/components/ch-link/): ch-link component
+- [ch-modal](https://devschile.github.io/chucao/components/ch-modal/): Modal dialog, built on the native `<dialog>` element and opened with
+- [ch-radio](https://devschile.github.io/chucao/components/ch-radio/): ch-radio component
+- [ch-select](https://devschile.github.io/chucao/components/ch-select/): ch-select component
+- [ch-spinner](https://devschile.github.io/chucao/components/ch-spinner/): Loading indicator.
+- [ch-switch](https://devschile.github.io/chucao/components/ch-switch/): ch-switch component
+- [ch-tabs](https://devschile.github.io/chucao/components/ch-tabs/): ch-tabs component
+- [ch-textarea](https://devschile.github.io/chucao/components/ch-textarea/): ch-textarea component
+- [ch-tooltip](https://devschile.github.io/chucao/components/ch-tooltip/): Short help text shown on hover and on focus.
+
+## Design Tokens
+
+- [Tokens](https://devschile.github.io/chucao/tokens/README.md): Tokens de diseño generados por toki
+
+## Documentation
+
+- [Ai](https://devschile.github.io/chucao/docs/ai.md): Chucao is a design system of Web Components published as
+- [Assets](https://devschile.github.io/chucao/docs/assets.md): assets/
+- [Components](https://devschile.github.io/chucao/docs/components.md): The Chucao design system (colors, typography, spacing, layout — see
+- [Releasing](https://devschile.github.io/chucao/docs/releasing.md): How `@devschile/chucao` is released to npm and deployed to the versioned CDN.
+- [Storybook](https://devschile.github.io/chucao/docs/storybook.md): Status: **evaluated, not adopted.** Current recommendation is the lightweight
+- [Testing](https://devschile.github.io/chucao/docs/testing.md): pnpm test # run the component tests
+- [Using The Library](https://devschile.github.io/chucao/docs/using-the-library.md): There are two strategies to consume Stencil component libraries published to
+- [V1 Readiness](https://devschile.github.io/chucao/docs/v1-readiness.md): This document evaluates whether `@devschile/chucao` is ready to publish its
