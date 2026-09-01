@@ -49,6 +49,9 @@ jobs:
       - name: Generate gallery
         run: pnpm run generate:gallery
 
+      - name: Generate llms.txt
+        run: pnpm run generate:llms
+
       # The gallery documents every component on the next main push, but the
       # site loads the library from the CDN chucao/latest/, which only updates
       # on a release. Fail the publish when the gallery would reference a
@@ -63,7 +66,16 @@ jobs:
           mkdir -p publish
           cp -R docs-site/. publish/
           cp README.md DESIGN.md CHANGELOG.md publish/
+          cp llms.txt publish/
           cp -R docs publish/docs
+
+      - name: Copy component readmes to publish dir
+        run: |
+          for dir in src/components/ch-*/; do
+            tag=$(basename "$dir")
+            mkdir -p "publish/components/$tag"
+            cp "$dir/readme.md" "publish/components/$tag/"
+          done
 
       # The committed index.html pins the last released version; the publish
       # copy is stamped with the current package.json version, so the deployed
