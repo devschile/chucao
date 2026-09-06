@@ -104,12 +104,11 @@ checks every item and will fail the PR if any is missing.
    matching entry. The entry needs `tag`, `description`, and `demos` at minimum.
 3. **Run `pnpm run format`** — the CI runs `prettier --check .` and rejects
    unformatted code. Run this after writing your files and before committing.
-4. **Run `pnpm run generate:gallery`** to regenerate `docs-site/index.html` and
-   `docs-site/assets/js/app.js`. Commit the generated files alongside your
-   component.
+4. **Run `pnpm build && pnpm run generate:gallery && pnpm run generate:llms`**
+   to confirm the full build (Stencil + React + Vue wrappers) succeeds and to
+   regenerate `docs-site/index.html`, `docs-site/assets/js/app.js`, and
+   `llms.txt`. Commit the generated files alongside your component.
 5. **Run `pnpm lint` and `pnpm test`** to verify everything passes.
-6. **Run `pnpm build`** to confirm the full build (Stencil + React + Vue
-   wrappers) succeeds.
 
 ## Commands
 
