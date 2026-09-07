@@ -103,6 +103,18 @@ export const gallery = [
     ],
   },
   {
+    tag: 'ch-emoji',
+    description:
+      'Emoji inline desde el CDN de devsChile. Mapea nombres y alias a través de <code>emoji-map.json</code> y prueba extensiones (.png, .gif, .jpg, .svg) automáticamente. Tamaños: <code>sm</code>, <code>md</code>, <code>lg</code>, <code>xl</code>.',
+    demos: [
+      '<ch-emoji name="huemul-love" size="xl"></ch-emoji>',
+      '<ch-emoji name="heart" size="lg"></ch-emoji>',
+      '<ch-emoji name="hypnotoad" size="lg"></ch-emoji>',
+      '<ch-emoji name="lmao" size="md"></ch-emoji>',
+      '<ch-emoji name="loading" size="sm"></ch-emoji>',
+    ],
+  },
+  {
     tag: 'ch-input',
     description:
       'Campo de texto con <code>label</code> asociado vía <code>id</code>/<code>for</code>. Emite <code>chInput</code> (cada tecla) y <code>chChange</code> (al confirmar).',

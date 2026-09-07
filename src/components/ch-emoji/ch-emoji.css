@@ -1,0 +1,33 @@
+:host {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.emoji {
+  display: block;
+  object-fit: contain;
+}
+
+.emoji--sm {
+  width: 16px;
+  height: 16px;
+}
+
+.emoji--md {
+  width: 24px;
+  height: 24px;
+}
+
+.emoji--lg {
+  width: 32px;
+  height: 32px;
+}
+
+.emoji--xl {
+  width: 48px;
+  height: 48px;
+}
+
+.emoji--hidden {
+  display: none;
+}

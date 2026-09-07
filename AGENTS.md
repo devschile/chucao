@@ -92,6 +92,24 @@ Follow these API conventions (documented in `docs/components.md`):
   and its release as one unit of work — never merge a component change without
   releasing it.
 
+## New component checklist
+
+When creating a new component, follow this checklist **before pushing**. CI
+checks every item and will fail the PR if any is missing.
+
+1. **Create the component folder** under `src/components/<name>/` with
+   `<name>.tsx`, `<name>.css`, and `<name>.plugin.spec.tsx`.
+2. **Add a gallery entry** in `scripts/gallery-data.mjs` — the gallery
+   generator (`pnpm run generate:gallery`) fails if a component folder has no
+   matching entry. The entry needs `tag`, `description`, and `demos` at minimum.
+3. **Run `pnpm run format`** — the CI runs `prettier --check .` and rejects
+   unformatted code. Run this after writing your files and before committing.
+4. **Run `pnpm build && pnpm run generate:gallery && pnpm run generate:llms`**
+   to confirm the full build (Stencil + React + Vue wrappers) succeeds and to
+   regenerate `docs-site/index.html`, `docs-site/assets/js/app.js`, and
+   `llms.txt`. Commit the generated files alongside your component.
+5. **Run `pnpm lint` and `pnpm test`** to verify everything passes.
+
 ## Commands
 
 - `pnpm install` — install dependencies (pnpm only; `package.json` pins

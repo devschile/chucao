@@ -81,6 +81,13 @@
             <li class="side-item" data-name="ch-divider" data-desc="Separador horizontal (por defecto) o vertical con aria-orientation.">
               <a class="side-link" href="#ch-divider">ch-divider</a>
             </li>
+            <li
+              class="side-item"
+              data-name="ch-emoji"
+              data-desc="Emoji inline desde el CDN de devsChile. Mapea nombres y alias a través de emoji-map.json y prueba extensiones (.png, .gif, .jpg, .svg) automáticamente. Tamaños: sm, md, lg, xl."
+            >
+              <a class="side-link" href="#ch-emoji">ch-emoji</a>
+            </li>
             <li class="side-item" data-name="ch-input" data-desc="Campo de texto con label asociado vía id/for. Emite chInput (cada tecla) y chChange (al confirmar).">
               <a class="side-link" href="#ch-input">ch-input</a>
             </li>
@@ -298,6 +305,31 @@
     <span class="t">&lt;span</span><span class="t">&gt;</span>Derecha<span class="t">&lt;/span</span><span class="t">&gt;</span>
   <span class="t">&lt;/div</span><span class="t">&gt;</span>
 <span class="t">&lt;/ch-card</span><span class="t">&gt;</span></code></pre>
+          </div>
+
+          <div class="comp" id="ch-emoji" tabindex="-1">
+            <div class="comp-head">
+              <h3>ch-emoji</h3>
+              <span class="tag">@devschile/chucao/ch-emoji</span>
+            </div>
+            <p class="comp-desc">
+              Emoji inline desde el CDN de devsChile. Mapea nombres y alias a través de <code>emoji-map.json</code> y prueba extensiones (.png, .gif, .jpg, .svg) automáticamente.
+              Tamaños: <code>sm</code>, <code>md</code>, <code>lg</code>, <code>xl</code>.
+            </p>
+            <div class="comp-demo">
+              <ch-emoji name="huemul-love" size="xl"></ch-emoji>
+              <ch-emoji name="heart" size="lg"></ch-emoji>
+              <ch-emoji name="hypnotoad" size="lg"></ch-emoji>
+              <ch-emoji name="lmao" size="md"></ch-emoji>
+              <ch-emoji name="loading" size="sm"></ch-emoji>
+            </div>
+            <pre
+              class="comp-code"
+            ><code><span class="t">&lt;ch-emoji</span> <span class="a">name</span>="huemul-love" <span class="a">size</span>="xl"<span class="t">&gt;</span><span class="t">&lt;/ch-emoji</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-emoji</span> <span class="a">name</span>="heart" <span class="a">size</span>="lg"<span class="t">&gt;</span><span class="t">&lt;/ch-emoji</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-emoji</span> <span class="a">name</span>="hypnotoad" <span class="a">size</span>="lg"<span class="t">&gt;</span><span class="t">&lt;/ch-emoji</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-emoji</span> <span class="a">name</span>="lmao" <span class="a">size</span>="md"<span class="t">&gt;</span><span class="t">&lt;/ch-emoji</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-emoji</span> <span class="a">name</span>="loading" <span class="a">size</span>="sm"<span class="t">&gt;</span><span class="t">&lt;/ch-emoji</span><span class="t">&gt;</span></code></pre>
           </div>
 
           <div class="comp" id="ch-input" tabindex="-1">

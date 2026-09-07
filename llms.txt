@@ -17,6 +17,7 @@
 - [ch-card](https://devschile.github.io/chucao/components/ch-card/): ch-card component
 - [ch-checkbox](https://devschile.github.io/chucao/components/ch-checkbox/): ch-checkbox component
 - [ch-divider](https://devschile.github.io/chucao/components/ch-divider/): ch-divider component
+- [ch-emoji](https://devschile.github.io/chucao/components/ch-emoji/): Inline emoji from the devsChile CDN.
 - [ch-input](https://devschile.github.io/chucao/components/ch-input/): ch-input component
 - [ch-link](https://devschile.github.io/chucao/components/ch-link/): ch-link component
 - [ch-modal](https://devschile.github.io/chucao/components/ch-modal/): Modal dialog, built on the native `<dialog>` element and opened with
