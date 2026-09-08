@@ -123,6 +123,10 @@ checks every item and will fail the PR if any is missing.
 - `pnpm run check:released` — fails if the built bundle has components or props
   the released CDN bundle (`chucao/latest/`) does not carry yet; runs in CI
   before publishing the docs site.
+- `pnpm run check:ai` — fails if the AI-facing surfaces (`llms.txt`,
+  `docs/ai.md`) reference a component, token or link that does not exist; runs
+  on every pull request, and again in `docs.yml` against the assembled publish
+  directory with `--publish-dir=publish`.
 - `pnpm run release` — `release-it` release (creates a version tag; the CI
   workflow `.github/workflows/release.yml` builds, lints, tests, and publishes
   to npm when a version tag is pushed).

@@ -119,6 +119,17 @@ does not carry yet. This applies to a new component and to an existing one
 whose API or behavior changes. Merge a component change and cut its release
 together.
 
+`pnpm run check:ai` is the companion gate for the AI-facing surfaces. `llms.txt`
+and `docs/ai.md` are what tell an agent which components and tokens exist, so
+when they drift the agent is told to emit a tag or token that was renamed or
+never existed — and it obeys. The check resolves every `llms.txt` link, compares
+its component list and the `docs/ai.md` allow-list against `src/components/`,
+and verifies every token the guide recommends is in the generated tokens. It
+runs on each pull request against the repository sources, and again in
+`docs.yml` with `--publish-dir=publish` against the assembled tree, which is the
+only place a link the workflow forgets to copy can be caught. The `DON'T`
+section of `docs/ai.md` names unreal tags on purpose and is excluded.
+
 ### Sidebar, search and anchors
 
 The sidebar's component list is a **second generated region**, delimited by

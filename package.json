@@ -113,7 +113,8 @@
     "lint:fix": "oxlint . --fix",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "release": "release-it"
+    "release": "release-it",
+    "check:ai": "node scripts/check-ai.mjs"
   },
   "devDependencies": {
     "@hectorpalmatellez/toki": "1.12.1",

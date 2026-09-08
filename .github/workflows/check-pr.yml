@@ -51,6 +51,9 @@ jobs:
       - name: Generate llms.txt
         run: pnpm run generate:llms
 
+      - name: Check the AI surfaces still resolve
+        run: pnpm run check:ai
+
       # The generators above rewrite tracked files. Without this the CI runs
       # them and throws the result away, so a pull request can commit stale
       # generated output and still go green.

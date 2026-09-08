@@ -68,6 +68,8 @@ jobs:
           cp README.md DESIGN.md CHANGELOG.md publish/
           cp llms.txt publish/
           cp -R docs publish/docs
+          mkdir -p publish/tokens
+          cp src/tokens/README.md publish/tokens/
 
       - name: Copy component readmes to publish dir
         run: |
@@ -80,6 +82,12 @@ jobs:
       # The committed index.html pins the last released version; the publish
       # copy is stamped with the current package.json version, so the deployed
       # page names the release that carries every component it documents.
+      # Against the assembled tree rather than the sources: this is the only
+      # place the real published layout exists, so it is the only place a link
+      # the workflow forgets to copy can be caught.
+      - name: Check the AI surfaces resolve in the publish dir
+        run: node scripts/check-ai.mjs --publish-dir=publish
+
       - name: Stamp published version
         run: node scripts/stamp-version.mjs publish/index.html
 
