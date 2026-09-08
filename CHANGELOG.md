@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+## [2.1.0](https://github.com/devschile/chucao/compare/2.0.0...2.1.0) (2026-09-07)
+
+### Features
+
+* add ch-emoji component ([#68](https://github.com/devschile/chucao/issues/68)) ([f2b1f3c](https://github.com/devschile/chucao/commit/f2b1f3c0a2854d3ca675b988c3ae49c170cbdf7b))
+* add llms.txt generation from existing sources ([#67](https://github.com/devschile/chucao/issues/67)) ([18b4487](https://github.com/devschile/chucao/commit/18b448710a105d0106c095b79c378134a16990a4)), closes [#56](https://github.com/devschile/chucao/issues/56)
+
 ## [2.0.0](https://github.com/devschile/chucao/compare/1.8.0...2.0.0) (2026-08-29)
 
 ### Features
