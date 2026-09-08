@@ -13,7 +13,11 @@
     "eslint/sort-imports": "off",
     "eslint/func-style": "off",
     "eslint/no-ternary": "off",
-    "unicorn/no-null": "off"
+    "unicorn/no-null": "off",
+    "eslint/one-var": "off",
+    "eslint/capitalized-comments": "off",
+    "eslint/no-magic-numbers": "off",
+    "unicorn/prefer-spread": "off"
   },
   "env": {
     "builtin": true,
