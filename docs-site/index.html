@@ -69,7 +69,11 @@
             <li class="side-item" data-name="ch-badge" data-desc="Etiqueta de estado compacta con tres variantes.">
               <a class="side-link" href="#ch-badge">ch-badge</a>
             </li>
-            <li class="side-item" data-name="ch-button" data-desc="Botón accesible, con variantes primary/secondary y estado disabled. Emite chClick.">
+            <li
+              class="side-item"
+              data-name="ch-button"
+              data-desc="Botón accesible con variantes primary/secondary/ghost/danger, tamaños sm/md/lg, estado loading con ch-spinner y render como enlace con href. Emite chClick."
+            >
               <a class="side-link" href="#ch-button">ch-button</a>
             </li>
             <li class="side-item" data-name="ch-card" data-desc="Contenedor de superficie con blur, borde y una línea de acento en hover.">
@@ -221,18 +225,34 @@
               <h3>ch-button</h3>
               <span class="tag">@devschile/chucao/ch-button</span>
             </div>
-            <p class="comp-desc">Botón accesible, con variantes <code>primary</code>/<code>secondary</code> y estado <code>disabled</code>. Emite <code>chClick</code>.</p>
+            <p class="comp-desc">
+              Botón accesible con variantes <code>primary</code>/<code>secondary</code>/<code>ghost</code>/<code>danger</code>, tamaños
+              <code>sm</code>/<code>md</code>/<code>lg</code>, estado <code>loading</code> con <code>ch-spinner</code> y render como enlace con <code>href</code>. Emite
+              <code>chClick</code>.
+            </p>
             <div class="comp-demo">
               <ch-button id="demo-button">Primario</ch-button>
               <ch-button variant="secondary">Secundario</ch-button>
-              <ch-button disabled>Deshabilitado</ch-button>
+              <ch-button variant="ghost">Ghost</ch-button>
+              <ch-button variant="danger">Eliminar</ch-button>
+              <ch-button size="sm">Pequeño</ch-button>
+              <ch-button size="lg">Grande</ch-button>
+              <ch-button loading>Guardando</ch-button>
+              <ch-button variant="secondary" href="https://devschile.cl" target="_blank">Ver sitio</ch-button>
+              <ch-button variant="ghost" label="Agregar"><span slot="start">+</span>Agregar</ch-button>
               <div id="demo-button-log" class="event-log"></div>
             </div>
             <pre
               class="comp-code"
             ><code><span class="t">&lt;ch-button</span> <span class="a">id</span>="demo-button"<span class="t">&gt;</span>Primario<span class="t">&lt;/ch-button</span><span class="t">&gt;</span>
 <span class="t">&lt;ch-button</span> <span class="a">variant</span>="secondary"<span class="t">&gt;</span>Secundario<span class="t">&lt;/ch-button</span><span class="t">&gt;</span>
-<span class="t">&lt;ch-button</span> <span class="a">disabled</span><span class="t">&gt;</span>Deshabilitado<span class="t">&lt;/ch-button</span><span class="t">&gt;</span></code></pre>
+<span class="t">&lt;ch-button</span> <span class="a">variant</span>="ghost"<span class="t">&gt;</span>Ghost<span class="t">&lt;/ch-button</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-button</span> <span class="a">variant</span>="danger"<span class="t">&gt;</span>Eliminar<span class="t">&lt;/ch-button</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-button</span> <span class="a">size</span>="sm"<span class="t">&gt;</span>Pequeño<span class="t">&lt;/ch-button</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-button</span> <span class="a">size</span>="lg"<span class="t">&gt;</span>Grande<span class="t">&lt;/ch-button</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-button</span> <span class="a">loading</span><span class="t">&gt;</span>Guardando<span class="t">&lt;/ch-button</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-button</span> <span class="a">variant</span>="secondary" <span class="a">href</span>="https://devschile.cl" <span class="a">target</span>="_blank"<span class="t">&gt;</span>Ver sitio<span class="t">&lt;/ch-button</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-button</span> <span class="a">variant</span>="ghost" <span class="a">label</span>="Agregar"<span class="t">&gt;</span><span class="t">&lt;span</span> <span class="a">slot</span>="start"<span class="t">&gt;</span>+<span class="t">&lt;/span</span><span class="t">&gt;</span>Agregar<span class="t">&lt;/ch-button</span><span class="t">&gt;</span></code></pre>
           </div>
 
           <div class="comp" id="ch-card" tabindex="-1">
@@ -441,7 +461,7 @@
               <ch-spinner label="Cargando"></ch-spinner>
               <ch-spinner size="lg" label="Cargando"></ch-spinner>
               <ch-spinner style="color: var(--accent)" label="Cargando"></ch-spinner>
-              <ch-button variant="primary">Guardando <ch-spinner size="sm"></ch-spinner></ch-button>
+              <ch-button variant="primary" loading>Guardando</ch-button>
             </div>
             <pre
               class="comp-code"
@@ -449,7 +469,7 @@
 <span class="t">&lt;ch-spinner</span> <span class="a">label</span>="Cargando"<span class="t">&gt;</span><span class="t">&lt;/ch-spinner</span><span class="t">&gt;</span>
 <span class="t">&lt;ch-spinner</span> <span class="a">size</span>="lg" <span class="a">label</span>="Cargando"<span class="t">&gt;</span><span class="t">&lt;/ch-spinner</span><span class="t">&gt;</span>
 <span class="t">&lt;ch-spinner</span> <span class="a">style</span>="color: var(--accent)" <span class="a">label</span>="Cargando"<span class="t">&gt;</span><span class="t">&lt;/ch-spinner</span><span class="t">&gt;</span>
-<span class="t">&lt;ch-button</span> <span class="a">variant</span>="primary"<span class="t">&gt;</span>Guardando <span class="t">&lt;ch-spinner</span> <span class="a">size</span>="sm"<span class="t">&gt;</span><span class="t">&lt;/ch-spinner</span><span class="t">&gt;</span><span class="t">&lt;/ch-button</span><span class="t">&gt;</span></code></pre>
+<span class="t">&lt;ch-button</span> <span class="a">variant</span>="primary" <span class="a">loading</span><span class="t">&gt;</span>Guardando<span class="t">&lt;/ch-button</span><span class="t">&gt;</span></code></pre>
           </div>
 
           <div class="comp" id="ch-switch" tabindex="-1">

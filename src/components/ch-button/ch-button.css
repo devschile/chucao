@@ -5,16 +5,48 @@
 .btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: var(--spacing-sm);
-  border: none;
+  box-sizing: border-box;
+  border: var(--border-width) solid transparent;
+  border-radius: var(--radius-pill);
   cursor: pointer;
   font-family: inherit;
+  font-weight: var(--typography-weight-bold);
+  text-decoration: none;
+  line-height: 1.2;
+  transition:
+    background-color var(--duration-normal) var(--easing-default),
+    border-color var(--duration-normal) var(--easing-default),
+    color var(--duration-normal) var(--easing-default),
+    transform var(--duration-fast) var(--easing-default);
+}
+
+.btn--sm {
+  padding: var(--spacing-2xs) var(--spacing-lg);
+  font-size: var(--typography-size-sm);
+}
+
+.btn--md {
+  padding: var(--spacing-xs) var(--spacing-xl);
   font-size: inherit;
 }
 
-.btn:disabled {
+.btn--lg {
+  padding: var(--spacing-sm) var(--spacing-2xl);
+  font-size: var(--typography-size-lg);
+}
+
+.btn:disabled,
+.btn--disabled {
   opacity: var(--opacity-disabled);
   cursor: not-allowed;
+}
+
+.btn--loading:disabled,
+.btn--loading.btn--disabled {
+  opacity: 1;
+  cursor: progress;
 }
 
 .btn:focus-visible {
@@ -25,15 +57,9 @@
 .btn--primary {
   background-color: var(--accent);
   color: var(--color-accent-text);
-  font-weight: var(--typography-weight-bold);
-  padding: var(--spacing-xs) var(--spacing-xl);
-  border-radius: var(--radius-pill);
-  transition:
-    background-color var(--duration-normal) var(--easing-default),
-    transform var(--duration-fast) var(--easing-default);
 }
 
-.btn--primary:hover {
+.btn--primary:hover:not(:disabled) {
   background-color: var(--accent-hover);
   transform: translateY(calc(-1 * var(--spacing-elevate)));
 }
@@ -41,18 +67,30 @@
 .btn--secondary {
   background-color: transparent;
   color: var(--text);
-  font-weight: var(--typography-weight-bold);
-  padding: var(--spacing-xs) var(--spacing-xl);
-  border-radius: var(--radius-pill);
-  border: var(--border-width) solid var(--border);
-  transition:
-    border-color var(--duration-normal) var(--easing-default),
-    background-color var(--duration-normal) var(--easing-default),
-    transform var(--duration-fast) var(--easing-default);
+  border-color: var(--border);
 }
 
-.btn--secondary:hover {
+.btn--secondary:hover:not(:disabled) {
   border-color: var(--border-hover);
   background-color: var(--surface-hover);
+  transform: translateY(calc(-1 * var(--spacing-elevate)));
+}
+
+.btn--ghost {
+  background-color: transparent;
+  color: var(--text);
+}
+
+.btn--ghost:hover:not(:disabled) {
+  background-color: var(--surface-hover);
+}
+
+.btn--danger {
+  background-color: var(--color-status-warning);
+  color: var(--bg);
+}
+
+.btn--danger:hover:not(:disabled) {
+  filter: brightness(0.92);
   transform: translateY(calc(-1 * var(--spacing-elevate)));
 }
