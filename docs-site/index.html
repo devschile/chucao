@@ -87,6 +87,13 @@
             </li>
             <li
               class="side-item"
+              data-name="ch-drawer"
+              data-desc="Panel lateral deslizante sobre el &lt;dialog&gt; nativo, abierto con showModal(): el navegador se encarga del foco, del cierre con Escape y del backdrop, y la página de fondo queda bloqueada. Se ancla a side (start/end/top/bottom) y expone slots header, default y footer. Emite chOpen y chClose."
+            >
+              <a class="side-link" href="#ch-drawer">ch-drawer</a>
+            </li>
+            <li
+              class="side-item"
               data-name="ch-emoji"
               data-desc="Emoji inline desde el CDN de devsChile. Mapea nombres y alias a través de emoji-map.json y prueba extensiones (.png, .gif, .jpg, .svg) automáticamente. Tamaños: sm, md, lg, xl."
             >
@@ -325,6 +332,39 @@
     <span class="t">&lt;span</span><span class="t">&gt;</span>Derecha<span class="t">&lt;/span</span><span class="t">&gt;</span>
   <span class="t">&lt;/div</span><span class="t">&gt;</span>
 <span class="t">&lt;/ch-card</span><span class="t">&gt;</span></code></pre>
+          </div>
+
+          <div class="comp" id="ch-drawer" tabindex="-1">
+            <div class="comp-head">
+              <h3>ch-drawer</h3>
+              <span class="tag">@devschile/chucao/ch-drawer</span>
+            </div>
+            <p class="comp-desc">
+              Panel lateral deslizante sobre el <code>&lt;dialog&gt;</code> nativo, abierto con <code>showModal()</code>: el navegador se encarga del foco, del cierre con
+              <code>Escape</code> y del backdrop, y la página de fondo queda bloqueada. Se ancla a
+              <code>side</code> (<code>start</code>/<code>end</code>/<code>top</code>/<code>bottom</code>) y expone slots <code>header</code>, default y <code>footer</code>. Emite
+              <code>chOpen</code> y <code>chClose</code>.
+            </p>
+            <div class="comp-demo">
+              <ch-button id="demo-drawer-trigger">Abrir panel</ch-button>
+              <ch-drawer id="demo-drawer" label="Filtros" close-label="Cerrar panel"
+                ><h4 slot="header">Filtros</h4>
+                <p>Panel lateral para navegación, edición o detalles rápidos.</p>
+                <div slot="footer"><ch-button variant="ghost">Cancelar</ch-button><ch-button>Aplicar</ch-button></div></ch-drawer
+              >
+              <ch-button id="demo-drawer-start-trigger" variant="secondary">Abrir desde start</ch-button>
+              <ch-drawer id="demo-drawer-start" label="Navegación" side="start" close-label="Cerrar panel"
+                ><h4 slot="header">Navegación</h4>
+                <p>Se desliza desde el borde inicial.</p></ch-drawer
+              >
+              <div id="demo-drawer-log" class="event-log"></div>
+            </div>
+            <pre
+              class="comp-code"
+            ><code><span class="t">&lt;ch-button</span> <span class="a">id</span>="demo-drawer-trigger"<span class="t">&gt;</span>Abrir panel<span class="t">&lt;/ch-button</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-drawer</span> <span class="a">id</span>="demo-drawer" <span class="a">label</span>="Filtros" <span class="a">close-label</span>="Cerrar panel"<span class="t">&gt;</span><span class="t">&lt;h4</span> <span class="a">slot</span>="header"<span class="t">&gt;</span>Filtros<span class="t">&lt;/h4</span><span class="t">&gt;</span><span class="t">&lt;p</span><span class="t">&gt;</span>Panel lateral para navegación, edición o detalles rápidos.<span class="t">&lt;/p</span><span class="t">&gt;</span><span class="t">&lt;div</span> <span class="a">slot</span>="footer"<span class="t">&gt;</span><span class="t">&lt;ch-button</span> <span class="a">variant</span>="ghost"<span class="t">&gt;</span>Cancelar<span class="t">&lt;/ch-button</span><span class="t">&gt;</span><span class="t">&lt;ch-button</span><span class="t">&gt;</span>Aplicar<span class="t">&lt;/ch-button</span><span class="t">&gt;</span><span class="t">&lt;/div</span><span class="t">&gt;</span><span class="t">&lt;/ch-drawer</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-button</span> <span class="a">id</span>="demo-drawer-start-trigger" <span class="a">variant</span>="secondary"<span class="t">&gt;</span>Abrir desde start<span class="t">&lt;/ch-button</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-drawer</span> <span class="a">id</span>="demo-drawer-start" <span class="a">label</span>="Navegación" <span class="a">side</span>="start" <span class="a">close-label</span>="Cerrar panel"<span class="t">&gt;</span><span class="t">&lt;h4</span> <span class="a">slot</span>="header"<span class="t">&gt;</span>Navegación<span class="t">&lt;/h4</span><span class="t">&gt;</span><span class="t">&lt;p</span><span class="t">&gt;</span>Se desliza desde el borde inicial.<span class="t">&lt;/p</span><span class="t">&gt;</span><span class="t">&lt;/ch-drawer</span><span class="t">&gt;</span></code></pre>
           </div>
 
           <div class="comp" id="ch-emoji" tabindex="-1">

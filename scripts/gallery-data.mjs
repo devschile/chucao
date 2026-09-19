@@ -110,6 +110,33 @@ export const gallery = [
     ],
   },
   {
+    tag: 'ch-drawer',
+    description:
+      'Panel lateral deslizante sobre el <code>&lt;dialog&gt;</code> nativo, abierto con <code>showModal()</code>: el navegador se encarga del foco, del cierre con <code>Escape</code> y del backdrop, y la página de fondo queda bloqueada. Se ancla a <code>side</code> (<code>start</code>/<code>end</code>/<code>top</code>/<code>bottom</code>) y expone slots <code>header</code>, default y <code>footer</code>. Emite <code>chOpen</code> y <code>chClose</code>.',
+    demos: [
+      '<ch-button id="demo-drawer-trigger">Abrir panel</ch-button>',
+      '<ch-drawer id="demo-drawer" label="Filtros" close-label="Cerrar panel"><h4 slot="header">Filtros</h4><p>Panel lateral para navegación, edición o detalles rápidos.</p><div slot="footer"><ch-button variant="ghost">Cancelar</ch-button><ch-button>Aplicar</ch-button></div></ch-drawer>',
+      '<ch-button id="demo-drawer-start-trigger" variant="secondary">Abrir desde start</ch-button>',
+      '<ch-drawer id="demo-drawer-start" label="Navegación" side="start" close-label="Cerrar panel"><h4 slot="header">Navegación</h4><p>Se desliza desde el borde inicial.</p></ch-drawer>',
+      '<div id="demo-drawer-log" class="event-log"></div>',
+    ],
+    bindings: [{ id: 'demo-drawer', event: 'chClose', format: '() => `chClose`' }],
+    init: `const drawerTrigger = document.getElementById('demo-drawer-trigger');
+  const drawerEl = document.getElementById('demo-drawer');
+  if (drawerTrigger && drawerEl) {
+    drawerTrigger.addEventListener('chClick', () => {
+      drawerEl.open = true;
+    });
+  }
+  const drawerStartTrigger = document.getElementById('demo-drawer-start-trigger');
+  const drawerStartEl = document.getElementById('demo-drawer-start');
+  if (drawerStartTrigger && drawerStartEl) {
+    drawerStartTrigger.addEventListener('chClick', () => {
+      drawerStartEl.open = true;
+    });
+  }`,
+  },
+  {
     tag: 'ch-emoji',
     description:
       'Emoji inline desde el CDN de devsChile. Mapea nombres y alias a través de <code>emoji-map.json</code> y prueba extensiones (.png, .gif, .jpg, .svg) automáticamente. Tamaños: <code>sm</code>, <code>md</code>, <code>lg</code>, <code>xl</code>.',

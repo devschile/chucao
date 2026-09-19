@@ -192,9 +192,9 @@ they don't collide with other libraries on the page.
 
 Beyond tag naming, follow these conventions — already used consistently
 across `ch-accordion`, `ch-alert`, `ch-badge`, `ch-button`, `ch-card`, `ch-checkbox`,
-`ch-divider`, `ch-input`, `ch-link`, `ch-modal`, `ch-radio`, `ch-select`,
-`ch-spinner`, `ch-switch`, `ch-tabs`, `ch-textarea`, and `ch-tooltip` — so future
-components stay consistent as the library grows. See
+`ch-divider`, `ch-drawer`, `ch-emoji`, `ch-input`, `ch-link`, `ch-modal`, `ch-radio`,
+`ch-select`, `ch-spinner`, `ch-switch`, `ch-tabs`, `ch-textarea`, and `ch-tooltip` —
+so future components stay consistent as the library grows. See
 [`v1-readiness.md`](v1-readiness.md) for the full readiness assessment that
 identified and documented these conventions.
 
@@ -275,6 +275,11 @@ identified and documented these conventions.
   are wired with `addEventListener` rather than JSX, since Stencil derives a
   listener's event name from whether `on<name>` exists on `window` and that
   differs between the browser and the test environment for pointer events.
+  `ch-drawer` is the same dialog opened against one edge instead of centred,
+  with `header`/`footer` slots around a scrollable body and a `side` prop
+  (`start`/`end`/`top`/`bottom`). It shares the scroll lock with `ch-modal`
+  through `src/utils/scroll-lock.ts` so two overlays open at once cannot unlock
+  the page early.
 - **Cross-boundary ARIA**: `ch-tooltip` takes both its trigger and its text
   from the consumer's light DOM through the `trigger` and `content` slots. That
   is not a stylistic choice — an `aria-describedby` IDREF only resolves within a
