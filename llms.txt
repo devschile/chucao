@@ -13,7 +13,7 @@
 - [ch-accordion](https://devschile.github.io/chucao/components/ch-accordion/): ch-accordion component
 - [ch-alert](https://devschile.github.io/chucao/components/ch-alert/): Block-level status message.
 - [ch-badge](https://devschile.github.io/chucao/components/ch-badge/): ch-badge component
-- [ch-button](https://devschile.github.io/chucao/components/ch-button/): ch-button component
+- [ch-button](https://devschile.github.io/chucao/components/ch-button/): graph TD;
 - [ch-card](https://devschile.github.io/chucao/components/ch-card/): ch-card component
 - [ch-checkbox](https://devschile.github.io/chucao/components/ch-checkbox/): ch-checkbox component
 - [ch-divider](https://devschile.github.io/chucao/components/ch-divider/): ch-divider component
