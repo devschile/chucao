@@ -6,6 +6,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+## [2.2.0](https://github.com/devschile/chucao/compare/2.1.0...2.2.0) (2026-09-19)
+
+### Features
+
+* **ch-button:** add variants, sizes, loading, href and icon slots ([#91](https://github.com/devschile/chucao/issues/91)) ([#95](https://github.com/devschile/chucao/issues/95)) ([75081cb](https://github.com/devschile/chucao/commit/75081cb75d065ce62f2cddfc0e83f3238e5b4349))
+* **ch-drawer:** add sliding side panel component ([#90](https://github.com/devschile/chucao/issues/90)) ([#96](https://github.com/devschile/chucao/issues/96)) ([e111fcd](https://github.com/devschile/chucao/commit/e111fcda115165659247d27ae200f7a9be052f27))
+* **ch-segmented-control:** add compact segmented selector component ([#82](https://github.com/devschile/chucao/issues/82)) ([#97](https://github.com/devschile/chucao/issues/97)) ([bb43e8b](https://github.com/devschile/chucao/commit/bb43e8baa9fe55ac2a7bf96b17e07147ec659b8b))
+* **ci:** gate the AI surfaces against components and tokens that do not exist ([#73](https://github.com/devschile/chucao/issues/73)) ([03af32c](https://github.com/devschile/chucao/commit/03af32c0971f4f3fc8883881a2546037dbae9f9a)), closes [#58](https://github.com/devschile/chucao/issues/58)
+
 ## [2.1.0](https://github.com/devschile/chucao/compare/2.0.0...2.1.0) (2026-09-07)
 
 ### Features
