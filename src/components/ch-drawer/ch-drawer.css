@@ -1,0 +1,152 @@
+.drawer {
+  position: fixed;
+  inset: 0;
+  margin: 0;
+  box-sizing: border-box;
+  flex-direction: column;
+  gap: var(--spacing-2xl);
+  width: min(24rem, 100vw);
+  height: 100vh;
+  height: 100dvh;
+  max-width: 100vw;
+  max-height: 100dvh;
+  padding: var(--spacing-5xl);
+  border: var(--border-width) solid var(--border);
+  border-radius: 0;
+  background: var(--color-background-base);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: var(--typography-size-md);
+  overflow: hidden;
+}
+
+.drawer[open] {
+  display: flex;
+}
+
+.drawer--start {
+  inset: 0 auto 0 0;
+  border-inline-start: none;
+  animation: drawer-in-start var(--duration-normal) var(--easing-default);
+}
+
+.drawer--end {
+  inset: 0 0 0 auto;
+  border-inline-end: none;
+  animation: drawer-in-end var(--duration-normal) var(--easing-default);
+}
+
+.drawer--top {
+  inset: 0 0 auto 0;
+  width: 100vw;
+  height: auto;
+  max-height: 80dvh;
+  border-block-start: none;
+  animation: drawer-in-top var(--duration-normal) var(--easing-default);
+}
+
+.drawer--bottom {
+  inset: auto 0 0 0;
+  width: 100vw;
+  height: auto;
+  max-height: 80dvh;
+  border-block-end: none;
+  animation: drawer-in-bottom var(--duration-normal) var(--easing-default);
+}
+
+.drawer::backdrop {
+  background: var(--color-scrim-default);
+  backdrop-filter: blur(var(--effect-blur));
+}
+
+.drawer-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--spacing-2xl);
+  flex: none;
+}
+
+.drawer-body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+::slotted([slot='footer']) {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--spacing-md);
+  flex: none;
+  padding-top: var(--spacing-2xl);
+  border-top: var(--border-width) solid var(--border);
+}
+
+.drawer-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  padding: var(--spacing-2xs) var(--spacing-md);
+  border: 0;
+  border-radius: var(--radius);
+  background: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-family: var(--font-heading);
+  font-size: var(--typography-size-lg);
+  line-height: 1;
+  transition: background-color var(--duration-normal) var(--easing-default);
+}
+
+.drawer-close:hover {
+  background: var(--surface-hover);
+  color: var(--text);
+}
+
+.drawer-close:focus-visible {
+  outline: var(--focus-outline-width) solid var(--accent);
+  outline-offset: var(--focus-outline-offset);
+}
+
+@keyframes drawer-in-start {
+  from {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes drawer-in-end {
+  from {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes drawer-in-top {
+  from {
+    transform: translateY(-100%);
+  }
+}
+
+@keyframes drawer-in-bottom {
+  from {
+    transform: translateY(100%);
+  }
+}
+
+@media (pointer: coarse) {
+  .drawer-close {
+    min-width: 44px;
+    min-height: 44px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .drawer {
+    animation: none;
+  }
+
+  .drawer-close {
+    transition: none;
+  }
+}

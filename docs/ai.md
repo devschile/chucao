@@ -6,7 +6,7 @@ and code generators.
 
 ## Component allow-list
 
-Chucao exposes exactly 19 components. Nothing else exists — do not invent
+Chucao exposes exactly 20 components. Nothing else exists — do not invent
 tags.
 
 | Tag                    | Purpose                                      |
@@ -18,6 +18,7 @@ tags.
 | `ch-card`              | Content container                            |
 | `ch-checkbox`          | Checkbox input                               |
 | `ch-divider`           | Visual separator                             |
+| `ch-drawer`            | Sliding side panel                           |
 | `ch-emoji`             | Inline emoji from the devsChile CDN          |
 | `ch-input`             | Text input field                             |
 | `ch-link`              | Hyperlink                                    |
@@ -66,11 +67,14 @@ event they wrap:
 | `ch-segmented-control` | `chChange`    | Selected              |
 | `ch-tabs`              | `chTabChange` | Tab selected          |
 | `ch-modal`             | `chClose`     | Close requested       |
+| `ch-drawer`            | `chOpen`      | Opened                |
+| `ch-drawer`            | `chClose`     | Close requested       |
 
 ### Accessibility
 
 - `ch-modal` requires a `label` prop — a modal without one has no
   accessible name.
+- `ch-drawer` requires a `label` prop for the same reason.
 - `ch-button` with icon-only content requires a `label` prop.
 - `ch-input` and `ch-select` require a `label` prop (renders an `id`/`for`
   pair).

@@ -22,6 +22,19 @@ invisible there. Set `color` on or above the element to change it.
 | `size`   | `size`    | The size of the spinner. Either `sm`, `md`, or `lg`. Each size sets a font-size and the spinner is drawn in `em`, so it also scales with an inherited font-size.                                                                                                          | `"lg" \| "md" \| "sm"` | `'md'`      |
 
 
+## Dependencies
+
+### Used by
+
+ - [ch-button](../ch-button)
+
+### Graph
+```mermaid
+graph TD;
+  ch-button --> ch-spinner
+  style ch-spinner fill:#f9f,stroke:#333,stroke-width:4px
+```
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*
