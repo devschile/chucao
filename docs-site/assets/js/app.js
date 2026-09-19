@@ -70,6 +70,19 @@ customElements.whenDefined('ch-radio').then(() => {
   bind('demo-radio', [{ name: 'chChange', format: ev => `chChange: ${ev.detail}` }]);
 });
 
+customElements.whenDefined('ch-segmented-control').then(() => {
+  const segmented = document.getElementById('demo-segmented');
+  if (segmented) {
+    segmented.options = [
+      { label: 'Todas', value: 'all' },
+      { label: 'Entradas', value: 'in' },
+      { label: 'Salidas', value: 'out' },
+    ];
+    segmented.value = 'all';
+  }
+  bind('demo-segmented', [{ name: 'chChange', format: ev => `chChange: ${ev.detail}` }]);
+});
+
 customElements.whenDefined('ch-select').then(() => {
   const select = document.getElementById('demo-select');
   if (select) {

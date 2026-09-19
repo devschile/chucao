@@ -104,6 +104,13 @@
             <li class="side-item" data-name="ch-radio" data-desc="Grupo de selección única; las opciones se pasan por options. Emite chChange con el valor elegido.">
               <a class="side-link" href="#ch-radio">ch-radio</a>
             </li>
+            <li
+              class="side-item"
+              data-name="ch-segmented-control"
+              data-desc="Control segmentado para alternar entre pocas opciones mutuamente excluyentes. Las opciones se pasan por options; admite size (sm/md) y participa de formularios con name/value. Emite chChange con el valor elegido."
+            >
+              <a class="side-link" href="#ch-segmented-control">ch-segmented-control</a>
+            </li>
             <li class="side-item" data-name="ch-select" data-desc="Select estilizado; las opciones se pasan por la prop options. Emite chChange.">
               <a class="side-link" href="#ch-select">ch-select</a>
             </li>
@@ -410,6 +417,25 @@
             <pre
               class="comp-code"
             ><code><span class="t">&lt;ch-radio</span> <span class="a">id</span>="demo-radio" <span class="a">label</span>="Elige un tema"<span class="t">&gt;</span><span class="t">&lt;/ch-radio</span><span class="t">&gt;</span></code></pre>
+          </div>
+
+          <div class="comp" id="ch-segmented-control" tabindex="-1">
+            <div class="comp-head">
+              <h3>ch-segmented-control</h3>
+              <span class="tag">@devschile/chucao/ch-segmented-control</span>
+            </div>
+            <p class="comp-desc">
+              Control segmentado para alternar entre pocas opciones mutuamente excluyentes. Las opciones se pasan por <code>options</code>; admite
+              <code>size</code> (<code>sm</code>/<code>md</code>) y participa de formularios con <code>name</code>/<code>value</code>. Emite <code>chChange</code> con el valor
+              elegido.
+            </p>
+            <div class="comp-demo">
+              <ch-segmented-control id="demo-segmented" label="Tipo de movimiento"></ch-segmented-control>
+              <div id="demo-segmented-log" class="event-log"></div>
+            </div>
+            <pre
+              class="comp-code"
+            ><code><span class="t">&lt;ch-segmented-control</span> <span class="a">id</span>="demo-segmented" <span class="a">label</span>="Tipo de movimiento"<span class="t">&gt;</span><span class="t">&lt;/ch-segmented-control</span><span class="t">&gt;</span></code></pre>
           </div>
 
           <div class="comp" id="ch-select" tabindex="-1">

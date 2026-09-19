@@ -6,29 +6,30 @@ and code generators.
 
 ## Component allow-list
 
-Chucao exposes exactly 18 components. Nothing else exists — do not invent
+Chucao exposes exactly 19 components. Nothing else exists — do not invent
 tags.
 
-| Tag            | Purpose                                      |
-| -------------- | -------------------------------------------- |
-| `ch-accordion` | Collapsible content sections                 |
-| `ch-alert`     | Status messages (default, positive, warning) |
-| `ch-badge`     | Small status indicators                      |
-| `ch-button`    | Interactive button                           |
-| `ch-card`      | Content container                            |
-| `ch-checkbox`  | Checkbox input                               |
-| `ch-divider`   | Visual separator                             |
-| `ch-emoji`     | Inline emoji from the devsChile CDN          |
-| `ch-input`     | Text input field                             |
-| `ch-link`      | Hyperlink                                    |
-| `ch-modal`     | Dialog overlay                               |
-| `ch-radio`     | Radio button                                 |
-| `ch-select`    | Dropdown select                              |
-| `ch-spinner`   | Loading indicator                            |
-| `ch-switch`    | Toggle switch                                |
-| `ch-tabs`      | Tabbed interface                             |
-| `ch-textarea`  | Multiline text input                         |
-| `ch-tooltip`   | Contextual help text                         |
+| Tag                    | Purpose                                      |
+| ---------------------- | -------------------------------------------- |
+| `ch-accordion`         | Collapsible content sections                 |
+| `ch-alert`             | Status messages (default, positive, warning) |
+| `ch-badge`             | Small status indicators                      |
+| `ch-button`            | Interactive button                           |
+| `ch-card`              | Content container                            |
+| `ch-checkbox`          | Checkbox input                               |
+| `ch-divider`           | Visual separator                             |
+| `ch-emoji`             | Inline emoji from the devsChile CDN          |
+| `ch-input`             | Text input field                             |
+| `ch-link`              | Hyperlink                                    |
+| `ch-modal`             | Dialog overlay                               |
+| `ch-radio`             | Radio button                                 |
+| `ch-segmented-control` | Compact segmented selector                   |
+| `ch-select`            | Dropdown select                              |
+| `ch-spinner`           | Loading indicator                            |
+| `ch-switch`            | Toggle switch                                |
+| `ch-tabs`              | Tabbed interface                             |
+| `ch-textarea`          | Multiline text input                         |
+| `ch-tooltip`           | Contextual help text                         |
 
 ## Rules
 
@@ -53,17 +54,18 @@ padding: 16px;
 Custom events follow the pattern `ch` + camelCase, mirroring the native
 event they wrap:
 
-| Component     | Event         | Fires on              |
-| ------------- | ------------- | --------------------- |
-| `ch-button`   | `chClick`     | Click                 |
-| `ch-input`    | `chInput`     | Input                 |
-| `ch-input`    | `chChange`    | Value committed       |
-| `ch-select`   | `chChange`    | Selection changed     |
-| `ch-checkbox` | `chChange`    | Checked state changed |
-| `ch-switch`   | `chChange`    | Toggled               |
-| `ch-radio`    | `chChange`    | Selected              |
-| `ch-tabs`     | `chTabChange` | Tab selected          |
-| `ch-modal`    | `chClose`     | Close requested       |
+| Component              | Event         | Fires on              |
+| ---------------------- | ------------- | --------------------- |
+| `ch-button`            | `chClick`     | Click                 |
+| `ch-input`             | `chInput`     | Input                 |
+| `ch-input`             | `chChange`    | Value committed       |
+| `ch-select`            | `chChange`    | Selection changed     |
+| `ch-checkbox`          | `chChange`    | Checked state changed |
+| `ch-switch`            | `chChange`    | Toggled               |
+| `ch-radio`             | `chChange`    | Selected              |
+| `ch-segmented-control` | `chChange`    | Selected              |
+| `ch-tabs`              | `chTabChange` | Tab selected          |
+| `ch-modal`             | `chClose`     | Close requested       |
 
 ### Accessibility
 
@@ -74,6 +76,8 @@ event they wrap:
   pair).
 - `ch-spinner` is decorative by default (`aria-hidden`). Pass `label` to
   make it announced.
+- `ch-segmented-control` renders a `label` associated via
+  `aria-labelledby`; pass one so the group has an accessible name.
 - All interactive elements have a visible `:focus-visible` style.
 
 ### Shadow DOM
