@@ -208,6 +208,22 @@ export const gallery = [
   }`,
   },
   {
+    tag: 'ch-segmented-control',
+    description:
+      'Control segmentado para alternar entre pocas opciones mutuamente excluyentes. Las opciones se pasan por <code>options</code>; admite <code>size</code> (<code>sm</code>/<code>md</code>) y participa de formularios con <code>name</code>/<code>value</code>. Emite <code>chChange</code> con el valor elegido.',
+    demos: ['<ch-segmented-control id="demo-segmented" label="Tipo de movimiento"></ch-segmented-control>', '<div id="demo-segmented-log" class="event-log"></div>'],
+    bindings: [{ id: 'demo-segmented', event: 'chChange', format: 'ev => `chChange: ${ev.detail}`' }],
+    init: `const segmented = document.getElementById('demo-segmented');
+  if (segmented) {
+    segmented.options = [
+      { label: 'Todas', value: 'all' },
+      { label: 'Entradas', value: 'in' },
+      { label: 'Salidas', value: 'out' },
+    ];
+    segmented.value = 'all';
+  }`,
+  },
+  {
     tag: 'ch-select',
     description: 'Select estilizado; las opciones se pasan por la prop <code>options</code>. Emite <code>chChange</code>.',
     demos: ['<ch-select id="demo-select" label="País" placeholder="Elige un país"></ch-select>', '<div id="demo-select-log" class="event-log"></div>'],

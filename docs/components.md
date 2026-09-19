@@ -192,9 +192,11 @@ they don't collide with other libraries on the page.
 
 Beyond tag naming, follow these conventions — already used consistently
 across `ch-accordion`, `ch-alert`, `ch-badge`, `ch-button`, `ch-card`, `ch-checkbox`,
-`ch-divider`, `ch-drawer`, `ch-emoji`, `ch-input`, `ch-link`, `ch-modal`, `ch-radio`,
-`ch-select`, `ch-spinner`, `ch-switch`, `ch-tabs`, `ch-textarea`, and `ch-tooltip` —
-so future components stay consistent as the library grows. See
+across `ch-accordion`, `ch-alert`, `ch-badge`, `ch-button`, `ch-card`,
+`ch-checkbox`, `ch-divider`, `ch-drawer`, `ch-emoji`, `ch-input`, `ch-link`,
+`ch-modal`, `ch-radio`, `ch-segmented-control`, `ch-select`, `ch-spinner`,
+`ch-switch`, `ch-tabs`, `ch-textarea`, and `ch-tooltip` — so future components
+stay consistent as the library grows. See
 [`v1-readiness.md`](v1-readiness.md) for the full readiness assessment that
 identified and documented these conventions.
 
@@ -216,9 +218,9 @@ identified and documented these conventions.
   `disabled` and `required` as `@Prop({ reflect: true })` so the host also
   carries them: the platform reads those attributes on the host for form
   association (see the form participation bullet below).
-- **Form participation & native validation**: the six form controls
-  (`ch-checkbox`, `ch-input`, `ch-radio`, `ch-select`, `ch-switch`,
-  `ch-textarea`) are form-associated custom elements
+- **Form participation & native validation**: the seven form controls
+  (`ch-checkbox`, `ch-input`, `ch-radio`, `ch-select`, `ch-segmented-control`,
+  `ch-switch`, `ch-textarea`) are form-associated custom elements
   (`@Component({ formAssociated: true })`). Inside a `<form>` they behave like
   native controls: their value/checked state is submitted through
   `ElementInternals.setFormValue()`, they appear in `form.elements`, and
@@ -241,8 +243,9 @@ identified and documented these conventions.
   need a label expose it explicitly: `ch-input`/`ch-select`/`ch-textarea`
   accept a `label` prop rendered as a `<label>` associated via a generated
   `id`/`for` pair, `ch-checkbox`/`ch-switch` wrap their native control in a
-  `<label>` (implicit labeling), `ch-radio` renders a `role="radiogroup"`
-  labelled via `aria-labelledby`, and `ch-button` accepts a `label` prop
+  `<label>` (implicit labeling), `ch-radio` and `ch-segmented-control` render a
+  `role="radiogroup"` labelled via `aria-labelledby`, and `ch-button` accepts a
+  `label` prop
   applied as `aria-label` on the native `<button>` (for icon-only buttons).
   Interactive elements must also keep a visible `:focus-visible` style (see
   `ch-button.css`) so keyboard users can see where focus is.

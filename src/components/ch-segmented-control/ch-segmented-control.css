@@ -1,0 +1,88 @@
+:host {
+  display: inline-block;
+  max-width: 100%;
+}
+
+.group-label {
+  display: block;
+  margin-bottom: var(--spacing-sm);
+  font-size: var(--typography-size-sm);
+  font-weight: var(--typography-weight-semibold);
+  color: var(--text);
+}
+
+.segmented {
+  display: inline-flex;
+  align-items: stretch;
+  max-width: 100%;
+  padding: var(--spacing-2xs);
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+}
+
+.control {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: background-color var(--duration-normal) var(--easing-default);
+}
+
+.control:hover:not(.control--disabled) {
+  background: var(--surface-hover);
+}
+
+.control--disabled {
+  opacity: var(--opacity-disabled);
+  cursor: not-allowed;
+}
+
+.input {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: inherit;
+}
+
+.input:checked ~ .label-text {
+  background: var(--accent);
+  color: var(--color-accent-text);
+  font-weight: var(--typography-weight-semibold);
+}
+
+.input:focus-visible ~ .label-text {
+  outline: var(--focus-outline-width) solid var(--accent);
+  outline-offset: var(--focus-outline-offset);
+}
+
+.label-text {
+  display: block;
+  padding: var(--spacing-2xs) var(--spacing-3xl);
+  border-radius: inherit;
+  font-size: var(--typography-size-sm);
+  white-space: nowrap;
+  transition:
+    background-color var(--duration-normal) var(--easing-default),
+    color var(--duration-normal) var(--easing-default);
+}
+
+.segmented--sm .label-text {
+  padding: var(--spacing-2xs) var(--spacing-2xl);
+  font-size: var(--typography-size-xs);
+}
+
+:host([data-touched]:invalid) .segmented,
+:host(:user-invalid) .segmented {
+  border-color: var(--color-status-warning);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .control,
+  .label-text {
+    transition: none;
+  }
+}
