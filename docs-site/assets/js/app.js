@@ -38,6 +38,24 @@ customElements.whenDefined('ch-checkbox').then(() => {
   bind('demo-checkbox', [{ name: 'chChange', format: ev => `chChange: ${ev.detail}` }]);
 });
 
+customElements.whenDefined('ch-drawer').then(() => {
+  const drawerTrigger = document.getElementById('demo-drawer-trigger');
+  const drawerEl = document.getElementById('demo-drawer');
+  if (drawerTrigger && drawerEl) {
+    drawerTrigger.addEventListener('chClick', () => {
+      drawerEl.open = true;
+    });
+  }
+  const drawerStartTrigger = document.getElementById('demo-drawer-start-trigger');
+  const drawerStartEl = document.getElementById('demo-drawer-start');
+  if (drawerStartTrigger && drawerStartEl) {
+    drawerStartTrigger.addEventListener('chClick', () => {
+      drawerStartEl.open = true;
+    });
+  }
+  bind('demo-drawer', [{ name: 'chClose', format: () => `chClose` }]);
+});
+
 customElements.whenDefined('ch-input').then(() => {
   bind('demo-input', [{ name: 'chInput', format: ev => `chInput: ${ev.detail}` }]);
   bind('demo-input', [{ name: 'chChange', format: ev => `chChange: ${ev.detail}` }]);

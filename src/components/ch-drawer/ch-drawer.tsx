@@ -2,38 +2,41 @@ import { Component, Event, type EventEmitter, Host, Prop, Watch, h } from '@sten
 
 import { lockScroll as lockPageScroll, unlockScroll as unlockPageScroll } from '../../utils/scroll-lock';
 
+export type ChDrawerSide = 'start' | 'end' | 'top' | 'bottom';
+
 /**
- * Modal dialog, built on the native `<dialog>` element and opened with
- * `showModal()`.
+ * Sliding side panel for navigation, editing forms and quick detail views.
  *
- * The browser therefore supplies the parts that are easy to get wrong: moving
- * focus into the dialog and returning it afterwards, marking the rest of the
- * document inert, `Escape` to close, the top layer, `::backdrop`, and the
- * implicit `dialog` role with `aria-modal="true"`. Notably it does not trap
- * focus, which is deliberate — the W3C APA group concluded a modal should let
- * keyboard users reach browser UI, so a hand-rolled trap would be less
- * correct, not more.
+ * Built on the native `<dialog>` element and opened with `showModal()`, exactly
+ * like `ch-modal`, so the browser owns focus management, the inert background,
+ * `Escape`, the top layer, `::backdrop`, and the implicit `dialog` role with
+ * `aria-modal="true"`. The only differences are placement — anchored to one
+ * edge instead of centred — and the longer content it is meant for, which is
+ * why it exposes `header` and `footer` slots around a scrollable body.
  *
- * What the platform does not cover, and this component adds: locking the page
- * behind the dialog so it cannot scroll, and closing when the backdrop is
- * clicked. The latter is `closedby="any"` in the platform, which Safari does
- * not support yet, so it is implemented here for every browser alike rather
- * than only for some.
+ * Scroll locking is shared with `ch-modal` through `utils/scroll-lock`, so a
+ * drawer and a modal opened together cannot unlock the page early.
  */
 @Component({
-  tag: 'ch-modal',
-  styleUrl: 'ch-modal.css',
+  tag: 'ch-drawer',
+  styleUrl: 'ch-drawer.css',
   shadow: true,
 })
-export class ChModal {
+export class ChDrawer {
   /**
-   * Whether the dialog is open. Kept in sync when the user closes it with
+   * Whether the drawer is open. Kept in sync when the user closes it with
    * `Escape`, the close button or a click outside.
    */
   @Prop({ mutable: true }) open = false;
 
   /**
-   * Accessible name for the dialog, set as `aria-label`. A slotted heading
+   * The edge the panel slides in from. `start`/`end` follow the writing
+   * direction, so `start` is the left edge in LTR and the right edge in RTL.
+   */
+  @Prop() side: ChDrawerSide = 'end';
+
+  /**
+   * Accessible name for the drawer, set as `aria-label`. A slotted heading
    * cannot be referenced with `aria-labelledby` across the shadow boundary, so
    * the name comes through this prop — and a modal dialog needs one, so pass
    * the same text as the heading.
@@ -48,12 +51,12 @@ export class ChModal {
   @Prop() closeLabel?: string;
 
   /**
-   * Emitted after the dialog opens.
+   * Emitted after the drawer opens.
    */
   @Event() chOpen: EventEmitter<void>;
 
   /**
-   * Emitted after the dialog closes, however it was closed.
+   * Emitted after the drawer closes, however it was closed.
    */
   @Event() chClose: EventEmitter<void>;
 
@@ -138,7 +141,7 @@ export class ChModal {
 
   private handleClick = (event: Event) => {
     // Requiring the press to have started on the backdrop too keeps a
-    // selection dragged out of the dialog, and a keyboard-synthesised click
+    // selection dragged out of the drawer, and a keyboard-synthesised click
     // (which reports coordinates of 0), from closing it.
     const dismiss = this.pointerDownedOutside && this.isOnBackdrop(event as MouseEvent);
     this.pointerDownedOutside = false;
@@ -167,18 +170,19 @@ export class ChModal {
   render() {
     return (
       <Host>
-        <dialog class="modal" aria-label={this.label} ref={el => (this.dialog = el as HTMLDialogElement)}>
-          <div class="modal-head">
-            <slot name="heading"></slot>
+        <dialog class={{ drawer: true, [`drawer--${this.side}`]: true }} aria-label={this.label} ref={el => (this.dialog = el as HTMLDialogElement)}>
+          <div class="drawer-head">
+            <slot name="header"></slot>
             {this.closeLabel && (
-              <button class="modal-close" type="button" aria-label={this.closeLabel} onClick={this.handleCloseClick}>
+              <button class="drawer-close" type="button" aria-label={this.closeLabel} onClick={this.handleCloseClick}>
                 <span aria-hidden="true">×</span>
               </button>
             )}
           </div>
-          <div class="modal-body">
+          <div class="drawer-body">
             <slot></slot>
           </div>
+          <slot name="footer"></slot>
         </dialog>
       </Host>
     );
