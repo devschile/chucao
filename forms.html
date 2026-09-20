@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="es-CL">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formularios — Chucao</title>
+    <meta
+      name="description"
+      content="Cómo armar formularios con los controles de Chucao: participan en el &lt;form&gt; nativo (FormData, validación y submit) con ejemplos de login y newsletter en JavaScript puro."
+    />
+    <link rel="icon" href="assets/favicon/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="assets/favicon/favicon.ico" sizes="any" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500;600;700&family=Inconsolata:wght@500;600;700&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="assets/css/styles.css" />
+
+    <link rel="stylesheet" href="https://static.devschile.cl/chucao/latest/chucao.css" />
+    <script type="module" src="https://static.devschile.cl/chucao/latest/chucao.esm.js"></script>
+  </head>
+  <body>
+    <script>
+      document.documentElement.classList.add('js');
+    </script>
+    <a class="skip-link" href="#main-content">Saltar al contenido</a>
+    <header class="hero">
+      <div class="wrap">
+        <img src="assets/brand/huemul-icono-contorno.svg" alt="Huemul, ícono de devsChile" />
+        <h1>Chucao — <span>formularios</span></h1>
+        <p>
+          Los controles de formulario de Chucao participan en el <code>&lt;form&gt;</code> nativo: su valor llega a <code>FormData</code> y al submit, y validan como controles
+          nativos.
+        </p>
+        <nav class="top-nav">
+          <a href="index.html#componentes">Componentes</a>
+          <a href="index.html#colores">Colores</a>
+          <a href="index.html#tipografia">Tipografía</a>
+          <a href="index.html#marca">Marca</a>
+          <a href="index.html#documentacion">Documentación</a>
+          <a href="forms.html" aria-current="page">Formularios</a>
+          <a href="https://github.com/devschile/chucao">GitHub ↗</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main-content" class="wrap" tabindex="-1">
+      <section id="como-funciona" tabindex="-1">
+        <h2>Cómo funcionan los formularios</h2>
+        <p class="lead">
+          Los seis controles de formulario — <code>ch-checkbox</code>, <code>ch-input</code>, <code>ch-radio</code>, <code>ch-select</code>, <code>ch-switch</code> y
+          <code>ch-textarea</code> — son <em>form-associated custom elements</em>. Dentro de un <code>&lt;form&gt;</code> se comportan como controles nativos, sin JavaScript de por
+          medio:
+        </p>
+        <ul>
+          <li>Su valor/estado se envía en <code>FormData</code> y en el submit (por su <code>name</code>).</li>
+          <li>Aparecen en <code>form.elements</code> y <code>form.checkValidity()</code> los ve.</li>
+          <li>Un campo <code>required</code> vacío es inválido (<code>valueMissing</code>) y bloquea el submit.</li>
+          <li>El host matchea <code>:invalid</code>/<code>:valid</code>, así puedes estilarlo desde tu CSS.</li>
+          <li><code>form.reset()</code> restaura el valor o estado inicial.</li>
+          <li>Un <code>&lt;fieldset disabled&gt;</code> deshabilita los controles que contiene y excluye sus valores.</li>
+        </ul>
+        <p>
+          Es un cambio de comportamiento: en versiones anteriores estos controles <em>no</em> participaban en el formulario. Si compensabas esa ausencia a mano (por ejemplo, con
+          hidden inputs alimentando <code>FormData</code>), hay que quitar ese trabajo manual para no duplicar valores.
+        </p>
+
+        <h3>Lo mínimo</h3>
+        <p>Un formulario con un solo campo, leído con JavaScript puro:</p>
+        <pre class="comp-code"><code>&lt;form id="contacto"&gt;
+  &lt;ch-input name="email" label="Correo" type="email" required&gt;&lt;/ch-input&gt;
+  &lt;ch-button id="enviar"&gt;Enviar&lt;/ch-button&gt;
+&lt;/form&gt;</code></pre>
+        <pre class="comp-code"><code>const form = document.getElementById('contacto');
+const submit = document.getElementById('enviar');
+
+// ch-button no puede disparar el submit por sí solo (vive en su shadow
+// root): conecta chClick con requestSubmit(), que valida y dispara submit.
+submit.addEventListener('chClick', () =&gt; form.requestSubmit());
+
+form.addEventListener('submit', (event) =&gt; {
+  event.preventDefault(); // sin backend real, acá solo leemos los datos
+  const data = Object.fromEntries(new FormData(form));
+  console.log(data); // { email: 'tu@email.com' }
+});</code></pre>
+      </section>
+
+      <section id="login" tabindex="-1">
+        <h2>Ejemplo: formulario de login</h2>
+        <p class="lead">
+          Correo y contraseña con <code>required</code>. El navegador valida antes de disparar <code>submit</code>: si un campo obligatorio está vacío, muestra el mensaje y no se
+          llega al handler.
+        </p>
+        <div class="form-demo">
+          <form id="login-form">
+            <ch-input name="email" label="Correo electrónico" type="email" required error-message="Ingresa un correo válido"></ch-input>
+            <ch-input name="password" label="Contraseña" type="password" required error-message="Ingresa tu contraseña"></ch-input>
+            <ch-button id="login-submit">Entrar</ch-button>
+          </form>
+          <pre class="form-result" id="login-result" aria-live="polite"></pre>
+        </div>
+        <h3>HTML</h3>
+        <pre class="comp-code"><code>&lt;form id="login-form"&gt;
+  &lt;ch-input name="email" label="Correo electrónico" type="email" required error-message="Ingresa un correo válido"&gt;&lt;/ch-input&gt;
+  &lt;ch-input name="password" label="Contraseña" type="password" required error-message="Ingresa tu contraseña"&gt;&lt;/ch-input&gt;
+  &lt;ch-button id="login-submit"&gt;Entrar&lt;/ch-button&gt;
+&lt;/form&gt;</code></pre>
+        <h3>JavaScript</h3>
+        <pre class="comp-code"><code>const form = document.getElementById('login-form');
+const output = document.getElementById('login-result');
+const submit = document.getElementById('login-submit');
+
+// ch-button no puede disparar el submit por sí solo: conecta chClick con
+// requestSubmit(), que valida y dispara `submit` si el formulario es válido.
+submit.addEventListener('chClick', () =&gt; form.requestSubmit());
+
+form.addEventListener('submit', (event) =&gt; {
+  event.preventDefault(); // en este demo no hay backend
+  const data = Object.fromEntries(new FormData(form));
+
+  // fetch('/api/login', { method: 'POST', body: JSON.stringify(data) })
+
+  output.textContent = JSON.stringify(data, null, 2);
+});</code></pre>
+      </section>
+
+      <section id="newsletter" tabindex="-1">
+        <h2>Ejemplo: suscripción a un newsletter</h2>
+        <p class="lead">
+          Un correo y un checkbox de consentimiento <code>required</code>. Como con un checkbox nativo, <code>consent</code> solo aparece en <code>FormData</code> cuando está
+          marcado.
+        </p>
+        <div class="form-demo">
+          <form id="newsletter-form">
+            <ch-input name="email" label="Correo electrónico" type="email" required error-message="Ingresa un correo válido"></ch-input>
+            <ch-checkbox name="consent" label="Acepto recibir novedades por correo" required error-message="Necesitamos tu consentimiento"></ch-checkbox>
+            <ch-button id="newsletter-submit">Suscribirme</ch-button>
+          </form>
+          <pre class="form-result" id="newsletter-result" aria-live="polite"></pre>
+        </div>
+        <h3>HTML</h3>
+        <pre class="comp-code"><code>&lt;form id="newsletter-form"&gt;
+  &lt;ch-input name="email" label="Correo electrónico" type="email" required error-message="Ingresa un correo válido"&gt;&lt;/ch-input&gt;
+  &lt;ch-checkbox name="consent" label="Acepto recibir novedades por correo" required error-message="Necesitamos tu consentimiento"&gt;&lt;/ch-checkbox&gt;
+  &lt;ch-button id="newsletter-submit"&gt;Suscribirme&lt;/ch-button&gt;
+&lt;/form&gt;</code></pre>
+        <h3>JavaScript</h3>
+        <pre class="comp-code"><code>const form = document.getElementById('newsletter-form');
+const output = document.getElementById('newsletter-result');
+const submit = document.getElementById('newsletter-submit');
+
+submit.addEventListener('chClick', () =&gt; form.requestSubmit());
+
+form.addEventListener('submit', (event) =&gt; {
+  event.preventDefault();
+
+  // Si el checkbox está sin marcar, `consent` no aparece en FormData.
+  const data = Object.fromEntries(new FormData(form));
+
+  if (data.consent !== 'on') {
+    // el usuario no dio consentimiento: no suscribir
+    return;
+  }
+
+  // fetch('/api/newsletter', { method: 'POST', body: JSON.stringify(data) })
+
+  output.textContent = JSON.stringify(data, null, 2);
+});</code></pre>
+      </section>
+
+      <section id="notas" tabindex="-1">
+        <h2>Notas</h2>
+        <ul>
+          <li>
+            <strong>Botón de submit.</strong> <code>ch-button</code> renderiza un <code>&lt;button type="button"&gt;</code> dentro de su shadow root, así que no dispara el submit
+            por sí solo. Conecta <code>chClick</code> con <code>form.requestSubmit()</code>: ese método corre la validación nativa y dispara <code>submit</code> si el formulario es
+            válido:
+            <pre class="comp-code"><code>document.getElementById('entrar').addEventListener('chClick', () =&gt; {
+  document.getElementById('login-form').requestSubmit();
+});</code></pre>
+          </li>
+          <li>
+            <strong>Resaltado del campo inválido.</strong> Los componentes pintan el borde del control en color de advertencia cuando el campo es inválido <em>después</em> de que
+            el usuario terminó la interacción — al salir del campo (<code>focusout</code>) o al confirmar el valor (<code>change</code>) — o ante un intento de submit (evento
+            <code>invalid</code>). Un campo con foco aún no se resalta mientras el usuario lo está editando. Internamente se marca al terminar la interacción, y el estilo se
+            resuelve con la validez nativa:
+            <pre class="comp-code"><code>/* dentro del componente */
+:host([data-touched]:invalid) .input,
+:host(:user-invalid) .input {
+  border-color: var(--color-status-warning);
+}</code></pre>
+            Desde tu CSS también puedes apuntar al host con las mismas pseudoclases (p. ej.
+            <code>ch-input[data-touched]:invalid</code>) para estilos propios. <code>:user-invalid</code>
+            hace lo mismo en navegadores que lo reportan sobre custom elements; el atributo
+            <code>data-touched</code> cubre el resto.
+          </li>
+          <li>
+            <strong>Mensaje de error inline.</strong> El texto rojo bajo el campo se renderiza cuando pasas <code>invalid</code> + <code>error-message</code> (por ejemplo, desde la
+            validación del servidor). El <code>required</code> vacío valida solo por la API nativa: el navegador muestra el <code>validationMessage</code> en el control inválido y
+            bloquea el submit.
+          </li>
+          <li>
+            <strong>Validación de formato.</strong> El <code>type</code> (p. ej. <code>email</code>) se aplica al input interno. La validez del host refleja <code>required</code> y
+            <code>invalid</code>/<code>error-message</code>; la validación de formato del <code>type</code>
+            todavía no se propaga a la constraint validation del host.
+          </li>
+          <li>
+            <strong>La API de constraint validation</strong> de estos componentes vive en <code>element.internals</code> (<code>checkValidity()</code>,
+            <code>validationMessage</code>, <code>validity</code>, <code>willValidate</code>). Para consumidores el camino habitual es <code>form.checkValidity()</code>,
+            <code>new FormData(form)</code> y CSS <code>:invalid</code>.
+          </li>
+          <li>
+            <strong>Controles sin <code>name</code></strong> no se envían en el submit, igual que los controles nativos.
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <footer>
+      <div class="wrap">
+        <p><a href="https://github.com/devschile/chucao">devschile/chucao</a> — hecho por la comunidad, para la comunidad 🦌</p>
+      </div>
+    </footer>
+
+    <script>
+      const loginForm = document.getElementById('login-form');
+      const loginResult = document.getElementById('login-result');
+      const loginSubmit = document.getElementById('login-submit');
+      loginSubmit?.addEventListener('chClick', () => loginForm?.requestSubmit());
+      loginForm?.addEventListener('submit', event => {
+        event.preventDefault();
+        loginResult.textContent = JSON.stringify(Object.fromEntries(new FormData(loginForm)), null, 2);
+      });
+
+      const newsletterForm = document.getElementById('newsletter-form');
+      const newsletterResult = document.getElementById('newsletter-result');
+      const newsletterSubmit = document.getElementById('newsletter-submit');
+      newsletterSubmit?.addEventListener('chClick', () => newsletterForm?.requestSubmit());
+      newsletterForm?.addEventListener('submit', event => {
+        event.preventDefault();
+        newsletterResult.textContent = JSON.stringify(Object.fromEntries(new FormData(newsletterForm)), null, 2);
+      });
+    </script>
+  </body>
+</html>
