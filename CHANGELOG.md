@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+## [2.3.0](https://github.com/devschile/chucao/compare/2.2.0...2.3.0) (2026-09-20)
+
+### Features
+
+* **modal:** add a size prop for the maximum width ([#100](https://github.com/devschile/chucao/issues/100)) ([da6d293](https://github.com/devschile/chucao/commit/da6d293cf0a564685ff828b23fd7c7dbee18f22d)), closes [#99](https://github.com/devschile/chucao/issues/99)
+
 ## [2.2.0](https://github.com/devschile/chucao/compare/2.1.0...2.2.0) (2026-09-19)
 
 ### Features
