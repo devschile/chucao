@@ -2,6 +2,8 @@ import { Component, Event, type EventEmitter, Host, Prop, Watch, h } from '@sten
 
 import { lockScroll as lockPageScroll, unlockScroll as unlockPageScroll } from '../../utils/scroll-lock';
 
+export type ChModalSize = 'sm' | 'md' | 'lg';
+
 /**
  * Modal dialog, built on the native `<dialog>` element and opened with
  * `showModal()`.
@@ -46,6 +48,14 @@ export class ChModal {
    * label it would have no accessible name.
    */
   @Prop() closeLabel?: string;
+
+  /**
+   * The maximum width of the dialog. One of `sm` (24rem), `md` (32rem), or
+   * `lg` (48rem). The `--ch-modal-width` custom property overrides it for a
+   * width none of the three cover. Either way the dialog never exceeds the
+   * viewport.
+   */
+  @Prop() size: ChModalSize = 'md';
 
   /**
    * Emitted after the dialog opens.
@@ -167,7 +177,7 @@ export class ChModal {
   render() {
     return (
       <Host>
-        <dialog class="modal" aria-label={this.label} ref={el => (this.dialog = el as HTMLDialogElement)}>
+        <dialog class={{ modal: true, [`modal--${this.size}`]: true }} aria-label={this.label} ref={el => (this.dialog = el as HTMLDialogElement)}>
           <div class="modal-head">
             <slot name="heading"></slot>
             {this.closeLabel && (

@@ -46,8 +46,17 @@ describe('ch-modal', () => {
     const { root } = await render(<ch-modal label="Confirmar">Contenido</ch-modal>);
     const dialog = root.shadowRoot.querySelector('dialog');
     expect(dialog).not.toBe(null);
-    expect(dialog.className).toBe('modal');
+    expect(dialog.className).toBe('modal modal--md');
     expect(dialog.hasAttribute('open')).toBe(false);
+  });
+
+  it('sizes the dialog from the size prop', async () => {
+    const { root } = await render(
+      <ch-modal label="Confirmar" size="lg">
+        Contenido
+      </ch-modal>,
+    );
+    expect(root.shadowRoot.querySelector('dialog').className).toBe('modal modal--lg');
   });
 
   it('names the dialog from the label prop', async () => {
