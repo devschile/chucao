@@ -108,7 +108,7 @@
             <li
               class="side-item"
               data-name="ch-modal"
-              data-desc="Diálogo modal sobre el &lt;dialog&gt; nativo, abierto con showModal(): el navegador se encarga del foco, de marcar el resto de la página como inerte, del cierre con Escape y del backdrop. Se cierra además al hacer clic fuera del diálogo. Emite chOpen y chClose."
+              data-desc="Diálogo modal sobre el &lt;dialog&gt; nativo, abierto con showModal(): el navegador se encarga del foco, de marcar el resto de la página como inerte, del cierre con Escape y del backdrop. Se cierra además al hacer clic fuera del diálogo. Admite size (sm/md/lg) para el ancho máximo, ajustable también con la custom property --ch-modal-width. Emite chOpen y chClose."
             >
               <a class="side-link" href="#ch-modal">ch-modal</a>
             </li>
@@ -448,20 +448,29 @@
             </div>
             <p class="comp-desc">
               Diálogo modal sobre el <code>&lt;dialog&gt;</code> nativo, abierto con <code>showModal()</code>: el navegador se encarga del foco, de marcar el resto de la página
-              como inerte, del cierre con <code>Escape</code> y del backdrop. Se cierra además al hacer clic fuera del diálogo. Emite <code>chOpen</code> y <code>chClose</code>.
+              como inerte, del cierre con <code>Escape</code> y del backdrop. Se cierra además al hacer clic fuera del diálogo. Admite
+              <code>size</code> (<code>sm</code>/<code>md</code>/<code>lg</code>) para el ancho máximo, ajustable también con la custom property <code>--ch-modal-width</code>.
+              Emite <code>chOpen</code> y <code>chClose</code>.
             </p>
             <div class="comp-demo">
               <ch-button id="demo-modal-trigger">Abrir diálogo</ch-button>
+              <ch-button id="demo-modal-lg-trigger" variant="secondary">Abrir ancho (lg)</ch-button>
               <ch-modal id="demo-modal" label="Confirmar publicación" close-label="Cerrar diálogo"
                 ><h4 slot="heading">¿Publicar al CDN?</h4>
                 <p>Se publicará la versión actual de la librería. La acción no se puede deshacer.</p></ch-modal
+              >
+              <ch-modal id="demo-modal-lg" size="lg" label="Nueva transacción" close-label="Cerrar diálogo"
+                ><h4 slot="heading">Nueva transacción</h4>
+                <p>Con <code>size="lg"</code> el diálogo llega a 48rem, suficiente para un formulario en dos columnas.</p></ch-modal
               >
               <div id="demo-modal-log" class="event-log"></div>
             </div>
             <pre
               class="comp-code"
             ><code><span class="t">&lt;ch-button</span> <span class="a">id</span>="demo-modal-trigger"<span class="t">&gt;</span>Abrir diálogo<span class="t">&lt;/ch-button</span><span class="t">&gt;</span>
-<span class="t">&lt;ch-modal</span> <span class="a">id</span>="demo-modal" <span class="a">label</span>="Confirmar publicación" <span class="a">close-label</span>="Cerrar diálogo"<span class="t">&gt;</span><span class="t">&lt;h4</span> <span class="a">slot</span>="heading"<span class="t">&gt;</span>¿Publicar al CDN?<span class="t">&lt;/h4</span><span class="t">&gt;</span><span class="t">&lt;p</span><span class="t">&gt;</span>Se publicará la versión actual de la librería. La acción no se puede deshacer.<span class="t">&lt;/p</span><span class="t">&gt;</span><span class="t">&lt;/ch-modal</span><span class="t">&gt;</span></code></pre>
+<span class="t">&lt;ch-button</span> <span class="a">id</span>="demo-modal-lg-trigger" <span class="a">variant</span>="secondary"<span class="t">&gt;</span>Abrir ancho (lg)<span class="t">&lt;/ch-button</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-modal</span> <span class="a">id</span>="demo-modal" <span class="a">label</span>="Confirmar publicación" <span class="a">close-label</span>="Cerrar diálogo"<span class="t">&gt;</span><span class="t">&lt;h4</span> <span class="a">slot</span>="heading"<span class="t">&gt;</span>¿Publicar al CDN?<span class="t">&lt;/h4</span><span class="t">&gt;</span><span class="t">&lt;p</span><span class="t">&gt;</span>Se publicará la versión actual de la librería. La acción no se puede deshacer.<span class="t">&lt;/p</span><span class="t">&gt;</span><span class="t">&lt;/ch-modal</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-modal</span> <span class="a">id</span>="demo-modal-lg" <span class="a">size</span>="lg" <span class="a">label</span>="Nueva transacción" <span class="a">close-label</span>="Cerrar diálogo"<span class="t">&gt;</span><span class="t">&lt;h4</span> <span class="a">slot</span>="heading"<span class="t">&gt;</span>Nueva transacción<span class="t">&lt;/h4</span><span class="t">&gt;</span><span class="t">&lt;p</span><span class="t">&gt;</span>Con <span class="t">&lt;code</span><span class="t">&gt;</span>size="lg"<span class="t">&lt;/code</span><span class="t">&gt;</span> el diálogo llega a 48rem, suficiente para un formulario en dos columnas.<span class="t">&lt;/p</span><span class="t">&gt;</span><span class="t">&lt;/ch-modal</span><span class="t">&gt;</span></code></pre>
           </div>
 
           <div class="comp" id="ch-radio" tabindex="-1">

@@ -178,10 +178,12 @@ export const gallery = [
   {
     tag: 'ch-modal',
     description:
-      'Diálogo modal sobre el <code>&lt;dialog&gt;</code> nativo, abierto con <code>showModal()</code>: el navegador se encarga del foco, de marcar el resto de la página como inerte, del cierre con <code>Escape</code> y del backdrop. Se cierra además al hacer clic fuera del diálogo. Emite <code>chOpen</code> y <code>chClose</code>.',
+      'Diálogo modal sobre el <code>&lt;dialog&gt;</code> nativo, abierto con <code>showModal()</code>: el navegador se encarga del foco, de marcar el resto de la página como inerte, del cierre con <code>Escape</code> y del backdrop. Se cierra además al hacer clic fuera del diálogo. Admite <code>size</code> (<code>sm</code>/<code>md</code>/<code>lg</code>) para el ancho máximo, ajustable también con la custom property <code>--ch-modal-width</code>. Emite <code>chOpen</code> y <code>chClose</code>.',
     demos: [
       '<ch-button id="demo-modal-trigger">Abrir diálogo</ch-button>',
+      '<ch-button id="demo-modal-lg-trigger" variant="secondary">Abrir ancho (lg)</ch-button>',
       '<ch-modal id="demo-modal" label="Confirmar publicación" close-label="Cerrar diálogo"><h4 slot="heading">¿Publicar al CDN?</h4><p>Se publicará la versión actual de la librería. La acción no se puede deshacer.</p></ch-modal>',
+      '<ch-modal id="demo-modal-lg" size="lg" label="Nueva transacción" close-label="Cerrar diálogo"><h4 slot="heading">Nueva transacción</h4><p>Con <code>size="lg"</code> el diálogo llega a 48rem, suficiente para un formulario en dos columnas.</p></ch-modal>',
       '<div id="demo-modal-log" class="event-log"></div>',
     ],
     bindings: [{ id: 'demo-modal', event: 'chClose', format: '() => `chClose`' }],
@@ -190,6 +192,13 @@ export const gallery = [
   if (modalTrigger && modalEl) {
     modalTrigger.addEventListener('chClick', () => {
       modalEl.open = true;
+    });
+  }
+  const modalLgTrigger = document.getElementById('demo-modal-lg-trigger');
+  const modalLgEl = document.getElementById('demo-modal-lg');
+  if (modalLgTrigger && modalLgEl) {
+    modalLgTrigger.addEventListener('chClick', () => {
+      modalLgEl.open = true;
     });
   }`,
   },

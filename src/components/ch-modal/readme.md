@@ -26,11 +26,12 @@ than only for some.
 
 ## Properties
 
-| Property     | Attribute     | Description                                                                                                                                                                                                                                              | Type      | Default     |
-| ------------ | ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- | ----------- |
-| `closeLabel` | `close-label` | Accessible label for the close button, set as `aria-label`. Setting it is what adds the button: its only content is a decorative glyph, so without a label it would have no accessible name.                                                             | `string`  | `undefined` |
-| `label`      | `label`       | Accessible name for the dialog, set as `aria-label`. A slotted heading cannot be referenced with `aria-labelledby` across the shadow boundary, so the name comes through this prop — and a modal dialog needs one, so pass the same text as the heading. | `string`  | `undefined` |
-| `open`       | `open`        | Whether the dialog is open. Kept in sync when the user closes it with `Escape`, the close button or a click outside.                                                                                                                                     | `boolean` | `false`     |
+| Property     | Attribute     | Description                                                                                                                                                                                                                                              | Type                   | Default     |
+| ------------ | ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------- | ----------- |
+| `closeLabel` | `close-label` | Accessible label for the close button, set as `aria-label`. Setting it is what adds the button: its only content is a decorative glyph, so without a label it would have no accessible name.                                                             | `string`               | `undefined` |
+| `label`      | `label`       | Accessible name for the dialog, set as `aria-label`. A slotted heading cannot be referenced with `aria-labelledby` across the shadow boundary, so the name comes through this prop — and a modal dialog needs one, so pass the same text as the heading. | `string`               | `undefined` |
+| `open`       | `open`        | Whether the dialog is open. Kept in sync when the user closes it with `Escape`, the close button or a click outside.                                                                                                                                     | `boolean`              | `false`     |
+| `size`       | `size`        | The maximum width of the dialog. One of `sm` (24rem), `md` (32rem), or `lg` (48rem). The `--ch-modal-width` custom property overrides it for a width none of the three cover. Either way the dialog never exceeds the viewport.                          | `"lg" \| "md" \| "sm"` | `'md'`      |
 
 
 ## Events

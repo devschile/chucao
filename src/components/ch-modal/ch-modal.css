@@ -1,6 +1,5 @@
 .modal {
   box-sizing: border-box;
-  max-width: min(32rem, calc(100vw - var(--spacing-6xl)));
   max-height: calc(100vh - var(--spacing-6xl));
   padding: var(--spacing-5xl);
   border: var(--border-width) solid var(--border);
@@ -9,6 +8,18 @@
   color: var(--text);
   font-family: var(--font-body);
   font-size: var(--typography-size-md);
+}
+
+.modal--sm {
+  max-width: min(var(--ch-modal-width, 24rem), calc(100vw - var(--spacing-6xl)));
+}
+
+.modal--md {
+  max-width: min(var(--ch-modal-width, 32rem), calc(100vw - var(--spacing-6xl)));
+}
+
+.modal--lg {
+  max-width: min(var(--ch-modal-width, 48rem), calc(100vw - var(--spacing-6xl)));
 }
 
 .modal::backdrop {

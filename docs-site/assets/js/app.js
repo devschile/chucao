@@ -73,6 +73,13 @@ customElements.whenDefined('ch-modal').then(() => {
       modalEl.open = true;
     });
   }
+  const modalLgTrigger = document.getElementById('demo-modal-lg-trigger');
+  const modalLgEl = document.getElementById('demo-modal-lg');
+  if (modalLgTrigger && modalLgEl) {
+    modalLgTrigger.addEventListener('chClick', () => {
+      modalLgEl.open = true;
+    });
+  }
   bind('demo-modal', [{ name: 'chClose', format: () => `chClose` }]);
 });
 

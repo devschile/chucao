@@ -277,7 +277,11 @@ identified and documented these conventions.
   always pass it, with the same text as the heading. Native `<dialog>` events
   are wired with `addEventListener` rather than JSX, since Stencil derives a
   listener's event name from whether `on<name>` exists on `window` and that
-  differs between the browser and the test environment for pointer events.
+  differs between the browser and the test environment for pointer events. The
+  `size` prop caps the width — `sm` (24rem), `md` (32rem, the default) or `lg`
+  (48rem, room for a two-column form) — and the `--ch-modal-width` custom
+  property overrides it for a width none of the three cover; the cap against
+  the viewport applies either way.
   `ch-drawer` is the same dialog opened against one edge instead of centred,
   with `header`/`footer` slots around a scrollable body and a `side` prop
   (`start`/`end`/`top`/`bottom`). It shares the scroll lock with `ch-modal`
