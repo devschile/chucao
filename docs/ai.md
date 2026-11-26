@@ -119,8 +119,8 @@ React, Vue, and Svelte integration.
 
 - Use `ch-*` tags: `<ch-button>`, `<ch-card>`, `<ch-input>`, etc.
 - Reference tokens via `var(--token-name)`.
-- Pass `label` to `ch-modal`, `ch-button` (icon-only), `ch-input`,
-  `ch-select`.
+- Pass `label` to `ch-modal`, `ch-drawer`, `ch-button` (icon-only),
+  `ch-input`, `ch-select`. A `ch-spinner` without a label is decorative.
 - Use `slot="trigger"` for `ch-tooltip` and `ch-modal` activators.
 - Listen to `chClick`, `chChange`, `chInput` events.
 
@@ -128,6 +128,7 @@ React, Vue, and Svelte integration.
 
 - Invent tags: `<chucao-button>`, `<stencil-button>`, `<ch-icon>` do not
   exist.
+- Leave an unnamed `ch-modal`, `ch-drawer` or icon-only `ch-button`: development builds warn.
 - Hardcode colors or spacing values — use `var(--color-*)`,
   `var(--spacing-*)`.
 - Omit `label` on interactive components — it silently creates an
