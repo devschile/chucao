@@ -3,7 +3,7 @@ import { Build } from '@stencil/core';
 const warned = new WeakSet<Element>();
 
 export function hasLightDomText(host: Element): boolean {
-  return Array.from(host.childNodes).some((child) => {
+  return Array.from(host.childNodes).some(child => {
     if (child.nodeType !== 3 && child.nodeType !== 1) {
       return false;
     }
