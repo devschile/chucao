@@ -1,4 +1,4 @@
-import { render, h, describe, it, expect } from '@stencil/vitest';
+import { render, h, describe, it, expect, vi, afterEach } from '@stencil/vitest';
 
 import './ch-spinner.tsx';
 
@@ -62,5 +62,15 @@ describe('ch-spinner', () => {
     const span = root.shadowRoot.querySelector('span');
     expect(span.classList.contains('spinner')).toBe(true);
     expect(span.className).toBe('spinner spinner--huge');
+  });
+});
+
+describe('ch-spinner accessible-name diagnostics', () => {
+  afterEach(() => vi.restoreAllMocks());
+
+  it('stays silent when no label is given', async () => {
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
+    await render(<ch-spinner></ch-spinner>);
+    expect(warn).not.toHaveBeenCalled();
   });
 });

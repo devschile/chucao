@@ -1,4 +1,6 @@
-import { Component, Event, type EventEmitter, Host, Prop, h } from '@stencil/core';
+import { Component, Element, Event, type EventEmitter, Host, Prop, h } from '@stencil/core';
+
+import { hasLightDomText, warnMissingName } from '../../utils/accessibility';
 
 export type ChButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger';
 export type ChButtonSize = 'sm' | 'md' | 'lg';
@@ -9,6 +11,8 @@ export type ChButtonSize = 'sm' | 'md' | 'lg';
   shadow: true,
 })
 export class ChButton {
+  @Element() el: HTMLChButtonElement;
+
   /**
    * The visual style of the button. One of `primary`, `secondary`, `ghost`,
    * or `danger`.
@@ -47,7 +51,8 @@ export class ChButton {
   /**
    * Accessible label set as `aria-label` on the native element. Use it when
    * the button's content doesn't convey its purpose on its own (e.g. an
-   * icon-only button).
+   * icon-only button). Omitting it on an icon-only button logs a warning in
+   * development builds.
    */
   @Prop() label?: string;
 
@@ -73,6 +78,10 @@ export class ChButton {
   }
 
   render() {
+    if (!this.label && !hasLightDomText(this.el)) {
+      warnMissingName(this.el, 'ch-button', 'pass label for an icon-only button');
+    }
+
     const classes = {
       'btn': true,
       [`btn--${this.variant}`]: true,

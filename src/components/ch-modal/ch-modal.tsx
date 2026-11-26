@@ -1,5 +1,6 @@
-import { Component, Event, type EventEmitter, Host, Prop, Watch, h } from '@stencil/core';
+import { Component, Element, Event, type EventEmitter, Host, Prop, Watch, h } from '@stencil/core';
 
+import { warnMissingName } from '../../utils/accessibility';
 import { lockScroll as lockPageScroll, unlockScroll as unlockPageScroll } from '../../utils/scroll-lock';
 
 export type ChModalSize = 'sm' | 'md' | 'lg';
@@ -28,6 +29,8 @@ export type ChModalSize = 'sm' | 'md' | 'lg';
   shadow: true,
 })
 export class ChModal {
+  @Element() el: HTMLChModalElement;
+
   /**
    * Whether the dialog is open. Kept in sync when the user closes it with
    * `Escape`, the close button or a click outside.
@@ -38,7 +41,7 @@ export class ChModal {
    * Accessible name for the dialog, set as `aria-label`. A slotted heading
    * cannot be referenced with `aria-labelledby` across the shadow boundary, so
    * the name comes through this prop — and a modal dialog needs one, so pass
-   * the same text as the heading.
+   * the same text as the heading. Omitting it logs a warning in development builds.
    */
   @Prop() label?: string;
 
@@ -175,6 +178,9 @@ export class ChModal {
   };
 
   render() {
+    if (!this.label) {
+      warnMissingName(this.el, 'ch-modal', 'pass label with the same text as the heading');
+    }
     return (
       <Host>
         <dialog class={{ modal: true, [`modal--${this.size}`]: true }} aria-label={this.label} ref={el => (this.dialog = el as HTMLDialogElement)}>

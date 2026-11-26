@@ -249,6 +249,7 @@ identified and documented these conventions.
   applied as `aria-label` on the native `<button>` (for icon-only buttons).
   Interactive elements must also keep a visible `:focus-visible` style (see
   `ch-button.css`) so keyboard users can see where focus is.
+- **Accessible names**: `label` stays optional on existing components, so this is not a breaking change. The contract is per component: `ch-modal` and `ch-drawer` always need a name matching their slotted heading or header, `ch-button` needs one when its visible content is only an icon slot, and `ch-spinner` without a label is deliberately decorative (`aria-hidden`). In development builds the first render of an unnamed modal, drawer or icon-only button logs a warning through the shared helper in `src/utils/accessibility.ts`; production builds and server-side rendering stay silent. New always-named APIs require `label` in their type, as `ch-emoji` does with `name`. Keeping the `label` and the slotted heading text in sync remains the consumer's responsibility; cross-root `aria-labelledby` is tracked separately.
 - **Composite widgets (keyboard + panels)**: `ch-tabs` and `ch-accordion`
   implement keyboard-accessible, non-form composites. `ch-tabs` follows the
   WAI-ARIA tablist pattern: arrow keys move and activate (Left/Right wrap
