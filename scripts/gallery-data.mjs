@@ -351,6 +351,15 @@ export const gallery = [
     ],
   },
   {
+    tag: 'ch-stat',
+    description:
+      'Métrica de dashboard: <code>label</code> en versalitas, <code>value</code> ya formateado por quien consume (nunca se parsea), <code>hint</code> opcional y <code>tone</code> (<code>positive</code>/<code>negative</code>/<code>unavailable</code>). El tono nunca depende solo del color: positivo y negativo agregan un signo visible. En error de carga pasa <code>value="—"</code> con <code>tone="unavailable"</code> en vez de un cero que se leería como medición real.',
+    demos: [
+      '<ch-stat label="Ventas del mes" value="$1.250.000" tone="positive" hint="vs. octubre"></ch-stat>',
+      '<ch-stat label="Ticket promedio" value="—" tone="unavailable"></ch-stat>',
+    ],
+  },
+  {
     tag: 'ch-switch',
     description: 'Interruptor on/off accesible (<code>role="switch"</code>) con <code>label</code> asociada. Emite <code>chChange</code>.',
     demos: [

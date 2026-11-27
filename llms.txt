@@ -35,6 +35,7 @@
 - [ch-skeleton](https://devschile.github.io/chucao/components/ch-skeleton/): Decorative loading placeholder that reserves the space real content will
 - [ch-spinner](https://devschile.github.io/chucao/components/ch-spinner/): Loading indicator.
 - [ch-stack](https://devschile.github.io/chucao/components/ch-stack/): Vertical flow: children stack top to bottom with a token-driven gap.
+- [ch-stat](https://devschile.github.io/chucao/components/ch-stat/): One dashboard metric: a label, a value and an optional hint.
 - [ch-switch](https://devschile.github.io/chucao/components/ch-switch/): ch-switch component
 - [ch-tabs](https://devschile.github.io/chucao/components/ch-tabs/): ch-tabs component
 - [ch-textarea](https://devschile.github.io/chucao/components/ch-textarea/): ch-textarea component

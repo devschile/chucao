@@ -1,0 +1,68 @@
+:host {
+  display: block;
+  font-family: var(--typography-body);
+  color: var(--color-text-primary);
+}
+
+:host([hidden]) {
+  display: none;
+}
+
+.stat__inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2xs);
+  padding: var(--spacing-md) var(--spacing-lg);
+  border: var(--border-width) solid var(--color-border-default);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-default);
+}
+
+.stat__label {
+  font-size: var(--typography-size-xs);
+  font-weight: var(--typography-weight-semibold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
+.stat__value {
+  font-family: var(--typography-heading);
+  font-size: var(--typography-size-xl);
+  font-weight: var(--typography-weight-bold);
+  font-variant-numeric: tabular-nums;
+  display: flex;
+  align-items: baseline;
+  gap: var(--spacing-2xs);
+}
+
+/* The sign cue carries the tone in greyscale; colour only reinforces it. */
+.stat__cue {
+  font-size: var(--typography-size-md);
+}
+
+.stat__value--positive {
+  color: var(--color-status-positive);
+}
+
+.stat__value--negative {
+  color: var(--color-status-negative);
+}
+
+.stat__value--unavailable {
+  color: var(--color-text-tertiary);
+  font-style: italic;
+}
+
+.stat__hint {
+  font-size: var(--typography-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.stat__footer:empty {
+  display: none;
+}
+
+.stat__footer {
+  margin-top: var(--spacing-2xs);
+}

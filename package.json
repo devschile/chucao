@@ -122,6 +122,10 @@
       "import": "./dist/components/ch-spinner.js",
       "types": "./dist/components/ch-spinner.d.ts"
     },
+    "./ch-stat": {
+      "import": "./dist/components/ch-stat.js",
+      "types": "./dist/components/ch-stat.d.ts"
+    },
     "./ch-stack": {
       "import": "./dist/components/ch-stack.js",
       "types": "./dist/components/ch-stack.d.ts"
