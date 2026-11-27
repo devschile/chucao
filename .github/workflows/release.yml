@@ -47,8 +47,24 @@ jobs:
         with:
           generate_release_notes: true
 
+      # `actions/setup-node` only writes a registry line into `.npmrc`; the
+      # token still has to be written there explicitly, otherwise npm treats
+      # the publish as anonymous and answers with an OTP challenge that a
+      # non-interactive runner cannot satisfy.
+      - name: Configure npm authentication
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          if [ -z "$NODE_AUTH_TOKEN" ]; then
+            echo "::error::NPM_TOKEN is empty or missing from the repository secrets"
+            exit 1
+          fi
+          printf '//registry.npmjs.org/:_authToken=%s\n' "$NODE_AUTH_TOKEN" >> "$HOME/.npmrc"
+          npm whoami
+        shell: bash
+
       - name: Publish to npm
-        run: pnpm publish --no-git-checks
+        run: pnpm publish --no-git-checks --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
