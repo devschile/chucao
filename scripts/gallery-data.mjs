@@ -185,6 +185,19 @@ export const gallery = [
   }`,
   },
   {
+    tag: 'ch-description-list',
+    description:
+      'Pares etiqueta/valor sobre un <code>&lt;dl&gt;</code> nativo: agrupa cada par en un <code>&lt;div&gt;</code> (agrupación válida en HTML 5.2) y <code>columns</code> (<code>1</code>–<code>3</code>) controla cuántos pares comparten fila; en pantallas angostas colapsa a una columna.',
+    demos: [
+      '<ch-description-list columns="2">',
+      '  <div><dt>Cliente</dt><dd>Aurora SpA</dd></div>',
+      '  <div><dt>Pedido</dt><dd>#1523</dd></div>',
+      '  <div><dt>Región</dt><dd>RM</dd></div>',
+      '  <div><dt>Estado</dt><dd>En despacho</dd></div>',
+      '</ch-description-list>',
+    ],
+  },
+  {
     tag: 'ch-emoji',
     description:
       'Emoji inline desde el CDN de devsChile. Mapea nombres y alias a través de <code>emoji-map.json</code> y prueba extensiones (.png, .gif, .jpg, .svg) automáticamente. Tamaños: <code>sm</code>, <code>md</code>, <code>lg</code>, <code>xl</code>.',
@@ -366,6 +379,18 @@ export const gallery = [
     panelTabs.innerHTML = 'Contenido de la pestaña Comunidad.';
     tabsEl.appendChild(panelTabs);
   }`,
+  },
+  {
+    tag: 'ch-timeline',
+    description:
+      'Historial cronológico sobre un <code>&lt;ol&gt;</code> nativo: escribe <code>&lt;li&gt;</code> con fecha preformateada y un estado sin depender del color vía <code>&lt;ch-icon&gt;</code>. Un punto por ítem y un conector entre ítems; el último ítem nunca lleva conector.',
+    demos: [
+      '<ch-timeline>',
+      '  <li><ch-icon name="check"></ch-icon> <time>2 nov</time> Pedido creado</li>',
+      '  <li><ch-icon name="spinner"></ch-icon> <time>4 nov</time> En despacho</li>',
+      '  <li><time>9 nov</time> Entregado</li>',
+      '</ch-timeline>',
+    ],
   },
   {
     tag: 'ch-textarea',

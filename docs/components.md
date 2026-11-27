@@ -252,6 +252,19 @@ identified and documented these conventions.
 - **Accessible names**: `label` stays optional on existing components, so this is not a breaking change. The contract is per component: `ch-modal` and `ch-drawer` always need a name matching their slotted heading or header, `ch-button` needs one when its visible content is only an icon slot, and `ch-spinner` without a label is deliberately decorative (`aria-hidden`). In development builds the first render of an unnamed modal, drawer or icon-only button logs a warning through the shared helper in `src/utils/accessibility.ts`; production builds and server-side rendering stay silent. New always-named APIs require `label` in their type, as `ch-emoji` does with `name`. Keeping the `label` and the slotted heading text in sync remains the consumer's responsibility; cross-root `aria-labelledby` is tracked separately.
 - **Layout primitives**: `ch-stack`, `ch-cluster` and `ch-grid` place content without a line of consumer CSS. All three keep a real host element (`display: flex` or `grid`, never `display: contents`), so classes and attributes set on the tag still apply. Gaps take a step of the spacing scale (`none`, `2xs` … `6xl`) and an unknown value falls back to `md`, which keeps a typo from collapsing the layout. `ch-stack` runs vertically with `align`/`justify`; `ch-cluster` runs horizontally, wraps by default (`wrap` turns it off) and accepts `baseline` alignment; `ch-grid` takes `columns="1"`…`"12"` or `columns="auto-fit"` with `min-item-width`, where the `min()` guard keeps a cell from overflowing the viewport once the minimum no longer fits.
 - **Empty states**: `ch-empty-state` is the one block for "no data", "no results" and "nothing selected" — icon (optional, `aria-hidden`), a required `title` rendered as the heading, an optional `description`, and an action slot. `size="sm"` fits a region such as a table cell or a card; `size="md"` is a whole view. It never claims a fixed height, so it works in a `<td colspan>` as well as on its own.
+- **Detail and history lists**: `ch-description-list` and `ch-timeline` own
+  the layout, never the semantics. `ch-description-list` renders the `<dl>`
+  and the consumer writes native `<dt>`/`<dd>` pairs, each group wrapped in
+  a `<div>` (valid HTML 5.2 grouping — the group is the grid item, so a pair
+  never splits across columns); `columns="1"…3` sets how many pairs share a
+  row and every count collapses to one column under 48rem. `ch-timeline`
+  renders the `<ol>` with a marker dot per item and a connector between
+  items — the last item never gets one, so the rail does not trail off.
+  Items are native `<li>`: a preformatted date and a non-colour state cue
+  from a slotted `ch-icon`. No `ch-description-item` or `ch-timeline-item`
+  elements exist: the Stage 3 spike (#120) measured that custom wrappers
+  add nothing to the accessibility tree in Chromium while risking other
+  browsers, and a custom row inside a native `<table>` cannot even parse.
 - **Loading states**: `ch-skeleton` reserves the space of content that is still loading, so the page does not jump when it arrives; `ch-spinner` marks a short action whose result has no known layout. Skeletons are `aria-hidden` by design — mark the loading region with `aria-busy="true"` yourself, and announce the result when it lands. The shimmer stops under `prefers-reduced-motion`, and `count` repeats the placeholder for multi-line text.
 - **Composite widgets (keyboard + panels)**: `ch-tabs` and `ch-accordion`
   implement keyboard-accessible, non-form composites. `ch-tabs` follows the
