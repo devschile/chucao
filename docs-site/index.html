@@ -134,6 +134,20 @@
             >
               <a class="side-link" href="#ch-emoji">ch-emoji</a>
             </li>
+            <li
+              class="side-item"
+              data-name="ch-icon"
+              data-desc="Un glifo de Lucide (ISC) por name, con tres tamaños por token. Es decorativo por defecto: queda fuera del árbol de accesibilidad salvo que le des label, porque casi siempre el texto de al lado ya dice lo que significa. Toma el color de currentColor, así que hereda el del contenedor."
+            >
+              <a class="side-link" href="#ch-icon">ch-icon</a>
+            </li>
+            <li
+              class="side-item"
+              data-name="ch-icon-button"
+              data-desc="Botón cuyo único contenido es un ícono. El label es obligatorio: un botón sin nombre accesible no lo puede usar ni un lector de pantalla ni un comando de voz, y acá no hay texto al lado que lo salve. Soporta size, disabled y loading; mientras carga emite aria-busy y no dispara chClick, pero sigue siendo enfocable para que el foco no se caiga al body."
+            >
+              <a class="side-link" href="#ch-icon-button">ch-icon-button</a>
+            </li>
             <li class="side-item" data-name="ch-input" data-desc="Campo de texto con label asociado vía id/for. Emite chInput (cada tecla) y chChange (al confirmar).">
               <a class="side-link" href="#ch-input">ch-input</a>
             </li>
@@ -548,6 +562,53 @@
 <span class="t">&lt;ch-emoji</span> <span class="a">name</span>="hypnotoad" <span class="a">size</span>="lg"<span class="t">&gt;</span><span class="t">&lt;/ch-emoji</span><span class="t">&gt;</span>
 <span class="t">&lt;ch-emoji</span> <span class="a">name</span>="lmao" <span class="a">size</span>="md"<span class="t">&gt;</span><span class="t">&lt;/ch-emoji</span><span class="t">&gt;</span>
 <span class="t">&lt;ch-emoji</span> <span class="a">name</span>="loading" <span class="a">size</span>="sm"<span class="t">&gt;</span><span class="t">&lt;/ch-emoji</span><span class="t">&gt;</span></code></pre>
+          </div>
+
+          <div class="comp" id="ch-icon" tabindex="-1">
+            <div class="comp-head">
+              <h3>ch-icon</h3>
+              <span class="tag">@devschile/chucao/ch-icon</span>
+            </div>
+            <p class="comp-desc">
+              Un glifo de Lucide (ISC) por <code>name</code>, con tres tamaños por token. Es decorativo por defecto: queda fuera del árbol de accesibilidad salvo que le des
+              <code>label</code>, porque casi siempre el texto de al lado ya dice lo que significa. Toma el color de <code>currentColor</code>, así que hereda el del contenedor.
+            </p>
+            <div class="comp-demo">
+              <ch-icon name="check"></ch-icon>
+              <ch-icon name="alert" size="lg"></ch-icon>
+              <ch-icon name="info" label="Información"></ch-icon>
+              <ch-icon name="search" size="sm"></ch-icon>
+            </div>
+            <pre
+              class="comp-code"
+            ><code><span class="t">&lt;ch-icon</span> <span class="a">name</span>="check"<span class="t">&gt;</span><span class="t">&lt;/ch-icon</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-icon</span> <span class="a">name</span>="alert" <span class="a">size</span>="lg"<span class="t">&gt;</span><span class="t">&lt;/ch-icon</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-icon</span> <span class="a">name</span>="info" <span class="a">label</span>="Información"<span class="t">&gt;</span><span class="t">&lt;/ch-icon</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-icon</span> <span class="a">name</span>="search" <span class="a">size</span>="sm"<span class="t">&gt;</span><span class="t">&lt;/ch-icon</span><span class="t">&gt;</span></code></pre>
+          </div>
+
+          <div class="comp" id="ch-icon-button" tabindex="-1">
+            <div class="comp-head">
+              <h3>ch-icon-button</h3>
+              <span class="tag">@devschile/chucao/ch-icon-button</span>
+            </div>
+            <p class="comp-desc">
+              Botón cuyo único contenido es un ícono. El <code>label</code> es obligatorio: un botón sin nombre accesible no lo puede usar ni un lector de pantalla ni un comando de
+              voz, y acá no hay texto al lado que lo salve. Soporta <code>size</code>, <code>disabled</code> y <code>loading</code>; mientras carga emite <code>aria-busy</code> y
+              no dispara <code>chClick</code>, pero sigue siendo enfocable para que el foco no se caiga al <code>body</code>.
+            </p>
+            <div class="comp-demo">
+              <ch-icon-button name="menu" label="Abrir menú"></ch-icon-button>
+              <ch-icon-button name="plus" label="Agregar"></ch-icon-button>
+              <ch-icon-button name="copy" label="Copiar" size="sm"></ch-icon-button>
+              <ch-icon-button name="delete" label="Eliminar" disabled></ch-icon-button>
+            </div>
+            <pre
+              class="comp-code"
+            ><code><span class="t">&lt;ch-icon-button</span> <span class="a">name</span>="menu" <span class="a">label</span>="Abrir menú"<span class="t">&gt;</span><span class="t">&lt;/ch-icon-button</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-icon-button</span> <span class="a">name</span>="plus" <span class="a">label</span>="Agregar"<span class="t">&gt;</span><span class="t">&lt;/ch-icon-button</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-icon-button</span> <span class="a">name</span>="copy" <span class="a">label</span>="Copiar" <span class="a">size</span>="sm"<span class="t">&gt;</span><span class="t">&lt;/ch-icon-button</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-icon-button</span> <span class="a">name</span>="delete" <span class="a">label</span>="Eliminar" <span class="a">disabled</span><span class="t">&gt;</span><span class="t">&lt;/ch-icon-button</span><span class="t">&gt;</span></code></pre>
           </div>
 
           <div class="comp" id="ch-input" tabindex="-1">

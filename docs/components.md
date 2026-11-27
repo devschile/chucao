@@ -317,6 +317,18 @@ identified and documented these conventions.
   stays inside the component while it crosses, which is what keeps the bubble
   reachable. Without it the pointer passes over the page behind the gap, the
   host gets `mouseleave`, and the bubble disappears before it can be read.
+- **Icons**: `ch-icon` and `ch-icon-button` draw geometry vendored from
+  [Lucide](https://lucide.dev) v1.82.0 into `src/utils/icons.ts` — shapes only,
+  not the package, so consumers do not pay for a whole set to get six glyphs,
+  and the set is frozen so an upstream rename cannot break a public `name`
+  value. Attribution lives in `THIRD-PARTY.md`. Every glyph keeps Lucide's 24x24
+  viewBox and takes colour from `currentColor`, so a tooltip or button styles it
+  by setting `color`; sizes come from `--icon-size-sm|md|lg`. `ch-icon` is
+  decorative by default and needs a `label` to enter the accessibility tree,
+  while `ch-icon-button` requires one: an icon-only control with no accessible
+  name is unusable by voice or screen reader and has no adjacent text to fall
+  back on. Disabled icon buttons stay focusable and use `aria-disabled` so
+  completing an action does not drop focus to `<body>`.
 - **Overlay collision**: `placement` on `ch-tooltip` is a _preference_, not a
   fixed position. `src/utils/overlay.ts` scores the preferred side and its
   opposite against the viewport and keeps whichever overflows less — only real

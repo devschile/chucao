@@ -5,151 +5,367 @@
     "$description": "Paleta de colores del sistema",
     "background": {
       "$description": "Fondo",
-      "base": { "$value": "#100a1c", "$description": "Fondo base" },
-      "top-glow": { "$value": "#201e40", "$description": "Superior del degradado" },
-      "bottom-glow": { "$value": "#261226", "$description": "Inferior del degradado" }
+      "base": {
+        "$value": "#100a1c",
+        "$description": "Fondo base"
+      },
+      "top-glow": {
+        "$value": "#201e40",
+        "$description": "Superior del degradado"
+      },
+      "bottom-glow": {
+        "$value": "#261226",
+        "$description": "Inferior del degradado"
+      }
     },
     "surface": {
       "$description": "Superficies",
-      "default": { "$value": "rgba(32, 30, 64, 0.6)", "$description": "Tarjetas, inputs (con blur)" },
-      "hover": { "$value": "rgba(45, 212, 191, 0.08)", "$description": "Fondo en hover" }
+      "default": {
+        "$value": "rgba(32, 30, 64, 0.6)",
+        "$description": "Tarjetas, inputs (con blur)"
+      },
+      "hover": {
+        "$value": "rgba(45, 212, 191, 0.08)",
+        "$description": "Fondo en hover"
+      }
     },
     "scrim": {
       "$description": "Velo",
-      "default": { "$value": "rgba(0, 0, 0, 0.6)", "$description": "Velo sobre la página detrás de un modal" }
+      "default": {
+        "$value": "rgba(0, 0, 0, 0.6)",
+        "$description": "Velo sobre la página detrás de un modal"
+      }
     },
     "border": {
       "$description": "Bordes",
-      "default": { "$value": "rgba(255, 255, 255, 0.08)", "$description": "Borde en reposo" },
-      "hover": { "$value": "rgba(45, 212, 191, 0.3)", "$description": "Borde en hover" }
+      "default": {
+        "$value": "rgba(255, 255, 255, 0.08)",
+        "$description": "Borde en reposo"
+      },
+      "hover": {
+        "$value": "rgba(45, 212, 191, 0.3)",
+        "$description": "Borde en hover"
+      }
     },
     "accent": {
       "$description": "Acento",
-      "default": { "$value": "#2dd4bf", "$description": "Acento — texto, bordes, botones" },
-      "hover": { "$value": "#5ee8d4", "$description": "Acento en hover" },
-      "text": { "$value": "#06210f", "$description": "Texto sobre el acento (botones primarios)" }
+      "default": {
+        "$value": "#2dd4bf",
+        "$description": "Acento — texto, bordes, botones"
+      },
+      "hover": {
+        "$value": "#5ee8d4",
+        "$description": "Acento en hover"
+      },
+      "text": {
+        "$value": "#06210f",
+        "$description": "Texto sobre el acento (botones primarios)"
+      }
     },
     "status": {
       "$description": "Estados",
-      "positive": { "$value": "#4ade80", "$description": "Estados positivos, como 'disponible'" },
-      "positive-background": { "$value": "rgba(34, 197, 94, 0.18)", "$description": "Fondo de estados positivos" },
-      "warning": { "$value": "#f87171", "$description": "Estados de advertencia" },
-      "warning-background": { "$value": "rgba(248, 113, 113, 0.15)", "$description": "Fondo de estados de advertencia" }
+      "positive": {
+        "$value": "#4ade80",
+        "$description": "Estados positivos, como 'disponible'"
+      },
+      "positive-background": {
+        "$value": "rgba(34, 197, 94, 0.18)",
+        "$description": "Fondo de estados positivos"
+      },
+      "warning": {
+        "$value": "#f87171",
+        "$description": "Estados de advertencia"
+      },
+      "warning-background": {
+        "$value": "rgba(248, 113, 113, 0.15)",
+        "$description": "Fondo de estados de advertencia"
+      }
     },
     "text": {
       "$description": "Texto",
-      "primary": { "$value": "#ffffff", "$description": "Texto principal" },
-      "secondary": { "$value": "rgba(255, 255, 255, 0.55)", "$description": "Texto atenuado" }
+      "primary": {
+        "$value": "#ffffff",
+        "$description": "Texto principal"
+      },
+      "secondary": {
+        "$value": "rgba(255, 255, 255, 0.55)",
+        "$description": "Texto atenuado"
+      }
     },
     "brand": {
       "$description": "Marca",
-      "huemul-dark": { "$value": "#85422b", "$description": "Café oscuro" },
-      "huemul-light": { "$value": "#b45b38", "$description": "Café claro" },
-      "stroke": { "$value": "#1d1d1b", "$description": "Trazo / texto de marca" }
+      "huemul-dark": {
+        "$value": "#85422b",
+        "$description": "Café oscuro"
+      },
+      "huemul-light": {
+        "$value": "#b45b38",
+        "$description": "Café claro"
+      },
+      "stroke": {
+        "$value": "#1d1d1b",
+        "$description": "Trazo / texto de marca"
+      }
     }
   },
   "typography": {
     "$type": "fontFamily",
     "$description": "Familias tipográficas",
-    "body": { "$value": "Fira Sans, Droid Sans, Helvetica Neue, sans-serif", "$description": "Tipografía de cuerpo" },
-    "heading": { "$value": "Inconsolata, monospace", "$description": "Tipografía de títulos" },
+    "body": {
+      "$value": "Fira Sans, Droid Sans, Helvetica Neue, sans-serif",
+      "$description": "Tipografía de cuerpo"
+    },
+    "heading": {
+      "$value": "Inconsolata, monospace",
+      "$description": "Tipografía de títulos"
+    },
     "size": {
       "$type": "dimension",
       "$description": "Tamaños de fuente",
-      "xs": { "$value": "0.68rem", "$description": "Badges y metadata secundaria" },
-      "sm": { "$value": "0.85rem", "$description": "Labels de campos" },
-      "md": { "$value": "1rem", "$description": "Cuerpo por defecto" },
-      "lg": { "$value": "1.25rem", "$description": "Encabezados secundarios" },
-      "xl": { "$value": "1.5rem", "$description": "Encabezados" }
+      "xs": {
+        "$value": "0.68rem",
+        "$description": "Badges y metadata secundaria"
+      },
+      "sm": {
+        "$value": "0.85rem",
+        "$description": "Labels de campos"
+      },
+      "md": {
+        "$value": "1rem",
+        "$description": "Cuerpo por defecto"
+      },
+      "lg": {
+        "$value": "1.25rem",
+        "$description": "Encabezados secundarios"
+      },
+      "xl": {
+        "$value": "1.5rem",
+        "$description": "Encabezados"
+      }
     },
     "weight": {
       "$type": "fontWeight",
       "$description": "Pesos de fuente",
-      "regular": { "$value": "400", "$description": "Cuerpo" },
-      "semibold": { "$value": "600", "$description": "Énfasis medio" },
-      "bold": { "$value": "700", "$description": "Botones y encabezados" }
+      "regular": {
+        "$value": "400",
+        "$description": "Cuerpo"
+      },
+      "semibold": {
+        "$value": "600",
+        "$description": "Énfasis medio"
+      },
+      "bold": {
+        "$value": "700",
+        "$description": "Botones y encabezados"
+      }
     },
     "tracking": {
       "$type": "letterSpacing",
       "$description": "Tracking (letter-spacing)",
-      "badge": { "$value": "0.03em", "$description": "Badges en mayúsculas" }
+      "badge": {
+        "$value": "0.03em",
+        "$description": "Badges en mayúsculas"
+      }
     }
   },
   "spacing": {
     "$type": "dimension",
     "$description": "Escala de espaciado",
-    "2xs": { "$value": "0.18rem", "$description": "Padding vertical de badges" },
-    "xs": { "$value": "0.25rem", "$description": "Padding vertical de botones" },
-    "sm": { "$value": "0.35rem", "$description": "Gaps internos, margen de labels" },
-    "md": { "$value": "0.5rem", "$description": "Gap pequeño (flex)" },
-    "lg": { "$value": "0.6rem", "$description": "Padding horizontal de badges" },
-    "xl": { "$value": "0.8rem", "$description": "Padding horizontal de botones / vertical de inputs" },
-    "2xl": { "$value": "1rem", "$description": "Gap mediano (flex)" },
-    "3xl": { "$value": "1.25rem", "$description": "Padding horizontal de inputs" },
-    "4xl": { "$value": "1.35rem", "$description": "Padding vertical de tarjetas" },
-    "5xl": { "$value": "1.5rem", "$description": "Padding horizontal de tarjetas" },
-    "6xl": { "$value": "2rem", "$description": "Espaciado de secciones" },
-    "shift": { "$value": "2px", "$description": "Desplazamiento en hover (tarjetas)" },
-    "elevate": { "$value": "1px", "$description": "Elevación en hover (botones)" }
+    "2xs": {
+      "$value": "0.18rem",
+      "$description": "Padding vertical de badges"
+    },
+    "xs": {
+      "$value": "0.25rem",
+      "$description": "Padding vertical de botones"
+    },
+    "sm": {
+      "$value": "0.35rem",
+      "$description": "Gaps internos, margen de labels"
+    },
+    "md": {
+      "$value": "0.5rem",
+      "$description": "Gap pequeño (flex)"
+    },
+    "lg": {
+      "$value": "0.6rem",
+      "$description": "Padding horizontal de badges"
+    },
+    "xl": {
+      "$value": "0.8rem",
+      "$description": "Padding horizontal de botones / vertical de inputs"
+    },
+    "2xl": {
+      "$value": "1rem",
+      "$description": "Gap mediano (flex)"
+    },
+    "3xl": {
+      "$value": "1.25rem",
+      "$description": "Padding horizontal de inputs"
+    },
+    "4xl": {
+      "$value": "1.35rem",
+      "$description": "Padding vertical de tarjetas"
+    },
+    "5xl": {
+      "$value": "1.5rem",
+      "$description": "Padding horizontal de tarjetas"
+    },
+    "6xl": {
+      "$value": "2rem",
+      "$description": "Espaciado de secciones"
+    },
+    "shift": {
+      "$value": "2px",
+      "$description": "Desplazamiento en hover (tarjetas)"
+    },
+    "elevate": {
+      "$value": "1px",
+      "$description": "Elevación en hover (botones)"
+    }
   },
   "radius": {
     "$type": "dimension",
     "$description": "Radios de esquina",
-    "sm": { "$value": "6px", "$description": "Contenedores, inputs" },
-    "md": { "$value": "8px", "$description": "Contenedores medianos" },
-    "pill": { "$value": "999px", "$description": "Badges y botones de acción primaria" }
+    "sm": {
+      "$value": "6px",
+      "$description": "Contenedores, inputs"
+    },
+    "md": {
+      "$value": "8px",
+      "$description": "Contenedores medianos"
+    },
+    "pill": {
+      "$value": "999px",
+      "$description": "Badges y botones de acción primaria"
+    }
   },
   "border": {
     "$type": "dimension",
     "$description": "Grosor de bordes",
-    "width": { "$value": "1px", "$description": "Borde base de superficies" },
-    "accent-bar": { "$value": "3px", "$description": "Línea lateral de acento (tarjetas)" }
+    "width": {
+      "$value": "1px",
+      "$description": "Borde base de superficies"
+    },
+    "accent-bar": {
+      "$value": "3px",
+      "$description": "Línea lateral de acento (tarjetas)"
+    }
   },
   "shadow": {
     "$type": "shadow",
     "$description": "Sombras",
-    "focus-ring": { "$value": "0 0 0 3px rgba(45, 212, 191, 0.12)", "$description": "Anillo de foco en inputs" },
-    "card-hover": { "$value": "0 4px 20px rgba(45, 212, 191, 0.06)", "$description": "Sombra de tarjeta en hover" }
+    "focus-ring": {
+      "$value": "0 0 0 3px rgba(45, 212, 191, 0.12)",
+      "$description": "Anillo de foco en inputs"
+    },
+    "card-hover": {
+      "$value": "0 4px 20px rgba(45, 212, 191, 0.06)",
+      "$description": "Sombra de tarjeta en hover"
+    }
   },
   "effect": {
     "$type": "dimension",
     "$description": "Efectos de superficie",
-    "blur": { "$value": "10px", "$description": "Desenfoque de superficies (vidrio esmerilado)" }
+    "blur": {
+      "$value": "10px",
+      "$description": "Desenfoque de superficies (vidrio esmerilado)"
+    }
   },
   "duration": {
     "$type": "duration",
     "$description": "Duraciones de transición",
-    "fast": { "$value": "150ms", "$description": "Transiciones de transform" },
-    "normal": { "$value": "200ms", "$description": "Transiciones de color/borde/sombra" },
-    "spin": { "$value": "800ms", "$description": "Rotación continua, como el spinner" }
+    "fast": {
+      "$value": "150ms",
+      "$description": "Transiciones de transform"
+    },
+    "normal": {
+      "$value": "200ms",
+      "$description": "Transiciones de color/borde/sombra"
+    },
+    "spin": {
+      "$value": "800ms",
+      "$description": "Rotación continua, como el spinner"
+    }
   },
   "easing": {
     "$type": "cubicBezier",
     "$description": "Curvas de easing",
-    "default": { "$value": "ease", "$description": "Easing por defecto" },
-    "linear": { "$value": "linear", "$description": "Movimiento continuo, sin aceleración" }
+    "default": {
+      "$value": "ease",
+      "$description": "Easing por defecto"
+    },
+    "linear": {
+      "$value": "linear",
+      "$description": "Movimiento continuo, sin aceleración"
+    }
   },
   "focus": {
     "$type": "dimension",
     "$description": "Foco visible",
-    "outline-width": { "$value": "2px", "$description": "Grosor del outline de foco" },
-    "outline-offset": { "$value": "2px", "$description": "Separación del outline de foco" }
+    "outline-width": {
+      "$value": "2px",
+      "$description": "Grosor del outline de foco"
+    },
+    "outline-offset": {
+      "$value": "2px",
+      "$description": "Separación del outline de foco"
+    }
   },
   "opacity": {
     "$type": "number",
     "$description": "Opacidades",
-    "disabled": { "$value": 0.5, "$description": "Controles deshabilitados" }
+    "disabled": {
+      "$value": 0.5,
+      "$description": "Controles deshabilitados"
+    }
   },
   "z-index": {
     "$type": "number",
     "$description": "Capas de apilamiento",
-    "base": { "$value": 0, "$description": "Capa base" },
-    "dropdown": { "$value": 100, "$description": "Menús y dropdowns" },
-    "modal": { "$value": 1000, "$description": "Modales y overlays" }
+    "base": {
+      "$value": 0,
+      "$description": "Capa base"
+    },
+    "dropdown": {
+      "$value": 100,
+      "$description": "Menús y dropdowns"
+    },
+    "modal": {
+      "$value": 1000,
+      "$description": "Modales y overlays"
+    }
   },
   "layout": {
     "$type": "dimension",
     "$description": "Restricciones de layout",
-    "max-width": { "$value": "68rem", "$description": "Ancho máximo de contenido" }
+    "max-width": {
+      "$value": "68rem",
+      "$description": "Ancho máximo de contenido"
+    }
+  },
+  "icon": {
+    "$type": "dimension",
+    "$description": "Tamaños de íconos (cuadrícula de 24px de Lucide)",
+    "size": {
+      "$type": "dimension",
+      "$description": "Tamaños de íconos",
+      "sm": {
+        "$value": "16px",
+        "$description": "Ícono en línea junto a texto pequeño"
+      },
+      "md": {
+        "$value": "20px",
+        "$description": "Ícono por defecto en botones y controles"
+      },
+      "lg": {
+        "$value": "24px",
+        "$description": "Ícono de encabezado o estado destacado"
+      }
+    },
+    "stroke": {
+      "$value": "2px",
+      "$description": "Grosor de trazo de Lucide en su cuadrícula nativa de 24px"
+    }
   }
 }

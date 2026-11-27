@@ -64,6 +64,10 @@ export const zIndexBase = 0;
 export const zIndexDropdown = 100;
 export const zIndexModal = 1000;
 export const layoutMaxWidth = '68rem';
+export const iconSizeSm = '16px';
+export const iconSizeMd = '20px';
+export const iconSizeLg = '24px';
+export const iconStroke = '2px';
 
 export const tokens = {
   'color': {
@@ -177,6 +181,14 @@ export const tokens = {
   },
   'layout': {
     maxWidth: '68rem',
+  },
+  'icon': {
+    size: {
+      sm: '16px',
+      md: '20px',
+      lg: '24px',
+    },
+    stroke: '2px',
   },
 } as const;
 

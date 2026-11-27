@@ -75,6 +75,8 @@ types, so a standalone import never falls back to a generated directory path.
 - `@devschile/chucao/ch-emoji`
 - `@devschile/chucao/ch-empty-state`
 - `@devschile/chucao/ch-grid`
+- `@devschile/chucao/ch-icon`
+- `@devschile/chucao/ch-icon-button`
 - `@devschile/chucao/ch-input`
 - `@devschile/chucao/ch-link`
 - `@devschile/chucao/ch-modal`

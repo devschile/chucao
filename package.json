@@ -74,6 +74,14 @@
       "import": "./dist/components/ch-grid.js",
       "types": "./dist/components/ch-grid.d.ts"
     },
+    "./ch-icon": {
+      "import": "./dist/components/ch-icon.js",
+      "types": "./dist/components/ch-icon.d.ts"
+    },
+    "./ch-icon-button": {
+      "import": "./dist/components/ch-icon-button.js",
+      "types": "./dist/components/ch-icon-button.d.ts"
+    },
     "./ch-input": {
       "import": "./dist/components/ch-input.js",
       "types": "./dist/components/ch-input.d.ts"

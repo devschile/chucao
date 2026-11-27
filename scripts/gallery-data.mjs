@@ -196,6 +196,28 @@ export const gallery = [
     ],
   },
   {
+    tag: 'ch-icon',
+    description:
+      'Un glifo de Lucide (ISC) por <code>name</code>, con tres tamaños por token. Es decorativo por defecto: queda fuera del árbol de accesibilidad salvo que le des <code>label</code>, porque casi siempre el texto de al lado ya dice lo que significa. Toma el color de <code>currentColor</code>, así que hereda el del contenedor.',
+    demos: [
+      '<ch-icon name="check"></ch-icon>',
+      '<ch-icon name="alert" size="lg"></ch-icon>',
+      '<ch-icon name="info" label="Información"></ch-icon>',
+      '<ch-icon name="search" size="sm"></ch-icon>',
+    ],
+  },
+  {
+    tag: 'ch-icon-button',
+    description:
+      'Botón cuyo único contenido es un ícono. El <code>label</code> es obligatorio: un botón sin nombre accesible no lo puede usar ni un lector de pantalla ni un comando de voz, y acá no hay texto al lado que lo salve. Soporta <code>size</code>, <code>disabled</code> y <code>loading</code>; mientras carga emite <code>aria-busy</code> y no dispara <code>chClick</code>, pero sigue siendo enfocable para que el foco no se caiga al <code>body</code>.',
+    demos: [
+      '<ch-icon-button name="menu" label="Abrir menú"></ch-icon-button>',
+      '<ch-icon-button name="plus" label="Agregar"></ch-icon-button>',
+      '<ch-icon-button name="copy" label="Copiar" size="sm"></ch-icon-button>',
+      '<ch-icon-button name="delete" label="Eliminar" disabled></ch-icon-button>',
+    ],
+  },
+  {
     tag: 'ch-input',
     description:
       'Campo de texto con <code>label</code> asociado vía <code>id</code>/<code>for</code>. Emite <code>chInput</code> (cada tecla) y <code>chChange</code> (al confirmar).',

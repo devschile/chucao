@@ -1,0 +1,99 @@
+:host {
+  display: inline-block;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  transition:
+    background-color var(--duration-normal) var(--easing-default),
+    border-color var(--duration-normal) var(--easing-default),
+    color var(--duration-normal) var(--easing-default);
+}
+
+/* Square hit area at each size, matching the height of the same-size ch-button
+   so the two line up in a toolbar. */
+.button--sm {
+  width: calc(var(--icon-size-sm) + 2 * var(--spacing-md));
+  height: calc(var(--icon-size-sm) + 2 * var(--spacing-md));
+}
+
+.button--md {
+  width: calc(var(--icon-size-md) + 2 * var(--spacing-xl));
+  height: calc(var(--icon-size-md) + 2 * var(--spacing-xl));
+}
+
+.button--lg {
+  width: calc(var(--icon-size-lg) + 2 * var(--spacing-2xl));
+  height: calc(var(--icon-size-lg) + 2 * var(--spacing-2xl));
+}
+
+.button--sm .icon {
+  width: var(--icon-size-sm);
+  height: var(--icon-size-sm);
+}
+
+.button--md .icon {
+  width: var(--icon-size-md);
+  height: var(--icon-size-md);
+}
+
+.button--lg .icon {
+  width: var(--icon-size-lg);
+  height: var(--icon-size-lg);
+}
+
+.button:hover:not([aria-disabled='true']) {
+  border-color: var(--border-hover);
+  background: var(--surface-hover);
+}
+
+.button:focus-visible {
+  outline: var(--focus-outline-width) solid var(--accent);
+  outline-offset: var(--focus-outline-offset);
+}
+
+/* Disabled stays focusable on purpose: dropping focus to <body> when an action
+   completes is worse than a button that can still be read. */
+.button[aria-disabled='true'] {
+  opacity: var(--opacity-disabled);
+  cursor: not-allowed;
+}
+
+.button[aria-busy='true'] {
+  cursor: progress;
+}
+
+.button[aria-busy='true'] .icon {
+  animation: ch-icon-button-spin var(--duration-spin) linear infinite;
+}
+
+@keyframes ch-icon-button-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (pointer: coarse) {
+  .button--sm {
+    min-width: 44px;
+    min-height: 44px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    transition: none;
+  }
+
+  .button[aria-busy='true'] .icon {
+    animation: none;
+  }
+}

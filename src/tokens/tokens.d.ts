@@ -64,3 +64,7 @@ export declare const zIndexBase: number;
 export declare const zIndexDropdown: number;
 export declare const zIndexModal: number;
 export declare const layoutMaxWidth: string;
+export declare const iconSizeSm: string;
+export declare const iconSizeMd: string;
+export declare const iconSizeLg: string;
+export declare const iconStroke: string;

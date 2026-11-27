@@ -70,6 +70,8 @@ export type ZIndexToken = 'z-index.base' | 'z-index.dropdown' | 'z-index.modal';
 
 export type LayoutToken = 'layout.max-width';
 
+export type IconToken = 'icon.size.sm' | 'icon.size.md' | 'icon.size.lg' | 'icon.stroke';
+
 export type TokenName =
   | ColorToken
   | TypographyToken
@@ -83,4 +85,5 @@ export type TokenName =
   | FocusToken
   | OpacityToken
   | ZIndexToken
-  | LayoutToken;
+  | LayoutToken
+  | IconToken;
