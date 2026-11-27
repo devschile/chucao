@@ -27,7 +27,7 @@ describe('ch-description-list', () => {
   });
 
   it('falls back to one column on an unknown value', async () => {
-    const { root } = await render(<ch-description-list columns="banana" />);
+    const { root } = await render(<ch-description-list columns={'banana' as '1'} />);
     expect(root.shadowRoot.querySelector('dl').className).toBe('list list--columns-1');
   });
 });
