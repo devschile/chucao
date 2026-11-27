@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+## [2.6.0](https://github.com/devschile/chucao/compare/2.5.0...2.6.0) (2026-11-27)
+
+### Features
+
+* **ch-description-list,ch-timeline:** semantic detail and history lists + shape evidence ([#120](https://github.com/devschile/chucao/issues/120)) ([b2651fc](https://github.com/devschile/chucao/commit/b2651fc5bb680692874282b47d3a405a0a8c0ef5)), closes [#81](https://github.com/devschile/chucao/issues/81) [#83](https://github.com/devschile/chucao/issues/83), references [#77](https://github.com/devschile/chucao/issues/77) [#81](https://github.com/devschile/chucao/issues/81) [#77](https://github.com/devschile/chucao/issues/77) [#81](https://github.com/devschile/chucao/issues/81) [#83](https://github.com/devschile/chucao/issues/83)
+* **ch-stat:** dashboard metric with a greyscale-safe tone cue ([#121](https://github.com/devschile/chucao/issues/121)) ([ce54b2c](https://github.com/devschile/chucao/commit/ce54b2cfe9b7534831d8eac9e4c005189e193cf2)), closes [#80](https://github.com/devschile/chucao/issues/80)
+
 ## [2.5.0](https://github.com/devschile/chucao/compare/2.4.0...2.5.0) (2026-11-27)
 
 ### Features
