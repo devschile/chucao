@@ -2,7 +2,7 @@ import { Component, Element, Host, Prop, h } from '@stencil/core';
 
 export type ChGridGap = 'none' | '2xs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl' | '6xl';
 
-const GAPS = ['none', '2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl', '5xl', '6xl'];
+const GAPS = new Set(['none', '2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl', '5xl', '6xl']);
 
 /**
  * Responsive grid of equal cells.
@@ -24,7 +24,7 @@ export class ChGrid {
    * Number of equal columns (`1`…`12`), or `auto-fit` to fit as many as
    * `min-item-width` allows. An unknown value falls back to `auto-fit`.
    */
-  @Prop() columns: string = 'auto-fit';
+  @Prop() columns = 'auto-fit';
 
   /**
    * Space between cells in both axes, as a step of the spacing scale
@@ -39,7 +39,7 @@ export class ChGrid {
   @Prop() minItemWidth = '16rem';
 
   private get gapStep() {
-    return GAPS.includes(this.gap) ? this.gap : 'md';
+    return GAPS.has(this.gap) ? this.gap : 'md';
   }
 
   private get fixedColumns() {

@@ -4,7 +4,7 @@ export type ChStackGap = 'none' | '2xs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2x
 export type ChStackAlign = 'stretch' | 'start' | 'center' | 'end';
 export type ChStackJustify = 'start' | 'center' | 'end' | 'between' | 'around';
 
-const GAPS = ['none', '2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl', '5xl', '6xl'];
+const GAPS = new Set(['none', '2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl', '5xl', '6xl']);
 
 /**
  * Vertical flow: children stack top to bottom with a token-driven gap.
@@ -35,7 +35,7 @@ export class ChStack {
   @Prop() justify: ChStackJustify = 'start';
 
   private get gapStep() {
-    return GAPS.includes(this.gap) ? this.gap : 'md';
+    return GAPS.has(this.gap) ? this.gap : 'md';
   }
 
   render() {

@@ -64,8 +64,8 @@ export class ChSkeleton {
   render() {
     return (
       <Host aria-hidden="true" class={{ 'skeleton': true, [`skeleton--${this.shape}`]: true, 'skeleton--animated': this.animated }}>
-        {Array.from({ length: this.items }, (_, index) => (
-          <span class="skeleton__item" style={this.sizeStyle} key={index}></span>
+        {Array.from({ length: this.items }).map((value, index) => (
+          <span class="skeleton__item" style={this.sizeStyle} key={index} data-index={String(value)}></span>
         ))}
       </Host>
     );

@@ -35,9 +35,10 @@ describe('ch-grid', () => {
   });
 
   it('maps every gap scale step to its token class', async () => {
-    for (const gap of ['none', '2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl', '5xl', '6xl']) {
-      const { root } = await render(<ch-grid gap={gap as 'md'} />);
-      expect(root.classList.contains(`grid--gap-${gap}`)).toBe(true);
-    }
+    const gaps = ['none', '2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl', '5xl', '6xl'];
+    const roots = await Promise.all(gaps.map(gap => render(<ch-grid gap={gap as 'md'} />)));
+    gaps.forEach((gap, index) => {
+      expect(roots[index].root.classList.contains(`grid--gap-${gap}`)).toBe(true);
+    });
   });
 });

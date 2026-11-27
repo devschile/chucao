@@ -4,7 +4,7 @@ export type ChClusterGap = 'none' | '2xs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '
 export type ChClusterAlign = 'stretch' | 'start' | 'center' | 'end' | 'baseline';
 export type ChClusterJustify = 'start' | 'center' | 'end' | 'between' | 'around';
 
-const GAPS = ['none', '2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl', '5xl', '6xl'];
+const GAPS = new Set(['none', '2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl', '5xl', '6xl']);
 
 /**
  * Horizontal flow that wraps when it runs out of room, with a token-driven
@@ -38,7 +38,7 @@ export class ChCluster {
   @Prop() wrap = true;
 
   private get gapStep() {
-    return GAPS.includes(this.gap) ? this.gap : 'md';
+    return GAPS.has(this.gap) ? this.gap : 'md';
   }
 
   render() {
