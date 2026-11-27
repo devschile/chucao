@@ -24,16 +24,47 @@
   "exports": {
     ".": {
       "types": "./dist/types/index.d.ts",
-      "import": "./dist/chucao/chucao.esm.js",
-      "require": "./dist/chucao/chucao.cjs.js"
+      "import": "./dist/chucao/chucao.esm.js"
+    },
+    "./ch-accordion": {
+      "import": "./dist/components/ch-accordion.js",
+      "types": "./dist/components/ch-accordion.d.ts"
+    },
+    "./ch-alert": {
+      "import": "./dist/components/ch-alert.js",
+      "types": "./dist/components/ch-alert.d.ts"
+    },
+    "./ch-badge": {
+      "import": "./dist/components/ch-badge.js",
+      "types": "./dist/components/ch-badge.d.ts"
     },
     "./ch-button": {
       "import": "./dist/components/ch-button.js",
       "types": "./dist/components/ch-button.d.ts"
     },
+    "./ch-card": {
+      "import": "./dist/components/ch-card.js",
+      "types": "./dist/components/ch-card.d.ts"
+    },
+    "./ch-checkbox": {
+      "import": "./dist/components/ch-checkbox.js",
+      "types": "./dist/components/ch-checkbox.d.ts"
+    },
     "./ch-cluster": {
       "import": "./dist/components/ch-cluster.js",
       "types": "./dist/components/ch-cluster.d.ts"
+    },
+    "./ch-divider": {
+      "import": "./dist/components/ch-divider.js",
+      "types": "./dist/components/ch-divider.d.ts"
+    },
+    "./ch-drawer": {
+      "import": "./dist/components/ch-drawer.js",
+      "types": "./dist/components/ch-drawer.d.ts"
+    },
+    "./ch-emoji": {
+      "import": "./dist/components/ch-emoji.js",
+      "types": "./dist/components/ch-emoji.d.ts"
     },
     "./ch-empty-state": {
       "import": "./dist/components/ch-empty-state.js",
@@ -43,13 +74,57 @@
       "import": "./dist/components/ch-grid.js",
       "types": "./dist/components/ch-grid.d.ts"
     },
+    "./ch-input": {
+      "import": "./dist/components/ch-input.js",
+      "types": "./dist/components/ch-input.d.ts"
+    },
+    "./ch-link": {
+      "import": "./dist/components/ch-link.js",
+      "types": "./dist/components/ch-link.d.ts"
+    },
+    "./ch-modal": {
+      "import": "./dist/components/ch-modal.js",
+      "types": "./dist/components/ch-modal.d.ts"
+    },
+    "./ch-radio": {
+      "import": "./dist/components/ch-radio.js",
+      "types": "./dist/components/ch-radio.d.ts"
+    },
+    "./ch-segmented-control": {
+      "import": "./dist/components/ch-segmented-control.js",
+      "types": "./dist/components/ch-segmented-control.d.ts"
+    },
+    "./ch-select": {
+      "import": "./dist/components/ch-select.js",
+      "types": "./dist/components/ch-select.d.ts"
+    },
     "./ch-skeleton": {
       "import": "./dist/components/ch-skeleton.js",
       "types": "./dist/components/ch-skeleton.d.ts"
     },
+    "./ch-spinner": {
+      "import": "./dist/components/ch-spinner.js",
+      "types": "./dist/components/ch-spinner.d.ts"
+    },
     "./ch-stack": {
       "import": "./dist/components/ch-stack.js",
       "types": "./dist/components/ch-stack.d.ts"
+    },
+    "./ch-switch": {
+      "import": "./dist/components/ch-switch.js",
+      "types": "./dist/components/ch-switch.d.ts"
+    },
+    "./ch-tabs": {
+      "import": "./dist/components/ch-tabs.js",
+      "types": "./dist/components/ch-tabs.d.ts"
+    },
+    "./ch-textarea": {
+      "import": "./dist/components/ch-textarea.js",
+      "types": "./dist/components/ch-textarea.d.ts"
+    },
+    "./ch-tooltip": {
+      "import": "./dist/components/ch-tooltip.js",
+      "types": "./dist/components/ch-tooltip.d.ts"
     },
     "./dist/components": {
       "import": "./dist/components/index.js",
@@ -61,7 +136,7 @@
     },
     "./loader": {
       "import": "./loader/index.js",
-      "require": "./loader/index.cjs",
+      "require": "./loader/index.cjs.js",
       "types": "./loader/index.d.ts"
     },
     "./hydrate": {
