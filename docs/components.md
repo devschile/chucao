@@ -356,9 +356,12 @@ identified and documented these conventions.
   placement rules apply, so the first frame still paints on the preferred side.
   Stencil scopes each rule by doubling its classes, so the positioned override
   needs three classes to outrank the single-class placement rules.
-  `Escape` calls `preventDefault()` before dismissing, which a nested modal
-  observes as already handled and leaves open — only the innermost surface
-  closes. This is the shared contract that menu and combobox reuse. Together
+  `Escape` calls `preventDefault()` before dismissing: the platform close
+  request that closes an open native `<dialog>` is the default action of that
+  same keydown, so cancelling it keeps an enclosing `ch-modal` open — only the
+  innermost surface closes. This is proven against a real `ch-modal` in
+  `tests/browser/ch-tooltip.browser.spec.ts` and is the shared contract that
+  menu and combobox reuse. Together
   these cover the three parts of WCAG 1.4.13 (hoverable, dismissible,
   persistent).
 - **Links & dividers**: `ch-link` renders a native `<a>` with

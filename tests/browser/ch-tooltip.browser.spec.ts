@@ -1,5 +1,7 @@
 import { describe, it, expect, beforeEach } from 'vitest';
+import { userEvent } from 'vitest/browser';
 import '/dist/components/ch-tooltip.js';
+import '/dist/components/ch-modal.js';
 
 /**
  * Geometry only exists in a real browser: mock-doc reports every box as
@@ -29,6 +31,33 @@ function bubbleBox(element: HTMLElement) {
 
 function settle() {
   return new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+}
+
+/**
+ * Mounts the tooltip inside a real `ch-modal` — the platform close request
+ * only answers to a real key press, so a `<div>` stub proves nothing.
+ */
+function mountInModal() {
+  const host = document.createElement('div');
+  host.innerHTML = `
+    <ch-modal label="Publicar" close-label="Cerrar">
+      <ch-tooltip placement="top">
+        <button slot="trigger">Guardar</button>
+        <span slot="content">Se publica al CDN con cada release</span>
+      </ch-tooltip>
+    </ch-modal>
+  `;
+  document.body.append(host);
+  return {
+    host,
+    modal: host.querySelector('ch-modal'),
+    element: host.querySelector('ch-tooltip'),
+    trigger: host.querySelector('button'),
+  };
+}
+
+function dialogOf(modal: Element) {
+  return modal.shadowRoot!.querySelector('dialog') as HTMLDialogElement;
 }
 
 describe('ch-tooltip collision', () => {
@@ -117,24 +146,44 @@ describe('ch-tooltip collision', () => {
     expect(after).toBe(before);
   });
 
-  it('closes only the tooltip on Escape, not an enclosing modal', async () => {
-    const { element, trigger } = mount('top');
+  it('closes only the tooltip on Escape inside an open modal, and the modal stays open', async () => {
+    const { modal, element, trigger } = mountInModal();
+    modal.open = true;
     await settle();
+
+    // A synthetic KeyboardEvent cannot trigger the platform close request
+    // that a native <dialog> answers to, so the key must be pressed for real.
     trigger.focus();
     await settle();
     await new Promise(resolve => setTimeout(resolve, 50));
 
-    let modalSawEscape = false;
-    const modal = document.createElement('div');
-    modal.addEventListener('keydown', () => {
-      modalSawEscape = true;
-    });
-    document.body.append(modal);
+    const dialog = dialogOf(modal);
+    expect(dialog.open).toBe(true);
+    expect(bubbleBox(element).bubble.className).toContain('bubble--visible');
 
-    document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+    await userEvent.keyboard('{Escape}');
     await settle();
 
     expect(bubbleBox(element).bubble.className).not.toContain('bubble--visible');
-    expect(modalSawEscape).toBe(false);
+    expect(dialog.open).toBe(true);
+  });
+
+  it('still closes the modal on Escape when no tooltip is visible', async () => {
+    const { host, modal } = mountInModal();
+    modal.open = true;
+    await settle();
+    (host.querySelector('ch-tooltip button') as HTMLElement).focus();
+    await settle();
+    await new Promise(resolve => setTimeout(resolve, 50));
+    (host.querySelector('ch-tooltip button') as HTMLElement).blur();
+    await settle();
+
+    const dialog = dialogOf(modal);
+    expect(dialog.open).toBe(true);
+
+    await userEvent.keyboard('{Escape}');
+    await settle();
+
+    expect(dialog.open).toBe(false);
   });
 });

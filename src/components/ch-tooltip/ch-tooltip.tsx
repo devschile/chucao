@@ -109,8 +109,10 @@ export class ChTooltip {
    * Listens on the document because a tooltip opened by hovering leaves focus
    * wherever it was, so a host-scoped handler would never see the key.
    *
-   * Only the outermost Escape handler is stopped from propagating, so a
-   * tooltip inside an open modal closes itself and leaves the modal open.
+   * `preventDefault()` dismisses only the innermost surface: the platform's
+   * close request for an open native `<dialog>` is the default action of this
+   * same keydown, so cancelling it keeps an enclosing `ch-modal` open. Proven
+   * against a real `ch-modal` in `tests/browser/ch-tooltip.browser.spec.ts`.
    */
   @Listen('keydown', { target: 'document' })
   handleKeyDown(event: KeyboardEvent) {
