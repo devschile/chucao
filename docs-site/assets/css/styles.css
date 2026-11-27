@@ -823,6 +823,13 @@ main:focus-visible {
   outline-offset: var(--focus-outline-offset);
 }
 
+/* Demonstrates collision handling: the trigger sits against the panel edge, so
+   the bubble has no room to either side and has to flip and shift inwards. */
+.demo-tooltip-edge {
+  display: flex;
+  justify-content: center;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .demo-tooltip-trigger {
     transition: none;

@@ -317,7 +317,27 @@ identified and documented these conventions.
   stays inside the component while it crosses, which is what keeps the bubble
   reachable. Without it the pointer passes over the page behind the gap, the
   host gets `mouseleave`, and the bubble disappears before it can be read.
-  Together these cover the three parts of WCAG 1.4.13 (hoverable, dismissible,
+- **Overlay collision**: `placement` on `ch-tooltip` is a _preference_, not a
+  fixed position. `src/utils/overlay.ts` scores the preferred side and its
+  opposite against the viewport and keeps whichever overflows less — only real
+  overflow counts, so a side that fits scores zero and the negative slack on the
+  other side cannot mask it. Only the main axis flips: a bubble pinned with a
+  translate on the main axis would cover its own trigger, which is why the
+  escape is always the opposite side. The cross axis is shifted so the surface
+  lands on the viewport edge. Past the first measurement the bubble switches to
+  `position: fixed` and is placed by viewport coordinates, because viewport
+  coordinates do not depend on an ancestor's `overflow`, `transform` or
+  `contain` — that is what keeps a tooltip inside a scrolling drawer or modal
+  anchored instead of clipped. It re-measures on `scroll` (captured, so nested
+  scrollers count), `resize` and `visualViewport` changes, which is how a mobile
+  keyboard opening re-fits it. Before the first measurement the CSS-only
+  placement rules apply, so the first frame still paints on the preferred side.
+  Stencil scopes each rule by doubling its classes, so the positioned override
+  needs three classes to outrank the single-class placement rules.
+  `Escape` calls `preventDefault()` before dismissing, which a nested modal
+  observes as already handled and leaves open — only the innermost surface
+  closes. This is the shared contract that menu and combobox reuse. Together
+  these cover the three parts of WCAG 1.4.13 (hoverable, dismissible,
   persistent).
 - **Links & dividers**: `ch-link` renders a native `<a>` with
   `default`/`muted` variants; it auto-adds `rel="noopener noreferrer"` for

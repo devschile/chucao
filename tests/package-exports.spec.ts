@@ -1,9 +1,9 @@
 import { existsSync, readdirSync, statSync } from 'node:fs';
-import { join } from 'node:path';
+import { join, resolve } from 'node:path';
 
 import { describe, it, expect } from '@stencil/vitest';
 
-const root = process.cwd();
+const root = resolve(import.meta.dirname, '..');
 const pkg = JSON.parse(await import('node:fs').then(fs => fs.readFileSync(join(root, 'package.json'), 'utf8')));
 
 function componentTags() {

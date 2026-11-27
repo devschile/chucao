@@ -353,6 +353,7 @@ export const gallery = [
       '<ch-tooltip placement="bottom"><button class="demo-tooltip-trigger" type="button" slot="trigger">Abajo</button><span slot="content">Se publica al CDN</span></ch-tooltip>',
       '<ch-tooltip placement="left"><button class="demo-tooltip-trigger" type="button" slot="trigger">Izquierda</button><span slot="content">Se publica al CDN</span></ch-tooltip>',
       '<ch-tooltip placement="right"><button class="demo-tooltip-trigger" type="button" slot="trigger">Derecha</button><span slot="content">Se publica al CDN</span></ch-tooltip>',
+      '<div class="demo-tooltip-edge"><ch-tooltip placement="top"><button class="demo-tooltip-trigger" type="button" slot="trigger">En el borde</button><span slot="content">Si no cabe arriba, el globo se voltea y se corre para no salirse de la pantalla</span></ch-tooltip></div>',
     ],
   },
 ];

@@ -22,11 +22,18 @@ The trigger has to be a natively focusable element (`<button>`, `<a>`,
 because `aria-*` set on a custom element host does not reach the native
 element inside it — see the discussion in issue #47.
 
+Positioning is measured, not purely CSS: `placement` is the preferred side,
+and the bubble flips to the opposite side when the preferred one does not
+fit, then shifts along the other axis to stay inside the viewport. It
+re-measures on scroll, resize and visual-viewport changes, which is what
+keeps it correct inside a scrolling modal or drawer and when a mobile
+keyboard shrinks the visible area.
+
 ## Properties
 
-| Property    | Attribute   | Description                                        | Type                                     | Default |
-| ----------- | ----------- | -------------------------------------------------- | ---------------------------------------- | ------- |
-| `placement` | `placement` | Which side of the trigger the bubble is placed on. | `"bottom" \| "left" \| "right" \| "top"` | `'top'` |
+| Property    | Attribute   | Description                                                                                                            | Type                                     | Default |
+| ----------- | ----------- | ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------- | ------- |
+| `placement` | `placement` | The side the bubble is placed on. It is a preference: when that side has no room the bubble flips to the opposite one. | `"bottom" \| "left" \| "right" \| "top"` | `'top'` |
 
 
 ## Slots

@@ -23,6 +23,29 @@ individual source files, so coverage numbers were always 0%; see the
 for more details, including its known limitation around cross-file class
 inheritance.
 
+## Browser tests
+
+Two things mock-doc cannot model get a real Chromium, in two separate projects:
+
+- `src/**/*.form.spec.ts` — form association, because `ElementInternals` does
+  not exist outside a browser.
+- `tests/browser/**/*.spec.ts` — behavior that depends on real box geometry or
+  real timing: overlay collision and flipping, focus movement, live-region
+  timing.
+
+Both run against the built `dist/` custom-elements output, which
+`stencil-test` produces before Vitest starts, so a stale `dist/` is the usual
+cause of a browser test that "does nothing". They live outside `src/` on
+purpose: Stencil type-checks everything under `src/` as part of the library
+build, and a spec importing `node:fs` or using `offsetWidth` on an `Element`
+would fail that build.
+
+Never claim native semantics, focus, collision or hydration behavior from a
+mock-doc test alone — assert it in the browser project instead.
+
+`tests/*.spec.ts` runs in the mock-doc project and is for checks about the
+package itself, such as the export matrix.
+
 ## Why `istanbul` instead of the default `v8` provider
 
 Coverage uses the `istanbul` provider rather than the default `v8` provider,
