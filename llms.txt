@@ -46,6 +46,7 @@
 ## Documentation
 
 - [Ai](https://devschile.github.io/chucao/docs/ai.md): Chucao is a design system of Web Components published as
+- [App Navigation](https://devschile.github.io/chucao/docs/app-navigation.md): How to build the sidebar from issue #76 with the components that already ship.
 - [Assets](https://devschile.github.io/chucao/docs/assets.md): assets/
 - [Components](https://devschile.github.io/chucao/docs/components.md): The Chucao design system (colors, typography, spacing, layout — see
 - [Releasing](https://devschile.github.io/chucao/docs/releasing.md): How `@devschile/chucao` is released to npm and deployed to the versioned CDN.
