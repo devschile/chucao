@@ -48,6 +48,36 @@ export const gallery = [
     bindings: [{ id: 'demo-alert', event: 'chDismiss', format: '() => `chDismiss`' }],
   },
   {
+    tag: 'ch-stack',
+    description:
+      'Flujo vertical con separación tomada de la escala de espaciado (<code>gap</code>, <code>align</code>, <code>justify</code>). Es un host real con flex, así que tus clases sobre <code>&lt;ch-stack&gt;</code> siguen funcionando.',
+    demos: [
+      '<ch-stack gap="sm">',
+      '  <ch-badge>Primero</ch-badge>',
+      '  <ch-badge variant="positive">Segundo</ch-badge>',
+      '  <ch-badge variant="warning">Tercero</ch-badge>',
+      '</ch-stack>',
+    ],
+  },
+  {
+    tag: 'ch-cluster',
+    description:
+      'Flujo horizontal que envuelve cuando falta espacio (<code>gap</code> en ambos ejes, <code>align</code>, <code>justify</code>, <code>wrap</code>). La fila de botones o de etiquetas sin CSS propio.',
+    demos: [
+      '<ch-cluster gap="sm">',
+      '  <ch-button size="sm">Uno</ch-button>',
+      '  <ch-button size="sm" variant="secondary">Dos</ch-button>',
+      '  <ch-button size="sm" variant="ghost">Tres</ch-button>',
+      '</ch-cluster>',
+    ],
+  },
+  {
+    tag: 'ch-grid',
+    description:
+      'Grilla de celdas iguales: <code>columns</code> acepta 1–12 o <code>auto-fit</code> (tantas columnas como permita <code>min-item-width</code>), sin breakpoints propios.',
+    demos: ['<ch-grid columns="3" gap="md">', '  <ch-card>Uno</ch-card>', '  <ch-card>Dos</ch-card>', '  <ch-card>Tres</ch-card>', '  <ch-card>Cuatro</ch-card>', '</ch-grid>'],
+  },
+  {
     tag: 'ch-badge',
     description: 'Etiqueta de estado compacta con tres variantes.',
     demos: ['<ch-badge>comunidad</ch-badge>', '<ch-badge variant="positive">Disponible</ch-badge>', '<ch-badge variant="warning">placeholder</ch-badge>'],

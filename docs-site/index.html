@@ -66,6 +66,27 @@
             >
               <a class="side-link" href="#ch-alert">ch-alert</a>
             </li>
+            <li
+              class="side-item"
+              data-name="ch-stack"
+              data-desc="Flujo vertical con separación tomada de la escala de espaciado (gap, align, justify). Es un host real con flex, así que tus clases sobre &lt;ch-stack&gt; siguen funcionando."
+            >
+              <a class="side-link" href="#ch-stack">ch-stack</a>
+            </li>
+            <li
+              class="side-item"
+              data-name="ch-cluster"
+              data-desc="Flujo horizontal que envuelve cuando falta espacio (gap en ambos ejes, align, justify, wrap). La fila de botones o de etiquetas sin CSS propio."
+            >
+              <a class="side-link" href="#ch-cluster">ch-cluster</a>
+            </li>
+            <li
+              class="side-item"
+              data-name="ch-grid"
+              data-desc="Grilla de celdas iguales: columns acepta 1–12 o auto-fit (tantas columnas como permita min-item-width), sin breakpoints propios."
+            >
+              <a class="side-link" href="#ch-grid">ch-grid</a>
+            </li>
             <li class="side-item" data-name="ch-badge" data-desc="Etiqueta de estado compacta con tres variantes.">
               <a class="side-link" href="#ch-badge">ch-badge</a>
             </li>
@@ -216,6 +237,77 @@
 <span class="t">&lt;ch-alert</span> <span class="a">variant</span>="positive"<span class="t">&gt;</span>Componente publicado en el CDN.<span class="t">&lt;/ch-alert</span><span class="t">&gt;</span>
 <span class="t">&lt;ch-alert</span> <span class="a">variant</span>="warning"<span class="t">&gt;</span>No pudimos conectar con el servidor.<span class="t">&lt;/ch-alert</span><span class="t">&gt;</span>
 <span class="t">&lt;ch-alert</span> <span class="a">id</span>="demo-alert" <span class="a">dismiss-label</span>="Descartar aviso"<span class="t">&gt;</span>Este aviso se puede cerrar.<span class="t">&lt;/ch-alert</span><span class="t">&gt;</span></code></pre>
+          </div>
+
+          <div class="comp" id="ch-stack" tabindex="-1">
+            <div class="comp-head">
+              <h3>ch-stack</h3>
+              <span class="tag">@devschile/chucao/ch-stack</span>
+            </div>
+            <p class="comp-desc">
+              Flujo vertical con separación tomada de la escala de espaciado (<code>gap</code>, <code>align</code>, <code>justify</code>). Es un host real con flex, así que tus
+              clases sobre <code>&lt;ch-stack&gt;</code> siguen funcionando.
+            </p>
+            <div class="comp-demo">
+              <ch-stack gap="sm">
+                <ch-badge>Primero</ch-badge>
+                <ch-badge variant="positive">Segundo</ch-badge>
+                <ch-badge variant="warning">Tercero</ch-badge>
+              </ch-stack>
+            </div>
+            <pre class="comp-code"><code><span class="t">&lt;ch-stack</span> <span class="a">gap</span>="sm"<span class="t">&gt;</span>
+  <span class="t">&lt;ch-badge</span><span class="t">&gt;</span>Primero<span class="t">&lt;/ch-badge</span><span class="t">&gt;</span>
+  <span class="t">&lt;ch-badge</span> <span class="a">variant</span>="positive"<span class="t">&gt;</span>Segundo<span class="t">&lt;/ch-badge</span><span class="t">&gt;</span>
+  <span class="t">&lt;ch-badge</span> <span class="a">variant</span>="warning"<span class="t">&gt;</span>Tercero<span class="t">&lt;/ch-badge</span><span class="t">&gt;</span>
+<span class="t">&lt;/ch-stack</span><span class="t">&gt;</span></code></pre>
+          </div>
+
+          <div class="comp" id="ch-cluster" tabindex="-1">
+            <div class="comp-head">
+              <h3>ch-cluster</h3>
+              <span class="tag">@devschile/chucao/ch-cluster</span>
+            </div>
+            <p class="comp-desc">
+              Flujo horizontal que envuelve cuando falta espacio (<code>gap</code> en ambos ejes, <code>align</code>, <code>justify</code>, <code>wrap</code>). La fila de botones o
+              de etiquetas sin CSS propio.
+            </p>
+            <div class="comp-demo">
+              <ch-cluster gap="sm">
+                <ch-button size="sm">Uno</ch-button>
+                <ch-button size="sm" variant="secondary">Dos</ch-button>
+                <ch-button size="sm" variant="ghost">Tres</ch-button>
+              </ch-cluster>
+            </div>
+            <pre class="comp-code"><code><span class="t">&lt;ch-cluster</span> <span class="a">gap</span>="sm"<span class="t">&gt;</span>
+  <span class="t">&lt;ch-button</span> <span class="a">size</span>="sm"<span class="t">&gt;</span>Uno<span class="t">&lt;/ch-button</span><span class="t">&gt;</span>
+  <span class="t">&lt;ch-button</span> <span class="a">size</span>="sm" <span class="a">variant</span>="secondary"<span class="t">&gt;</span>Dos<span class="t">&lt;/ch-button</span><span class="t">&gt;</span>
+  <span class="t">&lt;ch-button</span> <span class="a">size</span>="sm" <span class="a">variant</span>="ghost"<span class="t">&gt;</span>Tres<span class="t">&lt;/ch-button</span><span class="t">&gt;</span>
+<span class="t">&lt;/ch-cluster</span><span class="t">&gt;</span></code></pre>
+          </div>
+
+          <div class="comp" id="ch-grid" tabindex="-1">
+            <div class="comp-head">
+              <h3>ch-grid</h3>
+              <span class="tag">@devschile/chucao/ch-grid</span>
+            </div>
+            <p class="comp-desc">
+              Grilla de celdas iguales: <code>columns</code> acepta 1–12 o <code>auto-fit</code> (tantas columnas como permita <code>min-item-width</code>), sin breakpoints
+              propios.
+            </p>
+            <div class="comp-demo">
+              <ch-grid columns="3" gap="md">
+                <ch-card>Uno</ch-card>
+                <ch-card>Dos</ch-card>
+                <ch-card>Tres</ch-card>
+                <ch-card>Cuatro</ch-card>
+              </ch-grid>
+            </div>
+            <pre class="comp-code"><code><span class="t">&lt;ch-grid</span> <span class="a">columns</span>="3" <span class="a">gap</span>="md"<span class="t">&gt;</span>
+  <span class="t">&lt;ch-card</span><span class="t">&gt;</span>Uno<span class="t">&lt;/ch-card</span><span class="t">&gt;</span>
+  <span class="t">&lt;ch-card</span><span class="t">&gt;</span>Dos<span class="t">&lt;/ch-card</span><span class="t">&gt;</span>
+  <span class="t">&lt;ch-card</span><span class="t">&gt;</span>Tres<span class="t">&lt;/ch-card</span><span class="t">&gt;</span>
+  <span class="t">&lt;ch-card</span><span class="t">&gt;</span>Cuatro<span class="t">&lt;/ch-card</span><span class="t">&gt;</span>
+<span class="t">&lt;/ch-grid</span><span class="t">&gt;</span></code></pre>
           </div>
 
           <div class="comp" id="ch-badge" tabindex="-1">

@@ -1,0 +1,47 @@
+:host {
+  display: grid;
+  grid-template-columns: var(--ch-grid-columns, repeat(auto-fit, minmax(min(16rem, 100%), 1fr)));
+  box-sizing: border-box;
+}
+
+:host([hidden]) {
+  display: none;
+}
+
+.grid--gap-none {
+  gap: 0;
+}
+
+.grid--gap-2xs {
+  gap: var(--spacing-2xs);
+}
+.grid--gap-xs {
+  gap: var(--spacing-xs);
+}
+.grid--gap-sm {
+  gap: var(--spacing-sm);
+}
+.grid--gap-md {
+  gap: var(--spacing-md);
+}
+.grid--gap-lg {
+  gap: var(--spacing-lg);
+}
+.grid--gap-xl {
+  gap: var(--spacing-xl);
+}
+.grid--gap-2xl {
+  gap: var(--spacing-2xl);
+}
+.grid--gap-3xl {
+  gap: var(--spacing-3xl);
+}
+.grid--gap-4xl {
+  gap: var(--spacing-4xl);
+}
+.grid--gap-5xl {
+  gap: var(--spacing-5xl);
+}
+.grid--gap-6xl {
+  gap: var(--spacing-6xl);
+}

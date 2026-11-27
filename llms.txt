@@ -16,9 +16,11 @@
 - [ch-button](https://devschile.github.io/chucao/components/ch-button/): graph TD;
 - [ch-card](https://devschile.github.io/chucao/components/ch-card/): ch-card component
 - [ch-checkbox](https://devschile.github.io/chucao/components/ch-checkbox/): ch-checkbox component
+- [ch-cluster](https://devschile.github.io/chucao/components/ch-cluster/): Horizontal flow that wraps when it runs out of room, with a token-driven
 - [ch-divider](https://devschile.github.io/chucao/components/ch-divider/): ch-divider component
 - [ch-drawer](https://devschile.github.io/chucao/components/ch-drawer/): Sliding side panel for navigation, editing forms and quick detail views.
 - [ch-emoji](https://devschile.github.io/chucao/components/ch-emoji/): Inline emoji from the devsChile CDN.
+- [ch-grid](https://devschile.github.io/chucao/components/ch-grid/): Responsive grid of equal cells.
 - [ch-input](https://devschile.github.io/chucao/components/ch-input/): ch-input component
 - [ch-link](https://devschile.github.io/chucao/components/ch-link/): ch-link component
 - [ch-modal](https://devschile.github.io/chucao/components/ch-modal/): Modal dialog, built on the native `<dialog>` element and opened with
@@ -26,6 +28,7 @@
 - [ch-segmented-control](https://devschile.github.io/chucao/components/ch-segmented-control/): Compact control for switching between a few mutually exclusive options
 - [ch-select](https://devschile.github.io/chucao/components/ch-select/): ch-select component
 - [ch-spinner](https://devschile.github.io/chucao/components/ch-spinner/): Loading indicator.
+- [ch-stack](https://devschile.github.io/chucao/components/ch-stack/): Vertical flow: children stack top to bottom with a token-driven gap.
 - [ch-switch](https://devschile.github.io/chucao/components/ch-switch/): ch-switch component
 - [ch-tabs](https://devschile.github.io/chucao/components/ch-tabs/): ch-tabs component
 - [ch-textarea](https://devschile.github.io/chucao/components/ch-textarea/): ch-textarea component
