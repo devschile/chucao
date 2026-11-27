@@ -4,24 +4,63 @@ on:
   push:
     tags:
       - '[0-9]*.[0-9]*.[0-9]*'
+  # A release that half-succeeded used to have no recovery path: the only
+  # trigger is the tag push, so re-publishing meant deleting and re-pushing a
+  # tag that npm already holds. Every step below is idempotent and guarded, so
+  # the pipeline can be re-run from the Actions UI against the same tag.
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Existing version tag to (re)publish, for example 2.5.0'
+        required: true
+        type: string
 
 permissions:
   contents: write
 
+concurrency:
+  group: release-${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.ref_name }}
+  cancel-in-progress: false
+
+env:
+  RELEASE_TAG: ${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.ref_name }}
+
 jobs:
-  release:
+  verify:
+    name: Verify the tagged build
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v7
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ env.RELEASE_TAG }}
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v6
+      # Fails fast when the tag was cut from a commit that is not on main, which
+      # is how a release can ship a bundle nobody reviewed.
+      - name: Check the tag is on main
+        run: |
+          set -euo pipefail
+          git fetch --no-tags origin main --depth=1
+          if git merge-base --is-ancestor HEAD FETCH_HEAD; then
+            echo "$RELEASE_TAG is on main"
+          else
+            echo "::error::tag $RELEASE_TAG does not point at a commit on main"
+            exit 1
+          fi
+
+      - name: Check the tag matches package.json
+        run: |
+          set -euo pipefail
+          version=$(node -p "require('./package.json').version")
+          if [ "$version" != "$RELEASE_TAG" ]; then
+            echo "::error::package.json is $version but the tag is $RELEASE_TAG"
+            exit 1
+          fi
+
+      - uses: pnpm/action-setup@v6
         with:
           version: 11.17.0
 
-      - name: Setup Node
-        uses: actions/setup-node@v7
+      - uses: actions/setup-node@v7
         with:
           node-version: 24
           cache: pnpm
@@ -42,10 +81,37 @@ jobs:
       - name: Test
         run: pnpm test
 
-      - name: Create GitHub Release
-        uses: softprops/action-gh-release@v3
+      # The gate the tag was supposed to have already passed. It runs here too
+      # because a tag can be pushed by hand.
+      - name: Check generated output is committed
+        run: |
+          git diff --exit-code --stat
+          test -z "$(git status --porcelain)"
+
+  publish:
+    name: Publish to npm
+    needs: verify
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
         with:
-          generate_release_notes: true
+          ref: ${{ env.RELEASE_TAG }}
+
+      - uses: pnpm/action-setup@v6
+        with:
+          version: 11.17.0
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: pnpm
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm build
 
       # `actions/setup-node` only writes a registry line into `.npmrc`; the
       # token still has to be written there explicitly, otherwise npm treats
@@ -55,48 +121,96 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          if [ -z "$NODE_AUTH_TOKEN" ]; then
+          set -euo pipefail
+          if [ -z "${NODE_AUTH_TOKEN:-}" ]; then
             echo "::error::NPM_TOKEN is empty or missing from the repository secrets"
             exit 1
           fi
           printf '//registry.npmjs.org/:_authToken=%s\n' "$NODE_AUTH_TOKEN" >> "$HOME/.npmrc"
-          echo "token length: ${#NODE_AUTH_TOKEN}"
-          echo "token prefix: $(printf '%s' "$NODE_AUTH_TOKEN" | cut -c1-4)"
-          echo "token has whitespace: $(printf '%s' "$NODE_AUTH_TOKEN" | grep -c '[[:space:]]')"
-          npm config get registry
           npm whoami
-        shell: bash
 
-      - name: Publish to npm
-        run: pnpm publish --no-git-checks --access public
+      - name: Publish if this version is not on npm yet
+        id: npm
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: Deploy to CDN
         run: |
           set -euo pipefail
-          VERSION="${GITHUB_REF_NAME#v}"
+          if npm view "@devschile/chucao@$RELEASE_TAG" version >/dev/null 2>&1; then
+            echo "already published, skipping"
+            echo "skipped=true" >> "$GITHUB_OUTPUT"
+          else
+            pnpm publish --no-git-checks --access public
+            echo "skipped=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      # Checked afterwards rather than trusting the publish step's exit code:
+      # `pnpm publish` can exit 0 without publishing anything.
+      - name: Verify the version resolves on npm
+        run: |
+          set -euo pipefail
+          for attempt in 1 2 3 4 5 6; do
+            if [ "$(npm view "@devschile/chucao@$RELEASE_TAG" version 2>/dev/null)" = "$RELEASE_TAG" ]; then
+              echo "$RELEASE_TAG resolves on npm"
+              exit 0
+            fi
+            sleep 10
+          done
+          echo "::error::$RELEASE_TAG is not resolvable on npm after publish"
+          exit 1
+
+  cdn:
+    name: Deploy to CDN
+    needs: publish
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ env.RELEASE_TAG }}
+
+      - uses: pnpm/action-setup@v6
+        with:
+          version: 11.17.0
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm build
+
+      - name: Upload dist to the CDN
+        run: |
+          set -euo pipefail
           sync_s3() {
             aws --endpoint-url "$S3_ENDPOINT_URL" --region garage s3 "$@"
           }
-          sync_s3 sync dist/chucao "s3://$S3_BUCKET/chucao/$VERSION/" \
-            --exclude "*.map" --exclude "fonts/*" \
-            --cache-control "public, max-age=31536000, immutable"
+
           # `--delete` is deliberately absent: Garage rejects the signed DELETE
           # requests aws-cli sends ("signed header `content-length` is not
           # present"), which failed the whole step after a successful upload.
           # Stale hashed chunks left in `latest/` are unreachable, and the next
           # release rewrites the entry points, so they are harmless.
-          sync_s3 sync dist/chucao "s3://$S3_BUCKET/chucao/latest/" \
-            --exclude "*.map" --exclude "fonts/*" \
-            --cache-control "public, max-age=3600"
-          # No cleanup of `latest/fonts/`: it is a `cp` of this build's fonts, so
-          # a stale file there can only be one this build also ships. Deleting it
-          # needs Garage to accept DELETE, which it currently refuses.
-          sync_s3 cp --recursive dist/chucao/fonts "s3://$S3_BUCKET/chucao/latest/fonts/" \
-            --cache-control "public, max-age=3600"
+
+          # Per docs/releasing.md: the versioned and `latest/` prefixes carry the
+          # stylesheets, bootstrap and entry chunks, but not `fonts/` — the
+          # `@font-face` rules in `chucao.css` already point at the shared
+          # absolute `chucao/fonts/` URL. Fonts are uploaded once, there.
+          sync_dir() {
+            local target="$1" cache="$2"
+            sync_s3 sync dist/chucao "s3://$S3_BUCKET/chucao/$target/" \
+              --exclude "*.map" --exclude "fonts/*" \
+              --cache-control "$cache"
+          }
+
           sync_s3 sync dist/chucao/fonts "s3://$S3_BUCKET/chucao/fonts/" \
             --cache-control "public, max-age=31536000, immutable"
+
+          sync_dir "$RELEASE_TAG" "public, max-age=31536000, immutable"
+          sync_dir "latest" "public, max-age=3600"
         env:
           S3_ENDPOINT_URL: ${{ secrets.S3_ENDPOINT_URL }}
           S3_BUCKET: ${{ secrets.S3_BUCKET }}
@@ -104,3 +218,52 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: garage
           AWS_S3_ADDRESSING_STYLE: path
+
+      # The upload can succeed while publishing almost nothing, so verify the
+      # URLs a browser actually requests. Stencil's lazy loader asks for
+      # `p-<hash>.js` while the emitted files are `p-<hash>.entry.js`, so the
+      # check must follow the runtime, not the file names on disk.
+      - name: Verify every asset the entry point loads
+        run: |
+          set -euo pipefail
+          check() {
+            local url="$1" code
+            code=$(curl -sS -o /dev/null -w '%{http_code}' "$url")
+            if [ "$code" != "200" ]; then
+              echo "::error::CDN verification failed: $url returned $code"
+              exit 1
+            fi
+          }
+          for dir in "$RELEASE_TAG" latest; do
+            check "$CDN_BASE/chucao/$dir/chucao.esm.js"
+            check "$CDN_BASE/chucao/$dir/chucao.css"
+            for chunk in $(grep -o 'p-[A-Za-z0-9]\{8\}' dist/chucao/chucao.esm.js | sort -u); do
+              check "$CDN_BASE/chucao/$dir/$chunk.js"
+              check "$CDN_BASE/chucao/$dir/$chunk.entry.js"
+            done
+          done
+          # Fonts live at the shared prefix only; `chucao.css` links them there.
+          for font in dist/chucao/fonts/*.woff2; do
+            check "$CDN_BASE/chucao/fonts/$(basename "$font")"
+          done
+          echo "CDN verified for $RELEASE_TAG and latest"
+        env:
+          CDN_BASE: https://static.devschile.cl
+
+  github-release:
+    name: Write the GitHub Release
+    needs: cdn
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create the release if it does not exist
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          if gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            echo "release $RELEASE_TAG already exists, leaving it alone"
+            exit 0
+          fi
+          gh release create "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" \
+            --title "$RELEASE_TAG" \
+            --notes "See CHANGELOG.md for what changed in $RELEASE_TAG."
