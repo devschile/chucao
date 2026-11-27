@@ -62,7 +62,7 @@
             <li
               class="side-item"
               data-name="ch-alert"
-              data-desc='Mensaje de estado en bloque, con tres variantes. warning se anuncia con role="alert"; default y positive usan role="status". Definir dismiss-label agrega un botón de cierre que emite chDismiss.'
+              data-desc='Mensaje de estado en bloque, con tres variantes. warning se anuncia con role="alert"; default y positive usan role="status". Cada variante lleva además un ícono y un borde izquierdo más grueso, así que el estado no se distingue solo por color; statusCue=&amp;quot;false&amp;quot; los quita. Definir dismiss-label agrega un botón de cierre que emite chDismiss.'
             >
               <a class="side-link" href="#ch-alert">ch-alert</a>
             </li>
@@ -101,7 +101,11 @@
             >
               <a class="side-link" href="#ch-grid">ch-grid</a>
             </li>
-            <li class="side-item" data-name="ch-badge" data-desc="Etiqueta de estado compacta con tres variantes.">
+            <li
+              class="side-item"
+              data-name="ch-badge"
+              data-desc='Etiqueta de estado compacta con tres variantes. El estado no depende solo del color: cada variante cambia además la forma del punto (relleno, anillo, cuadrado) y agrega su borde, así que se sigue distinguiendo impresa en escala de grises o con daltonismo. statusCue="false" quita el punto cuando el texto ya dice lo mismo.'
+            >
               <a class="side-link" href="#ch-badge">ch-badge</a>
             </li>
             <li
@@ -250,7 +254,8 @@
             </div>
             <p class="comp-desc">
               Mensaje de estado en bloque, con tres variantes. <code>warning</code> se anuncia con <code>role="alert"</code>; <code>default</code> y <code>positive</code> usan
-              <code>role="status"</code>. Definir <code>dismiss-label</code> agrega un botón de cierre que emite <code>chDismiss</code>.
+              <code>role="status"</code>. Cada variante lleva además un ícono y un borde izquierdo más grueso, así que el estado no se distingue solo por color;
+              <code>statusCue=&quot;false&quot;</code> los quita. Definir <code>dismiss-label</code> agrega un botón de cierre que emite <code>chDismiss</code>.
             </p>
             <div class="comp-demo">
               <ch-alert>Los cambios se guardan solos mientras editas.</ch-alert>
@@ -388,7 +393,11 @@
               <h3>ch-badge</h3>
               <span class="tag">@devschile/chucao/ch-badge</span>
             </div>
-            <p class="comp-desc">Etiqueta de estado compacta con tres variantes.</p>
+            <p class="comp-desc">
+              Etiqueta de estado compacta con tres variantes. El estado no depende solo del color: cada variante cambia además la forma del punto (relleno, anillo, cuadrado) y
+              agrega su borde, así que se sigue distinguiendo impresa en escala de grises o con daltonismo. <code>statusCue="false"</code> quita el punto cuando el texto ya dice lo
+              mismo.
+            </p>
             <div class="comp-demo">
               <ch-badge>comunidad</ch-badge>
               <ch-badge variant="positive">Disponible</ch-badge>

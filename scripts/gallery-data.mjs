@@ -37,7 +37,7 @@ export const gallery = [
   {
     tag: 'ch-alert',
     description:
-      'Mensaje de estado en bloque, con tres variantes. <code>warning</code> se anuncia con <code>role="alert"</code>; <code>default</code> y <code>positive</code> usan <code>role="status"</code>. Definir <code>dismiss-label</code> agrega un botón de cierre que emite <code>chDismiss</code>.',
+      'Mensaje de estado en bloque, con tres variantes. <code>warning</code> se anuncia con <code>role="alert"</code>; <code>default</code> y <code>positive</code> usan <code>role="status"</code>. Cada variante lleva además un ícono y un borde izquierdo más grueso, así que el estado no se distingue solo por color; <code>statusCue=&quot;false&quot;</code> los quita. Definir <code>dismiss-label</code> agrega un botón de cierre que emite <code>chDismiss</code>.',
     demos: [
       '<ch-alert>Los cambios se guardan solos mientras editas.</ch-alert>',
       '<ch-alert variant="positive">Componente publicado en el CDN.</ch-alert>',
@@ -96,7 +96,8 @@ export const gallery = [
   },
   {
     tag: 'ch-badge',
-    description: 'Etiqueta de estado compacta con tres variantes.',
+    description:
+      'Etiqueta de estado compacta con tres variantes. El estado no depende solo del color: cada variante cambia además la forma del punto (relleno, anillo, cuadrado) y agrega su borde, así que se sigue distinguiendo impresa en escala de grises o con daltonismo. <code>statusCue="false"</code> quita el punto cuando el texto ya dice lo mismo.',
     demos: ['<ch-badge>comunidad</ch-badge>', '<ch-badge variant="positive">Disponible</ch-badge>', '<ch-badge variant="warning">placeholder</ch-badge>'],
   },
   {

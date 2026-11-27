@@ -3,8 +3,11 @@
 }
 
 .badge {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
   padding: var(--spacing-2xs) var(--spacing-lg);
+  border: var(--border-width) solid transparent;
   border-radius: var(--radius-pill);
   font-size: var(--typography-size-xs);
   font-weight: var(--typography-weight-semibold);
@@ -12,16 +15,42 @@
   letter-spacing: var(--typography-tracking-badge);
 }
 
+/* The cue is shape first: a badge must not depend on hue to say what state it
+   is in, and shape survives grayscale printing and every form of colour-vision
+   deficiency. Colour repeats the cue rather than carrying it alone. */
+.badge-dot {
+  display: block;
+  flex: none;
+  width: 0.45em;
+  height: 0.45em;
+  background: currentColor;
+  border-radius: var(--radius-pill);
+}
+
 .badge--default {
   background: var(--color-surface-hover);
   color: var(--accent);
+  border-color: var(--accent);
 }
 
 .badge--positive {
   background: var(--color-status-positive-background);
   color: var(--color-status-positive);
+  border-color: var(--color-status-positive);
 }
+
+.badge--positive .badge-dot {
+  background: transparent;
+  border: var(--border-width) solid currentColor;
+  border-radius: var(--radius-pill);
+}
+
 .badge--warning {
   background: var(--color-status-warning-background);
   color: var(--color-status-warning);
+  border-color: var(--color-status-warning);
+}
+
+.badge--warning .badge-dot {
+  border-radius: 0;
 }

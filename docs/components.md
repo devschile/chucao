@@ -329,6 +329,16 @@ identified and documented these conventions.
   name is unusable by voice or screen reader and has no adjacent text to fall
   back on. Disabled icon buttons stay focusable and use `aria-disabled` so
   completing an action does not drop focus to `<body>`.
+- **Status cues**: `ch-alert` and `ch-badge` never convey status with colour
+  alone (WCAG 1.4.1). Alert pairs each variant with a distinct glyph and a
+  thicker leading edge; badge changes the marker's shape — filled dot, ring,
+  filled square — and adds a matching border. Shape survives grayscale printing
+  and every form of colour-vision deficiency, so colour repeats the cue instead
+  of carrying it. Both glyphs and markers are `aria-hidden`: the adjacent text
+  already says what happened, and announcing "alert triangle" first would only
+  add noise. `statusCue={false}` removes the cue where the copy already carries
+  it. Business-state-to-variant mapping stays in the consumer; a generic
+  `ch-status` component is a separate proposal.
 - **Overlay collision**: `placement` on `ch-tooltip` is a _preference_, not a
   fixed position. `src/utils/overlay.ts` scores the preferred side and its
   opposite against the viewport and keeps whichever overflows less — only real
