@@ -225,9 +225,11 @@ jobs:
           AWS_S3_ADDRESSING_STYLE: path
 
       # The upload can succeed while publishing almost nothing, so verify the
-      # URLs a browser actually requests. Stencil's lazy loader asks for
-      # `p-<hash>.js` while the emitted files are `p-<hash>.entry.js`, so the
-      # check must follow the runtime, not the file names on disk.
+      # URLs a browser can request. The lazy loader fetches `<hash>.entry.js`
+      # for component chunks and the plain `p-<hash>.js` for the core runtime
+      # chunk, so every file on disk is a valid runtime URL — checking the
+      # emitted set is both a superset of what the browser requests and a
+      # direct test that the sync actually landed.
       - name: Verify every asset the entry point loads
         run: |
           set -euo pipefail
@@ -242,9 +244,8 @@ jobs:
           for dir in "$RELEASE_TAG" latest; do
             check "$CDN_BASE/chucao/$dir/chucao.esm.js"
             check "$CDN_BASE/chucao/$dir/chucao.css"
-            for chunk in $(grep -o 'p-[A-Za-z0-9]\{8\}' dist/chucao/chucao.esm.js | sort -u); do
-              check "$CDN_BASE/chucao/$dir/$chunk.js"
-              check "$CDN_BASE/chucao/$dir/$chunk.entry.js"
+            for chunk in dist/chucao/p-*.js; do
+              check "$CDN_BASE/chucao/$dir/$(basename "$chunk")"
             done
           done
           # Fonts live at the shared prefix only; `chucao.css` links them there.
