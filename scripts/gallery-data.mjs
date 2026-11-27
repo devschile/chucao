@@ -48,6 +48,12 @@ export const gallery = [
     bindings: [{ id: 'demo-alert', event: 'chDismiss', format: '() => `chDismiss`' }],
   },
   {
+    tag: 'ch-skeleton',
+    description:
+      'Marcador de carga decorativo que reserva el espacio del contenido real: <code>shape</code> (<code>line</code>/<code>circle</code>/<code>rect</code>), <code>width</code>, <code>height</code>, <code>count</code> y <code>animated</code> (se apaga con <code>prefers-reduced-motion</code>). Queda fuera del árbol de accesibilidad; marca tú la región con <code>aria-busy</code>.',
+    demos: ['<ch-skeleton count="3"></ch-skeleton>', '<ch-skeleton shape="circle" width="2.5rem"></ch-skeleton>', '<ch-skeleton shape="rect" height="4rem"></ch-skeleton>'],
+  },
+  {
     tag: 'ch-stack',
     description:
       'Flujo vertical con separación tomada de la escala de espaciado (<code>gap</code>, <code>align</code>, <code>justify</code>). Es un host real con flex, así que tus clases sobre <code>&lt;ch-stack&gt;</code> siguen funcionando.',

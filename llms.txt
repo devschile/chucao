@@ -27,6 +27,7 @@
 - [ch-radio](https://devschile.github.io/chucao/components/ch-radio/): ch-radio component
 - [ch-segmented-control](https://devschile.github.io/chucao/components/ch-segmented-control/): Compact control for switching between a few mutually exclusive options
 - [ch-select](https://devschile.github.io/chucao/components/ch-select/): ch-select component
+- [ch-skeleton](https://devschile.github.io/chucao/components/ch-skeleton/): Decorative loading placeholder that reserves the space real content will
 - [ch-spinner](https://devschile.github.io/chucao/components/ch-spinner/): Loading indicator.
 - [ch-stack](https://devschile.github.io/chucao/components/ch-stack/): Vertical flow: children stack top to bottom with a token-driven gap.
 - [ch-switch](https://devschile.github.io/chucao/components/ch-switch/): ch-switch component

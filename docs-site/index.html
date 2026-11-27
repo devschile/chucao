@@ -68,6 +68,13 @@
             </li>
             <li
               class="side-item"
+              data-name="ch-skeleton"
+              data-desc="Marcador de carga decorativo que reserva el espacio del contenido real: shape (line/circle/rect), width, height, count y animated (se apaga con prefers-reduced-motion). Queda fuera del árbol de accesibilidad; marca tú la región con aria-busy."
+            >
+              <a class="side-link" href="#ch-skeleton">ch-skeleton</a>
+            </li>
+            <li
+              class="side-item"
               data-name="ch-stack"
               data-desc="Flujo vertical con separación tomada de la escala de espaciado (gap, align, justify). Es un host real con flex, así que tus clases sobre &lt;ch-stack&gt; siguen funcionando."
             >
@@ -237,6 +244,28 @@
 <span class="t">&lt;ch-alert</span> <span class="a">variant</span>="positive"<span class="t">&gt;</span>Componente publicado en el CDN.<span class="t">&lt;/ch-alert</span><span class="t">&gt;</span>
 <span class="t">&lt;ch-alert</span> <span class="a">variant</span>="warning"<span class="t">&gt;</span>No pudimos conectar con el servidor.<span class="t">&lt;/ch-alert</span><span class="t">&gt;</span>
 <span class="t">&lt;ch-alert</span> <span class="a">id</span>="demo-alert" <span class="a">dismiss-label</span>="Descartar aviso"<span class="t">&gt;</span>Este aviso se puede cerrar.<span class="t">&lt;/ch-alert</span><span class="t">&gt;</span></code></pre>
+          </div>
+
+          <div class="comp" id="ch-skeleton" tabindex="-1">
+            <div class="comp-head">
+              <h3>ch-skeleton</h3>
+              <span class="tag">@devschile/chucao/ch-skeleton</span>
+            </div>
+            <p class="comp-desc">
+              Marcador de carga decorativo que reserva el espacio del contenido real: <code>shape</code> (<code>line</code>/<code>circle</code>/<code>rect</code>),
+              <code>width</code>, <code>height</code>, <code>count</code> y <code>animated</code> (se apaga con <code>prefers-reduced-motion</code>). Queda fuera del árbol de
+              accesibilidad; marca tú la región con <code>aria-busy</code>.
+            </p>
+            <div class="comp-demo">
+              <ch-skeleton count="3"></ch-skeleton>
+              <ch-skeleton shape="circle" width="2.5rem"></ch-skeleton>
+              <ch-skeleton shape="rect" height="4rem"></ch-skeleton>
+            </div>
+            <pre
+              class="comp-code"
+            ><code><span class="t">&lt;ch-skeleton</span> <span class="a">count</span>="3"<span class="t">&gt;</span><span class="t">&lt;/ch-skeleton</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-skeleton</span> <span class="a">shape</span>="circle" <span class="a">width</span>="2.5rem"<span class="t">&gt;</span><span class="t">&lt;/ch-skeleton</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-skeleton</span> <span class="a">shape</span>="rect" <span class="a">height</span>="4rem"<span class="t">&gt;</span><span class="t">&lt;/ch-skeleton</span><span class="t">&gt;</span></code></pre>
           </div>
 
           <div class="comp" id="ch-stack" tabindex="-1">

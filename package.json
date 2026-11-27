@@ -39,6 +39,10 @@
       "import": "./dist/components/ch-grid.js",
       "types": "./dist/components/ch-grid.d.ts"
     },
+    "./ch-skeleton": {
+      "import": "./dist/components/ch-skeleton.js",
+      "types": "./dist/components/ch-skeleton.d.ts"
+    },
     "./ch-stack": {
       "import": "./dist/components/ch-stack.js",
       "types": "./dist/components/ch-stack.d.ts"

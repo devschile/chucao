@@ -6,7 +6,7 @@ and code generators.
 
 ## Component allow-list
 
-Chucao exposes exactly 23 components. Nothing else exists — do not invent
+Chucao exposes exactly 24 components. Nothing else exists — do not invent
 tags.
 
 | Tag                    | Purpose                                      |
@@ -28,6 +28,7 @@ tags.
 | `ch-radio`             | Radio button                                 |
 | `ch-segmented-control` | Compact segmented selector                   |
 | `ch-select`            | Dropdown select                              |
+| `ch-skeleton`          | Loading placeholder                          |
 | `ch-spinner`           | Loading indicator                            |
 | `ch-stack`             | Vertical flow                                |
 | `ch-switch`            | Toggle switch                                |

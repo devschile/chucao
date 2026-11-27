@@ -1,0 +1,50 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+:host([hidden]) {
+  display: none;
+}
+
+:host(.skeleton--circle) {
+  width: auto;
+  display: inline-flex;
+}
+
+.skeleton__item {
+  display: block;
+  background: var(--color-surface-default);
+  border-radius: var(--radius-sm);
+}
+
+.skeleton--circle .skeleton__item {
+  border-radius: 50%;
+}
+
+.skeleton--rect .skeleton__item {
+  border-radius: var(--radius-md);
+}
+
+.skeleton--animated .skeleton__item {
+  background-image: linear-gradient(90deg, transparent 0%, var(--color-surface-hover) 50%, transparent 100%);
+  background-size: 200% 100%;
+  background-repeat: no-repeat;
+  animation: ch-skeleton-shimmer 1.4s ease-in-out infinite;
+}
+
+@keyframes ch-skeleton-shimmer {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: -100% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton--animated .skeleton__item {
+    animation: none;
+    background-image: none;
+  }
+}
