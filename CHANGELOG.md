@@ -6,6 +6,23 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+## [2.5.0](https://github.com/devschile/chucao/compare/2.4.0...2.5.0) (2026-11-27)
+
+### Features
+
+* **icons:** add `ch-icon` and `ch-icon-button` on a vendored Lucide set ([#92](https://github.com/devschile/chucao/issues/92))
+* **alert,badge:** signal status with shape instead of colour alone ([#42](https://github.com/devschile/chucao/issues/42))
+* **page-header:** add `ch-page-header` ([#75](https://github.com/devschile/chucao/issues/75))
+* **packaging:** give every component a real subpath export, and fix the `require` targets that pointed at unpublished files ([#24](https://github.com/devschile/chucao/issues/24))
+
+### Bug Fixes
+
+* **tooltip:** flip and shift the bubble so it stays on screen, and keep it anchored inside a scrolling modal or drawer ([#50](https://github.com/devschile/chucao/issues/50))
+
+### Documentation
+
+* document the app navigation pattern with `ch-drawer` instead of a `ch-sidebar` component ([#76](https://github.com/devschile/chucao/issues/76))
+* document the browser test project and the overlay collision contract
 ## [2.3.0](https://github.com/devschile/chucao/compare/2.2.0...2.3.0) (2026-09-20)
 
 ### Features
