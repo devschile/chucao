@@ -8,6 +8,8 @@ on:
 
 permissions:
   contents: read
+  issues: read
+  pull-requests: read
 
 jobs:
   check-pr:
@@ -63,3 +65,47 @@ jobs:
             echo "::error::Generated files are out of date. Run 'pnpm build && pnpm run generate:gallery && pnpm run generate:llms' and commit the result."
             exit 1
           fi
+
+  # Runs after the squash merge, on main, where the PR number is the only one in
+  # the event. A `Refs #N` that shipped its work and left the issue open is
+  # exactly what happened to #42 and #92 in 2.5.0: the reference was correct
+  # while the issue was still a decision, and nothing re-read it afterwards.
+  audit-issue-refs:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: read
+      pull-requests: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+
+      # Reports in the job log and as an annotation instead of failing the
+      # build: the squash already landed, and a `Refs` that genuinely advances
+      # an issue is legitimate. The point is that someone sees it.
+      - name: Report issues a merged PR left open
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          HEAD_SHA: ${{ github.sha }}
+        run: |
+          # A push event has no pull_request payload, so the PR is resolved from
+          # the merged commit: the squash merge is a single commit on main, and
+          # GitHub associates it with the PR that produced it.
+          PR_NUMBER=$(curl -sf \
+            -H "authorization: Bearer $GH_TOKEN" \
+            -H "accept: application/vnd.github+json" \
+            "https://api.github.com/repos/$GITHUB_REPOSITORY/commits/$HEAD_SHA/pulls" \
+            | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{const p=JSON.parse(s||"[]");const m=p.find(x=>x.merged_at)??p[0];console.log(m?m.number:"")})' || true)
+
+          if [ -z "$PR_NUMBER" ]; then
+            echo "no merged pull request associated with $HEAD_SHA, nothing to audit"
+            exit 0
+          fi
+          echo "auditing merged PR #$PR_NUMBER"
+          node scripts/check-merged-issue-refs.mjs --pr "$PR_NUMBER"
