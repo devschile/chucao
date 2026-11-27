@@ -34,22 +34,23 @@ piezas externas.
 
 ## Documentación
 
-| Documento                                                                                 | Idioma  | Contenido                                                                      |
-| ----------------------------------------------------------------------------------------- | ------- | ------------------------------------------------------------------------------ |
-| [`CONTRIBUTING.md`](CONTRIBUTING.md)                                                      | Español | Cómo contribuir: flujo de trabajo, commits, proponer un componente             |
-| [`AGENTS.md`](AGENTS.md)                                                                  | English | Convenciones del repo para contribuyentes y agentes de IA                      |
-| [`CLAUDE.md`](CLAUDE.md)                                                                  | English | Router para agentes de Claude Code: apunta a `AGENTS.md` sin duplicar reglas   |
-| [`SECURITY.md`](SECURITY.md)                                                              | Español | Cómo reportar un problema de seguridad y versiones soportadas                  |
-| [`CODE_OF_CONDUCT.md`](https://github.com/devschile/.github/blob/main/CODE_OF_CONDUCT.md) | Español | Código de conducta de devsChile — aplica a todos los repos de la organización  |
-| [`DESIGN.md`](DESIGN.md)                                                                  | Español | Identidad de marca + sistema de diseño web                                     |
-| [`docs/assets.md`](docs/assets.md)                                                        | Español | Inventario de `assets/`, uso del favicon, licencia                             |
-| [`docs/components.md`](docs/components.md)                                                | English | Desarrollo de la librería StencilJS: estructura, tokens, convenciones          |
-| [`docs/using-the-library.md`](docs/using-the-library.md)                                  | English | Cómo consumir `@devschile/chucao` (lazy loading, standalone, React/Vue/Svelte) |
-| [`docs/releasing.md`](docs/releasing.md)                                                  | English | Cómo publicar releases y desplegar la librería al CDN                          |
-| [`docs/testing.md`](docs/testing.md)                                                      | English | Testing y cobertura de los componentes                                         |
-| [`docs/storybook.md`](docs/storybook.md)                                                  | English | Evaluación de desplegar Storybook en el CDN (no adoptado)                      |
-| [`llms.txt`](llms.txt)                                                                    | English | Índice para agentes y crawlers (componentes, tokens, docs)                     |
-| [`docs/ai.md`](docs/ai.md)                                                                | English | Guía para agentes IA que consumen Chucao                                       |
+| Documento                                                                                 | Idioma  | Contenido                                                                           |
+| ----------------------------------------------------------------------------------------- | ------- | ----------------------------------------------------------------------------------- |
+| [`CONTRIBUTING.md`](CONTRIBUTING.md)                                                      | Español | Cómo contribuir: flujo de trabajo, commits, proponer un componente                  |
+| [`AGENTS.md`](AGENTS.md)                                                                  | English | Convenciones del repo para contribuyentes y agentes de IA                           |
+| [`CLAUDE.md`](CLAUDE.md)                                                                  | English | Router para agentes de Claude Code: apunta a `AGENTS.md` sin duplicar reglas        |
+| [`SECURITY.md`](SECURITY.md)                                                              | Español | Cómo reportar un problema de seguridad y versiones soportadas                       |
+| [`CODE_OF_CONDUCT.md`](https://github.com/devschile/.github/blob/main/CODE_OF_CONDUCT.md) | Español | Código de conducta de devsChile — aplica a todos los repos de la organización       |
+| [`DESIGN.md`](DESIGN.md)                                                                  | Español | Identidad de marca + sistema de diseño web                                          |
+| [`docs/assets.md`](docs/assets.md)                                                        | Español | Inventario de `assets/`, uso del favicon, licencia                                  |
+| [`docs/components.md`](docs/components.md)                                                | English | Desarrollo de la librería StencilJS: estructura, tokens, convenciones               |
+| [`docs/using-the-library.md`](docs/using-the-library.md)                                  | English | Cómo consumir `@devschile/chucao` (lazy loading, standalone, React/Vue/Svelte)      |
+| [`docs/releasing.md`](docs/releasing.md)                                                  | English | Cómo publicar releases y desplegar la librería al CDN                               |
+| [`docs/app-navigation.md`](docs/app-navigation.md)                                        | English | Sidebar y navegación de app con `ch-drawer` y links nativos (patrón, no componente) |
+| [`docs/testing.md`](docs/testing.md)                                                      | English | Testing y cobertura de los componentes                                              |
+| [`docs/storybook.md`](docs/storybook.md)                                                  | English | Evaluación de desplegar Storybook en el CDN (no adoptado)                           |
+| [`llms.txt`](llms.txt)                                                                    | English | Índice para agentes y crawlers (componentes, tokens, docs)                          |
+| [`docs/ai.md`](docs/ai.md)                                                                | English | Guía para agentes IA que consumen Chucao                                            |
 
 ## Cómo reusar esto en un proyecto nuevo
 
