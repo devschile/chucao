@@ -78,6 +78,17 @@ export const gallery = [
     ],
   },
   {
+    tag: 'ch-empty-state',
+    description:
+      'Estado vacío estándar: icono opcional (<code>slot="icon"</code>), <code>title</code> obligatorio como encabezado, <code>description</code> y una acción por el slot por defecto. <code>size</code> <code>md</code> para una vista completa, <code>sm</code> para una región o celda de tabla.',
+    demos: [
+      '<ch-empty-state title="Sin resultados" description="Prueba con otra búsqueda">',
+      '  <span slot="icon">🦌</span>',
+      '  <ch-button size="sm" variant="secondary">Limpiar filtros</ch-button>',
+      '</ch-empty-state>',
+    ],
+  },
+  {
     tag: 'ch-grid',
     description:
       'Grilla de celdas iguales: <code>columns</code> acepta 1–12 o <code>auto-fit</code> (tantas columnas como permita <code>min-item-width</code>), sin breakpoints propios.',

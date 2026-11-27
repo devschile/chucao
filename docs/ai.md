@@ -6,7 +6,7 @@ and code generators.
 
 ## Component allow-list
 
-Chucao exposes exactly 24 components. Nothing else exists — do not invent
+Chucao exposes exactly 25 components. Nothing else exists — do not invent
 tags.
 
 | Tag                    | Purpose                                      |
@@ -21,6 +21,7 @@ tags.
 | `ch-divider`           | Visual separator                             |
 | `ch-drawer`            | Sliding side panel                           |
 | `ch-emoji`             | Inline emoji from the devsChile CDN          |
+| `ch-empty-state`       | Empty / no-results block                     |
 | `ch-grid`              | Responsive equal-cell grid                   |
 | `ch-input`             | Text input field                             |
 | `ch-link`              | Hyperlink                                    |

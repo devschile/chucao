@@ -35,6 +35,10 @@
       "import": "./dist/components/ch-cluster.js",
       "types": "./dist/components/ch-cluster.d.ts"
     },
+    "./ch-empty-state": {
+      "import": "./dist/components/ch-empty-state.js",
+      "types": "./dist/components/ch-empty-state.d.ts"
+    },
     "./ch-grid": {
       "import": "./dist/components/ch-grid.js",
       "types": "./dist/components/ch-grid.d.ts"
