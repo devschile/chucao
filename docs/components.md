@@ -317,7 +317,49 @@ identified and documented these conventions.
   stays inside the component while it crosses, which is what keeps the bubble
   reachable. Without it the pointer passes over the page behind the gap, the
   host gets `mouseleave`, and the bubble disappears before it can be read.
-  Together these cover the three parts of WCAG 1.4.13 (hoverable, dismissible,
+- **Icons**: `ch-icon` and `ch-icon-button` draw geometry vendored from
+  [Lucide](https://lucide.dev) v1.82.0 into `src/utils/icons.ts` — shapes only,
+  not the package, so consumers do not pay for a whole set to get six glyphs,
+  and the set is frozen so an upstream rename cannot break a public `name`
+  value. Attribution lives in `THIRD-PARTY.md`. Every glyph keeps Lucide's 24x24
+  viewBox and takes colour from `currentColor`, so a tooltip or button styles it
+  by setting `color`; sizes come from `--icon-size-sm|md|lg`. `ch-icon` is
+  decorative by default and needs a `label` to enter the accessibility tree,
+  while `ch-icon-button` requires one: an icon-only control with no accessible
+  name is unusable by voice or screen reader and has no adjacent text to fall
+  back on. Disabled icon buttons stay focusable and use `aria-disabled` so
+  completing an action does not drop focus to `<body>`.
+- **Status cues**: `ch-alert` and `ch-badge` never convey status with colour
+  alone (WCAG 1.4.1). Alert pairs each variant with a distinct glyph and a
+  thicker leading edge; badge changes the marker's shape — filled dot, ring,
+  filled square — and adds a matching border. Shape survives grayscale printing
+  and every form of colour-vision deficiency, so colour repeats the cue instead
+  of carrying it. Both glyphs and markers are `aria-hidden`: the adjacent text
+  already says what happened, and announcing "alert triangle" first would only
+  add noise. `statusCue={false}` removes the cue where the copy already carries
+  it. Business-state-to-variant mapping stays in the consumer; a generic
+  `ch-status` component is a separate proposal.
+- **Overlay collision**: `placement` on `ch-tooltip` is a _preference_, not a
+  fixed position. `src/utils/overlay.ts` scores the preferred side and its
+  opposite against the viewport and keeps whichever overflows less — only real
+  overflow counts, so a side that fits scores zero and the negative slack on the
+  other side cannot mask it. Only the main axis flips: a bubble pinned with a
+  translate on the main axis would cover its own trigger, which is why the
+  escape is always the opposite side. The cross axis is shifted so the surface
+  lands on the viewport edge. Past the first measurement the bubble switches to
+  `position: fixed` and is placed by viewport coordinates, because viewport
+  coordinates do not depend on an ancestor's `overflow`, `transform` or
+  `contain` — that is what keeps a tooltip inside a scrolling drawer or modal
+  anchored instead of clipped. It re-measures on `scroll` (captured, so nested
+  scrollers count), `resize` and `visualViewport` changes, which is how a mobile
+  keyboard opening re-fits it. Before the first measurement the CSS-only
+  placement rules apply, so the first frame still paints on the preferred side.
+  Stencil scopes each rule by doubling its classes, so the positioned override
+  needs three classes to outrank the single-class placement rules.
+  `Escape` calls `preventDefault()` before dismissing, which a nested modal
+  observes as already handled and leaves open — only the innermost surface
+  closes. This is the shared contract that menu and combobox reuse. Together
+  these cover the three parts of WCAG 1.4.13 (hoverable, dismissible,
   persistent).
 - **Links & dividers**: `ch-link` renders a native `<a>` with
   `default`/`muted` variants; it auto-adds `rel="noopener noreferrer"` for

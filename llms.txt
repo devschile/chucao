@@ -12,7 +12,7 @@
 
 - [ch-accordion](https://devschile.github.io/chucao/components/ch-accordion/): ch-accordion component
 - [ch-alert](https://devschile.github.io/chucao/components/ch-alert/): Block-level status message.
-- [ch-badge](https://devschile.github.io/chucao/components/ch-badge/): ch-badge component
+- [ch-badge](https://devschile.github.io/chucao/components/ch-badge/): Small status label.
 - [ch-button](https://devschile.github.io/chucao/components/ch-button/): graph TD;
 - [ch-card](https://devschile.github.io/chucao/components/ch-card/): ch-card component
 - [ch-checkbox](https://devschile.github.io/chucao/components/ch-checkbox/): ch-checkbox component
@@ -22,9 +22,12 @@
 - [ch-emoji](https://devschile.github.io/chucao/components/ch-emoji/): Inline emoji from the devsChile CDN.
 - [ch-empty-state](https://devschile.github.io/chucao/components/ch-empty-state/): The standard "there is nothing here" block: an optional visual, a title, a
 - [ch-grid](https://devschile.github.io/chucao/components/ch-grid/): Responsive grid of equal cells.
+- [ch-icon](https://devschile.github.io/chucao/components/ch-icon/): A single Lucide glyph.
+- [ch-icon-button](https://devschile.github.io/chucao/components/ch-icon-button/): A button whose only content is an icon.
 - [ch-input](https://devschile.github.io/chucao/components/ch-input/): ch-input component
 - [ch-link](https://devschile.github.io/chucao/components/ch-link/): ch-link component
 - [ch-modal](https://devschile.github.io/chucao/components/ch-modal/): Modal dialog, built on the native `<dialog>` element and opened with
+- [ch-page-header](https://devschile.github.io/chucao/components/ch-page-header/): The heading block at the top of a page: title, optional eyebrow and
 - [ch-radio](https://devschile.github.io/chucao/components/ch-radio/): ch-radio component
 - [ch-segmented-control](https://devschile.github.io/chucao/components/ch-segmented-control/): Compact control for switching between a few mutually exclusive options
 - [ch-select](https://devschile.github.io/chucao/components/ch-select/): ch-select component
@@ -43,6 +46,7 @@
 ## Documentation
 
 - [Ai](https://devschile.github.io/chucao/docs/ai.md): Chucao is a design system of Web Components published as
+- [App Navigation](https://devschile.github.io/chucao/docs/app-navigation.md): How to build the sidebar from issue #76 with the components that already ship.
 - [Assets](https://devschile.github.io/chucao/docs/assets.md): assets/
 - [Components](https://devschile.github.io/chucao/docs/components.md): The Chucao design system (colors, typography, spacing, layout — see
 - [Releasing](https://devschile.github.io/chucao/docs/releasing.md): How `@devschile/chucao` is released to npm and deployed to the versioned CDN.

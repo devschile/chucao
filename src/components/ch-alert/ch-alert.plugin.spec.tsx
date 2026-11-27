@@ -9,6 +9,11 @@ describe('ch-alert', () => {
       <ch-alert class="hydrated">
         <mock:shadow-root>
           <div class="alert alert--default" role="status">
+            <svg class="alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M12 16v-4"></path>
+              <path d="M12 8h.01"></path>
+            </svg>
             <div class="alert-content">
               <slot></slot>
             </div>
@@ -25,6 +30,11 @@ describe('ch-alert', () => {
       <ch-alert class="hydrated">
         <mock:shadow-root>
           <div class="alert alert--warning" role="alert">
+            <svg class="alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"></path>
+              <path d="M12 9v4"></path>
+              <path d="M12 17h.01"></path>
+            </svg>
             <div class="alert-content">
               <slot></slot>
             </div>
@@ -87,5 +97,34 @@ describe('ch-alert', () => {
     expect(updated.className).toBe('alert alert--warning');
     // A live region that only had its role mutated is not reliably re-announced.
     expect(updated).not.toBe(original);
+  });
+
+  it('marks every variant with a decorative icon so the state is not colour-only', async () => {
+    const seen = await Promise.all(
+      (['default', 'positive', 'warning'] as const).map(async variant => {
+        const { root } = await render(<ch-alert variant={variant}>Texto</ch-alert>);
+        const icon = root.shadowRoot.querySelector('.alert-icon');
+        return { present: icon !== null, hidden: icon.getAttribute('aria-hidden'), shapes: icon.children.length };
+      }),
+    );
+
+    expect(seen.every(({ present, hidden, shapes }) => present && hidden === 'true' && shapes > 0)).toBe(true);
+  });
+
+  it('gives each variant a different glyph, so shape carries the meaning', async () => {
+    const glyphs = await Promise.all(
+      (['default', 'positive', 'warning'] as const).map(async variant => {
+        const { root } = await render(<ch-alert variant={variant}>Texto</ch-alert>);
+        return root.shadowRoot.querySelector('.alert-icon').innerHTML;
+      }),
+    );
+
+    expect(new Set(glyphs).size).toBe(3);
+  });
+
+  it('lets the consumer drop the icon when the copy already carries the cue', async () => {
+    const { root } = await render(<ch-alert statusCue={false}>Texto</ch-alert>);
+
+    expect(root.shadowRoot.querySelector('.alert-icon')).toBe(null);
   });
 });

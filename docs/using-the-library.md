@@ -53,6 +53,45 @@ function App() {
 export default App;
 ```
 
+Every component has its own `@devschile/chucao/<tag>` subpath with matching
+types, so a standalone import never has to reach into a generated directory:
+
+```tsx
+import '@devschile/chucao/ch-button';
+```
+
+Every component has its own `@devschile/chucao/<tag>` subpath with matching
+types, so a standalone import never falls back to a generated directory path.
+
+- `@devschile/chucao/ch-accordion`
+- `@devschile/chucao/ch-alert`
+- `@devschile/chucao/ch-badge`
+- `@devschile/chucao/ch-button`
+- `@devschile/chucao/ch-card`
+- `@devschile/chucao/ch-checkbox`
+- `@devschile/chucao/ch-cluster`
+- `@devschile/chucao/ch-divider`
+- `@devschile/chucao/ch-drawer`
+- `@devschile/chucao/ch-emoji`
+- `@devschile/chucao/ch-empty-state`
+- `@devschile/chucao/ch-grid`
+- `@devschile/chucao/ch-icon`
+- `@devschile/chucao/ch-icon-button`
+- `@devschile/chucao/ch-input`
+- `@devschile/chucao/ch-link`
+- `@devschile/chucao/ch-modal`
+- `@devschile/chucao/ch-page-header`
+- `@devschile/chucao/ch-radio`
+- `@devschile/chucao/ch-segmented-control`
+- `@devschile/chucao/ch-select`
+- `@devschile/chucao/ch-skeleton`
+- `@devschile/chucao/ch-spinner`
+- `@devschile/chucao/ch-stack`
+- `@devschile/chucao/ch-switch`
+- `@devschile/chucao/ch-tabs`
+- `@devschile/chucao/ch-textarea`
+- `@devschile/chucao/ch-tooltip`
+
 ## CDN (no build)
 
 Every release is also published to the static CDN under an immutable,

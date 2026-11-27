@@ -1,8 +1,13 @@
-import { Component, Element, Host, Listen, Prop, State, h } from '@stencil/core';
+import { Component, Element, forceUpdate, Host, Listen, Prop, State, h } from '@stencil/core';
 
-export type ChTooltipPlacement = 'top' | 'bottom' | 'left' | 'right';
+import { placeOverlay, type ChOverlayPlacement } from '../../utils/overlay';
+
+export type ChTooltipPlacement = ChOverlayPlacement;
 
 let tooltipIds = 0;
+
+/** Space between the trigger and the bubble, matching `--spacing-md`. */
+const GAP = 8;
 
 /**
  * Short help text shown on hover and on focus.
@@ -19,6 +24,13 @@ let tooltipIds = 0;
  * `<input>`). A chucao component such as `ch-button` will not be described,
  * because `aria-*` set on a custom element host does not reach the native
  * element inside it — see the discussion in issue #47.
+ *
+ * Positioning is measured, not purely CSS: `placement` is the preferred side,
+ * and the bubble flips to the opposite side when the preferred one does not
+ * fit, then shifts along the other axis to stay inside the viewport. It
+ * re-measures on scroll, resize and visual-viewport changes, which is what
+ * keeps it correct inside a scrolling modal or drawer and when a mobile
+ * keyboard shrinks the visible area.
  */
 @Component({
   tag: 'ch-tooltip',
@@ -30,8 +42,13 @@ export class ChTooltip {
 
   private readonly fallbackId = `ch-tooltip-${++tooltipIds}`;
 
+  private bubbleEl?: HTMLElement;
+
+  private cleanup?: () => void;
+
   /**
-   * Which side of the trigger the bubble is placed on.
+   * The side the bubble is placed on. It is a preference: when that side has no
+   * room the bubble flips to the opposite one.
    */
   @Prop() placement: ChTooltipPlacement = 'top';
 
@@ -42,6 +59,12 @@ export class ChTooltip {
   @State() focused = false;
   @State() dismissed = false;
 
+  /** The placement actually used, which may differ from the prop after a flip. */
+  @State() resolvedPlacement?: ChTooltipPlacement;
+
+  /** Offset applied to the bubble once it has been measured. */
+  private offset?: { top: number; left: number };
+
   private get visible() {
     return (this.hovered || this.focused) && !this.dismissed;
   }
@@ -50,10 +73,19 @@ export class ChTooltip {
     this.associate();
   }
 
+  connectedCallback() {
+    this.watchViewport();
+  }
+
+  disconnectedCallback() {
+    this.cleanup?.();
+  }
+
   @Listen('mouseenter')
   handleMouseEnter() {
     this.hovered = true;
     this.dismissed = false;
+    this.position();
   }
 
   @Listen('mouseleave')
@@ -65,6 +97,7 @@ export class ChTooltip {
   handleFocusIn() {
     this.focused = true;
     this.dismissed = false;
+    this.position();
   }
 
   @Listen('focusout')
@@ -75,16 +108,94 @@ export class ChTooltip {
   /**
    * Listens on the document because a tooltip opened by hovering leaves focus
    * wherever it was, so a host-scoped handler would never see the key.
+   *
+   * Only the outermost Escape handler is stopped from propagating, so a
+   * tooltip inside an open modal closes itself and leaves the modal open.
    */
   @Listen('keydown', { target: 'document' })
   handleKeyDown(event: KeyboardEvent) {
-    if (event.key === 'Escape' && this.visible) {
+    if (event.key === 'Escape' && this.visible && !event.defaultPrevented) {
+      event.preventDefault();
       this.dismissed = true;
     }
   }
 
+  /** Cheap guard so scroll frames do not measure while nothing is shown. */
+  @Listen('scroll', { target: 'window', capture: true, passive: true })
+  handleScroll() {
+    if (this.visible && this.offset) {
+      this.position();
+    }
+  }
+
+  @Listen('resize', { target: 'window', passive: true })
+  handleResize() {
+    this.position();
+  }
+
+  private watchViewport() {
+    if (typeof window === 'undefined') {
+      return;
+    }
+    const viewport = window.visualViewport;
+    if (!viewport || this.cleanup) {
+      return;
+    }
+    const update = () => this.position();
+    viewport.addEventListener('resize', update);
+    viewport.addEventListener('scroll', update);
+    this.cleanup = () => {
+      viewport.removeEventListener('resize', update);
+      viewport.removeEventListener('scroll', update);
+    };
+  }
+
   private slotted(name: string) {
     return Array.from(this.el.children).find(child => child.getAttribute('slot') === name);
+  }
+
+  /**
+   * Measures the anchor and the bubble and stores the offset that keeps the
+   * bubble inside the viewport. Nothing is measured before the bubble has a
+   * box to measure, so the pre-paint render uses plain CSS.
+   */
+  private position() {
+    if (typeof window === 'undefined') {
+      return;
+    }
+    const bubble = this.bubbleEl ?? (this.bubbleEl = this.el.shadowRoot?.querySelector<HTMLElement>('.bubble') ?? undefined);
+    if (!bubble || bubble.offsetWidth === 0) {
+      return;
+    }
+
+    const anchorRect = (this.slotted('trigger') as HTMLElement | undefined)?.getBoundingClientRect?.();
+    if (!anchorRect) {
+      return;
+    }
+
+    const surface = {
+      width: bubble.offsetWidth + horizontalMargin(bubble),
+      height: bubble.offsetHeight,
+    };
+    const viewport = window.visualViewport;
+
+    const { placement, top, left } = placeOverlay({
+      anchor: { top: anchorRect.top, left: anchorRect.left, width: anchorRect.width, height: anchorRect.height },
+      surface,
+      viewport: viewport
+        ? { top: viewport.offsetTop, left: viewport.offsetLeft, width: viewport.width, height: viewport.height }
+        : { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight },
+      preferred: this.placement,
+      gap: GAP,
+    });
+
+    const current = this.offset;
+    const unchanged = current?.top === top && current?.left === left && this.resolvedPlacement === placement;
+    this.resolvedPlacement = placement;
+    this.offset = { top, left };
+    if (!unchanged) {
+      forceUpdate(this);
+    }
   }
 
   /**
@@ -106,15 +217,36 @@ export class ChTooltip {
   };
 
   render() {
+    const { offset } = this;
+
     return (
       <Host>
         <span class="anchor">
+          {/* Pre-measure render uses the preferred side so the bubble never
+              jumps from the wrong edge on its first frame. */}
           <slot name="trigger" onSlotchange={this.associate}></slot>
-          <span class={{ 'bubble': true, [`bubble--${this.placement}`]: true, 'bubble--visible': this.visible }}>
+          <span
+            ref={el => (this.bubbleEl = el)}
+            style={{
+              '--ch-tooltip-offset-top': offset ? `${offset.top}px` : null,
+              '--ch-tooltip-offset-left': offset ? `${offset.left}px` : null,
+            }}
+            class={{
+              'bubble': true,
+              'bubble--positioned': Boolean(this.offset),
+              [`bubble--${this.resolvedPlacement ?? this.placement}`]: true,
+              'bubble--visible': this.visible,
+            }}
+          >
             <slot name="content" onSlotchange={this.associate}></slot>
           </span>
         </span>
       </Host>
     );
   }
+}
+
+function horizontalMargin(el: HTMLElement) {
+  const style = getComputedStyle(el);
+  return (parseFloat(style.marginLeft) || 0) + (parseFloat(style.marginRight) || 0);
 }

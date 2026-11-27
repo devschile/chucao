@@ -31,8 +31,8 @@
           <code>@devschile/chucao</code>. Identidad de marca, paleta, tipografía y componentes, listos para reusar.
         </p>
         <div class="install-row">
-          <span class="install-label">Última versión publicada: <code class="install-version">1.8.0</code></span>
-          <code class="install-command">pnpm add @devschile/chucao@<span class="install-version">1.8.0</span></code>
+          <span class="install-label">Última versión publicada: <code class="install-version">2.4.0</code></span>
+          <code class="install-command">pnpm add @devschile/chucao@<span class="install-version">2.4.0</span></code>
         </div>
         <nav class="top-nav">
           <a href="#componentes">Componentes</a>
@@ -62,7 +62,7 @@
             <li
               class="side-item"
               data-name="ch-alert"
-              data-desc='Mensaje de estado en bloque, con tres variantes. warning se anuncia con role="alert"; default y positive usan role="status". Definir dismiss-label agrega un botón de cierre que emite chDismiss.'
+              data-desc='Mensaje de estado en bloque, con tres variantes. warning se anuncia con role="alert"; default y positive usan role="status". Cada variante lleva además un ícono y un borde izquierdo más grueso, así que el estado no se distingue solo por color; statusCue=&amp;quot;false&amp;quot; los quita. Definir dismiss-label agrega un botón de cierre que emite chDismiss.'
             >
               <a class="side-link" href="#ch-alert">ch-alert</a>
             </li>
@@ -101,7 +101,11 @@
             >
               <a class="side-link" href="#ch-grid">ch-grid</a>
             </li>
-            <li class="side-item" data-name="ch-badge" data-desc="Etiqueta de estado compacta con tres variantes.">
+            <li
+              class="side-item"
+              data-name="ch-badge"
+              data-desc='Etiqueta de estado compacta con tres variantes. El estado no depende solo del color: cada variante cambia además la forma del punto (relleno, anillo, cuadrado) y agrega su borde, así que se sigue distinguiendo impresa en escala de grises o con daltonismo. statusCue="false" quita el punto cuando el texto ya dice lo mismo.'
+            >
               <a class="side-link" href="#ch-badge">ch-badge</a>
             </li>
             <li
@@ -134,6 +138,20 @@
             >
               <a class="side-link" href="#ch-emoji">ch-emoji</a>
             </li>
+            <li
+              class="side-item"
+              data-name="ch-icon"
+              data-desc="Un glifo de Lucide (ISC) por name, con tres tamaños por token. Es decorativo por defecto: queda fuera del árbol de accesibilidad salvo que le des label, porque casi siempre el texto de al lado ya dice lo que significa. Toma el color de currentColor, así que hereda el del contenedor."
+            >
+              <a class="side-link" href="#ch-icon">ch-icon</a>
+            </li>
+            <li
+              class="side-item"
+              data-name="ch-icon-button"
+              data-desc="Botón cuyo único contenido es un ícono. El label es obligatorio: un botón sin nombre accesible no lo puede usar ni un lector de pantalla ni un comando de voz, y acá no hay texto al lado que lo salve. Soporta size, disabled y loading; mientras carga emite aria-busy y no dispara chClick, pero sigue siendo enfocable para que el foco no se caiga al body."
+            >
+              <a class="side-link" href="#ch-icon-button">ch-icon-button</a>
+            </li>
             <li class="side-item" data-name="ch-input" data-desc="Campo de texto con label asociado vía id/for. Emite chInput (cada tecla) y chChange (al confirmar).">
               <a class="side-link" href="#ch-input">ch-input</a>
             </li>
@@ -146,6 +164,13 @@
               data-desc="Diálogo modal sobre el &lt;dialog&gt; nativo, abierto con showModal(): el navegador se encarga del foco, de marcar el resto de la página como inerte, del cierre con Escape y del backdrop. Se cierra además al hacer clic fuera del diálogo. Admite size (sm/md/lg) para el ancho máximo, ajustable también con la custom property --ch-modal-width. Emite chOpen y chClose."
             >
               <a class="side-link" href="#ch-modal">ch-modal</a>
+            </li>
+            <li
+              class="side-item"
+              data-name="ch-page-header"
+              data-desc="Encabezado de página: título, eyebrow y descripción opcionales, más una zona de acciones por slot. El título es una prop y no un slot para que headingLevel siempre calce con la página y nunca haya dos h1; por defecto es h1. El título va antes que las acciones en el DOM, así el orden de lectura y de foco empieza por él, y las acciones se envuelven en vez de empujar la página de lado a 390px."
+            >
+              <a class="side-link" href="#ch-page-header">ch-page-header</a>
             </li>
             <li class="side-item" data-name="ch-radio" data-desc="Grupo de selección única; las opciones se pasan por options. Emite chChange con el valor elegido.">
               <a class="side-link" href="#ch-radio">ch-radio</a>
@@ -236,7 +261,8 @@
             </div>
             <p class="comp-desc">
               Mensaje de estado en bloque, con tres variantes. <code>warning</code> se anuncia con <code>role="alert"</code>; <code>default</code> y <code>positive</code> usan
-              <code>role="status"</code>. Definir <code>dismiss-label</code> agrega un botón de cierre que emite <code>chDismiss</code>.
+              <code>role="status"</code>. Cada variante lleva además un ícono y un borde izquierdo más grueso, así que el estado no se distingue solo por color;
+              <code>statusCue=&quot;false&quot;</code> los quita. Definir <code>dismiss-label</code> agrega un botón de cierre que emite <code>chDismiss</code>.
             </p>
             <div class="comp-demo">
               <ch-alert>Los cambios se guardan solos mientras editas.</ch-alert>
@@ -374,7 +400,11 @@
               <h3>ch-badge</h3>
               <span class="tag">@devschile/chucao/ch-badge</span>
             </div>
-            <p class="comp-desc">Etiqueta de estado compacta con tres variantes.</p>
+            <p class="comp-desc">
+              Etiqueta de estado compacta con tres variantes. El estado no depende solo del color: cada variante cambia además la forma del punto (relleno, anillo, cuadrado) y
+              agrega su borde, así que se sigue distinguiendo impresa en escala de grises o con daltonismo. <code>statusCue="false"</code> quita el punto cuando el texto ya dice lo
+              mismo.
+            </p>
             <div class="comp-demo">
               <ch-badge>comunidad</ch-badge>
               <ch-badge variant="positive">Disponible</ch-badge>
@@ -550,6 +580,53 @@
 <span class="t">&lt;ch-emoji</span> <span class="a">name</span>="loading" <span class="a">size</span>="sm"<span class="t">&gt;</span><span class="t">&lt;/ch-emoji</span><span class="t">&gt;</span></code></pre>
           </div>
 
+          <div class="comp" id="ch-icon" tabindex="-1">
+            <div class="comp-head">
+              <h3>ch-icon</h3>
+              <span class="tag">@devschile/chucao/ch-icon</span>
+            </div>
+            <p class="comp-desc">
+              Un glifo de Lucide (ISC) por <code>name</code>, con tres tamaños por token. Es decorativo por defecto: queda fuera del árbol de accesibilidad salvo que le des
+              <code>label</code>, porque casi siempre el texto de al lado ya dice lo que significa. Toma el color de <code>currentColor</code>, así que hereda el del contenedor.
+            </p>
+            <div class="comp-demo">
+              <ch-icon name="check"></ch-icon>
+              <ch-icon name="alert" size="lg"></ch-icon>
+              <ch-icon name="info" label="Información"></ch-icon>
+              <ch-icon name="search" size="sm"></ch-icon>
+            </div>
+            <pre
+              class="comp-code"
+            ><code><span class="t">&lt;ch-icon</span> <span class="a">name</span>="check"<span class="t">&gt;</span><span class="t">&lt;/ch-icon</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-icon</span> <span class="a">name</span>="alert" <span class="a">size</span>="lg"<span class="t">&gt;</span><span class="t">&lt;/ch-icon</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-icon</span> <span class="a">name</span>="info" <span class="a">label</span>="Información"<span class="t">&gt;</span><span class="t">&lt;/ch-icon</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-icon</span> <span class="a">name</span>="search" <span class="a">size</span>="sm"<span class="t">&gt;</span><span class="t">&lt;/ch-icon</span><span class="t">&gt;</span></code></pre>
+          </div>
+
+          <div class="comp" id="ch-icon-button" tabindex="-1">
+            <div class="comp-head">
+              <h3>ch-icon-button</h3>
+              <span class="tag">@devschile/chucao/ch-icon-button</span>
+            </div>
+            <p class="comp-desc">
+              Botón cuyo único contenido es un ícono. El <code>label</code> es obligatorio: un botón sin nombre accesible no lo puede usar ni un lector de pantalla ni un comando de
+              voz, y acá no hay texto al lado que lo salve. Soporta <code>size</code>, <code>disabled</code> y <code>loading</code>; mientras carga emite <code>aria-busy</code> y
+              no dispara <code>chClick</code>, pero sigue siendo enfocable para que el foco no se caiga al <code>body</code>.
+            </p>
+            <div class="comp-demo">
+              <ch-icon-button name="menu" label="Abrir menú"></ch-icon-button>
+              <ch-icon-button name="plus" label="Agregar"></ch-icon-button>
+              <ch-icon-button name="copy" label="Copiar" size="sm"></ch-icon-button>
+              <ch-icon-button name="delete" label="Eliminar" disabled></ch-icon-button>
+            </div>
+            <pre
+              class="comp-code"
+            ><code><span class="t">&lt;ch-icon-button</span> <span class="a">name</span>="menu" <span class="a">label</span>="Abrir menú"<span class="t">&gt;</span><span class="t">&lt;/ch-icon-button</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-icon-button</span> <span class="a">name</span>="plus" <span class="a">label</span>="Agregar"<span class="t">&gt;</span><span class="t">&lt;/ch-icon-button</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-icon-button</span> <span class="a">name</span>="copy" <span class="a">label</span>="Copiar" <span class="a">size</span>="sm"<span class="t">&gt;</span><span class="t">&lt;/ch-icon-button</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-icon-button</span> <span class="a">name</span>="delete" <span class="a">label</span>="Eliminar" <span class="a">disabled</span><span class="t">&gt;</span><span class="t">&lt;/ch-icon-button</span><span class="t">&gt;</span></code></pre>
+          </div>
+
           <div class="comp" id="ch-input" tabindex="-1">
             <div class="comp-head">
               <h3>ch-input</h3>
@@ -622,6 +699,28 @@
 <span class="t">&lt;ch-button</span> <span class="a">id</span>="demo-modal-lg-trigger" <span class="a">variant</span>="secondary"<span class="t">&gt;</span>Abrir ancho (lg)<span class="t">&lt;/ch-button</span><span class="t">&gt;</span>
 <span class="t">&lt;ch-modal</span> <span class="a">id</span>="demo-modal" <span class="a">label</span>="Confirmar publicación" <span class="a">close-label</span>="Cerrar diálogo"<span class="t">&gt;</span><span class="t">&lt;h4</span> <span class="a">slot</span>="heading"<span class="t">&gt;</span>¿Publicar al CDN?<span class="t">&lt;/h4</span><span class="t">&gt;</span><span class="t">&lt;p</span><span class="t">&gt;</span>Se publicará la versión actual de la librería. La acción no se puede deshacer.<span class="t">&lt;/p</span><span class="t">&gt;</span><span class="t">&lt;/ch-modal</span><span class="t">&gt;</span>
 <span class="t">&lt;ch-modal</span> <span class="a">id</span>="demo-modal-lg" <span class="a">size</span>="lg" <span class="a">label</span>="Nueva transacción" <span class="a">close-label</span>="Cerrar diálogo"<span class="t">&gt;</span><span class="t">&lt;h4</span> <span class="a">slot</span>="heading"<span class="t">&gt;</span>Nueva transacción<span class="t">&lt;/h4</span><span class="t">&gt;</span><span class="t">&lt;p</span><span class="t">&gt;</span>Con <span class="t">&lt;code</span><span class="t">&gt;</span>size="lg"<span class="t">&lt;/code</span><span class="t">&gt;</span> el diálogo llega a 48rem, suficiente para un formulario en dos columnas.<span class="t">&lt;/p</span><span class="t">&gt;</span><span class="t">&lt;/ch-modal</span><span class="t">&gt;</span></code></pre>
+          </div>
+
+          <div class="comp" id="ch-page-header" tabindex="-1">
+            <div class="comp-head">
+              <h3>ch-page-header</h3>
+              <span class="tag">@devschile/chucao/ch-page-header</span>
+            </div>
+            <p class="comp-desc">
+              Encabezado de página: título, eyebrow y descripción opcionales, más una zona de acciones por slot. El título es una prop y no un slot para que
+              <code>headingLevel</code> siempre calce con la página y nunca haya dos <code>h1</code>; por defecto es <code>h1</code>. El título va antes que las acciones en el DOM,
+              así el orden de lectura y de foco empieza por él, y las acciones se envuelven en vez de empujar la página de lado a 390px.
+            </p>
+            <div class="comp-demo">
+              <ch-page-header title="Proyectos" description="Lo que estamos construyendo"></ch-page-header>
+              <ch-page-header title="Facturas" eyebrow="Cuenta de Aurora" heading-level="h2"
+                ><ch-button slot="actions" size="sm">Nueva factura</ch-button><ch-button slot="actions" size="sm" variant="secondary">Exportar</ch-button></ch-page-header
+              >
+            </div>
+            <pre
+              class="comp-code"
+            ><code><span class="t">&lt;ch-page-header</span> <span class="a">title</span>="Proyectos" <span class="a">description</span>="Lo que estamos construyendo"<span class="t">&gt;</span><span class="t">&lt;/ch-page-header</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-page-header</span> <span class="a">title</span>="Facturas" <span class="a">eyebrow</span>="Cuenta de Aurora" <span class="a">heading-level</span>="h2"<span class="t">&gt;</span><span class="t">&lt;ch-button</span> <span class="a">slot</span>="actions" <span class="a">size</span>="sm"<span class="t">&gt;</span>Nueva factura<span class="t">&lt;/ch-button</span><span class="t">&gt;</span><span class="t">&lt;ch-button</span> <span class="a">slot</span>="actions" <span class="a">size</span>="sm" <span class="a">variant</span>="secondary"<span class="t">&gt;</span>Exportar<span class="t">&lt;/ch-button</span><span class="t">&gt;</span><span class="t">&lt;/ch-page-header</span><span class="t">&gt;</span></code></pre>
           </div>
 
           <div class="comp" id="ch-radio" tabindex="-1">
@@ -771,13 +870,20 @@
               <ch-tooltip placement="right"
                 ><button class="demo-tooltip-trigger" type="button" slot="trigger">Derecha</button><span slot="content">Se publica al CDN</span></ch-tooltip
               >
+              <div class="demo-tooltip-edge">
+                <ch-tooltip placement="top"
+                  ><button class="demo-tooltip-trigger" type="button" slot="trigger">En el borde</button
+                  ><span slot="content">Si no cabe arriba, el globo se voltea y se corre para no salirse de la pantalla</span></ch-tooltip
+                >
+              </div>
             </div>
             <pre
               class="comp-code"
             ><code><span class="t">&lt;ch-tooltip</span><span class="t">&gt;</span><span class="t">&lt;button</span> <span class="a">class</span>="demo-tooltip-trigger" <span class="a">type</span>="button" <span class="a">slot</span>="trigger"<span class="t">&gt;</span>Arriba<span class="t">&lt;/button</span><span class="t">&gt;</span><span class="t">&lt;span</span> <span class="a">slot</span>="content"<span class="t">&gt;</span>Se publica al CDN<span class="t">&lt;/span</span><span class="t">&gt;</span><span class="t">&lt;/ch-tooltip</span><span class="t">&gt;</span>
 <span class="t">&lt;ch-tooltip</span> <span class="a">placement</span>="bottom"<span class="t">&gt;</span><span class="t">&lt;button</span> <span class="a">class</span>="demo-tooltip-trigger" <span class="a">type</span>="button" <span class="a">slot</span>="trigger"<span class="t">&gt;</span>Abajo<span class="t">&lt;/button</span><span class="t">&gt;</span><span class="t">&lt;span</span> <span class="a">slot</span>="content"<span class="t">&gt;</span>Se publica al CDN<span class="t">&lt;/span</span><span class="t">&gt;</span><span class="t">&lt;/ch-tooltip</span><span class="t">&gt;</span>
 <span class="t">&lt;ch-tooltip</span> <span class="a">placement</span>="left"<span class="t">&gt;</span><span class="t">&lt;button</span> <span class="a">class</span>="demo-tooltip-trigger" <span class="a">type</span>="button" <span class="a">slot</span>="trigger"<span class="t">&gt;</span>Izquierda<span class="t">&lt;/button</span><span class="t">&gt;</span><span class="t">&lt;span</span> <span class="a">slot</span>="content"<span class="t">&gt;</span>Se publica al CDN<span class="t">&lt;/span</span><span class="t">&gt;</span><span class="t">&lt;/ch-tooltip</span><span class="t">&gt;</span>
-<span class="t">&lt;ch-tooltip</span> <span class="a">placement</span>="right"<span class="t">&gt;</span><span class="t">&lt;button</span> <span class="a">class</span>="demo-tooltip-trigger" <span class="a">type</span>="button" <span class="a">slot</span>="trigger"<span class="t">&gt;</span>Derecha<span class="t">&lt;/button</span><span class="t">&gt;</span><span class="t">&lt;span</span> <span class="a">slot</span>="content"<span class="t">&gt;</span>Se publica al CDN<span class="t">&lt;/span</span><span class="t">&gt;</span><span class="t">&lt;/ch-tooltip</span><span class="t">&gt;</span></code></pre>
+<span class="t">&lt;ch-tooltip</span> <span class="a">placement</span>="right"<span class="t">&gt;</span><span class="t">&lt;button</span> <span class="a">class</span>="demo-tooltip-trigger" <span class="a">type</span>="button" <span class="a">slot</span>="trigger"<span class="t">&gt;</span>Derecha<span class="t">&lt;/button</span><span class="t">&gt;</span><span class="t">&lt;span</span> <span class="a">slot</span>="content"<span class="t">&gt;</span>Se publica al CDN<span class="t">&lt;/span</span><span class="t">&gt;</span><span class="t">&lt;/ch-tooltip</span><span class="t">&gt;</span>
+<span class="t">&lt;div</span> <span class="a">class</span>="demo-tooltip-edge"<span class="t">&gt;</span><span class="t">&lt;ch-tooltip</span> <span class="a">placement</span>="top"<span class="t">&gt;</span><span class="t">&lt;button</span> <span class="a">class</span>="demo-tooltip-trigger" <span class="a">type</span>="button" <span class="a">slot</span>="trigger"<span class="t">&gt;</span>En el borde<span class="t">&lt;/button</span><span class="t">&gt;</span><span class="t">&lt;span</span> <span class="a">slot</span>="content"<span class="t">&gt;</span>Si no cabe arriba, el globo se voltea y se corre para no salirse de la pantalla<span class="t">&lt;/span</span><span class="t">&gt;</span><span class="t">&lt;/ch-tooltip</span><span class="t">&gt;</span><span class="t">&lt;/div</span><span class="t">&gt;</span></code></pre>
           </div>
           <!-- GALLERY:END -->
         </section>

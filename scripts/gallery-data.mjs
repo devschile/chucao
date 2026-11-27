@@ -37,7 +37,7 @@ export const gallery = [
   {
     tag: 'ch-alert',
     description:
-      'Mensaje de estado en bloque, con tres variantes. <code>warning</code> se anuncia con <code>role="alert"</code>; <code>default</code> y <code>positive</code> usan <code>role="status"</code>. Definir <code>dismiss-label</code> agrega un botón de cierre que emite <code>chDismiss</code>.',
+      'Mensaje de estado en bloque, con tres variantes. <code>warning</code> se anuncia con <code>role="alert"</code>; <code>default</code> y <code>positive</code> usan <code>role="status"</code>. Cada variante lleva además un ícono y un borde izquierdo más grueso, así que el estado no se distingue solo por color; <code>statusCue=&quot;false&quot;</code> los quita. Definir <code>dismiss-label</code> agrega un botón de cierre que emite <code>chDismiss</code>.',
     demos: [
       '<ch-alert>Los cambios se guardan solos mientras editas.</ch-alert>',
       '<ch-alert variant="positive">Componente publicado en el CDN.</ch-alert>',
@@ -96,7 +96,8 @@ export const gallery = [
   },
   {
     tag: 'ch-badge',
-    description: 'Etiqueta de estado compacta con tres variantes.',
+    description:
+      'Etiqueta de estado compacta con tres variantes. El estado no depende solo del color: cada variante cambia además la forma del punto (relleno, anillo, cuadrado) y agrega su borde, así que se sigue distinguiendo impresa en escala de grises o con daltonismo. <code>statusCue="false"</code> quita el punto cuando el texto ya dice lo mismo.',
     demos: ['<ch-badge>comunidad</ch-badge>', '<ch-badge variant="positive">Disponible</ch-badge>', '<ch-badge variant="warning">placeholder</ch-badge>'],
   },
   {
@@ -196,6 +197,28 @@ export const gallery = [
     ],
   },
   {
+    tag: 'ch-icon',
+    description:
+      'Un glifo de Lucide (ISC) por <code>name</code>, con tres tamaños por token. Es decorativo por defecto: queda fuera del árbol de accesibilidad salvo que le des <code>label</code>, porque casi siempre el texto de al lado ya dice lo que significa. Toma el color de <code>currentColor</code>, así que hereda el del contenedor.',
+    demos: [
+      '<ch-icon name="check"></ch-icon>',
+      '<ch-icon name="alert" size="lg"></ch-icon>',
+      '<ch-icon name="info" label="Información"></ch-icon>',
+      '<ch-icon name="search" size="sm"></ch-icon>',
+    ],
+  },
+  {
+    tag: 'ch-icon-button',
+    description:
+      'Botón cuyo único contenido es un ícono. El <code>label</code> es obligatorio: un botón sin nombre accesible no lo puede usar ni un lector de pantalla ni un comando de voz, y acá no hay texto al lado que lo salve. Soporta <code>size</code>, <code>disabled</code> y <code>loading</code>; mientras carga emite <code>aria-busy</code> y no dispara <code>chClick</code>, pero sigue siendo enfocable para que el foco no se caiga al <code>body</code>.',
+    demos: [
+      '<ch-icon-button name="menu" label="Abrir menú"></ch-icon-button>',
+      '<ch-icon-button name="plus" label="Agregar"></ch-icon-button>',
+      '<ch-icon-button name="copy" label="Copiar" size="sm"></ch-icon-button>',
+      '<ch-icon-button name="delete" label="Eliminar" disabled></ch-icon-button>',
+    ],
+  },
+  {
     tag: 'ch-input',
     description:
       'Campo de texto con <code>label</code> asociado vía <code>id</code>/<code>for</code>. Emite <code>chInput</code> (cada tecla) y <code>chChange</code> (al confirmar).',
@@ -248,6 +271,15 @@ export const gallery = [
       modalLgEl.open = true;
     });
   }`,
+  },
+  {
+    tag: 'ch-page-header',
+    description:
+      'Encabezado de página: título, eyebrow y descripción opcionales, más una zona de acciones por slot. El título es una prop y no un slot para que <code>headingLevel</code> siempre calce con la página y nunca haya dos <code>h1</code>; por defecto es <code>h1</code>. El título va antes que las acciones en el DOM, así el orden de lectura y de foco empieza por él, y las acciones se envuelven en vez de empujar la página de lado a 390px.',
+    demos: [
+      '<ch-page-header title="Proyectos" description="Lo que estamos construyendo"></ch-page-header>',
+      '<ch-page-header title="Facturas" eyebrow="Cuenta de Aurora" heading-level="h2"><ch-button slot="actions" size="sm">Nueva factura</ch-button><ch-button slot="actions" size="sm" variant="secondary">Exportar</ch-button></ch-page-header>',
+    ],
   },
   {
     tag: 'ch-radio',
@@ -353,6 +385,7 @@ export const gallery = [
       '<ch-tooltip placement="bottom"><button class="demo-tooltip-trigger" type="button" slot="trigger">Abajo</button><span slot="content">Se publica al CDN</span></ch-tooltip>',
       '<ch-tooltip placement="left"><button class="demo-tooltip-trigger" type="button" slot="trigger">Izquierda</button><span slot="content">Se publica al CDN</span></ch-tooltip>',
       '<ch-tooltip placement="right"><button class="demo-tooltip-trigger" type="button" slot="trigger">Derecha</button><span slot="content">Se publica al CDN</span></ch-tooltip>',
+      '<div class="demo-tooltip-edge"><ch-tooltip placement="top"><button class="demo-tooltip-trigger" type="button" slot="trigger">En el borde</button><span slot="content">Si no cabe arriba, el globo se voltea y se corre para no salirse de la pantalla</span></ch-tooltip></div>',
     ],
   },
 ];

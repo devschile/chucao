@@ -11,7 +11,7 @@
   position: absolute;
   z-index: var(--z-index-dropdown);
   width: max-content;
-  max-width: 16rem;
+  max-width: min(16rem, calc(100vw - 2 * var(--spacing-2xl)));
   padding: var(--spacing-md) var(--spacing-2xl);
   border: var(--border-width) solid var(--border);
   border-radius: var(--radius-sm);
@@ -37,11 +37,39 @@
   position: absolute;
 }
 
+/*
+ * Once the component has measured the anchor, the bubble is placed with fixed
+ * coordinates. Viewport coordinates do not depend on ancestors' transforms or
+ * overflow, so a tooltip inside a scrolling drawer or modal stays anchored.
+ */
+.bubble--positioned {
+  position: fixed;
+  top: var(--ch-tooltip-offset-top);
+  left: var(--ch-tooltip-offset-left);
+  transform: none;
+  margin: 0;
+}
+
 .bubble--top {
   bottom: 100%;
   left: 50%;
   transform: translateX(-50%);
   margin-bottom: var(--spacing-md);
+}
+
+/* Stencil scopes each rule by doubling its classes, so a three-class selector
+   is what actually outranks the single-class placement rules above. */
+.bubble.bubble--positioned.bubble--top,
+.bubble.bubble--positioned.bubble--bottom,
+.bubble.bubble--positioned.bubble--left,
+.bubble.bubble--positioned.bubble--right {
+  inset: auto;
+  top: var(--ch-tooltip-offset-top);
+  left: var(--ch-tooltip-offset-left);
+  right: auto;
+  bottom: auto;
+  transform: none;
+  margin: 0;
 }
 
 .bubble--top::before {

@@ -23,17 +23,18 @@ export default defineVitestConfig({
         plugins: [stencilVitestPlugin()],
         test: {
           name: 'components',
-          include: ['src/**/*.plugin.spec.{ts,tsx}'],
+          include: ['src/**/*.plugin.spec.{ts,tsx}', 'tests/*.spec.ts'],
           environment: 'stencil',
         },
       },
-      // Form-association tests run in a real browser because jsdom/happy-dom/mock-doc
-      // ElementInternals is absent there. These specs use the built `dist/` custom-elements output,
-      // `stencil-test` produces it before running Vitest.
+      // Browser tests run against the built `dist/` custom-elements output, which
+      // `stencil-test` produces before running Vitest. They cover behavior that
+      // mock-doc cannot model: ElementInternals for form association, and real box
+      // geometry for overlay collision, focus and timing.
       {
         test: {
-          name: 'forms',
-          include: ['src/**/*.form.spec.{ts,tsx}'],
+          name: 'browser',
+          include: ['src/**/*.form.spec.{ts,tsx}', 'tests/browser/**/*.spec.{ts,tsx}'],
           coverage: { enabled: false },
           browser: {
             enabled: true,

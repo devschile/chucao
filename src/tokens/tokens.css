@@ -65,4 +65,8 @@
   --z-index-dropdown: 100;
   --z-index-modal: 1000;
   --layout-max-width: 68rem;
+  --icon-size-sm: 16px;
+  --icon-size-md: 20px;
+  --icon-size-lg: 24px;
+  --icon-stroke: 2px;
 }
