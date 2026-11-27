@@ -70,15 +70,28 @@ jobs:
 
       - name: Deploy to CDN
         run: |
+          set -euo pipefail
           VERSION="${GITHUB_REF_NAME#v}"
-          aws --endpoint-url "$S3_ENDPOINT_URL" --region garage s3 sync dist/chucao "s3://$S3_BUCKET/chucao/$VERSION/" \
+          sync_s3() {
+            aws --endpoint-url "$S3_ENDPOINT_URL" --region garage s3 "$@"
+          }
+          sync_s3 sync dist/chucao "s3://$S3_BUCKET/chucao/$VERSION/" \
             --exclude "*.map" --exclude "fonts/*" \
             --cache-control "public, max-age=31536000, immutable"
-          aws --endpoint-url "$S3_ENDPOINT_URL" --region garage s3 sync dist/chucao "s3://$S3_BUCKET/chucao/latest/" \
-            --exclude "*.map" --exclude "fonts/*" --delete \
+          # `--delete` is deliberately absent: Garage rejects the signed DELETE
+          # requests aws-cli sends ("signed header `content-length` is not
+          # present"), which failed the whole step after a successful upload.
+          # Stale hashed chunks left in `latest/` are unreachable, and the next
+          # release rewrites the entry points, so they are harmless.
+          sync_s3 sync dist/chucao "s3://$S3_BUCKET/chucao/latest/" \
+            --exclude "*.map" --exclude "fonts/*" \
             --cache-control "public, max-age=3600"
-          aws --endpoint-url "$S3_ENDPOINT_URL" --region garage s3 rm "s3://$S3_BUCKET/chucao/latest/fonts/" --recursive
-          aws --endpoint-url "$S3_ENDPOINT_URL" --region garage s3 sync dist/chucao/fonts "s3://$S3_BUCKET/chucao/fonts/" \
+          # No cleanup of `latest/fonts/`: it is a `cp` of this build's fonts, so
+          # a stale file there can only be one this build also ships. Deleting it
+          # needs Garage to accept DELETE, which it currently refuses.
+          sync_s3 cp --recursive dist/chucao/fonts "s3://$S3_BUCKET/chucao/latest/fonts/" \
+            --cache-control "public, max-age=3600"
+          sync_s3 sync dist/chucao/fonts "s3://$S3_BUCKET/chucao/fonts/" \
             --cache-control "public, max-age=31536000, immutable"
         env:
           S3_ENDPOINT_URL: ${{ secrets.S3_ENDPOINT_URL }}
