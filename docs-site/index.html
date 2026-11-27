@@ -199,6 +199,13 @@
             >
               <a class="side-link" href="#ch-spinner">ch-spinner</a>
             </li>
+            <li
+              class="side-item"
+              data-name="ch-stat"
+              data-desc='Métrica de dashboard: label en versalitas, value ya formateado por quien consume (nunca se parsea), hint opcional y tone (positive/negative/unavailable). El tono nunca depende solo del color: positivo y negativo agregan un signo visible. En error de carga pasa value="—" con tone="unavailable" en vez de un cero que se leería como medición real.'
+            >
+              <a class="side-link" href="#ch-stat">ch-stat</a>
+            </li>
             <li class="side-item" data-name="ch-switch" data-desc='Interruptor on/off accesible (role="switch") con label asociada. Emite chChange.'>
               <a class="side-link" href="#ch-switch">ch-switch</a>
             </li>
@@ -846,6 +853,26 @@
 <span class="t">&lt;ch-spinner</span> <span class="a">size</span>="lg" <span class="a">label</span>="Cargando"<span class="t">&gt;</span><span class="t">&lt;/ch-spinner</span><span class="t">&gt;</span>
 <span class="t">&lt;ch-spinner</span> <span class="a">style</span>="color: var(--accent)" <span class="a">label</span>="Cargando"<span class="t">&gt;</span><span class="t">&lt;/ch-spinner</span><span class="t">&gt;</span>
 <span class="t">&lt;ch-button</span> <span class="a">variant</span>="primary" <span class="a">loading</span><span class="t">&gt;</span>Guardando<span class="t">&lt;/ch-button</span><span class="t">&gt;</span></code></pre>
+          </div>
+
+          <div class="comp" id="ch-stat" tabindex="-1">
+            <div class="comp-head">
+              <h3>ch-stat</h3>
+              <span class="tag">@devschile/chucao/ch-stat</span>
+            </div>
+            <p class="comp-desc">
+              Métrica de dashboard: <code>label</code> en versalitas, <code>value</code> ya formateado por quien consume (nunca se parsea), <code>hint</code> opcional y
+              <code>tone</code> (<code>positive</code>/<code>negative</code>/<code>unavailable</code>). El tono nunca depende solo del color: positivo y negativo agregan un signo
+              visible. En error de carga pasa <code>value="—"</code> con <code>tone="unavailable"</code> en vez de un cero que se leería como medición real.
+            </p>
+            <div class="comp-demo">
+              <ch-stat label="Ventas del mes" value="$1.250.000" tone="positive" hint="vs. octubre"></ch-stat>
+              <ch-stat label="Ticket promedio" value="—" tone="unavailable"></ch-stat>
+            </div>
+            <pre
+              class="comp-code"
+            ><code><span class="t">&lt;ch-stat</span> <span class="a">label</span>="Ventas del mes" <span class="a">value</span>="$1.250.000" <span class="a">tone</span>="positive" <span class="a">hint</span>="vs. octubre"<span class="t">&gt;</span><span class="t">&lt;/ch-stat</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-stat</span> <span class="a">label</span>="Ticket promedio" <span class="a">value</span>="—" <span class="a">tone</span>="unavailable"<span class="t">&gt;</span><span class="t">&lt;/ch-stat</span><span class="t">&gt;</span></code></pre>
           </div>
 
           <div class="comp" id="ch-switch" tabindex="-1">

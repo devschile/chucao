@@ -265,6 +265,15 @@ identified and documented these conventions.
   elements exist: the Stage 3 spike (#120) measured that custom wrappers
   add nothing to the accessibility tree in Chromium while risking other
   browsers, and a custom row inside a native `<table>` cannot even parse.
+- **Dashboard metrics**: `ch-stat` renders one metric — a small-caps
+  `label`, a `value` string the consumer has already formatted (never
+  parsed, so locale and precision stay with the data), an optional `hint`
+  and a `footer` slot. `tone="positive"`/`"negative"` is never carried by
+  colour alone: both add a visible sign cue, so the states stay
+  distinguishable in greyscale. `tone="unavailable"` dims the value for the
+  "could not be measured" case — on a fetch error pass the em dash with it
+  instead of a zero that would read as a real measurement. The `value` slot
+  replaces the rendered value for composed content.
 - **Loading states**: `ch-skeleton` reserves the space of content that is still loading, so the page does not jump when it arrives; `ch-spinner` marks a short action whose result has no known layout. Skeletons are `aria-hidden` by design — mark the loading region with `aria-busy="true"` yourself, and announce the result when it lands. The shimmer stops under `prefers-reduced-motion`, and `count` repeats the placeholder for multi-line text.
 - **Composite widgets (keyboard + panels)**: `ch-tabs` and `ch-accordion`
   implement keyboard-accessible, non-form composites. `ch-tabs` follows the
