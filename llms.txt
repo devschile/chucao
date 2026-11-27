@@ -17,6 +17,7 @@
 - [ch-card](https://devschile.github.io/chucao/components/ch-card/): ch-card component
 - [ch-checkbox](https://devschile.github.io/chucao/components/ch-checkbox/): ch-checkbox component
 - [ch-cluster](https://devschile.github.io/chucao/components/ch-cluster/): Horizontal flow that wraps when it runs out of room, with a token-driven
+- [ch-description-list](https://devschile.github.io/chucao/components/ch-description-list/): Label/value pairs for detail views, on a native `<dl>`.
 - [ch-divider](https://devschile.github.io/chucao/components/ch-divider/): ch-divider component
 - [ch-drawer](https://devschile.github.io/chucao/components/ch-drawer/): Sliding side panel for navigation, editing forms and quick detail views.
 - [ch-emoji](https://devschile.github.io/chucao/components/ch-emoji/): Inline emoji from the devsChile CDN.
@@ -37,6 +38,7 @@
 - [ch-switch](https://devschile.github.io/chucao/components/ch-switch/): ch-switch component
 - [ch-tabs](https://devschile.github.io/chucao/components/ch-tabs/): ch-tabs component
 - [ch-textarea](https://devschile.github.io/chucao/components/ch-textarea/): ch-textarea component
+- [ch-timeline](https://devschile.github.io/chucao/components/ch-timeline/): Chronological history: a native ordered list with a marker dot per item
 - [ch-tooltip](https://devschile.github.io/chucao/components/ch-tooltip/): Short help text shown on hover and on focus.
 
 ## Design Tokens

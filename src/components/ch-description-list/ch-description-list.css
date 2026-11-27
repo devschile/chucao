@@ -1,0 +1,60 @@
+:host {
+  display: block;
+  font-family: var(--typography-body);
+  color: var(--color-text-secondary);
+}
+
+:host([hidden]) {
+  display: none;
+}
+
+/*
+ * Slotted content is laid out by the <dl> grid: a slot's assigned nodes
+ * become its layout children, so each consumer-written <div> group is one
+ * grid item and a pair can never split across columns.
+ */
+.list {
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: var(--spacing-sm) var(--spacing-2xl);
+}
+
+.list--columns-2,
+.list--columns-3 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.list--columns-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* Narrow viewports collapse every column count to one. */
+@media (max-width: 48rem) {
+  .list--columns-2,
+  .list--columns-3 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* A group places its term and description on one baseline row. */
+::slotted(div) {
+  display: grid;
+  grid-template-columns: fit-content(min(12rem, 40%)) minmax(0, 1fr);
+  gap: var(--spacing-sm);
+  align-items: baseline;
+}
+
+::slotted(dt) {
+  font-family: var(--typography-heading);
+  font-weight: var(--typography-weight-semibold);
+  font-size: var(--typography-size-sm);
+  color: var(--color-text-primary);
+}
+
+::slotted(dd) {
+  margin: 0;
+  font-size: var(--typography-size-sm);
+  min-width: 0;
+  overflow-wrap: break-word;
+}

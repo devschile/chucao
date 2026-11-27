@@ -54,6 +54,10 @@
       "import": "./dist/components/ch-cluster.js",
       "types": "./dist/components/ch-cluster.d.ts"
     },
+    "./ch-description-list": {
+      "import": "./dist/components/ch-description-list.js",
+      "types": "./dist/components/ch-description-list.d.ts"
+    },
     "./ch-divider": {
       "import": "./dist/components/ch-divider.js",
       "types": "./dist/components/ch-divider.d.ts"
@@ -133,6 +137,10 @@
     "./ch-textarea": {
       "import": "./dist/components/ch-textarea.js",
       "types": "./dist/components/ch-textarea.d.ts"
+    },
+    "./ch-timeline": {
+      "import": "./dist/components/ch-timeline.js",
+      "types": "./dist/components/ch-timeline.d.ts"
     },
     "./ch-tooltip": {
       "import": "./dist/components/ch-tooltip.js",

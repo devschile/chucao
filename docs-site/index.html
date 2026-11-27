@@ -133,6 +133,13 @@
             </li>
             <li
               class="side-item"
+              data-name="ch-description-list"
+              data-desc="Pares etiqueta/valor sobre un &lt;dl&gt; nativo: agrupa cada par en un &lt;div&gt; (agrupación válida en HTML 5.2) y columns (1–3) controla cuántos pares comparten fila; en pantallas angostas colapsa a una columna."
+            >
+              <a class="side-link" href="#ch-description-list">ch-description-list</a>
+            </li>
+            <li
+              class="side-item"
               data-name="ch-emoji"
               data-desc="Emoji inline desde el CDN de devsChile. Mapea nombres y alias a través de emoji-map.json y prueba extensiones (.png, .gif, .jpg, .svg) automáticamente. Tamaños: sm, md, lg, xl."
             >
@@ -201,6 +208,13 @@
               data-desc="Pestañas accesibles (WAI-ARIA) con navegación por flechas; las opciones van por tabs y el panel activo recibe contenido por slot panel-&lt;value&gt;. Emite chChange."
             >
               <a class="side-link" href="#ch-tabs">ch-tabs</a>
+            </li>
+            <li
+              class="side-item"
+              data-name="ch-timeline"
+              data-desc="Historial cronológico sobre un &lt;ol&gt; nativo: escribe &lt;li&gt; con fecha preformateada y un estado sin depender del color vía &lt;ch-icon&gt;. Un punto por ítem y un conector entre ítems; el último ítem nunca lleva conector."
+            >
+              <a class="side-link" href="#ch-timeline">ch-timeline</a>
             </li>
             <li class="side-item" data-name="ch-textarea" data-desc="Área de texto con label asociada. Emite chInput (cada tecla) y chChange (al confirmar).">
               <a class="side-link" href="#ch-textarea">ch-textarea</a>
@@ -555,6 +569,43 @@
 <span class="t">&lt;ch-drawer</span> <span class="a">id</span>="demo-drawer-start" <span class="a">label</span>="Navegación" <span class="a">side</span>="start" <span class="a">close-label</span>="Cerrar panel"<span class="t">&gt;</span><span class="t">&lt;h4</span> <span class="a">slot</span>="header"<span class="t">&gt;</span>Navegación<span class="t">&lt;/h4</span><span class="t">&gt;</span><span class="t">&lt;p</span><span class="t">&gt;</span>Se desliza desde el borde inicial.<span class="t">&lt;/p</span><span class="t">&gt;</span><span class="t">&lt;/ch-drawer</span><span class="t">&gt;</span></code></pre>
           </div>
 
+          <div class="comp" id="ch-description-list" tabindex="-1">
+            <div class="comp-head">
+              <h3>ch-description-list</h3>
+              <span class="tag">@devschile/chucao/ch-description-list</span>
+            </div>
+            <p class="comp-desc">
+              Pares etiqueta/valor sobre un <code>&lt;dl&gt;</code> nativo: agrupa cada par en un <code>&lt;div&gt;</code> (agrupación válida en HTML 5.2) y
+              <code>columns</code> (<code>1</code>–<code>3</code>) controla cuántos pares comparten fila; en pantallas angostas colapsa a una columna.
+            </p>
+            <div class="comp-demo">
+              <ch-description-list columns="2">
+                <div>
+                  <dt>Cliente</dt>
+                  <dd>Aurora SpA</dd>
+                </div>
+                <div>
+                  <dt>Pedido</dt>
+                  <dd>#1523</dd>
+                </div>
+                <div>
+                  <dt>Región</dt>
+                  <dd>RM</dd>
+                </div>
+                <div>
+                  <dt>Estado</dt>
+                  <dd>En despacho</dd>
+                </div>
+              </ch-description-list>
+            </div>
+            <pre class="comp-code"><code><span class="t">&lt;ch-description-list</span> <span class="a">columns</span>="2"<span class="t">&gt;</span>
+  <span class="t">&lt;div</span><span class="t">&gt;</span><span class="t">&lt;dt</span><span class="t">&gt;</span>Cliente<span class="t">&lt;/dt</span><span class="t">&gt;</span><span class="t">&lt;dd</span><span class="t">&gt;</span>Aurora SpA<span class="t">&lt;/dd</span><span class="t">&gt;</span><span class="t">&lt;/div</span><span class="t">&gt;</span>
+  <span class="t">&lt;div</span><span class="t">&gt;</span><span class="t">&lt;dt</span><span class="t">&gt;</span>Pedido<span class="t">&lt;/dt</span><span class="t">&gt;</span><span class="t">&lt;dd</span><span class="t">&gt;</span>#1523<span class="t">&lt;/dd</span><span class="t">&gt;</span><span class="t">&lt;/div</span><span class="t">&gt;</span>
+  <span class="t">&lt;div</span><span class="t">&gt;</span><span class="t">&lt;dt</span><span class="t">&gt;</span>Región<span class="t">&lt;/dt</span><span class="t">&gt;</span><span class="t">&lt;dd</span><span class="t">&gt;</span>RM<span class="t">&lt;/dd</span><span class="t">&gt;</span><span class="t">&lt;/div</span><span class="t">&gt;</span>
+  <span class="t">&lt;div</span><span class="t">&gt;</span><span class="t">&lt;dt</span><span class="t">&gt;</span>Estado<span class="t">&lt;/dt</span><span class="t">&gt;</span><span class="t">&lt;dd</span><span class="t">&gt;</span>En despacho<span class="t">&lt;/dd</span><span class="t">&gt;</span><span class="t">&lt;/div</span><span class="t">&gt;</span>
+<span class="t">&lt;/ch-description-list</span><span class="t">&gt;</span></code></pre>
+          </div>
+
           <div class="comp" id="ch-emoji" tabindex="-1">
             <div class="comp-head">
               <h3>ch-emoji</h3>
@@ -832,6 +883,29 @@
             <pre
               class="comp-code"
             ><code><span class="t">&lt;ch-tabs</span> <span class="a">id</span>="demo-tabs" <span class="a">label</span>="Secciones"<span class="t">&gt;</span><span class="t">&lt;/ch-tabs</span><span class="t">&gt;</span></code></pre>
+          </div>
+
+          <div class="comp" id="ch-timeline" tabindex="-1">
+            <div class="comp-head">
+              <h3>ch-timeline</h3>
+              <span class="tag">@devschile/chucao/ch-timeline</span>
+            </div>
+            <p class="comp-desc">
+              Historial cronológico sobre un <code>&lt;ol&gt;</code> nativo: escribe <code>&lt;li&gt;</code> con fecha preformateada y un estado sin depender del color vía
+              <code>&lt;ch-icon&gt;</code>. Un punto por ítem y un conector entre ítems; el último ítem nunca lleva conector.
+            </p>
+            <div class="comp-demo">
+              <ch-timeline>
+                <li><ch-icon name="check"></ch-icon> <time>2 nov</time> Pedido creado</li>
+                <li><ch-icon name="spinner"></ch-icon> <time>4 nov</time> En despacho</li>
+                <li><time>9 nov</time> Entregado</li>
+              </ch-timeline>
+            </div>
+            <pre class="comp-code"><code><span class="t">&lt;ch-timeline</span><span class="t">&gt;</span>
+  <span class="t">&lt;li</span><span class="t">&gt;</span><span class="t">&lt;ch-icon</span> <span class="a">name</span>="check"<span class="t">&gt;</span><span class="t">&lt;/ch-icon</span><span class="t">&gt;</span> <span class="t">&lt;time</span><span class="t">&gt;</span>2 nov<span class="t">&lt;/time</span><span class="t">&gt;</span> Pedido creado<span class="t">&lt;/li</span><span class="t">&gt;</span>
+  <span class="t">&lt;li</span><span class="t">&gt;</span><span class="t">&lt;ch-icon</span> <span class="a">name</span>="spinner"<span class="t">&gt;</span><span class="t">&lt;/ch-icon</span><span class="t">&gt;</span> <span class="t">&lt;time</span><span class="t">&gt;</span>4 nov<span class="t">&lt;/time</span><span class="t">&gt;</span> En despacho<span class="t">&lt;/li</span><span class="t">&gt;</span>
+  <span class="t">&lt;li</span><span class="t">&gt;</span><span class="t">&lt;time</span><span class="t">&gt;</span>9 nov<span class="t">&lt;/time</span><span class="t">&gt;</span> Entregado<span class="t">&lt;/li</span><span class="t">&gt;</span>
+<span class="t">&lt;/ch-timeline</span><span class="t">&gt;</span></code></pre>
           </div>
 
           <div class="comp" id="ch-textarea" tabindex="-1">

@@ -1,0 +1,54 @@
+:host {
+  display: block;
+  font-family: var(--typography-body);
+  color: var(--color-text-secondary);
+}
+
+:host([hidden]) {
+  display: none;
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--spacing-md);
+  /* Reserve the rail: every item indents past its marker. */
+  list-style: none;
+}
+
+/* Each slotted item indents past its dot; pseudo-elements on slotted
+ * content are part of the shadow stylesheet's remit here. */
+::slotted(li) {
+  position: relative;
+  padding-left: var(--spacing-2xl);
+  min-width: 0;
+}
+
+/* The marker dot, vertically on the item's first line. */
+::slotted(li)::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.35em;
+  width: var(--spacing-sm);
+  height: var(--spacing-sm);
+  border-radius: 50%;
+  background: var(--color-border-default);
+}
+
+/* The connector to the next item; the last item never gets one, so the
+ * timeline does not trail off into nothing. */
+::slotted(li:not(:last-of-type))::after {
+  content: '';
+  position: absolute;
+  left: calc(var(--spacing-sm) / 2 - var(--border-width));
+  top: calc(0.35em + var(--spacing-sm));
+  bottom: calc(0px - var(--spacing-md));
+  width: var(--border-width);
+  background: var(--color-border-default);
+}
+
+::slotted(time) {
+  font-variant-numeric: tabular-nums;
+}
