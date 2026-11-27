@@ -273,6 +273,15 @@ export const gallery = [
   }`,
   },
   {
+    tag: 'ch-page-header',
+    description:
+      'Encabezado de página: título, eyebrow y descripción opcionales, más una zona de acciones por slot. El título es una prop y no un slot para que <code>headingLevel</code> siempre calce con la página y nunca haya dos <code>h1</code>; por defecto es <code>h1</code>. El título va antes que las acciones en el DOM, así el orden de lectura y de foco empieza por él, y las acciones se envuelven en vez de empujar la página de lado a 390px.',
+    demos: [
+      '<ch-page-header title="Proyectos" description="Lo que estamos construyendo"></ch-page-header>',
+      '<ch-page-header title="Facturas" eyebrow="Cuenta de Aurora" heading-level="h2"><ch-button slot="actions" size="sm">Nueva factura</ch-button><ch-button slot="actions" size="sm" variant="secondary">Exportar</ch-button></ch-page-header>',
+    ],
+  },
+  {
     tag: 'ch-radio',
     description: 'Grupo de selección única; las opciones se pasan por <code>options</code>. Emite <code>chChange</code> con el valor elegido.',
     demos: ['<ch-radio id="demo-radio" label="Elige un tema"></ch-radio>', '<div id="demo-radio-log" class="event-log"></div>'],

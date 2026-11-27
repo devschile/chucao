@@ -1,0 +1,84 @@
+:host {
+  display: block;
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--spacing-2xl);
+  padding-bottom: var(--spacing-2xl);
+  border-bottom: var(--border-width) solid var(--border);
+}
+
+.header-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  /* Lets a long, unbroken title shrink instead of pushing the actions off the
+     row at narrow widths. */
+  flex: 1 1 20rem;
+  min-width: 0;
+}
+
+.header-eyebrow {
+  margin: 0;
+  color: var(--text-secondary);
+  font-family: var(--font-heading);
+  font-size: var(--typography-size-xs);
+  letter-spacing: var(--typography-tracking-badge);
+  text-transform: uppercase;
+}
+
+.header-title {
+  margin: 0;
+  color: var(--text);
+  font-family: var(--font-heading);
+  font-size: var(--typography-size-xl);
+  font-weight: var(--typography-weight-bold);
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
+.header-description {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: var(--typography-size-sm);
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.header-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-md);
+  /* Never wider than the row: the actions wrap inside it rather than forcing
+     horizontal overflow on a 390px screen. */
+  max-width: 100%;
+}
+
+.header-actions:empty {
+  display: none;
+}
+
+.header--stacked .header-actions {
+  flex-basis: 100%;
+}
+
+@media (max-width: 30rem) {
+  .header {
+    flex-direction: column;
+  }
+
+  .header-actions {
+    width: 100%;
+  }
+}
+
+@media (forced-colors: active) {
+  .header {
+    border-bottom-color: CanvasText;
+  }
+}

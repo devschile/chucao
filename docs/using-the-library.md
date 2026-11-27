@@ -80,6 +80,7 @@ types, so a standalone import never falls back to a generated directory path.
 - `@devschile/chucao/ch-input`
 - `@devschile/chucao/ch-link`
 - `@devschile/chucao/ch-modal`
+- `@devschile/chucao/ch-page-header`
 - `@devschile/chucao/ch-radio`
 - `@devschile/chucao/ch-segmented-control`
 - `@devschile/chucao/ch-select`

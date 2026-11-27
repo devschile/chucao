@@ -165,6 +165,13 @@
             >
               <a class="side-link" href="#ch-modal">ch-modal</a>
             </li>
+            <li
+              class="side-item"
+              data-name="ch-page-header"
+              data-desc="Encabezado de página: título, eyebrow y descripción opcionales, más una zona de acciones por slot. El título es una prop y no un slot para que headingLevel siempre calce con la página y nunca haya dos h1; por defecto es h1. El título va antes que las acciones en el DOM, así el orden de lectura y de foco empieza por él, y las acciones se envuelven en vez de empujar la página de lado a 390px."
+            >
+              <a class="side-link" href="#ch-page-header">ch-page-header</a>
+            </li>
             <li class="side-item" data-name="ch-radio" data-desc="Grupo de selección única; las opciones se pasan por options. Emite chChange con el valor elegido.">
               <a class="side-link" href="#ch-radio">ch-radio</a>
             </li>
@@ -692,6 +699,28 @@
 <span class="t">&lt;ch-button</span> <span class="a">id</span>="demo-modal-lg-trigger" <span class="a">variant</span>="secondary"<span class="t">&gt;</span>Abrir ancho (lg)<span class="t">&lt;/ch-button</span><span class="t">&gt;</span>
 <span class="t">&lt;ch-modal</span> <span class="a">id</span>="demo-modal" <span class="a">label</span>="Confirmar publicación" <span class="a">close-label</span>="Cerrar diálogo"<span class="t">&gt;</span><span class="t">&lt;h4</span> <span class="a">slot</span>="heading"<span class="t">&gt;</span>¿Publicar al CDN?<span class="t">&lt;/h4</span><span class="t">&gt;</span><span class="t">&lt;p</span><span class="t">&gt;</span>Se publicará la versión actual de la librería. La acción no se puede deshacer.<span class="t">&lt;/p</span><span class="t">&gt;</span><span class="t">&lt;/ch-modal</span><span class="t">&gt;</span>
 <span class="t">&lt;ch-modal</span> <span class="a">id</span>="demo-modal-lg" <span class="a">size</span>="lg" <span class="a">label</span>="Nueva transacción" <span class="a">close-label</span>="Cerrar diálogo"<span class="t">&gt;</span><span class="t">&lt;h4</span> <span class="a">slot</span>="heading"<span class="t">&gt;</span>Nueva transacción<span class="t">&lt;/h4</span><span class="t">&gt;</span><span class="t">&lt;p</span><span class="t">&gt;</span>Con <span class="t">&lt;code</span><span class="t">&gt;</span>size="lg"<span class="t">&lt;/code</span><span class="t">&gt;</span> el diálogo llega a 48rem, suficiente para un formulario en dos columnas.<span class="t">&lt;/p</span><span class="t">&gt;</span><span class="t">&lt;/ch-modal</span><span class="t">&gt;</span></code></pre>
+          </div>
+
+          <div class="comp" id="ch-page-header" tabindex="-1">
+            <div class="comp-head">
+              <h3>ch-page-header</h3>
+              <span class="tag">@devschile/chucao/ch-page-header</span>
+            </div>
+            <p class="comp-desc">
+              Encabezado de página: título, eyebrow y descripción opcionales, más una zona de acciones por slot. El título es una prop y no un slot para que
+              <code>headingLevel</code> siempre calce con la página y nunca haya dos <code>h1</code>; por defecto es <code>h1</code>. El título va antes que las acciones en el DOM,
+              así el orden de lectura y de foco empieza por él, y las acciones se envuelven en vez de empujar la página de lado a 390px.
+            </p>
+            <div class="comp-demo">
+              <ch-page-header title="Proyectos" description="Lo que estamos construyendo"></ch-page-header>
+              <ch-page-header title="Facturas" eyebrow="Cuenta de Aurora" heading-level="h2"
+                ><ch-button slot="actions" size="sm">Nueva factura</ch-button><ch-button slot="actions" size="sm" variant="secondary">Exportar</ch-button></ch-page-header
+              >
+            </div>
+            <pre
+              class="comp-code"
+            ><code><span class="t">&lt;ch-page-header</span> <span class="a">title</span>="Proyectos" <span class="a">description</span>="Lo que estamos construyendo"<span class="t">&gt;</span><span class="t">&lt;/ch-page-header</span><span class="t">&gt;</span>
+<span class="t">&lt;ch-page-header</span> <span class="a">title</span>="Facturas" <span class="a">eyebrow</span>="Cuenta de Aurora" <span class="a">heading-level</span>="h2"<span class="t">&gt;</span><span class="t">&lt;ch-button</span> <span class="a">slot</span>="actions" <span class="a">size</span>="sm"<span class="t">&gt;</span>Nueva factura<span class="t">&lt;/ch-button</span><span class="t">&gt;</span><span class="t">&lt;ch-button</span> <span class="a">slot</span>="actions" <span class="a">size</span>="sm" <span class="a">variant</span>="secondary"<span class="t">&gt;</span>Exportar<span class="t">&lt;/ch-button</span><span class="t">&gt;</span><span class="t">&lt;/ch-page-header</span><span class="t">&gt;</span></code></pre>
           </div>
 
           <div class="comp" id="ch-radio" tabindex="-1">
