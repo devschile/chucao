@@ -30,16 +30,22 @@ jobs:
     name: Verify the tagged build
     runs-on: ubuntu-latest
     steps:
+      # Full depth: the tag-on-main check below runs `merge-base --is-ancestor`,
+      # which cannot resolve ancestry across a shallow boundary. A depth-1
+      # fetch only worked while the tag was also main's tip; once main moves
+      # past the tag (a merged fix, a re-dispatched release), the check
+      # failed even though the tag is genuinely on main.
       - uses: actions/checkout@v7
         with:
           ref: ${{ env.RELEASE_TAG }}
+          fetch-depth: 0
 
       # Fails fast when the tag was cut from a commit that is not on main, which
       # is how a release can ship a bundle nobody reviewed.
       - name: Check the tag is on main
         run: |
           set -euo pipefail
-          git fetch --no-tags origin main --depth=1
+          git fetch --no-tags origin main
           if git merge-base --is-ancestor HEAD FETCH_HEAD; then
             echo "$RELEASE_TAG is on main"
           else
