@@ -56,6 +56,11 @@ jobs:
             exit 1
           fi
 
+      # A release that announces nothing is still a release, so this is the
+      # last chance to stop it. See scripts/check-changelog.mjs.
+      - name: Check the changelog entry is not empty
+        run: node scripts/check-changelog.mjs "$RELEASE_TAG"
+
       - uses: pnpm/action-setup@v6
         with:
           version: 11.17.0

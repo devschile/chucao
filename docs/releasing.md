@@ -21,13 +21,43 @@ pnpm run release
   e.g. `1.1.0`).
 
 Pushing that tag triggers `.github/workflows/release.yml`
-(`on: push: tags: '[0-9]*.[0-9]*.[0-9]*'`), which:
+(`on: push: tags: '[0-9]*.[0-9]*.[0-9]*'`), which runs four jobs in order:
 
-1. installs dependencies (`pnpm install --frozen-lockfile`),
-2. builds (`pnpm build`), lints (`pnpm lint`), and tests (`pnpm test`),
-3. creates the GitHub Release with auto-generated notes,
-4. publishes the package to npm (`pnpm publish`),
-5. deploys `dist/chucao/` to the CDN (see below).
+1. **verify** — the tag is on `main`, `package.json` matches it, the changelog
+   entry is not empty, and the build is clean after `lint` and `test`,
+2. **publish** — publishes to npm unless that version is already there, then
+   checks the version actually resolves on the registry,
+3. **cdn** — deploys `dist/chucao/` (see below) and verifies every asset the
+   browser loads returns 200,
+4. **github-release** — creates the GitHub Release, or leaves an existing one
+   alone.
+
+Each job is idempotent, so a failed release is re-run from the Actions UI with
+**Run workflow** and the tag as input. Do not delete and re-push the tag to
+retry: npm may already hold the version, and the tag also anchors the changelog
+range.
+
+### Changelog entries
+
+The changelog entry is written by `release-it` from the commit subjects since
+the previous tag, and only types the conventional preset renders appear —
+`feat` becomes _Features_, `fix` becomes _Bug Fixes_. `ci:`, `chore:` and a
+`release: 1.2.3` squash subject produce nothing.
+
+Two things therefore need care:
+
+- **Squash-merge with a real conventional subject.** A release PR whose squash
+  title is `release: 2.5.0 — …` contributes no bullets. Squash it as
+  `feat(<scope>): …` instead, or write the entry by hand in the release PR
+  before tagging (that is what the 2.5.0 entry did).
+- **Never tag before the entry exists.** `getLatestTagFromAllRefs: true` makes
+  release-it take the newest tag as the previous one; if the version being
+  released is already tagged, it diffs `<version>...<version>` and writes an
+  empty heading.
+
+`scripts/check-changelog.mjs` fails the release when an entry has no items, and
+tells you which of the two cases you hit. It runs in the `verify` job and as
+`release-it`'s `after:release` hook, so an empty entry cannot ship.
 
 ## New components and API changes require a release
 
