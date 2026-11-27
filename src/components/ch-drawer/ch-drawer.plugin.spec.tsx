@@ -1,4 +1,5 @@
-import { render, h, describe, it, expect } from '@stencil/vitest';
+import { render, h, describe, it, expect, vi, beforeEach, afterEach } from '@stencil/vitest';
+import { Build } from '@stencil/core';
 
 import './ch-drawer.tsx';
 
@@ -202,5 +203,31 @@ describe('ch-drawer', () => {
     pressAt(body, ON_BACKDROP);
 
     expect(closeCalls()).toBe(0);
+  });
+});
+
+describe('ch-drawer accessible-name diagnostics', () => {
+  const wasDev = Build.isDev;
+  beforeEach(() => {
+    (Build as { isDev: boolean }).isDev = true;
+  });
+  afterEach(() => {
+    (Build as { isDev: boolean }).isDev = wasDev;
+    vi.restoreAllMocks();
+  });
+
+  it('warns once when the drawer has no name but still renders it', async () => {
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
+    const { root } = await render(<ch-drawer open>Contenido</ch-drawer>);
+
+    expect(warn).toHaveBeenCalledTimes(1);
+    expect(warn.mock.calls[0][0]).toContain('ch-drawer');
+    expect(root.shadowRoot.querySelector('dialog')).not.toBe(null);
+  });
+
+  it('does not warn when the drawer is named', async () => {
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
+    await render(<ch-drawer label="Filtros">Contenido</ch-drawer>);
+    expect(warn).not.toHaveBeenCalled();
   });
 });

@@ -1,6 +1,6 @@
 {
   "name": "@devschile/chucao",
-  "version": "2.3.0",
+  "version": "2.4.0",
   "description": "Chucao — devsChile design system, packaged as StencilJS web components",
   "keywords": [
     "stenciljs",
@@ -30,6 +30,26 @@
     "./ch-button": {
       "import": "./dist/components/ch-button.js",
       "types": "./dist/components/ch-button.d.ts"
+    },
+    "./ch-cluster": {
+      "import": "./dist/components/ch-cluster.js",
+      "types": "./dist/components/ch-cluster.d.ts"
+    },
+    "./ch-empty-state": {
+      "import": "./dist/components/ch-empty-state.js",
+      "types": "./dist/components/ch-empty-state.d.ts"
+    },
+    "./ch-grid": {
+      "import": "./dist/components/ch-grid.js",
+      "types": "./dist/components/ch-grid.d.ts"
+    },
+    "./ch-skeleton": {
+      "import": "./dist/components/ch-skeleton.js",
+      "types": "./dist/components/ch-skeleton.d.ts"
+    },
+    "./ch-stack": {
+      "import": "./dist/components/ch-stack.js",
+      "types": "./dist/components/ch-stack.d.ts"
     },
     "./dist/components": {
       "import": "./dist/components/index.js",

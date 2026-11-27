@@ -1,5 +1,7 @@
 import { AttachInternals, Component, Element, Event, type EventEmitter, Host, Prop, State, Watch, h } from '@stencil/core';
 
+import { resolveValidity } from '../../utils/validation-message';
+
 export interface ChSegmentedControlOption {
   label: string;
   value: string;
@@ -96,11 +98,11 @@ export class ChSegmentedControl {
       return;
     }
     internals.setFormValue(this.value ?? null);
-    const flags: ValidityStateFlags = {};
-    if (this.required && !this.value) {
-      flags.valueMissing = true;
-    }
-    internals.setValidity(flags, flags.valueMissing ? 'Please fill out this field.' : undefined);
+    const { flags, message } = resolveValidity({
+      required: this.required,
+      empty: !this.value,
+    });
+    internals.setValidity(flags, message);
   }
 
   componentDidLoad() {

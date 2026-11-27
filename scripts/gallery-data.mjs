@@ -48,6 +48,53 @@ export const gallery = [
     bindings: [{ id: 'demo-alert', event: 'chDismiss', format: '() => `chDismiss`' }],
   },
   {
+    tag: 'ch-skeleton',
+    description:
+      'Marcador de carga decorativo que reserva el espacio del contenido real: <code>shape</code> (<code>line</code>/<code>circle</code>/<code>rect</code>), <code>width</code>, <code>height</code>, <code>count</code> y <code>animated</code> (se apaga con <code>prefers-reduced-motion</code>). Queda fuera del árbol de accesibilidad; marca tú la región con <code>aria-busy</code>.',
+    demos: ['<ch-skeleton count="3"></ch-skeleton>', '<ch-skeleton shape="circle" width="2.5rem"></ch-skeleton>', '<ch-skeleton shape="rect" height="4rem"></ch-skeleton>'],
+  },
+  {
+    tag: 'ch-stack',
+    description:
+      'Flujo vertical con separación tomada de la escala de espaciado (<code>gap</code>, <code>align</code>, <code>justify</code>). Es un host real con flex, así que tus clases sobre <code>&lt;ch-stack&gt;</code> siguen funcionando.',
+    demos: [
+      '<ch-stack gap="sm">',
+      '  <ch-badge>Primero</ch-badge>',
+      '  <ch-badge variant="positive">Segundo</ch-badge>',
+      '  <ch-badge variant="warning">Tercero</ch-badge>',
+      '</ch-stack>',
+    ],
+  },
+  {
+    tag: 'ch-cluster',
+    description:
+      'Flujo horizontal que envuelve cuando falta espacio (<code>gap</code> en ambos ejes, <code>align</code>, <code>justify</code>, <code>wrap</code>). La fila de botones o de etiquetas sin CSS propio.',
+    demos: [
+      '<ch-cluster gap="sm">',
+      '  <ch-button size="sm">Uno</ch-button>',
+      '  <ch-button size="sm" variant="secondary">Dos</ch-button>',
+      '  <ch-button size="sm" variant="ghost">Tres</ch-button>',
+      '</ch-cluster>',
+    ],
+  },
+  {
+    tag: 'ch-empty-state',
+    description:
+      'Estado vacío estándar: icono opcional (<code>slot="icon"</code>), <code>title</code> obligatorio como encabezado, <code>description</code> y una acción por el slot por defecto. <code>size</code> <code>md</code> para una vista completa, <code>sm</code> para una región o celda de tabla.',
+    demos: [
+      '<ch-empty-state title="Sin resultados" description="Prueba con otra búsqueda">',
+      '  <span slot="icon">🦌</span>',
+      '  <ch-button size="sm" variant="secondary">Limpiar filtros</ch-button>',
+      '</ch-empty-state>',
+    ],
+  },
+  {
+    tag: 'ch-grid',
+    description:
+      'Grilla de celdas iguales: <code>columns</code> acepta 1–12 o <code>auto-fit</code> (tantas columnas como permita <code>min-item-width</code>), sin breakpoints propios.',
+    demos: ['<ch-grid columns="3" gap="md">', '  <ch-card>Uno</ch-card>', '  <ch-card>Dos</ch-card>', '  <ch-card>Tres</ch-card>', '  <ch-card>Cuatro</ch-card>', '</ch-grid>'],
+  },
+  {
     tag: 'ch-badge',
     description: 'Etiqueta de estado compacta con tres variantes.',
     demos: ['<ch-badge>comunidad</ch-badge>', '<ch-badge variant="positive">Disponible</ch-badge>', '<ch-badge variant="warning">placeholder</ch-badge>'],

@@ -103,7 +103,62 @@ documented in [`releasing.md`](releasing.md).
 In addition to the framework-agnostic Web Components above, this library
 ships dedicated wrapper packages so components feel native in React and Vue.
 
-### React
+### Forms
+
+The seven form controls (`ch-checkbox`, `ch-input`, `ch-radio`,
+`ch-segmented-control`, `ch-select`, `ch-switch`, `ch-textarea`) are
+form-associated custom elements. Inside a `<form>` they behave like native
+controls: the control's `name` puts its value in `FormData` and in the submit
+payload, `form.elements` and `form.checkValidity()` see it, `required` blocks
+submission when the control is empty, and `form.reset()` restores its initial
+state. **Do not add hidden inputs to mirror them** — the value would be sent
+twice.
+
+Three things that catch consumers out:
+
+- **The submit button.** `ch-button` renders a `<button type="button">` inside
+  its shadow root, so it cannot submit the form by itself. Either use a native
+  `<button type="submit">` or connect `chClick` to `form.requestSubmit()`,
+  which runs native validation first.
+- **The value is not a form control of your framework.** It lives in the
+  component's shadow DOM, so React uncontrolled forms, Vue `v-model` and similar
+  bindings do not drive it. Let the browser hold the value and read the result
+  with `FormData` — that also means the same markup works with server-side
+  handlers in any language.
+- **Reset and SSR.** `formResetCallback` restores the value the control had when
+  it mounted, so a form that switches records needs the controls remounted or the
+  value set explicitly. Server-render the same `value` you want as the initial
+  state, and hydration will agree with it.
+
+A Server Action in React 19 receives exactly that `FormData`:
+
+```tsx
+'use client';
+import '@devschile/chucao/dist/chucao/chucao.esm.js';
+
+export function ContactForm() {
+  return (
+    <form action={saveContact}>
+      <ch-input name="email" label="Email" type="email" required />
+      <ch-switch name="newsletter" label="Receive news" />
+      <button type="submit">Send</button>
+    </form>
+  );
+}
+```
+
+```ts
+'use server';
+export async function saveContact(formData: FormData) {
+  const email = String(formData.get('email') ?? '');
+  const newsletter = formData.get('newsletter') === 'on';
+}
+```
+
+The docs site has a [working forms page](https://devschile.github.io/chucao/forms.html)
+with vanilla, React 19 and Vue 3 examples you can run against the current build.
+
+## React
 
 Components are wrapped with
 [`@stencil/react-output-target`](https://www.npmjs.com/package/@stencil/react-output-target),

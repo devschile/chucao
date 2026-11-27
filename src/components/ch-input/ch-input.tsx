@@ -1,5 +1,7 @@
 import { AttachInternals, Component, Element, Event, type EventEmitter, Host, Prop, State, Watch, h } from '@stencil/core';
 
+import { resolveValidity } from '../../utils/validation-message';
+
 let inputIds = 0;
 
 @Component({
@@ -100,15 +102,12 @@ export class ChInput {
       return;
     }
     internals.setFormValue(this.value);
-    const flags: ValidityStateFlags = {};
-    let message: string | undefined;
-    if (this.required && this.value === '') {
-      flags.valueMissing = true;
-    }
-    if (this.invalid && this.errorMessage) {
-      flags.customError = true;
-    }
-    message = this.errorMessage ?? (flags.valueMissing ? 'Please fill out this field.' : undefined);
+    const { flags, message } = resolveValidity({
+      required: this.required,
+      empty: this.value === '',
+      invalid: this.invalid,
+      errorMessage: this.errorMessage,
+    });
     internals.setValidity(flags, message);
   }
 

@@ -1,4 +1,5 @@
-import { render, h, describe, it, expect } from '@stencil/vitest';
+import { render, h, describe, it, expect, vi, beforeEach, afterEach } from '@stencil/vitest';
+import { Build } from '@stencil/core';
 
 import './ch-button.tsx';
 
@@ -157,5 +158,44 @@ describe('ch-button', () => {
     const { root } = await render(<ch-button label="Cerrar">✕</ch-button>);
     const button = root.shadowRoot?.querySelector('button');
     expect(button?.getAttribute('aria-label')).toBe('Cerrar');
+  });
+});
+
+describe('ch-button accessible-name diagnostics', () => {
+  const wasDev = Build.isDev;
+  beforeEach(() => {
+    (Build as { isDev: boolean }).isDev = true;
+  });
+  afterEach(() => {
+    (Build as { isDev: boolean }).isDev = wasDev;
+    vi.restoreAllMocks();
+  });
+
+  it('warns for a button whose content is only an icon slot', async () => {
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
+    await render(
+      <ch-button>
+        <span slot="start">✕</span>
+      </ch-button>,
+    );
+
+    expect(warn).toHaveBeenCalledTimes(1);
+    expect(warn.mock.calls[0][0]).toContain('ch-button');
+  });
+
+  it('stays silent for a button with text content', async () => {
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
+    await render(<ch-button>Guardar</ch-button>);
+    expect(warn).not.toHaveBeenCalled();
+  });
+
+  it('stays silent for a named icon-only button', async () => {
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
+    await render(
+      <ch-button label="Cerrar">
+        <span slot="start">✕</span>
+      </ch-button>,
+    );
+    expect(warn).not.toHaveBeenCalled();
   });
 });

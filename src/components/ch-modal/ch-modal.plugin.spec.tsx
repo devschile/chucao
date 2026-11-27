@@ -1,4 +1,5 @@
-import { render, h, describe, it, expect } from '@stencil/vitest';
+import { render, h, describe, it, expect, vi, beforeEach, afterEach } from '@stencil/vitest';
+import { Build } from '@stencil/core';
 
 import './ch-modal.tsx';
 
@@ -189,5 +190,33 @@ describe('ch-modal', () => {
     pressAt(body, ON_BACKDROP);
 
     expect(closeCalls()).toBe(0);
+  });
+});
+
+describe('ch-modal accessible-name diagnostics', () => {
+  const wasDev = Build.isDev;
+  beforeEach(() => {
+    (Build as { isDev: boolean }).isDev = true;
+  });
+  afterEach(() => {
+    (Build as { isDev: boolean }).isDev = wasDev;
+    vi.restoreAllMocks();
+  });
+
+  it('warns once when the dialog has no name but still renders it', async () => {
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
+    const { root } = await render(<ch-modal open>Contenido</ch-modal>);
+
+    expect(warn).toHaveBeenCalledTimes(1);
+    expect(warn.mock.calls[0][0]).toContain('ch-modal');
+    const dialog = root.shadowRoot.querySelector('dialog');
+    expect(dialog).not.toBe(null);
+    expect(dialog.getAttribute('aria-label')).toBe(null);
+  });
+
+  it('does not warn when the dialog is named', async () => {
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
+    await render(<ch-modal label="Confirmar">Contenido</ch-modal>);
+    expect(warn).not.toHaveBeenCalled();
   });
 });

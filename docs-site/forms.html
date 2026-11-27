@@ -49,9 +49,9 @@
       <section id="como-funciona" tabindex="-1">
         <h2>Cómo funcionan los formularios</h2>
         <p class="lead">
-          Los seis controles de formulario — <code>ch-checkbox</code>, <code>ch-input</code>, <code>ch-radio</code>, <code>ch-select</code>, <code>ch-switch</code> y
-          <code>ch-textarea</code> — son <em>form-associated custom elements</em>. Dentro de un <code>&lt;form&gt;</code> se comportan como controles nativos, sin JavaScript de por
-          medio:
+          Los siete controles de formulario — <code>ch-checkbox</code>, <code>ch-input</code>, <code>ch-radio</code>, <code>ch-segmented-control</code>, <code>ch-select</code>,
+          <code>ch-switch</code> y <code>ch-textarea</code> — son <em>form-associated custom elements</em>. Dentro de un <code>&lt;form&gt;</code> se comportan como controles
+          nativos, sin JavaScript de por medio:
         </p>
         <ul>
           <li>Su valor/estado se envía en <code>FormData</code> y en el submit (por su <code>name</code>).</li>
@@ -169,6 +169,52 @@ form.addEventListener('submit', (event) =&gt; {
 });</code></pre>
       </section>
 
+      <section id="react-19" tabindex="-1">
+        <h2>React 19 y Next.js: Server Actions</h2>
+        <p class="lead">
+          Controles con <code>name</code> participan del <code>FormData</code> del formulario, y una Server Action de React 19 recibe ese mismo <code>FormData</code>. No hace falta
+          un <code>&lt;input type="hidden"&gt;</code> por cada campo Chucao.
+        </p>
+        <pre class="comp-code"><code>'use client';
+
+import '@devschile/chucao/dist/chucao/chucao.esm.js';
+import { saveContact } from './actions';
+
+export function ContactForm() {
+  return (
+    &lt;form action={saveContact}&gt;
+      &lt;ch-input name="email" label="Correo" type="email" required /&gt;
+      &lt;ch-input name="mensaje" label="Mensaje" required /&gt;
+      &lt;ch-switch name="newsletter" label="Recibir novedades"&gt;&lt;/ch-switch&gt;
+      &lt;button type="submit"&gt;Enviar&lt;/button&gt;
+    &lt;/form&gt;
+  );
+}</code></pre>
+        <p>En el servidor la acción lee el <code>FormData</code> por nombre, igual que leería campos nativos:</p>
+        <pre class="comp-code"><code>'use server';
+
+export async function saveContact(formData: FormData) {
+  const email = String(formData.get('email') ?? '');
+  const newsletter = formData.get('newsletter') === 'on';
+  // ...
+}</code></pre>
+        <ul>
+          <li>
+            <strong>Submit con un botón nativo.</strong> <code>&lt;button type="submit"&gt;</code> dispara el submit dentro del formulario sin JavaScript extra. Si usas
+            <code>ch-button</code>, conecta su <code>chClick</code> con <code>form.requestSubmit()</code>, como en los ejemplos anteriores: vive en su shadow root y no puede
+            disparar el submit por sí solo.
+          </li>
+          <li>
+            <strong>Sin campos ocultos.</strong> Un control que no lleva <code>name</code> no se envía, y uno con <code>value</code> inicial se envía tal cual. El trabajo manual de
+            sincronizar hidden inputs además duplica el valor: hay que quitarlo.
+          </li>
+          <li>
+            <strong>Formularios no controlados.</strong> React no reescribe el valor de un custom element del que no conoce nada: deja que el navegador y el componente lleven el
+            valor, y lee el resultado con <code>FormData</code> en la acción.
+          </li>
+        </ul>
+      </section>
+
       <section id="notas" tabindex="-1">
         <h2>Notas</h2>
         <ul>
@@ -212,6 +258,56 @@ form.addEventListener('submit', (event) =&gt; {
           </li>
           <li>
             <strong>Controles sin <code>name</code></strong> no se envían en el submit, igual que los controles nativos.
+          </li>
+          <li>
+            <strong>Cuándo sigue haciendo falta un hidden input.</strong> Casi nunca. Solo si necesitas enviar un valor que no corresponde a un control (un identificador de
+            formulario, un contador de intentos) o un campo del que no hay componente. Para un campo Chucao, el <code>name</code> basta.
+          </li>
+          <li>
+            <strong>Reset.</strong> <code>form.reset()</code> dispara <code>formResetCallback</code> y cada control vuelve a su estado inicial: <code>value</code> en input, select,
+            textarea, radio y segmented control, <code>checked</code> en checkbox y switch. Si el valor inicial venía de otro lado (SSR, props que cambian después), vuelve al que
+            tenía al montarse, así que un formulario que cambia de registro necesita remontar los controles o fijar el nuevo valor explícitamente.
+          </li>
+          <li>
+            <strong>SSR e hidratación.</strong> El valor que el servidor renderiza es el que el control toma como inicial: hidrata con el mismo <code>value</code> para que el reset
+            y la validación coincidan. Si el usuario cambia el valor antes de que hidrate, el valor escrito en el DOM gana, igual que con un input nativo.
+          </li>
+        </ul>
+      </section>
+      <section id="vue" tabindex="-1">
+        <h2>Vue 3</h2>
+        <p class="lead">
+          Con el bundle de <code>dist-custom-elements</code>, Vue trata el control como un tag más. Deja que el navegador lleve el valor y lee el resultado con
+          <code>FormData</code>, como con un input nativo.
+        </p>
+        <pre class="comp-code"><code>&lt;script setup lang="ts"&gt;
+import '@devschile/chucao/ch-input';
+import '@devschile/chucao/ch-switch';
+
+function onSubmit(event: SubmitEvent) {
+  event.preventDefault();
+  const form = event.target as HTMLFormElement;
+  const data = Object.fromEntries(new FormData(form));
+  // { email: '...', newsletter: 'on' }
+  console.log(data);
+}
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;form @submit="onSubmit"&gt;
+    &lt;ch-input name="email" label="Correo" type="email" required&gt;&lt;/ch-input&gt;
+    &lt;ch-switch name="newsletter" label="Recibir novedades"&gt;&lt;/ch-switch&gt;
+    &lt;button type="submit"&gt;Enviar&lt;/button&gt;
+  &lt;/form&gt;
+&lt;/template&gt;</code></pre>
+        <ul>
+          <li>
+            <strong>Vue y el DOM propio del componente.</strong> <code>ch-input</code> guarda su valor en su shadow root, así que <code>v-model</code> sobre el tag no lo controla:
+            escucha <code>chInput</code>/<code>chChange</code> y envíalo en el <code>FormData</code>, o usa <code>@devschile/chucao/vue</code> con los wrappers generados.
+          </li>
+          <li>
+            <strong>El mismo formulario sirve para el servidor.</strong> Como el valor viaja en el <code>FormData</code> del submit, un handler en Laravel, Rails o Django lo ve
+            exactamente igual, sin deserializar estado de JavaScript.
           </li>
         </ul>
       </section>

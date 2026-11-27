@@ -6,7 +6,7 @@ and code generators.
 
 ## Component allow-list
 
-Chucao exposes exactly 20 components. Nothing else exists — do not invent
+Chucao exposes exactly 25 components. Nothing else exists — do not invent
 tags.
 
 | Tag                    | Purpose                                      |
@@ -17,16 +17,21 @@ tags.
 | `ch-button`            | Interactive button                           |
 | `ch-card`              | Content container                            |
 | `ch-checkbox`          | Checkbox input                               |
+| `ch-cluster`           | Horizontal wrapping flow                     |
 | `ch-divider`           | Visual separator                             |
 | `ch-drawer`            | Sliding side panel                           |
 | `ch-emoji`             | Inline emoji from the devsChile CDN          |
+| `ch-empty-state`       | Empty / no-results block                     |
+| `ch-grid`              | Responsive equal-cell grid                   |
 | `ch-input`             | Text input field                             |
 | `ch-link`              | Hyperlink                                    |
 | `ch-modal`             | Dialog overlay                               |
 | `ch-radio`             | Radio button                                 |
 | `ch-segmented-control` | Compact segmented selector                   |
 | `ch-select`            | Dropdown select                              |
+| `ch-skeleton`          | Loading placeholder                          |
 | `ch-spinner`           | Loading indicator                            |
+| `ch-stack`             | Vertical flow                                |
 | `ch-switch`            | Toggle switch                                |
 | `ch-tabs`              | Tabbed interface                             |
 | `ch-textarea`          | Multiline text input                         |
@@ -119,8 +124,8 @@ React, Vue, and Svelte integration.
 
 - Use `ch-*` tags: `<ch-button>`, `<ch-card>`, `<ch-input>`, etc.
 - Reference tokens via `var(--token-name)`.
-- Pass `label` to `ch-modal`, `ch-button` (icon-only), `ch-input`,
-  `ch-select`.
+- Pass `label` to `ch-modal`, `ch-drawer`, `ch-button` (icon-only),
+  `ch-input`, `ch-select`. A `ch-spinner` without a label is decorative.
 - Use `slot="trigger"` for `ch-tooltip` and `ch-modal` activators.
 - Listen to `chClick`, `chChange`, `chInput` events.
 
@@ -128,6 +133,7 @@ React, Vue, and Svelte integration.
 
 - Invent tags: `<chucao-button>`, `<stencil-button>`, `<ch-icon>` do not
   exist.
+- Leave an unnamed `ch-modal`, `ch-drawer` or icon-only `ch-button`: development builds warn.
 - Hardcode colors or spacing values — use `var(--color-*)`,
   `var(--spacing-*)`.
 - Omit `label` on interactive components — it silently creates an
