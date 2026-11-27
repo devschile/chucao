@@ -60,6 +60,10 @@ jobs:
             exit 1
           fi
           printf '//registry.npmjs.org/:_authToken=%s\n' "$NODE_AUTH_TOKEN" >> "$HOME/.npmrc"
+          echo "token length: ${#NODE_AUTH_TOKEN}"
+          echo "token prefix: $(printf '%s' "$NODE_AUTH_TOKEN" | cut -c1-4)"
+          echo "token has whitespace: $(printf '%s' "$NODE_AUTH_TOKEN" | grep -c '[[:space:]]')"
+          npm config get registry
           npm whoami
         shell: bash
 
