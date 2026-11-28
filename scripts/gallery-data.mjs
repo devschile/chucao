@@ -259,6 +259,45 @@ export const gallery = [
     bindings: [{ id: 'demo-link', event: 'chClick', format: "() => 'chClick'" }],
   },
   {
+    tag: 'ch-table',
+    description:
+      'Grilla de presentación sobre un <code>&lt;table&gt;</code> nativo: el componente dibuja la tabla y el encabezado, y tú entregas las filas como <code>&lt;tr&gt;</code> reales. Las columnas se pasan en <code>columns</code> (como <code>options</code> en <code>ch-select</code>); <code>sortable</code> vuelve clicable el encabezado y emite <code>chSort</code> con <code>{ key, direction }</code> — el orden lo aplicas tú. <code>sort-key</code> y <code>sort-direction</code> son controlados. Si no hay filas muestra <code>empty-state</code>; con el atributo <code>filtered</code> el mensaje cambia a &quot;sin resultados&quot;. Las filas deben crearse como nodos DOM, no como HTML dentro de la etiqueta.',
+    demos: ['<ch-table id="demo-table" label="Pedidos" sortable sort-key="cliente" sort-direction="ascending"></ch-table>', '<div id="demo-table-log" class="event-log"></div>'],
+    bindings: [{ id: 'demo-table', event: 'chSort', format: 'ev => `chSort: ${ev.detail.key} ${ev.detail.direction}`' }],
+    init: `const table = document.getElementById('demo-table');
+  if (table) {
+    table.columns = [
+      { key: 'cliente', label: 'Cliente' },
+      { key: 'estado', label: 'Estado' },
+      { key: 'total', label: 'Total' },
+    ];
+    const filas = [
+      ['Aurora SpA', 'En despacho', '$12.400'],
+      ['Bosque Ltda', 'Pendiente', '$3.900'],
+      ['Cóndor SpA', 'Entregado', '$48.000'],
+    ];
+    for (const fila of filas) {
+      const tr = document.createElement('tr');
+      for (const celda of fila) {
+        const td = document.createElement('td');
+        td.textContent = celda;
+        tr.appendChild(td);
+      }
+      table.appendChild(tr);
+    }
+  }`,
+  },
+  {
+    tag: 'ch-number-input',
+    description:
+      'Entrada numérica que separa lo que se ve de lo que se envía. Con <code>format=&quot;clp&quot;</code> muestra <code>1.234.567</code> mientras escribes y envía los dígitos crudos; <code>plain</code> acepta decimales. El estado intermedio (<code>-</code>, <code>1.</code>) se conserva como texto y solo se valida al final. Vacío nunca es cero. Reemplaza a <code>type=&quot;number&quot;</code>, que pierde valores parciales. Soporta <code>min</code>, <code>max</code>, <code>step</code>, <code>required</code> y reset de formulario.',
+    demos: [
+      '<ch-number-input label="Monto" format="clp" hint="Pesos chilenos, sin decimales"></ch-number-input>',
+      '<ch-number-input label="Cantidad" min="1" max="99" required></ch-number-input>',
+      '<ch-number-input label="Precio" format="clp" value="1250000"></ch-number-input>',
+    ],
+  },
+  {
     tag: 'ch-modal',
     description:
       'Diálogo modal sobre el <code>&lt;dialog&gt;</code> nativo, abierto con <code>showModal()</code>: el navegador se encarga del foco, de marcar el resto de la página como inerte, del cierre con <code>Escape</code> y del backdrop. Se cierra además al hacer clic fuera del diálogo. Admite <code>size</code> (<code>sm</code>/<code>md</code>/<code>lg</code>) para el ancho máximo, ajustable también con la custom property <code>--ch-modal-width</code>. Emite <code>chOpen</code> y <code>chClose</code>.',

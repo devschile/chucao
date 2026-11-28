@@ -65,6 +65,32 @@ customElements.whenDefined('ch-link').then(() => {
   bind('demo-link', [{ name: 'chClick', format: () => 'chClick' }]);
 });
 
+customElements.whenDefined('ch-table').then(() => {
+  const table = document.getElementById('demo-table');
+  if (table) {
+    table.columns = [
+      { key: 'cliente', label: 'Cliente' },
+      { key: 'estado', label: 'Estado' },
+      { key: 'total', label: 'Total' },
+    ];
+    const filas = [
+      ['Aurora SpA', 'En despacho', '$12.400'],
+      ['Bosque Ltda', 'Pendiente', '$3.900'],
+      ['Cóndor SpA', 'Entregado', '$48.000'],
+    ];
+    for (const fila of filas) {
+      const tr = document.createElement('tr');
+      for (const celda of fila) {
+        const td = document.createElement('td');
+        td.textContent = celda;
+        tr.appendChild(td);
+      }
+      table.appendChild(tr);
+    }
+  }
+  bind('demo-table', [{ name: 'chSort', format: ev => `chSort: ${ev.detail.key} ${ev.detail.direction}` }]);
+});
+
 customElements.whenDefined('ch-modal').then(() => {
   const modalTrigger = document.getElementById('demo-modal-trigger');
   const modalEl = document.getElementById('demo-modal');
