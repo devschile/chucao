@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+## [2.7.1](https://github.com/devschile/chucao/compare/2.7.0...2.7.1) (2026-11-28)
+
+### Bug Fixes
+
+* **ch-tooltip:** keep the bubble aligned in a nested containing block ([bf42249](https://github.com/devschile/chucao/commit/bf42249125eaf7e127c1de5bc1038842ef7b7ceb)), references [#50](https://github.com/devschile/chucao/issues/50)
+
 ## [2.7.0](https://github.com/devschile/chucao/compare/2.6.0...2.7.0) (2026-11-28)
 
 ### Features
