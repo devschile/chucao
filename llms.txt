@@ -1,0 +1,61 @@
+# Chucao
+
+> Kit de marca + sistema de diseño web de devsChile
+
+## Getting Started
+
+- [README](https://devschile.github.io/chucao/README.md): Documentación principal del proyecto
+- [Design System](https://devschile.github.io/chucao/DESIGN.md): Sistema de diseño y marca
+- [Changelog](https://devschile.github.io/chucao/CHANGELOG.md): Historial de cambios
+
+## Components
+
+- [ch-accordion](https://devschile.github.io/chucao/components/ch-accordion/): ch-accordion component
+- [ch-alert](https://devschile.github.io/chucao/components/ch-alert/): Block-level status message.
+- [ch-badge](https://devschile.github.io/chucao/components/ch-badge/): Small status label.
+- [ch-button](https://devschile.github.io/chucao/components/ch-button/): graph TD;
+- [ch-card](https://devschile.github.io/chucao/components/ch-card/): ch-card component
+- [ch-checkbox](https://devschile.github.io/chucao/components/ch-checkbox/): ch-checkbox component
+- [ch-cluster](https://devschile.github.io/chucao/components/ch-cluster/): Horizontal flow that wraps when it runs out of room, with a token-driven
+- [ch-description-list](https://devschile.github.io/chucao/components/ch-description-list/): Label/value pairs for detail views, on a native `<dl>`.
+- [ch-divider](https://devschile.github.io/chucao/components/ch-divider/): ch-divider component
+- [ch-drawer](https://devschile.github.io/chucao/components/ch-drawer/): Sliding side panel for navigation, editing forms and quick detail views.
+- [ch-emoji](https://devschile.github.io/chucao/components/ch-emoji/): Inline emoji from the devsChile CDN.
+- [ch-empty-state](https://devschile.github.io/chucao/components/ch-empty-state/): The standard "there is nothing here" block: an optional visual, a title, a
+- [ch-grid](https://devschile.github.io/chucao/components/ch-grid/): Responsive grid of equal cells.
+- [ch-icon](https://devschile.github.io/chucao/components/ch-icon/): A single Lucide glyph.
+- [ch-icon-button](https://devschile.github.io/chucao/components/ch-icon-button/): A button whose only content is an icon.
+- [ch-input](https://devschile.github.io/chucao/components/ch-input/): ch-input component
+- [ch-link](https://devschile.github.io/chucao/components/ch-link/): ch-link component
+- [ch-modal](https://devschile.github.io/chucao/components/ch-modal/): Modal dialog, built on the native `<dialog>` element and opened with
+- [ch-number-input](https://devschile.github.io/chucao/components/ch-number-input/): Numeric input that keeps what the user is typing separate from the value the
+- [ch-page-header](https://devschile.github.io/chucao/components/ch-page-header/): The heading block at the top of a page: title, optional eyebrow and
+- [ch-radio](https://devschile.github.io/chucao/components/ch-radio/): ch-radio component
+- [ch-segmented-control](https://devschile.github.io/chucao/components/ch-segmented-control/): Compact control for switching between a few mutually exclusive options
+- [ch-select](https://devschile.github.io/chucao/components/ch-select/): ch-select component
+- [ch-skeleton](https://devschile.github.io/chucao/components/ch-skeleton/): Decorative loading placeholder that reserves the space real content will
+- [ch-spinner](https://devschile.github.io/chucao/components/ch-spinner/): Loading indicator.
+- [ch-stack](https://devschile.github.io/chucao/components/ch-stack/): Vertical flow: children stack top to bottom with a token-driven gap.
+- [ch-stat](https://devschile.github.io/chucao/components/ch-stat/): One dashboard metric: a label, a value and an optional hint.
+- [ch-switch](https://devschile.github.io/chucao/components/ch-switch/): ch-switch component
+- [ch-table](https://devschile.github.io/chucao/components/ch-table/): Presentation-only data grid over a native `<table>`.
+- [ch-tabs](https://devschile.github.io/chucao/components/ch-tabs/): ch-tabs component
+- [ch-textarea](https://devschile.github.io/chucao/components/ch-textarea/): ch-textarea component
+- [ch-timeline](https://devschile.github.io/chucao/components/ch-timeline/): Chronological history: a native ordered list with a marker dot per item
+- [ch-tooltip](https://devschile.github.io/chucao/components/ch-tooltip/): Short help text shown on hover and on focus.
+
+## Design Tokens
+
+- [Tokens](https://devschile.github.io/chucao/tokens/README.md): Tokens de diseño generados por toki
+
+## Documentation
+
+- [Ai](https://devschile.github.io/chucao/docs/ai.md): Chucao is a design system of Web Components published as
+- [App Navigation](https://devschile.github.io/chucao/docs/app-navigation.md): How to build the sidebar from issue #76 with the components that already ship.
+- [Assets](https://devschile.github.io/chucao/docs/assets.md): assets/
+- [Components](https://devschile.github.io/chucao/docs/components.md): The Chucao design system (colors, typography, spacing, layout — see
+- [Releasing](https://devschile.github.io/chucao/docs/releasing.md): How `@devschile/chucao` is released to npm and deployed to the versioned CDN.
+- [Storybook](https://devschile.github.io/chucao/docs/storybook.md): Status: **evaluated, not adopted.** Current recommendation is the lightweight
+- [Testing](https://devschile.github.io/chucao/docs/testing.md): pnpm test # run the component tests
+- [Using The Library](https://devschile.github.io/chucao/docs/using-the-library.md): There are two strategies to consume Stencil component libraries published to
+- [V1 Readiness](https://devschile.github.io/chucao/docs/v1-readiness.md): This document evaluates whether `@devschile/chucao` is ready to publish its

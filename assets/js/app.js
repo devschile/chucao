@@ -1,0 +1,172 @@
+function bind(id, events) {
+  const el = document.getElementById(id);
+  const out = document.getElementById(`${id}-log`);
+  if (!el || !out) {
+    return;
+  }
+  events.forEach(({ name, format }) => {
+    el.addEventListener(name, ev => {
+      out.textContent = format(ev);
+    });
+  });
+}
+
+customElements.whenDefined('ch-accordion').then(() => {
+  const accordion = document.getElementById('demo-accordion');
+  if (accordion) {
+    accordion.items = [
+      { title: '¿Qué es Chucao?', value: 'que-es' },
+      { title: '¿Cómo instalo?', value: 'instalar' },
+    ];
+    const panelAccordion = document.createElement('div');
+    panelAccordion.setAttribute('slot', 'panel-que-es');
+    panelAccordion.innerHTML = 'Chucao es el sistema de diseño de devsChile.';
+    accordion.appendChild(panelAccordion);
+  }
+  bind('demo-accordion', [{ name: 'chChange', format: ev => `chChange: ${ev.detail}` }]);
+});
+
+customElements.whenDefined('ch-alert').then(() => {
+  bind('demo-alert', [{ name: 'chDismiss', format: () => `chDismiss` }]);
+});
+
+customElements.whenDefined('ch-button').then(() => {
+  bind('demo-button', [{ name: 'chClick', format: () => 'chClick' }]);
+});
+
+customElements.whenDefined('ch-checkbox').then(() => {
+  bind('demo-checkbox', [{ name: 'chChange', format: ev => `chChange: ${ev.detail}` }]);
+});
+
+customElements.whenDefined('ch-drawer').then(() => {
+  const drawerTrigger = document.getElementById('demo-drawer-trigger');
+  const drawerEl = document.getElementById('demo-drawer');
+  if (drawerTrigger && drawerEl) {
+    drawerTrigger.addEventListener('chClick', () => {
+      drawerEl.open = true;
+    });
+  }
+  const drawerStartTrigger = document.getElementById('demo-drawer-start-trigger');
+  const drawerStartEl = document.getElementById('demo-drawer-start');
+  if (drawerStartTrigger && drawerStartEl) {
+    drawerStartTrigger.addEventListener('chClick', () => {
+      drawerStartEl.open = true;
+    });
+  }
+  bind('demo-drawer', [{ name: 'chClose', format: () => `chClose` }]);
+});
+
+customElements.whenDefined('ch-input').then(() => {
+  bind('demo-input', [{ name: 'chInput', format: ev => `chInput: ${ev.detail}` }]);
+  bind('demo-input', [{ name: 'chChange', format: ev => `chChange: ${ev.detail}` }]);
+});
+
+customElements.whenDefined('ch-link').then(() => {
+  bind('demo-link', [{ name: 'chClick', format: () => 'chClick' }]);
+});
+
+customElements.whenDefined('ch-table').then(() => {
+  const table = document.getElementById('demo-table');
+  if (table) {
+    table.columns = [
+      { key: 'cliente', label: 'Cliente' },
+      { key: 'estado', label: 'Estado' },
+      { key: 'total', label: 'Total' },
+    ];
+    const filas = [
+      ['Aurora SpA', 'En despacho', '$12.400'],
+      ['Bosque Ltda', 'Pendiente', '$3.900'],
+      ['Cóndor SpA', 'Entregado', '$48.000'],
+    ];
+    for (const fila of filas) {
+      const tr = document.createElement('tr');
+      for (const celda of fila) {
+        const td = document.createElement('td');
+        td.textContent = celda;
+        tr.appendChild(td);
+      }
+      table.appendChild(tr);
+    }
+  }
+  bind('demo-table', [{ name: 'chSort', format: ev => `chSort: ${ev.detail.key} ${ev.detail.direction}` }]);
+});
+
+customElements.whenDefined('ch-modal').then(() => {
+  const modalTrigger = document.getElementById('demo-modal-trigger');
+  const modalEl = document.getElementById('demo-modal');
+  if (modalTrigger && modalEl) {
+    modalTrigger.addEventListener('chClick', () => {
+      modalEl.open = true;
+    });
+  }
+  const modalLgTrigger = document.getElementById('demo-modal-lg-trigger');
+  const modalLgEl = document.getElementById('demo-modal-lg');
+  if (modalLgTrigger && modalLgEl) {
+    modalLgTrigger.addEventListener('chClick', () => {
+      modalLgEl.open = true;
+    });
+  }
+  bind('demo-modal', [{ name: 'chClose', format: () => `chClose` }]);
+});
+
+customElements.whenDefined('ch-radio').then(() => {
+  const radio = document.getElementById('demo-radio');
+  if (radio) {
+    radio.options = [
+      { label: 'Comunidad', value: 'community' },
+      { label: 'Links', value: 'links' },
+      { label: 'Eventos', value: 'events' },
+    ];
+  }
+  bind('demo-radio', [{ name: 'chChange', format: ev => `chChange: ${ev.detail}` }]);
+});
+
+customElements.whenDefined('ch-segmented-control').then(() => {
+  const segmented = document.getElementById('demo-segmented');
+  if (segmented) {
+    segmented.options = [
+      { label: 'Todas', value: 'all' },
+      { label: 'Entradas', value: 'in' },
+      { label: 'Salidas', value: 'out' },
+    ];
+    segmented.value = 'all';
+  }
+  bind('demo-segmented', [{ name: 'chChange', format: ev => `chChange: ${ev.detail}` }]);
+});
+
+customElements.whenDefined('ch-select').then(() => {
+  const select = document.getElementById('demo-select');
+  if (select) {
+    select.options = [
+      { label: 'Chile', value: 'cl' },
+      { label: 'Argentina', value: 'ar' },
+      { label: 'Perú', value: 'pe' },
+    ];
+  }
+  bind('demo-select', [{ name: 'chChange', format: ev => `chChange: ${ev.detail}` }]);
+});
+
+customElements.whenDefined('ch-switch').then(() => {
+  bind('demo-switch', [{ name: 'chChange', format: ev => `chChange: ${ev.detail}` }]);
+});
+
+customElements.whenDefined('ch-tabs').then(() => {
+  const tabsEl = document.getElementById('demo-tabs');
+  if (tabsEl) {
+    tabsEl.tabs = [
+      { label: 'Comunidad', value: 'comunidad' },
+      { label: 'Links', value: 'links' },
+      { label: 'Eventos', value: 'eventos' },
+    ];
+    const panelTabs = document.createElement('div');
+    panelTabs.setAttribute('slot', 'panel-comunidad');
+    panelTabs.innerHTML = 'Contenido de la pestaña Comunidad.';
+    tabsEl.appendChild(panelTabs);
+  }
+  bind('demo-tabs', [{ name: 'chChange', format: ev => `chChange: ${ev.detail}` }]);
+});
+
+customElements.whenDefined('ch-textarea').then(() => {
+  bind('demo-textarea', [{ name: 'chInput', format: ev => `chInput: ${ev.detail}` }]);
+  bind('demo-textarea', [{ name: 'chChange', format: ev => `chChange: ${ev.detail}` }]);
+});
