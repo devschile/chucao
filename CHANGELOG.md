@@ -6,6 +6,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+## [2.7.0](https://github.com/devschile/chucao/compare/2.6.0...2.7.0) (2026-11-28)
+
+### Features
+
+* **ch-table,ch-number-input:** grid and numeric input — Stage 3 U-E and U-I ([#124](https://github.com/devschile/chucao/issues/124)) ([f60e43c](https://github.com/devschile/chucao/commit/f60e43cdc122f56123086bf79695bef3335381e4)), references [#77](https://github.com/devschile/chucao/issues/77) [#86](https://github.com/devschile/chucao/issues/86)
+
+### Bug Fixes
+
+* **ci:** let the tag-on-main check resolve ancestry ([#123](https://github.com/devschile/chucao/issues/123)) ([520e927](https://github.com/devschile/chucao/commit/520e9277f0609424d2107a44df20ed4ce8f723d7))
+* **ci:** verify the CDN against the emitted chunks, not both name variants ([#122](https://github.com/devschile/chucao/issues/122)) ([76f1eae](https://github.com/devschile/chucao/commit/76f1eaefd33b7f65239afe1a81acc6e643fce44f))
+
 ## [2.6.0](https://github.com/devschile/chucao/compare/2.5.0...2.6.0) (2026-11-27)
 
 ### Features
