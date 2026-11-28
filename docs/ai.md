@@ -39,7 +39,7 @@ tags.
 | `ch-stat`              | Dashboard metric with a tonal sign cue       |
 | `ch-stack`             | Vertical flow                                |
 | `ch-switch`            | Toggle switch                                |
-| `ch-table`             | Data grid over a native `<table>`             |
+| `ch-table`             | Data grid over a native `<table>`            |
 | `ch-tabs`              | Tabbed interface                             |
 | `ch-textarea`          | Multiline text input                         |
 | `ch-timeline`          | Chronological history on a native `<ol>`     |
