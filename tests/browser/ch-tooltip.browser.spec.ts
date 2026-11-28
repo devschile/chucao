@@ -131,6 +131,32 @@ describe('ch-tooltip collision', () => {
     expect(getComputedStyle(bubble).position).toBe('fixed');
   });
 
+  it('stays aligned when an ancestor establishes a fixed containing block', async () => {
+    const host = document.createElement('div');
+    host.style.padding = '40px';
+    host.style.backdropFilter = 'blur(10px)';
+    host.style.margin = '120px 0 0 60px';
+    host.innerHTML = `
+      <ch-tooltip placement="top">
+        <button slot="trigger">Guardar</button>
+        <span slot="content">Se publica al CDN con cada release</span>
+      </ch-tooltip>
+    `;
+    document.body.append(host);
+    const element = host.querySelector('ch-tooltip');
+    const trigger = host.querySelector('button');
+    await settle();
+
+    trigger.focus();
+    await settle();
+    await new Promise(resolve => setTimeout(resolve, 50));
+
+    const triggerRect = trigger.getBoundingClientRect();
+    const { rect } = bubbleBox(element);
+    expect(Math.abs(rect.left + rect.width / 2 - (triggerRect.left + triggerRect.width / 2))).toBeLessThanOrEqual(3);
+    expect(Math.abs(triggerRect.top - rect.bottom - 8)).toBeLessThanOrEqual(20);
+  });
+
   it('repositions when the viewport resizes', async () => {
     const { element, trigger } = mount('top');
     await settle();

@@ -7,6 +7,17 @@
   display: inline-flex;
 }
 
+/* Fixed at the origin of the same containing block the bubble uses. */
+.probe {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  visibility: hidden;
+  pointer-events: none;
+}
+
 .bubble {
   position: absolute;
   z-index: var(--z-index-dropdown);

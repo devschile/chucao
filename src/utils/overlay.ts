@@ -3,7 +3,7 @@ export type ChOverlayPlacement = 'top' | 'bottom' | 'left' | 'right';
 export interface ChOverlayPosition {
   /** Placement after flipping when the preferred side does not fit. */
   placement: ChOverlayPlacement;
-  /** Offset from the anchor's top-left corner, in pixels. */
+  /** Position in the same coordinate space as `anchor` and `viewport`, in pixels. */
   top: number;
   left: number;
 }

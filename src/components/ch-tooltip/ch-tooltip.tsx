@@ -44,6 +44,8 @@ export class ChTooltip {
 
   private bubbleEl?: HTMLElement;
 
+  private probeEl?: HTMLElement;
+
   private cleanup?: () => void;
 
   /**
@@ -160,13 +162,20 @@ export class ChTooltip {
    * Measures the anchor and the bubble and stores the offset that keeps the
    * bubble inside the viewport. Nothing is measured before the bubble has a
    * box to measure, so the pre-paint render uses plain CSS.
+   *
+   * A fixed bubble is positioned against the nearest ancestor that establishes
+   * a containing block (a `transform`, `filter`, `backdrop-filter`, `contain`
+   * or `will-change`), not necessarily the viewport. The probe is fixed at the
+   * containing block's origin, so both the anchor and the viewport are
+   * converted into that same space before `placeOverlay` does its maths.
    */
   private position() {
     if (typeof window === 'undefined') {
       return;
     }
     const bubble = this.bubbleEl ?? (this.bubbleEl = this.el.shadowRoot?.querySelector<HTMLElement>('.bubble') ?? undefined);
-    if (!bubble || bubble.offsetWidth === 0) {
+    const probe = this.probeEl ?? (this.probeEl = this.el.shadowRoot?.querySelector<HTMLElement>('.probe') ?? undefined);
+    if (!bubble || !probe || bubble.offsetWidth === 0) {
       return;
     }
 
@@ -175,6 +184,16 @@ export class ChTooltip {
       return;
     }
 
+    const probeRect = probe.getBoundingClientRect();
+    const scaleX = probeRect.width || 1;
+    const scaleY = probeRect.height || 1;
+    const inContainingBlock = (rect: { top: number; left: number; width: number; height: number }) => ({
+      top: (rect.top - probeRect.top) / scaleY,
+      left: (rect.left - probeRect.left) / scaleX,
+      width: rect.width / scaleX,
+      height: rect.height / scaleY,
+    });
+
     const surface = {
       width: bubble.offsetWidth + horizontalMargin(bubble),
       height: bubble.offsetHeight,
@@ -182,11 +201,13 @@ export class ChTooltip {
     const viewport = window.visualViewport;
 
     const { placement, top, left } = placeOverlay({
-      anchor: { top: anchorRect.top, left: anchorRect.left, width: anchorRect.width, height: anchorRect.height },
+      anchor: inContainingBlock(anchorRect),
       surface,
-      viewport: viewport
-        ? { top: viewport.offsetTop, left: viewport.offsetLeft, width: viewport.width, height: viewport.height }
-        : { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight },
+      viewport: inContainingBlock(
+        viewport
+          ? { top: viewport.offsetTop, left: viewport.offsetLeft, width: viewport.width, height: viewport.height }
+          : { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight },
+      ),
       preferred: this.placement,
       gap: GAP,
     });
@@ -224,6 +245,7 @@ export class ChTooltip {
     return (
       <Host>
         <span class="anchor">
+          <span class="probe" aria-hidden="true" ref={el => (this.probeEl = el)}></span>
           {/* Pre-measure render uses the preferred side so the bubble never
               jumps from the wrong edge on its first frame. */}
           <slot name="trigger" onSlotchange={this.associate}></slot>
