@@ -6,7 +6,7 @@ and code generators.
 
 ## Component allow-list
 
-Chucao exposes exactly 31 components. Nothing else exists — do not invent
+Chucao exposes exactly 33 components. Nothing else exists — do not invent
 tags.
 
 | Tag                    | Purpose                                      |
@@ -29,6 +29,7 @@ tags.
 | `ch-input`             | Text input field                             |
 | `ch-link`              | Hyperlink                                    |
 | `ch-modal`             | Dialog overlay                               |
+| `ch-number-input`      | Numeric input with canonical value (CLP)     |
 | `ch-page-header`       | Page title, description and actions          |
 | `ch-radio`             | Radio button                                 |
 | `ch-segmented-control` | Compact segmented selector                   |
@@ -38,6 +39,7 @@ tags.
 | `ch-stat`              | Dashboard metric with a tonal sign cue       |
 | `ch-stack`             | Vertical flow                                |
 | `ch-switch`            | Toggle switch                                |
+| `ch-table`             | Data grid over a native `<table>`            |
 | `ch-tabs`              | Tabbed interface                             |
 | `ch-textarea`          | Multiline text input                         |
 | `ch-timeline`          | Chronological history on a native `<ol>`     |

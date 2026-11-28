@@ -28,6 +28,7 @@
 - [ch-input](https://devschile.github.io/chucao/components/ch-input/): ch-input component
 - [ch-link](https://devschile.github.io/chucao/components/ch-link/): ch-link component
 - [ch-modal](https://devschile.github.io/chucao/components/ch-modal/): Modal dialog, built on the native `<dialog>` element and opened with
+- [ch-number-input](https://devschile.github.io/chucao/components/ch-number-input/): Numeric input that keeps what the user is typing separate from the value the
 - [ch-page-header](https://devschile.github.io/chucao/components/ch-page-header/): The heading block at the top of a page: title, optional eyebrow and
 - [ch-radio](https://devschile.github.io/chucao/components/ch-radio/): ch-radio component
 - [ch-segmented-control](https://devschile.github.io/chucao/components/ch-segmented-control/): Compact control for switching between a few mutually exclusive options
@@ -37,6 +38,7 @@
 - [ch-stack](https://devschile.github.io/chucao/components/ch-stack/): Vertical flow: children stack top to bottom with a token-driven gap.
 - [ch-stat](https://devschile.github.io/chucao/components/ch-stat/): One dashboard metric: a label, a value and an optional hint.
 - [ch-switch](https://devschile.github.io/chucao/components/ch-switch/): ch-switch component
+- [ch-table](https://devschile.github.io/chucao/components/ch-table/): Presentation-only data grid over a native `<table>`.
 - [ch-tabs](https://devschile.github.io/chucao/components/ch-tabs/): ch-tabs component
 - [ch-textarea](https://devschile.github.io/chucao/components/ch-textarea/): ch-textarea component
 - [ch-timeline](https://devschile.github.io/chucao/components/ch-timeline/): Chronological history: a native ordered list with a marker dot per item

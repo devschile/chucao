@@ -94,6 +94,10 @@
       "import": "./dist/components/ch-link.js",
       "types": "./dist/components/ch-link.d.ts"
     },
+    "./ch-number-input": {
+      "import": "./dist/components/ch-number-input.js",
+      "types": "./dist/components/ch-number-input.d.ts"
+    },
     "./ch-modal": {
       "import": "./dist/components/ch-modal.js",
       "types": "./dist/components/ch-modal.d.ts"
@@ -137,6 +141,10 @@
     "./ch-tabs": {
       "import": "./dist/components/ch-tabs.js",
       "types": "./dist/components/ch-tabs.d.ts"
+    },
+    "./ch-table": {
+      "import": "./dist/components/ch-table.js",
+      "types": "./dist/components/ch-table.d.ts"
     },
     "./ch-textarea": {
       "import": "./dist/components/ch-textarea.js",
